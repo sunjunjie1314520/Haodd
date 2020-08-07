@@ -12,7 +12,8 @@
 		    "path" : "pages/set/set",
 		    "style" : {
 				"navigationBarTitleText": "设置",
-				"navigationBarBackgroundColor":"#fff"
+				"navigationBarBackgroundColor":"#fff",
+				"navigationBarTextStyle":"black"
 			}
 		},
 		
