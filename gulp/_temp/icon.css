@@ -1,0 +1,45 @@
+.ico-close {
+  background: url("../../src/static/img/a2e65d_28x28.png") center/30px no-repeat;
+  width: 30px;
+}
+.ico-login {
+  background: url("../../src/static/img/d947a3_39x31.png") center/39px no-repeat;
+  height: 100%;
+  width: 100%;
+}
+.ico-add {
+  background: url("../../src/static/img/c79769_42x43.png") center/39px no-repeat;
+  height: 100%;
+  width: 100%;
+}
+.ico-more {
+  background: url("../../src/static/img/ea4e36_46x9.png") center/46px no-repeat;
+  height: 100%;
+  width: 46px;
+  display: block;
+}
+.ico-search {
+  width: 58px;
+  height: 100%;
+  background: url("../../src/static/img/02a108_29x29.png") center/29px no-repeat;
+  float: left;
+  margin-left: 10px;
+}
+.ico-menu {
+  width: 46px;
+  height: 100%;
+  display: block;
+  background: url("../../src/static/img/0d4f23_46x9.png") center/46px no-repeat;
+}
+.ico-set {
+  display: block;
+  background: url("../../src/static/img/4f3cf8_36x36.png") center/36px no-repeat;
+  width: 36px;
+  height: 100%;
+}
+.ico-scan {
+  display: block;
+  background: url("../../src/static/img/61ecbb_32x32.png") center/32px no-repeat;
+  height: 100%;
+  width: 32px;
+}
