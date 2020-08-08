@@ -285,6 +285,7 @@
   text-align: center;
   line-height: 90upx;
 }
+.footer .ul .li .ico,
 .footer .ul .li .span {
   color: #fff;
 }
@@ -315,6 +316,7 @@
   width: 100%;
   text-align: center;
   line-height: 90upx;
+  margin-top: var(--status-bar-height);
 }
 .task-tabs .notice {
   float: left;
@@ -367,6 +369,7 @@
   color: #fff;
   display: block;
   line-height: 1.5;
+  font-size: 24upx;
 }
 .task-tabs .list .ul .li .layout .fr .span {
   color: #fff;
@@ -384,6 +387,7 @@
 }
 .task-tabs .list .ul .li .activity text {
   color: #fff;
+  font-size: 26upx;
 }
 .task-tabs .list .ul .bg1 {
   background: -webkit-linear-gradient(left, #ded161, #ff6750);
@@ -413,7 +417,7 @@
   float: left;
   width: 100%;
   background: -webkit-linear-gradient(left, #e6143b, #fd5d43);
-  padding: 50upx 30upx;
+  padding: calc(var(--status-bar-height) + 50upx) 30upx 40upx;
 }
 .center-tabs .user-layout .pict {
   width: 80upx;
@@ -601,4 +605,58 @@
 .set-page .ul .li .fr .sp1 {
   line-height: 90upx;
   display: block;
+}
+.shop-tabs {
+  float: left;
+  width: 100%;
+}
+.shop-tabs .banner {
+  background-color: #fcc;
+}
+.shop-tabs .banner .ul .li {
+  float: left;
+}
+.shop-tabs .banner .ul .li image {
+  width: 100%;
+  float: left;
+  height: 100%;
+}
+.shop-tabs .trade .ul .li {
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 20upx 0;
+}
+.shop-tabs .trade .ul .li .pict {
+  width: 80upx;
+  height: 80upx;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.shop-tabs .trade .ul .li .pict image {
+  width: 100%;
+  height: 100%;
+}
+.shop-tabs .trade .ul .li .h2 {
+  display: block;
+  margin-top: 10upx;
+}
+.product .ul .li {
+  width: 33.33%;
+  text-align: center;
+  float: left;
+  margin-top: 20upx;
+  padding: 0 15upx;
+}
+.product .ul .li .pict {
+  height: 200upx;
+}
+.product .ul .li .pict image {
+  width: 100%;
+  height: 100%;
+}
+.product .ul .li .h2 {
+  display: block;
+  margin-top: 20upx;
+  font-size: 34upx;
 }

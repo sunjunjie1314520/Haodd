@@ -35,6 +35,14 @@
 			change(id){
 				this.tabs = id
 				this.$emit('change', id)
+				
+				// #ifdef APP-PLUS
+					if (id === 3){
+						plus.navigator.setStatusBarStyle('dark'); // 黑
+					}else{
+						plus.navigator.setStatusBarStyle('light'); // 白
+					}
+				// #endif
 			}
 		}
 	}
