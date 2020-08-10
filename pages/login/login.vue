@@ -44,7 +44,7 @@
 				<navigator url="../register/register">还没有账号？立即注册</navigator>
 			</view>
 			<view class="back">
-				<image src="../../src/static/img/9d0551_697x977.jpg" mode=""></image>
+				<image src="../../src/static/img/9d0552_697x977.jpg" mode=""></image>
 			</view>
         </view>
     </view>

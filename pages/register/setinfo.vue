@@ -15,13 +15,13 @@
 				<view class="li">
 					<text>取个名称吧</text>
 					<view class="wrap">
-						<input type="text" value="" placeholder="请输入名称" />
+						<input type="text" placeholder-class="placeholder-class" value="" placeholder="请输入名称" />
 					</view>
                 </view>
 				<view class="li">
 					<text>出生日期</text>
 					<view class="wrap">
-						<input type="text" value="" placeholder="请选择日期" />
+						<input type="text" value="" placeholder="请选择日期" placeholder-class="placeholder-class" />
 						<text class="ico-down"></text>
 					</view>
                 </view>

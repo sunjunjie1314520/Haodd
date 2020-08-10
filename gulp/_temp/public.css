@@ -65,10 +65,7 @@ position relative,
   margin-top: 60px;
 }
 .placeholder-class {
-  color: #c7c7c7;
-}
-.placeholder-class1 {
-  color: #fff;
+  color: font-color;
 }
 .hover-class {
   background: none;
@@ -123,7 +120,7 @@ position relative,
 .pub-button .btn {
   height: 88px;
   line-height: 88px;
-  background: #20bf6a;
+  background: theme-color;
   font-size: 32px;
   border-radius: 6px;
   display: block;
@@ -160,11 +157,11 @@ position relative,
   font-size: 32px;
 }
 .pub-fixed-button .btn {
-  background: #20bf6a;
+  background: theme-color;
   color: #fff;
 }
 .pub-fixed-button .btn.red {
-  background: #e60012;
+  background: error-color;
 }
 .pub-fixed-button .fl {
   border: 1px solid #aaa;
@@ -182,7 +179,7 @@ position relative,
   float: right;
   width: 110px;
   height: 110px;
-  background-color: #20bf6a;
+  background-color: theme-color;
   border-radius: 50%;
   box-shadow: 0 10px 36px rgba(69,216,137,0.36);
 }
@@ -316,7 +313,7 @@ position relative,
   color: #6d6d6d;
 }
 .pub-list .per-pic .follow {
-  border: 1px solid #20bf6a;
+  border: 1px solid theme-color;
   color: #3ec87e;
   float: right;
   min-width: 142px;
@@ -340,8 +337,8 @@ position relative,
   width: 142px;
   height: 60px;
   border-radius: 60px;
-  border: 1px solid #20bf6a;
-  color: #20bf6a;
+  border: 1px solid theme-color;
+  color: theme-color;
   text-align: center;
   display: flex;
   align-items: center;
@@ -608,7 +605,7 @@ position relative,
   float: left;
 }
 .ui-button {
-  border: 1px solid #20bf6a;
+  border: 1px solid theme-color;
   border-radius: 60px;
   font-size: 28px;
   height: 60px;
@@ -616,7 +613,7 @@ position relative,
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #20bf6a;
+  color: theme-color;
   min-width: 142px;
 }
 .ui-button.active {
@@ -645,7 +642,7 @@ position relative,
   height: 72px;
   line-height: 72px;
   border-radius: 50px;
-  background: #20bf6a;
+  background: theme-color;
   display: block;
   margin: 0 auto;
   box-shadow: 0 0 8px rgba(150,150,150,0.52);
@@ -683,7 +680,7 @@ position relative,
   margin-left: 10px;
 }
 .pub-comment .btn {
-  color: #20bf6a;
+  color: theme-color;
   float: right;
   height: 70px;
   line-height: 70px;
@@ -719,7 +716,7 @@ position relative,
   display: block;
   float: right;
   margin-left: 15px;
-  background: #20bf6a;
+  background: theme-color;
   color: #fff;
   padding: 0 25px;
 }
@@ -784,7 +781,7 @@ position relative,
 .report-page .btn {
   height: 88px;
   line-height: 88px;
-  background: #20bf6a;
+  background: theme-color;
   color: #fff;
   border-radius: 6px;
   font-size: 32px;
@@ -817,5 +814,5 @@ position relative,
   display: block;
   float: left;
   height: 100%;
-  background: #20bf6a;
+  background: theme-color;
 }
