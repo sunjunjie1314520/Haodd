@@ -10,11 +10,11 @@ def start():
 
     os.system('git add ./')
     os.system('git commit -m %s' % time)
-    print('开始提交-----------------------')
+    print('commit start -----------------------')
     res = os.popen('git push')
     f = res.read()
     # print(f)
-    print('提交完成------------------', time)
+    print('commit success------------------', time)
     try:
         data = {
             'id': 2,

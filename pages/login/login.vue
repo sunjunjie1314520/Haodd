@@ -1,7 +1,10 @@
 <template>
     <view class="app" :style="{'height': windowHeight + 'px'}">
         <view class="login-page">
-			<view class="pub-flex-center">
+				
+				<view class="logo">
+					<image src="../../src/static/img/e97dba_1037x9031.png" mode=""></image>
+				</view>
 				
 				<view class="tabs-login">
 					<text :class="{active: tabs==0}" @tap="tabs=0">账号登录</text>
@@ -22,6 +25,7 @@
 						<navigator class="navig" url="../register/register">忘记密码</navigator>
 					</view>
 				</view>
+				
 				<view class="ul" v-if="tabs==1">
 					<view class="li">
 						<input type="text" placeholder-class="placeholder-class1" value="" placeholder="请输入您的手机号" />
@@ -38,7 +42,6 @@
 					</view>
 				</view>
 				
-			</view>
 			
 			<view class="other-user">
 				<navigator url="../register/register">还没有账号？立即注册</navigator>

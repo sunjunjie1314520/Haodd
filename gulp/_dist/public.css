@@ -17,8 +17,9 @@
 .app {
   float: left;
   width: 100%;
+  position: relative;
+  background-color: #111118;
 }
-position relative,
 .pub-flex-center {
   position: absolute;
   top: 0;
@@ -65,7 +66,7 @@ position relative,
   margin-top: 60upx;
 }
 .placeholder-class {
-  color: font-color;
+  color: rgba(255,255,255,0.6);
 }
 .hover-class {
   background: none;
@@ -117,16 +118,19 @@ position relative,
   float: left;
   width: 100%;
 }
+.pub-button {
+  float: left;
+  width: 100%;
+}
 .pub-button .btn {
-  height: 88upx;
-  line-height: 88upx;
-  background: theme-color;
-  font-size: 32upx;
-  border-radius: 6upx;
-  display: block;
+  height: 90upx;
+  border-radius: 60upx;
+  background: -webkit-linear-gradient(left, #ff9016, #ff4084);
   color: #fff;
-  font-size: 32upx;
   text-align: center;
+  display: block;
+  font-size: 34upx;
+  line-height: 90upx;
 }
 .pub-fixed-button {
   position: fixed;

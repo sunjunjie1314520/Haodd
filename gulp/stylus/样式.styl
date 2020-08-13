@@ -44,23 +44,30 @@
 .set-info
 	height 100%
 	background-color color1
+	fw 1
+	padding-bottom 30px
 	.title
 		fw 1
-		padding 96px 66px 0
+		padding 66px 66px 0
 		text
-			font-size 40px
+			font-size 34px
 			display block
 			line-height 1.4
-			color font-color
+			// color #ff4084
+			// background linear-gradient(to right, red, blue)
+			linear 1
+			-webkit-background-clip text
+			color transparent
 	.ul
 		fw 1
+		margin-top 30px
 		.li
 			fw 1
 			padding 0 63px
 			margin-top 54px
 			> text
 				display block
-				color font-color
+				color #fff
 			.pict
 				width 122px
 				height 122px
@@ -93,8 +100,7 @@
 					margin-right 100px
 					&.active
 						&:after
-							content ''
-							position absolute
+							content ''position absolute
 							width 40px
 							height 40px
 							right 0
@@ -135,6 +141,14 @@
 	background-color color1
 	position relative
 	overflow hidden
+	padding-top 28%
+	.logo
+		text-align center
+		position relative
+		z-index 2
+		image
+			width 100px
+			height 100px
 	.back
 		position absolute
 		z-index 0
@@ -150,6 +164,7 @@
 		position relative
 		z-index 2
 		fw 1
+		margin-top 110px
 		text
 			float left
 			text-align center
@@ -164,7 +179,7 @@
 					position absolute
 					width 1px
 					height 40px
-					background-color #fff
+					background-color font-color
 					left 0
 					top 50%
 					margin-top -20px
@@ -183,12 +198,12 @@
 	.ul
 		position relative
 		z-index 2
-		margin-top 52px
+		margin-top 32px
 		fw 1
 		.li
 			fw 1
 			padding 0 95px
-			margin-top 53px
+			margin-top 48px
 			.get-code
 				float right
 				color font-color
@@ -205,7 +220,6 @@
 			.button
 				height 90px
 				border-radius 60px
-				color theme
 				linear 1
 				color #fff
 				text-align center
@@ -242,7 +256,7 @@
 			.ico
 				
 			.span
-				color #fff
+				color font-color
 			.cirl
 				widthZ 60px
 				background-color #ccc
@@ -345,39 +359,52 @@
 	background color1
 	.user-layout
 		fw 1
-		linear 1
 		padding calc(var(--status-bar-height) + 50px) 30px 40px
 		.pict
-			widthZ 80px
+			widthZ 120px
 			border-radius 50%
 			float left
 			background-color #fff
-			margin-top 28px
+			overflow hidden
+			image
+				height 100%
+				width 100%
 		.text
-			width 480px
+			width 400px
 			float left
-			margin-left 20px
+			margin-left 40px
+			height 120px
+			display flex
+			flex-direction column
+			justify-content space-around
 			text
 				display block
 				color #fff
-				line-height 1.5
+				font-size 34px
+				font-family 'din'
+				&.h1
+					font-size 40px
 		.set
 			float right
+			height 120px
+			df 1
 			.ico
 				float left
 				background-color #F1F1F1
-				margin-left 30px
+				margin-left 40px
 				ml 0
-				
 				&.i1
 					back '../../src/static/img/975eb6_128x128.png'
-					widthZ 36px
+					widthZ 46px
 				&.i2
 					back '../../src/static/img/1190b0_128x128.png'
-					widthZ 40px
+					widthZ 50px
 		.dou
 			fw 1
 			margin-top 50px
+			.left
+				float left
+				width 40%
 			.h3
 				color #FFFFFF
 				fw 1
@@ -386,12 +413,20 @@
 				margin-top 15px
 				.sp1
 					color #fff
-					font-size 46px
+					font-size 66px
+					font-family 'din'
 				.sp2
 					color #fff
+			.right
+				float right
+				width 60%
+				text
+					color #fff
+					display block
+					margin-top 20px
+					mt 0
 	.liveness
 		fw 1
-		background-color color2
 		.ul
 			.li
 				width 25%
@@ -400,7 +435,9 @@
 				padding 30px 0
 				.h2
 					display block
-					color #e6143b
+					color #fff
+					font-size 40px
+					font-family 'din'
 				.p
 					display block
 					margin-top 10px
@@ -410,20 +447,26 @@
 	.scroll-new
 		fw 1
 		margin-top 20px
-		background-color color2
 		padding 0 30px
+		.layout
+			background-color color2
+			border-radius 10px
+			fw 1
+			padding 0 30px
 		.h3
 			float left
 			line-height 80px
 			color #fff
 		.content
-			width 480px
+			width 420px
 			float left
 			margin-left 30px
 			text
 				fw 1
 				line-height 80px
 				color font-color
+				ov 1
+				font-size 26px
 		.more
 			color #fff
 			line-height 80px
@@ -443,12 +486,13 @@
 				padding 0 30px
 				border-bottom solid .5px rgba(#fff, .4)
 				color #fff
+				font-weight bold
 	.list-menu-1
 		.layout
 			.ul
 				.li
 					float left
-					padding 20px 0
+					padding 25px 0
 					width 25%
 					text-align center
 					image
@@ -458,20 +502,55 @@
 						display block
 						margin-top 20px
 						color font-color
+						font-size 26px
 	.list-menu-2
 		.layout
 			.ul
 				.li
 					float left
-					padding 20px 30px
+					padding 30px 20px 30px 30px
 					width 100%
-					border-top solid 1px rgba(#fff, .2)
+					border-top solid .5px rgba(#fff, .2)
 					border-topN 1
-					text
+					.p
+						background url(../../src/static/img/13da7a_128x128.png) right center/24px no-repeat
 						display block
-						margin-top 20px
-						background url(../../src/static/img/13da7a_128x128.png) right center/30px no-repeat
 						color font-color
+						font-size 26px
+						height 40px
+						line-height 40px
+					.ico
+						float left
+						height 40px
+						opacity .6
+					.i1
+						backi '../../src/static/img/99b87e_128x128.png' 40px
+						background-size 30px
+					.i2
+						backi '../../src/static/img/1cc50b_128x128.png' 40px
+						background-size 30px
+					.i3
+						backi '../../src/static/img/436850_128x128.png' 40px
+						background-size 30px
+					.i4
+						backi '../../src/static/img/1b998d_128x128.png' 40px
+						background-size 30px
+					.i5
+						backi '../../src/static/img/de9f73_128x126.png' 40px
+						background-size 30px
+					.i6
+						backi '../../src/static/img/1d4fb3_128x128.png' 40px
+						background-size 30px
+					.i7
+						backi '../../src/static/img/01c881_128x128.png' 40px
+						background-size 30px
+					.i8
+						backi '../../src/static/img/50eb93_128x128.png' 40px
+						background-size 30px
+					.i9
+						backi '../../src/static/img/51fc96_128x128.png' 40px
+						background-size 30px
+						
 
 .set-page
 	fw 1
@@ -487,16 +566,18 @@
 			height 90px
 			border-top solid 1px border-color
 			border-topN 1
-			background url(../../src/static/img/13da7a_128x128.png) right center/30px no-repeat
 			.span
 				line-height 90px
 				color font-color
 			.fr
-				padding-right 40px
 				.sp1
 					line-height 90px
 					display block
 					color font-color
+			&.more
+				background url(../../src/static/img/13da7a_128x128.png) right center/30px no-repeat
+				.fr
+					padding-right 40px
 					
 
 .shop-tabs
@@ -546,3 +627,53 @@
 				display block
 				margin-top 20px
 				font-size 34px
+
+.modify-user
+	fw 1
+	padding 30px 30px
+	input
+		height 100px
+		border-bottom solid .5px border-color
+		color font-color
+	.pub-button
+		margin-top 30px
+
+.setpass-page
+	fw 1
+	padding 30px 30px
+	.ul
+		fw 1
+		padding-bottom 50px
+		.li
+			fw 1
+			height 100px
+			border-bottom solid .5px border-color
+			input
+				height 100%
+				color font-color
+			
+.binddata-page
+	fw 1
+	padding 30px 30px
+	.ul
+		fw 1
+		padding-bottom 50px
+		.li
+			fw 1
+			border-bottom solid .5px border-color
+			display flex
+			.span
+				color font-color
+				float left
+				flex-shrink 0
+				line-height 100px
+			.fr
+				flex-grow 1
+				padding-left 30px
+			input
+				height 100px
+				color font-color
+				width 100%
+			.picker-type
+				line-height 100px
+				color font-color

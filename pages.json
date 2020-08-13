@@ -14,7 +14,6 @@
 				"navigationBarTitleText": "设置"
 			}
 		},
-		
 		{
 			"path": "pages/register/register",
 			"style": {
@@ -24,16 +23,32 @@
 		{
 			"path": "pages/register/setinfo",
 			"style": {
-				"navigationBarTitleText": "设置头像",
-				"navigationStyle":"custom"
+				"navigationBarTitleText": "设置头像"
 			}
 		},
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "首页",
-				"navigationBarTextStyle":"white"
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/user/modify",
+			"style": {
+				"navigationBarTitleText": "修改用户名"
+			}
+		},
+		{
+			"path": "pages/user/setpass",
+			"style": {
+				"navigationBarTitleText": "设置登录密码"
+			}
+		},
+		{
+			"path": "pages/user/binddata",
+			"style": {
+				"navigationBarTitleText": "绑定提现资料"
 			}
 		}
 		

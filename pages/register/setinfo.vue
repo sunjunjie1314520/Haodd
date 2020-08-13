@@ -1,5 +1,5 @@
 <template>
-    <view class="app" :style="{'height': windowHeight + 'px'}">
+    <view class="app">
         <view class="set-info">
 			<view class="title">
 				<text>设置你的形象</text>

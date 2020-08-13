@@ -11,7 +11,7 @@ import { mapState } from "vuex";
 let plug = {}
 
 plug.install = function(Vue, options) {
-
+	
     // 指令
     directive(Vue)
     

@@ -26,7 +26,7 @@
 		},
 		data() {
 			return {
-				tabs: 1,
+				tabs: 4,
 			}
 		},
 		onLoad() {
