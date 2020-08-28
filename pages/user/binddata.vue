@@ -24,14 +24,14 @@
 					<text class="span">开户银行类型:</text>
 					<view class="fr">
 						<picker @change="bindPickerChange" :value="index" :range="array">
-							<view class="picker-type">{{array[index]}}</view>
+							<text class="picker-type">{{array[index]}}</text>
 						</picker>
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">详细支行:</text>
 					<view class="fr">
-						<input type="text" value="" placeholder="确认输入新密码" placeholder-class="placeholder-class" />
+						<input type="text" value="" placeholder="确认输入详细支行" placeholder-class="placeholder-class" />
 					</view>
 				</view>
 				<view class="li">

@@ -50,6 +50,30 @@
 			"style": {
 				"navigationBarTitleText": "绑定提现资料"
 			}
+		},
+		{
+			"path": "pages/user/settrans",
+			"style": {
+				"navigationBarTitleText": "设置交易密码"
+			}
+		},
+		{
+			"path": "pages/user/real",
+			"style": {
+				"navigationBarTitleText": "实名认证"
+			}
+		},
+		{
+			"path": "pages/task/Task",
+			"style": {
+				"navigationBarTitleText": "任务中心"
+			}
+		},
+		{
+			"path": "pages/shop/AddressList",
+			"style": {
+				"navigationBarTitleText": "收货地址"
+			}
 		}
 		
     ],

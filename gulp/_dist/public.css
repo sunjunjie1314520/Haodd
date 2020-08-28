@@ -30,6 +30,13 @@
   flex-direction: column;
   justify-content: center;
 }
+.fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20upx;
+}
 .w {
   padding: 0 30upx;
   float: left;

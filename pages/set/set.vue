@@ -36,10 +36,12 @@
 					</navigator>
 				</view>
 				<view class="li more">
-					<text class="span">设置交易密码</text>
-					<view class="fr">
-						
-					</view>
+					<navigator hover-class="hover-class" class="sp1" url="../user/settrans">
+						<text class="span">设置交易密码</text>
+						<view class="fr">
+							
+						</view>
+					</navigator>
 				</view>
 			</view>
 			<view class="ul">
