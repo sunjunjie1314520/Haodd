@@ -960,3 +960,42 @@
   text-align: center;
   font-size: 26px;
 }
+.my-code {
+  float: left;
+  width: 100%;
+  padding-top: 30px;
+}
+.my-code .picture {
+  width: 600px;
+  margin: 0 auto;
+}
+.my-code .picture image {
+  width: 100%;
+}
+.grade {
+  float: left;
+  width: 100%;
+  padding-top: 60px;
+}
+.grade .ul .li {
+  float: left;
+  width: 100%;
+  padding: 0 30px;
+}
+.grade .ul .li text {
+  display: block;
+  color: #fff;
+  line-height: 90px;
+}
+.center-box-img {
+  margin-top: 20px;
+}
+.center-box-img .box {
+  background-color: #ccc;
+  overflow: hidden;
+  width: 100%;
+}
+.center-box-img .box image {
+  float: left;
+  width: 100%;
+}

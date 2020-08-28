@@ -9,7 +9,7 @@
 				<text>ID: 62391491</text>
 			</view>
 			<view class="set">
-				<navigator class="ico i1" url="../set/set"></navigator>
+				<navigator class="ico i1" url="../user/code"></navigator>
 				<navigator class="ico i2" url="../set/set"></navigator>
 			</view>
 			<view class="dou">
@@ -63,22 +63,36 @@
 				<text class="h3">常用工具</text>
 				<view class="ul">
 					<view class="li">
-						<image src="../../src/static/img/812afe_108x108.png" mode=""></image>
-						<text>我的等级</text>
+						<navigator url="../commonly/grade">
+							<image src="../../src/static/img/812afe_108x108.png" mode=""></image>
+							<text>我的等级</text>
+						</navigator>
 					</view>
 					<view class="li">
-						<image src="../../src/static/img/8588dc_90x90.png" mode=""></image>
-						<text>我的团队</text>
+						<navigator url="../commonly/grade">
+							<image src="../../src/static/img/8588dc_90x90.png" mode=""></image>
+							<text>我的团队</text>
+						</navigator>
 					</view>
 					<view class="li">
-						<image src="../../src/static/img/28567a_85x85.png" mode=""></image>
-						<text>经纪商</text>
+						<navigator url="../commonly/grade">
+							<image src="../../src/static/img/28567a_85x85.png" mode=""></image>
+							<text>经纪商</text>
+						</navigator>
 					</view>
 					<view class="li">
-						<image src="../../src/static/img/f4810a_90x90.png" mode=""></image>
-						<text>区域代理</text>
+						<navigator url="../commonly/grade">
+							<image src="../../src/static/img/f4810a_90x90.png" mode=""></image>
+							<text>区域代理</text>
+						</navigator>
 					</view>
 				</view>
+			</view>
+		</view>
+		
+		<view class="center-box-img w">
+			<view class="box">
+				<image src="../../src/static/img/43bfff_854x123.jpg" mode="widthFix"></image>
 			</view>
 		</view>
 		
@@ -146,7 +160,7 @@
 						</navigator>
 					</view>
 					<view class="li">
-						<navigator url="../task/Task" hover-class="hover-class">
+						<navigator url="../commonly/transaction" hover-class="hover-class">
 							<text class="ico i10"></text>
 							<text class="p">收支明细</text>
 						</navigator>

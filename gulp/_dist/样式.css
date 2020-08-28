@@ -960,3 +960,42 @@
   text-align: center;
   font-size: 26upx;
 }
+.my-code {
+  float: left;
+  width: 100%;
+  padding-top: 30upx;
+}
+.my-code .picture {
+  width: 600upx;
+  margin: 0 auto;
+}
+.my-code .picture image {
+  width: 100%;
+}
+.grade {
+  float: left;
+  width: 100%;
+  padding-top: 60upx;
+}
+.grade .ul .li {
+  float: left;
+  width: 100%;
+  padding: 0 30upx;
+}
+.grade .ul .li text {
+  display: block;
+  color: #fff;
+  line-height: 90upx;
+}
+.center-box-img {
+  margin-top: 20upx;
+}
+.center-box-img .box {
+  background-color: #ccc;
+  overflow: hidden;
+  width: 100%;
+}
+.center-box-img .box image {
+  float: left;
+  width: 100%;
+}
