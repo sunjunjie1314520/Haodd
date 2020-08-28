@@ -1,5 +1,13 @@
 {
 	"pages": [
+        {
+        	"path": "pages/invitation/invitation",
+        	"style": {
+        		"navigationBarTitleText": "邀请",
+        		"navigationStyle": "custom",
+        		"navigationBarTextStyle":"white"
+        	}
+        },
 		{
 			"path": "pages/login/login",
 			"style": {
