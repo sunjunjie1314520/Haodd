@@ -14,7 +14,7 @@
                 </view>
             </view>
 			<view class="button">
-				<text @tap="registerFun" class="btn">确定</text>
+				<text @tap="registerFun" class="btn active">确定</text>
 			</view>
         </view>
     </view>

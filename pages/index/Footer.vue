@@ -14,7 +14,7 @@
 			</view>
 			<view @tap="change(3)" :class="['li', {active: tabs==3}]">
 				<text class="ico i3"></text>
-				<text class="span">任务中心</text>
+				<text class="span">游戏中心</text>
 			</view>
 			<view @tap="change(4)" :class="['li', {active: tabs==4}]">
 				<text class="ico i4"></text>
@@ -36,13 +36,13 @@
 				this.tabs = id
 				this.$emit('change', id)
 				
-				// #ifdef APP-PLUS
-					if (id === 3){
-						plus.navigator.setStatusBarStyle('dark'); // 黑
-					}else{
-						plus.navigator.setStatusBarStyle('light'); // 白
-					}
-				// #endif
+				// // #ifdef APP-PLUS
+				// 	if (id === 3){
+				// 		plus.navigator.setStatusBarStyle('dark'); // 黑
+				// 	}else{
+				// 		plus.navigator.setStatusBarStyle('light'); // 白
+				// 	}
+				// // #endif
 			}
 		}
 	}

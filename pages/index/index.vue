@@ -2,7 +2,7 @@
 	<view class="app">
 		<Home v-if="tabs==0"></Home>
 		<Shop v-if="tabs==1"></Shop>
-		<Task v-if="tabs==3"></Task>
+		<Game v-if="tabs==3"></Game>
 		<Center v-if="tabs==4"></Center>
 		
 		<Footer @change="toggle"></Footer>
@@ -14,7 +14,7 @@
 	import Footer from './Footer.vue'
 	import Home from './Home.vue'
 	import Shop from './Shop.vue'
-	import Task from './Task.vue'
+	import Game from './Game.vue'
 	import Center from './Center.vue'
 	export default {
 		components: {
@@ -22,11 +22,11 @@
 			Home,
 			Shop,
 			Center,
-			Task,
+			Game,
 		},
 		data() {
 			return {
-				tabs: 1,
+				tabs: 4,
 			}
 		},
 		onLoad() {
