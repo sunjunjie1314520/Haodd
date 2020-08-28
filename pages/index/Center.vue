@@ -75,7 +75,7 @@
 						</navigator>
 					</view>
 					<view class="li">
-						<navigator url="../commonly/grade">
+						<navigator url="../invitation/invitation">
 							<image src="../../src/static/img/28567a_85x85.png" mode=""></image>
 							<text>经纪商</text>
 						</navigator>
