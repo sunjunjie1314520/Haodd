@@ -1,12 +1,31 @@
 <template>
-	<view class="center-tabs bg-one">
+	<view class="center-tabs">
+		<view class="status-bar fixed">
+			
+		</view>
 		<view class="user-layout">
-			<view class="pict">
-				<image src="../../src/static/img/c790d4_1200x1200.jpg" mode=""></image>
+			<view class="pict-wrap">
+				<view class="leval"><text>V1</text></view>
+				<view class="pict">
+					<image src="../../src/static/img/c790d4_1200x1200.jpg" mode=""></image>
+				</view>
+				<view class="vip">经纪商</view>
 			</view>
 			<view class="text">
-				<text class="h1">198****5054</text>
-				<text>ID: 62391491</text>
+				<view class="phone">
+					<text class="h1 font">198****5054</text>
+					<text class="wei">未实名</text>
+				</view>
+				<view class="wrap">
+					<text class="id font">ID: 62391491</text>
+					<view class="xin">
+						<text></text>
+						<text></text>
+						<text></text>
+						<text></text>
+					</view>
+					<view class="desc">四星达人</view>
+				</view>
 			</view>
 			<view class="set">
 				<navigator class="ico i1" url="../user/code"></navigator>
@@ -20,9 +39,8 @@
 						<text class="sp2">个</text>
 					</view>
 				</view>
-				<view class="right" v-if="false">
-					<text>达人级别：暂无 手续费：100%</text>
-					<text>实名：未实名 级别：L0</text>
+				<view class="right">
+					<text>手续费：100%</text>
 				</view>
 			</view>
 		</view>
@@ -30,19 +48,19 @@
 		<view class="liveness">
 			<view class="ul">
 				<view class="li">
-					<text class="h2">+0.0000</text>
+					<text class="h2">+0.00</text>
 					<text class="p">加成活跃度</text>
 				</view>
 				<view class="li">
-					<text class="h2">+0.0000</text>
+					<text class="h2">+0.00</text>
 					<text class="p">基础活跃度</text>
 				</view>
 				<view class="li">
-					<text class="h2">+0.0000</text>
+					<text class="h2">+0.00</text>
 					<text class="p">锁定音豆</text>
 				</view>
 				<view class="li">
-					<text class="h2">+0.0000</text>
+					<text class="h2">+0.00</text>
 					<text class="p">HDC</text>
 				</view>
 			</view>
@@ -63,25 +81,23 @@
 				<text class="h3">常用工具</text>
 				<view class="ul">
 					<view class="li">
-						<navigator url="../commonly/grade">
+						<navigator url="../user/real" hover-class="hover-class">
 							<image src="../../src/static/img/812afe_108x108.png" mode=""></image>
-							<text>我的等级</text>
+							<text>实名认证</text>
 						</navigator>
 					</view>
 					<view class="li">
-						<navigator url="../commonly/grade">
+						<navigator url="../commonly/team" hover-class="hover-class">
 							<image src="../../src/static/img/8588dc_90x90.png" mode=""></image>
 							<text>我的团队</text>
 						</navigator>
 					</view>
-					<view class="li">
-						<navigator url="../invitation/invitation">
-							<image src="../../src/static/img/28567a_85x85.png" mode=""></image>
-							<text>经纪商</text>
-						</navigator>
+					<view class="li" @click="invitation">
+						<image src="../../src/static/img/28567a_85x85.png" mode=""></image>
+						<text>经纪商</text>
 					</view>
 					<view class="li">
-						<navigator url="../commonly/grade">
+						<navigator url="../commonly/agent" hover-class="hover-class">
 							<image src="../../src/static/img/f4810a_90x90.png" mode=""></image>
 							<text>区域代理</text>
 						</navigator>
@@ -135,12 +151,7 @@
 							<text class="p">我的视频</text>
 						</navigator>
 					</view>
-					<view class="li">
-						<navigator url="../user/real" hover-class="hover-class">
-							<text class="ico i2"></text>
-							<text class="p">实名认证</text>
-						</navigator>
-					</view>
+
 					<view class="li">
 						<navigator url="../task/Task" hover-class="hover-class">
 							<text class="ico i3"></text>
@@ -154,7 +165,7 @@
 						</navigator>
 					</view>
 					<view class="li">
-						<navigator url="../task/Task" hover-class="hover-class">
+						<navigator url="../commonly/reel" hover-class="hover-class">
 							<text class="ico i11"></text>
 							<text class="p">我的卷轴</text>
 						</navigator>
@@ -168,6 +179,7 @@
 				</view>
 			</view>
 		</view>
+		
 		<view class="list-menu list-menu-2">
 			<view class="layout">
 				<text class="h3">商城</text>
@@ -192,18 +204,41 @@
 					</view>
 					<view class="li">
 						<navigator url="../shop/AddressList" hover-class="hover-class">
-							<text class="ico i9"></text>
-							<text class="p">游戏中心</text>
+							<text class="ico i12"></text>
+							<text class="p">我的客服</text>
 						</navigator>
 					</view>
 				</view>
 			</view>
 		</view>
+		
+		<!-- #ifdef H5 -->
+			<view class="pub-button-null1"></view>
+		<!-- #endif -->
 	</view>
 </template>
 
 <script>
-	
+	export default {
+		data (){
+			return{
+				state: 2
+			}
+		},
+		methods: {
+			invitation(){
+				if(this.state == 1){
+					uni.navigateTo({
+						url: '../invitation/invitation'
+					})
+				}else{
+					uni.navigateTo({
+						url: '../invitation/Opening'
+					})
+				}
+			}
+		}
+	}
 </script>
 
 <style>

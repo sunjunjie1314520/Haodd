@@ -20,6 +20,7 @@ plug.install = function(Vue, options) {
         data(){
             return {
                 windowHeight: null,
+				code: null
             }
         },
         computed: {
@@ -37,7 +38,20 @@ plug.install = function(Vue, options) {
             
         },
         methods:{
-            
+			// 提示
+			toast(msg){
+				uni.showToast({
+					title: msg,
+					icon: 'none',
+				})
+			},
+			// 发送验证码
+            sendCode(phone){
+				this.$api.login.sendCode({phone: phone})
+				.then(res=>{
+					this.toast(res.msg)
+				})
+			}
         }
     })
 

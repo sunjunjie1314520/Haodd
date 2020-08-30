@@ -1,5 +1,11 @@
+.app-bar {
+  height: var(--status-bar-height);
+  float: left;
+  width: 100%;
+}
 .status-bar {
   height: var(--status-bar-height);
+  background-color: #111118;
 }
 .status-bar.bg1 {
   background: -webkit-linear-gradient(left, #1d0759, #3d1055);
@@ -56,6 +62,9 @@
 }
 .bg-five {
   background: #f8f8f8;
+}
+.bg-six {
+  background: #111118;
 }
 .fl {
   float: left;
@@ -125,6 +134,16 @@
   float: left;
   width: 100%;
 }
+.pub-button-null {
+  height: 130px;
+  float: left;
+  width: 100%;
+}
+.pub-button-null1 {
+  height: 100px;
+  float: left;
+  width: 100%;
+}
 .pub-button {
   float: left;
   width: 100%;
@@ -138,6 +157,21 @@
   display: block;
   font-size: 34px;
   line-height: 90px;
+}
+.pub-button.fixed {
+  background-color: #111118;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 30px;
+}
+.pub-button.two {
+  display: flex;
+  justify-content: space-between;
+}
+.pub-button.two .btn {
+  width: 44%;
 }
 .pub-fixed-button {
   position: fixed;

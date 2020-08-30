@@ -1,8 +1,14 @@
 @import "fn.styl"
 @import "theme.styl"
 
+.app-bar
+	height var(--status-bar-height)
+	float left
+	width 100%
+
 .status-bar
 	height var(--status-bar-height)
+	background-color color1
 	&.bg1
 		backgroundL #1d0759 #3d1055 left
 	&.fixed
@@ -56,6 +62,10 @@
 
 .bg-five
 	background #f8f8f8
+
+.bg-six
+	background #111118
+
 .fl
 	float left
 
@@ -118,8 +128,15 @@
 
 .pub-null
 	height 150px
-	float left
-	width 100%
+	fw 1
+
+.pub-button-null
+	height 130px
+	fw 1
+
+.pub-button-null1
+	height 100px
+	fw 1
 
 .pub-button
 	fw 1
@@ -132,7 +149,20 @@
 		display block
 		font-size 34px
 		line-height 90px
-
+		
+	&.fixed
+		background-color color1
+		position fixed
+		left 0
+		right 0
+		bottom 0
+		padding 20px 30px
+	&.two
+		display flex
+		justify-content space-between
+		.btn
+			width 44%
+			
 .pub-fixed-button
 	position fixed
 	left 0

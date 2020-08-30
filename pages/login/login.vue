@@ -22,7 +22,7 @@
 						<text @tap="userLogin" class="button">登录</text>
 					</view>
 					<view class="li">
-						<navigator class="navig" url="../register/register">忘记密码</navigator>
+						<navigator class="navig" url="../login/Forget">忘记密码</navigator>
 					</view>
 				</view>
 				
@@ -37,9 +37,9 @@
 					<view class="li">
 						<text class="button">登录</text>
 					</view>
-					<view class="li">
+<!-- 					<view class="li">
 						<navigator class="navig" url="../register/register">忘记密码</navigator>
-					</view>
+					</view> -->
 				</view>
 				
 			
@@ -60,10 +60,14 @@
 				tabs: 0,
 			}
 		},
+		created() {
+			// var a = plus.navigator.getCookie('pid')
+			// console.log(a);
+		},
 		methods: {
 			userLogin(){
-				uni.navigateTo({
-					url: '../index/index'
+				uni.switchTab({
+					url: '../index/Home'
 				})
 			}
 		}

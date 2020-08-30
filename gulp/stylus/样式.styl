@@ -1,7 +1,6 @@
 @import "F:\Sourse\网页模版\fn\fn.styl"
 @import "theme.styl"
 
-
 .register-page
 	fw 1
 	height 100%
@@ -28,7 +27,7 @@
 				flex-shrink 0
 	.button
 		fw 1
-		padding 0 102px
+		padding 0 30px
 		margin-top 92px
 		.btn
 			background-color #aaaaaa
@@ -43,7 +42,6 @@
 				linear 1
 .set-info
 	height 100%
-	background-color color1
 	fw 1
 	padding-bottom 30px
 	.title
@@ -100,7 +98,8 @@
 					margin-right 100px
 					&.active
 						&:after
-							content ''position absolute
+							content ''
+							position absolute
 							width 40px
 							height 40px
 							right 0
@@ -355,39 +354,103 @@
 .center-tabs
 	fw 1
 	min-height 100vh
-	padding-bottom 120px
+	padding-bottom 30px
 	background color1
 	.user-layout
 		fw 1
 		padding calc(var(--status-bar-height) + 50px) 30px 40px
+		position relative
+		.pict-wrap
+			float left
+			position relative
+			width 100px
+			.leval
+				width 34px
+				heightL 34px
+				background-color #6a25e2
+				border-radius 50%
+				position absolute
+				z-index 1
+				right 0
+				top 70px
+				display flex
+				align-items center
+				justify-content center
+				border solid 1px #111118
+				box-sizing content-box
+				text
+					transform scale(.6)
+					color #fff
+					font-size 26px
+			.vip
+				// center 1
+				color #fff
+				backi '../../src/static/img/2704a8_151x128.png' 28px
+				background-size 24px
+				font-size 24px
+				fw 1
+				margin-top 16px
+				
 		.pict
-			widthZ 120px
+			width 100%
+			height 100px
 			border-radius 50%
 			float left
 			background-color #fff
 			overflow hidden
+			position relative
 			image
 				height 100%
 				width 100%
 		.text
-			width 370px
+			widthC 100px
 			float left
-			margin-left 40px
 			height 120px
 			display flex
 			flex-direction column
 			justify-content space-around
-			text
-				display block
-				color #fff
-				font-size 34px
-				font-family 'din'
-				&.h1
-					font-size 40px
+			padding-left 40px
+			.phone
+				fw 1
+				df 1
+				.h1
+					float left
+					color #fff
+					font-size 34px
+				.wei
+					color font-color
+					float left
+					margin-left 30px
+					font-size 24px
+			.wrap
+				float left
+				df 1
+				.id
+					float left
+					font-size 34px
+					color #fff
+				.xin
+					float left
+					margin-left 30px
+					text
+						float left
+						width 30px
+						height 30px
+						back '../../src/static/img/d0a7f4_128x128.png'
+				.desc
+					float left
+					color font-color
+					font-size 24px
+					margin-left 20px
+						
 		.set
-			float right
-			height 120px
+			// float right
 			df 1
+			height 120px
+			position absolute
+			right 30px
+			top var(--status-bar-height)
+			margin-top 10px
 			.ico
 				float left
 				background-color #F1F1F1
@@ -419,7 +482,6 @@
 					color #fff
 			.right
 				float right
-				width 60%
 				text
 					color #fff
 					display block
@@ -556,7 +618,10 @@
 						backi '../../src/static/img/22b736_128x128.png' 40px
 						background-size 30px
 					.i11
-						backi '.../../src/static/img/b9fe32_128x128.png' 40px
+						backi '../../src/static/img/b9fe32_128x128.png' 40px
+						background-size 30px
+					.i12
+						backi '../../src/static/img/9211c9_128x128.png' 40px
 						background-size 30px
 						
 
@@ -592,6 +657,7 @@
 	fw 1
 	.banner
 		background-color #fcc
+		fw 1
 		.ul
 			.li
 				float left
@@ -600,41 +666,122 @@
 					float left
 					height 100%
 					
-	.trade
-		.ul
-			.li
-				float left
-				width 20%
-				text-align center
-				padding 20px 0
-				.pict
-					widthZ 80px
-					border-radius 50%
-					margin 0 auto
-					image
-						width 100%
-						height 100%
-				.h2
-					display block
-					margin-top 10px
-
-.product
+.shop-sort
+	fw 1
+	padding 25px 0
+	background-color color2
 	.ul
 		.li
-			width 33.33%
-			text-align center
 			float left
-			margin-top 20px
-			padding  0 15px
+			width 25%
+			text-align center
+			text
+				display block
+				color font-color
+			&.active
+				text
+					color #fff
+		.down
+			text
+				position relative
+				&:after
+					z-index 1
+					content ""
+					position absolute
+					bottom -5px
+					right 20%
+					width 0px
+					height 0px
+					color #ccc8b6
+					border-top 9px solid
+					border-left 9px solid transparent
+					border-right 9px solid transparent
+					border-bottom 9px solid transparent
+				&:before
+					z-index 1
+					content ""
+					position absolute
+					top -5px
+					right 20%
+					width 0px
+					height 0px
+					color #ccc8b6
+					border-bottom 9px solid
+					border-left 9px solid transparent
+					border-right 9px solid transparent
+					border-top 9px solid transparent
+.shop-keys-tabs
+	fw 1
+	overflow-y auto
+	.ul
+		display flex
+		.li
+			float left
+			padding 0 20px
+			color #fff
+			line-height 110px
+			flex-shrink 0
+			&.active
+				position relative
+				color bg
+				&:after
+					content ''
+					center 1
+					width 60px
+					height 4px
+					background-color bg
+					bottom 0
+
+.out-link
+	fw 1
+	padding 40px 0
+	.ul
+		.li
+			float left
+			width 25%
+			text-align center
+			image
+				width 60px
+				height 60px
+			text
+				display block
+				color #fff
+				margin-top 15px
+	
+.product
+	padding 30px 15px
+	fw 1
+	.ul
+		.li
+			width 50%
+			float left
+			margin-bottom 20px
+			padding  0 10px
 			.pict
 				height 200px
 				image
 					width 100%
 					height 100%
-			.h2
-				display block
-				margin-top 20px
-				font-size 34px
+			.info-text
+				background-color #fff
+				padding 20px
+				.price
+					text
+						color bg
+					.t1
+						font-size 24px
+					.t2
+						font-size 34px
+				.h2
+					display block
+					margin-top 20px
+					font-size 34px
+				.sell-number
+					margin-top 20px
+					.b
+						display block
+						color #999
+						font-size 24px
 
 .modify-user
 	fw 1
@@ -778,3 +925,423 @@
 		width 100%
 		image
 			fw 1
+.transaction
+	fw 1
+	padding-top 30px
+	.tabs
+		fw 1
+		.span
+			float left
+			width 25%
+			text-align center
+			line-height 80px
+			color #fff
+			background color2
+			transition 0.2s
+			&.active
+				background bg
+	.ul
+		fw 1
+		margin-top 20px
+		.li
+			fw 1
+			padding 30px 30px
+			border-top 1px solid border-color
+			.h2
+				color #fff
+				display block
+				fw 1
+			.dou
+				fw 1
+				margin-top 20px
+				text
+					color font-color
+
+.agent-page
+	fw 1
+	height 100%
+	padding 20px 30px
+	.box
+		height 100%
+		background-color color2
+		border-radius 20px
+		.ul
+			fw 1
+			.li
+				fw 1
+				display flex
+				padding 0 30px
+				height 100px
+				border-bottom solid 1px border-color
+				align-items center
+				.span
+					float left
+					color #fff
+					flex-shrink 0
+				.fr
+					flex 1 1 auto
+					padding-left 15px
+					input
+						width 100%
+						color #fff
+					&.more
+						background url(../../src/static/img/2581ab_14x24.png) right center/14px no-repeat
+		.tips
+			fw 1
+			padding 50px 30px
+			.p
+				color font-color
+				font-size 26px
+				line-height 1.5
+
+.alert-box
+	fixed 1 .8
+	.layout
+		width 602px
+		// height 309px
+		background-color #fff
+		border-radius 16px
+		center 3
+		.ul
+			fw 1
+			padding 25px 0
+			.li
+				fw 1
+				display flex
+				align-items center
+				padding-left 150px
+				.span
+					line-height 80px
+					margin-left 20px
+				.ico
+					float left
+					width 36px
+					height 36px
+					border-radius 50%
+					border solid 2px check-color
+				&.active
+					.ico
+						back '../../src/static/img/d7b615_128x128.png'
+						border none
+		.btn
+			fw 1
+			border-top solid 1px #ccc
+			text
+				float left
+				width 50%
+				text-align center
+				line-height 100px
+				&:nth-child(2)
+					border-left solid 1px #ccc
+		
+.reel-page
+	fw 1
+	.ul
+		.li
+			fw 1
+			padding 30px 30px
+			border-bottom solid 1px border-color
+			.pict
+				float left
+				width 146px
+				height 146px
+				image
+					width 100%
+					height 100%
+			.text
+				widthC 146px
+				float right
+				padding-left 24px
+				.juan
+					fw 1
+					display flex
+					align-items center
+					justify-content space-between
+					.fl
+						color #fff
+						font-size 36px
+					.fr
+						color #fff
+						font-size 28px
+				.huo
+					fw 1
+					margin-top 15px
+					text
+						line-height 1.6
+						font-size 24px
+					.p
+						fw 1
+						color font-color
+					.wrap
+						fw 1
+						display flex
+						justify-content space-between
+						.fl
+							color font-color
+							ov 1
+						.fr
+							color font-color
+							flex-shrink 0
+				.progress
+					fw 1
+					margin-top 18px
+					display flex
+					align-items center
+					.wrap
+						float left
+						width 255px
+						height 26px
+						background-color color2
+						border-radius 30px
+						overflow hidden
+						text
+							display block
+							background-color check-color
+							height 100%
+							float left
+							border-radius 30px
+							transition .3s
+					.span
+						float left
+						color #fff
+						margin-left 20px
+						font-size 26px
+					
+.team-page
+	fw 1
+	.team-title
+		fw 1
+		padding 0 24px
+		.wrap
+			fw 1
+			background-color color2
+			border-radius 20px
+			margin-top 46px
+			.people
+				fw 1
+				text-align center
+				padding-top 50px
+				.b
+					display block
+					color font-color
+				.p
+					display block
+					color #fff
+					font-size 56px
+					margin-top 25px
+			.info
+				fw 1
+				margin-top 50px
+				border-top solid 1px border-color
+				padding 50px 0
+				.ul
+					.li
+						float left
+						width 33.33%
+						text-align center
+						.b
+							display block
+							color font-color
+						.p
+							display block
+							color #fff
+							font-size 36px
+							margin-top 25px
+	.list
+		fw 1
+		padding 0 24px
+		margin-top 46px
+		.ul
+			.li
+				fw 1
+				background-color color2
+				border-radius 20px
+				padding 39px 32px
+				.fl-layout
+					float left
+					width 134px
+					display flex
+					flex-direction column
+					justify-content center
+					align-items center
+					.pict-wrap
+						float left
+						width 100%
+						position relative
+						.leval
+							position absolute
+							widthZ 40px
+							background-color #6a25e2
+							border-radius 50%
+							border solid 4px color2
+							text-align center
+							box-sizing content-box
+							right 0
+							bottom 0
+							display flex
+							align-items center
+							justify-content center
+							text
+								color #fff
+								font-size 26px
+								transform scale(.72)
+						.pict
+							float left
+							width 134px
+							height 134px
+							border-radius 50%
+							image
+								width 100%
+								height 100%
+					.label
+						float left
+						color #fff
+						text-align center
+						linear 1
+						line-height 41px
+						border-radius 50px
+						font-size 24px
+						width 108px
+						margin-top 23px
+				.text
+					float left
+					widthC 134px
+					padding 10px 0 0 35px
+					position relative
+					.h2
+						color #fff
+						font-size 36px
+						display block
+					.yue
+						position absolute
+						right 0
+						padding-top 10px
+						top 0
+						// border solid 1px #f60
+						bottom 0
+						display flex
+						align-items flex-start
+						flex-direction column
+						width 38%
+						justify-content space-between
+						.b
+							color font-color
+							font-size 26px
+					.time
+						margin-top 20px
+						fw 1
+						.p1
+							color font-color
+							float left
+							font-size 26px
+						.p2
+							color #fff
+							float left
+							margin-left 20px
+							font-size 26px
+					.phone
+						margin-top 67px
+						fw 1
+						.id
+							color font-color
+							float left
+						.number
+							color #fff
+							float left
+							margin-left 10px
+
+
+.opening-page
+	fw 1
+	padding 30px
+	.title
+		height 329px
+		border-radius 20px
+		text-align center
+		position relative
+		width 572px
+		margin 0 auto
+		.title-box
+			position relative
+			z-index 2
+			height 100%
+			display flex
+			flex-direction column
+			align-items center
+			justify-content center
+		.back
+			position absolute
+			left 0
+			right 0
+			top 0
+			bottom 0
+			z-index 1
+			image
+				width 100%
+				height 100%
+		.h2
+			color #fff
+			display block
+			font-size 40px
+		.p
+			color #fff
+			display block
+			margin-top 20px
+			font-size 60px
+			font-weight bold
+	
+	.text-page
+		fw 1
+		margin-top 40px
+		.h1
+			color #fff
+			font-weight bold
+			font-size 36px
+		.p
+			color #fff
+			display block
+			line-height 1.4
+			margin-top 20px
+
+.shop-keys-search
+	fw 1
+	padding 20px 30px 0
+	input
+		float left
+		width 78%
+		height 60px
+		border-radius 30px
+		background-color #fff
+		padding 0 25px
+	text
+		float right
+		height 60px
+		width 18%
+		border-radius 6px
+		color #fff
+		background-color bg
+		text-align center
+		line-height 60px
+
+.forget-page
+	fw 1
+	padding 0 30px
+	.ul
+		fw 1
+		.li
+			fw 1
+			margin-top 30px
+			display flex
+			input
+				border-radius 60px
+				height 90px
+				background-color color2
+				padding 0 26px
+				flex 1 1 auto
+				color #fff
+			.get-code
+				flex-shrink 0
+				color font-color
+				line-height 100px
+				display block
+				margin-left 30px

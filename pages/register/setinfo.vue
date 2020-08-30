@@ -1,5 +1,5 @@
 <template>
-    <view class="app">
+    <view class="app" :style="{'min-height': windowHeight + 'px'}">
         <view class="set-info">
 			<view class="title">
 				<text>设置你的形象</text>
@@ -8,7 +8,7 @@
             <view class="ul">
                 <view class="li">
 					<text>你的头像</text>
-					<view class="pict">
+					<view class="pict" @click="uploadImg">
 						<image src="../../src/static/img/dad94e_122x122.png" mode="widthFix"></image>
 					</view>
                 </view>
@@ -59,6 +59,14 @@
 		},
 		created() {
 			
+		},
+		methods: {
+			uploadImg(){
+				this.$api.upload.image()
+				.then(res=>{
+					
+				})
+			}
 		}
 	}
 </script>

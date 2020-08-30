@@ -1,5 +1,29 @@
 <template>
-	<view class="shop-tabs">
+	<view class="shop-tabs bg-six">
+		
+		<view class="status-bar fixed">
+			
+		</view>
+		<view class="app-bar">
+			
+		</view>
+		<view class="shop-keys-search">
+			<input type="text" value="" placeholder="请输入关键字" />
+			<text class="search">搜索</text>
+		</view>
+		
+		<view class="shop-keys-tabs">
+			<view class="ul">
+				<view @tap="tabs=0" :class="['li', {active: tabs==0}]">家居百货</view>
+				<view @tap="tabs=1" :class="['li', {active: tabs==1}]">家用电器</view>
+				<view @tap="tabs=2" :class="['li', {active: tabs==2}]">美妆护肤</view>
+				<view @tap="tabs=3" :class="['li', {active: tabs==3}]">服装配饰</view>
+				<view @tap="tabs=4" :class="['li', {active: tabs==4}]">手机数码</view>
+				<view @tap="tabs=5" :class="['li', {active: tabs==5}]">母婴用品</view>
+				<view @tap="tabs=6" :class="['li', {active: tabs==6}]">食品酒水</view>
+			</view>
+		</view>
+		
 		<view class="banner">
 			<view class="ul">
 				<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
@@ -15,67 +39,41 @@
 				</swiper>
 			</view>
 		</view>
-		<view class="trade">
+		
+		<view class="out-link">
 			<view class="ul">
-				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/i1.webp" mode=""></image>
-					</view>
-					<text class="h2">YTC</text>
+				<view class="li" @click="gotoLink('https://main.m.taobao.com/?sprefer=sypc00')">
+					<image src="../../src/static/img/a6a555_200x200.png" mode=""></image>
+					<text>淘宝</text>
 				</view>
 				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
+					<image src="../../src/static/img/b6e2b1_80x80.png" mode=""></image>
+					<text>京东</text>
 				</view>
 				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
+					<image src="../../src/static/img/def8ce_121x121.png" mode=""></image>
+					<text>天猫</text>
 				</view>
 				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
+					<image src="../../src/static/img/e95379_126x126.png" mode=""></image>
+					<text>拼多多</text>
+				</view>
+			</view>
+		</view>
+		
+		<view class="shop-sort">
+			<view class="ul">
+				<view class="li active">
+					<text>综合</text>
 				</view>
 				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
+					<text>销量</text>
 				</view>
 				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
+					<text>最新</text>
 				</view>
-				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
-				</view>
-				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
-				</view>
-				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
-				</view>
-				<view class="li">
-					<view class="pict">
-						<image src="../../src/static/img/12649c_40x40.png" mode=""></image>
-					</view>
-					<text class="h2">天猫</text>
+				<view class="li down">
+					<text>价格</text>
 				</view>
 			</view>
 		</view>
@@ -86,28 +84,68 @@
 					<view class="pict">
 						<image src="https://img.alicdn.com/imgextra/i1/1770991118/TB2.8ggcpXXXXavXXXXXXXXXXXX_!!1770991118.jpg" mode=""></image>
 					</view>
-					<text class="h2">某某产品</text>
+					<view class="info-text">
+						<view class="price">
+							<text class="t1">￥</text>
+							<text class="t2">0.0</text>
+						</view>
+						<text class="h2">某某产品</text>
+						<view class="sell-number">
+							<text class="b">已售 | 200</text>
+						</view>
+					</view>
 				</view>
 				<view class="li">
 					<view class="pict">
 						<image src="https://img.alicdn.com/tps/i1/T1iT_5FgdeXXX9hhfo-80-80.jpg" mode=""></image>
 					</view>
-					<text class="h2">某某产品</text>
+					<view class="info-text">
+						<view class="price">
+							<text class="t1">￥</text>
+							<text class="t2">0.0</text>
+						</view>
+						<text class="h2">某某产品</text>
+						<view class="sell-number">
+							<text class="b">已售 | 200</text>
+						</view>
+					</view>
 				</view>
 				<view class="li">
 					<view class="pict">
 						<image src="https://img.alicdn.com/tps/i1/T1cXNsFD8eXXX9hhfo-80-80.jpg" mode=""></image>
 					</view>
-					<text class="h2">某某产品</text>
+					<view class="info-text">
+						<view class="price">
+							<text class="t1">￥</text>
+							<text class="t2">0.0</text>
+						</view>
+						<text class="h2">某某产品</text>
+						<view class="sell-number">
+							<text class="b">已售 | 200</text>
+						</view>
+					</view>
 				</view>
 				<view class="li">
 					<view class="pict">
 						<image src="https://img.alicdn.com/tps/i1/T1EGIZFf8dXXX9hhfo-80-80.jpg" mode=""></image>
 					</view>
-					<text class="h2">某某产品</text>
+					<view class="info-text">
+						<view class="price">
+							<text class="t1">￥</text>
+							<text class="t2">0.0</text>
+						</view>
+						<text class="h2">某某产品</text>
+						<view class="sell-number">
+							<text class="b">已售 | 200</text>
+						</view>
+					</view>
 				</view>
 			</view>
 		</view>
+		
+		<!-- #ifdef H5 -->
+			<view class="pub-button-null1"></view>
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -115,6 +153,7 @@
 	export default {
 		data(){
 			return {
+				tabs: 0,
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
@@ -122,11 +161,16 @@
 			}
 		},
 		methods:{
-			
+			gotoLink(url){
+				uni.navigateTo({
+					url:'../webBrowser/index?url=' + url
+				})
+			}
 		}
 		
 	}
 </script>
 
 <style>
+	
 </style>

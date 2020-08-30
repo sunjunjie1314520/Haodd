@@ -1,12 +1,12 @@
 <template>
-	<view class="app bg-one" :style="{'height': windowHeight + 'px'}">
+	<view class="app" :style="{'height': windowHeight + 'px'}">
         <view class="invitation">
-            <div class="header">
+<!--            <div class="header">
                 <div class="text">
                     邀请收益
                 </div>
                 <div class="retu"></div>
-            </div>
+            </div> -->
             <div class="container">
                 <div class="customer">
                     <div class="content">
@@ -18,9 +18,9 @@
                                 <div class="name">
                                         我是经济商
                                 </div>
-                                <div class="time">
+                        <!--        <div class="time">
                                     永久权益
-                                </div>
+                                </div> -->
                             </div>
                             <div class="text">
                                 <div class="tit">
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="button">
+                <div class="button1">
                     <button type="primary">转让经纪商</button>
                 </div>
             </div>

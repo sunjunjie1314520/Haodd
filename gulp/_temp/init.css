@@ -44,3 +44,6 @@ uni-page-refresh,
 .uni-page-refresh {
   top: calc(45px + 90px);
 }
+.font {
+  font-family: 'din';
+}
