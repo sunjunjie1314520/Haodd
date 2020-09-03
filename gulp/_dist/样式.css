@@ -502,7 +502,6 @@
   float: left;
   width: 100%;
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: center;
 }
@@ -520,7 +519,6 @@
 .center-tabs .user-layout .text .wrap {
   float: left;
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: center;
 }
@@ -548,7 +546,6 @@
 }
 .center-tabs .user-layout .set {
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: center;
   height: 120upx;
@@ -2191,7 +2188,6 @@
 .detail-page .context .tt {
   text-align: center;
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -2228,7 +2224,6 @@
   border-radius: 10upx;
   width: 45%;
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -2436,7 +2431,6 @@
 .order-page .ul .li .one .text .price {
   margin-top: 25upx;
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: center;
 }
@@ -2544,7 +2538,6 @@
   float: right;
   width: calc(100% - 160upx);
   display: flex;
-  height: 100%;
   flex-direction: column;
   justify-content: space-around;
   height: 160upx;
@@ -2599,7 +2592,6 @@
 }
 .fabu-page {
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -2625,7 +2617,6 @@
 }
 .cart-fixed-bottom .fl {
   display: flex;
-  height: 100%;
   flex-direction: row;
   align-items: center;
   height: 60upx;

@@ -11,7 +11,7 @@
 				<image v-else class="app-footer-li-ico" src="@/static/image/navbar/0dbdcd_128x128.png" mode=""></image>
 				<text :class="['app-footer-li-white', tabs==1 ? 'app-footer-li-active':'']">商城</text>
 			</div>
-			<div class="app-footer-li" @click="toggleTabs(4)">
+			<div class="app-footer-li" @click="fabu">
 				<div class="app-footer-li-center">
 					<image class="app-footer-li-ico1" src="@/static/image/navbar/fcc15c_128x128.png" mode=""></image>
 				</div>
@@ -42,6 +42,9 @@
 			
 		},
 		methods: {
+			fabu(){
+				this.$emit('fabu', true);
+			},
 			toggleTabs(tabs){
 				this.$emit('change', tabs);
 			}

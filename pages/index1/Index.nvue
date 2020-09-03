@@ -1,7 +1,27 @@
 <template>
 	<div class="app">
 		<Home></Home>
-		<Footer @change="change" :tabs="tabs"></Footer>
+		<Footer @change="change" @fabu="show=true" :tabs="tabs"></Footer>
+		
+		<div class="pub-video-select" @click="test" v-if="show">
+			<div class="pub-video-ul">
+				<div class="pub-video-li">
+					<view class="pict1-color1">
+						<image class="pub-video-img" src="@/static/image/a9fa32_200x200.png" mode=""></image>
+					</view>
+					<text class="pub-video-text">拍摄视频</text>
+				</div>
+				<div class="pub-video-li">
+					<view class="pict1-color2">
+						<image class="pub-video-img" src="@/static/image/a9fa33_200x200.png" mode=""></image>
+					</view>
+					<text class="pub-video-text">开始直播</text>
+				</div>
+				<view class="pub-video-close">
+					<image @click="closeHandle" class="pub-video-close-img" src="@/static/image/close.png" mode=""></image>
+				</view>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -15,19 +35,39 @@
 		},
 		data(){
 			return {
-				tabs:0
+				tabs:0,
+				show: false,
 			}
 		},
 		methods: {
 			change(dex){
 				console.log(dex);
 				this.tabs = dex
+			},
+			test(){
+				console.log(1);
+			},
+			closeHandle(){
+				this.show = false
 			}
 		},
 		
 	}
 </script>
 
-<style>
-
+<style lang="stylus">
+	.pict1-color1
+		width 60px
+		height 60px
+		background-color rgba(#f60, .3)
+		border-radius 50%
+		justify-content center
+		align-items center
+	.pict1-color2
+		width 60px
+		height 60px
+		background-color rgba(#009e96, .3)
+		border-radius 50%
+		justify-content center
+		align-items center
 </style>

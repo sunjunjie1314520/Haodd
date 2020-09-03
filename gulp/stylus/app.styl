@@ -1,4 +1,4 @@
-@import "F:\Sourse\网页模版\fn\fn.styl"
+@import "fn.styl"
 @import "theme.styl"
 
 // nvue
@@ -14,10 +14,12 @@
 	right 0
 	bottom 0
 	z-index 2
-	background-color rgba(#000, .6)
+	background-color rgba(#000, .8)
 	padding 5px 0
+
 .app-footer-ul
 	flex-direction row
+	
 	
 .app-footer-li
 	flex 1
@@ -57,12 +59,130 @@
 .home-personal
 	position fixed
 	right 30upx
+	z-index 2
 
 .home-personal-img
-	width 30px
-	height 30px
-
+	width 50px
+	height 50px
+	
+.home-personal-li
+	margin-top 40px
+	flex-direction column
+	justify-content center
+	align-items center
+	
 .home-personal-span
 	color #FFFFFF
 	font-size 24px
+	margin-top 10px
+
+.h-picture
+	position relative
+	width 100px
+	height 120px
+
+.h-pict
+	widthZ 100px
+	border-radius 50%
+	overflow hidden
+	flex-direction column
+.h-pict-image
+	flex 1
+	border-radius 50%
+	border-style solid
+	border-color #fff
+	border-width 5px
 	
+	
+.h-add-ico-wrap
+	position absolute
+	left 0
+	right 0
+	bottom 0
+	flex-direction row
+	justify-content center
+	
+.h-add-ico
+	widthZ 40px
+	
+.home-content
+	position fixed
+	left 30px
+	bottom 200px
+	flex-direction column
+	width 405px
+
+.content-title
+	color #fff
+	font-size 30px
+	font-weight bold
+
+.content-desc
+	color #fff
+	font-size 30px
+	margin-top 20px
+	line-height 40px
+
+.play-status
+	position fixed
+	left 0
+	right 0
+	height 100px
+	z-index 1
+	flex-direction row
+	justify-content center
+	align-items center
+	
+.play-status-img
+	widthZ 80px
+	opacity .6
+
+
+// 视频选择	
+
+.pub-video-select
+	position fixed
+	z-index 1
+	bottom 0
+	left 0
+	right 0
+	top 0
+	
+.pub-video-ul
+	height 360px
+	background-color #fff
+	border-top-right-radius 30px
+	border-top-left-radius 30px
+	flex-direction row
+	justify-content space-between
+	padding 0 90px
+	position absolute
+	left 0
+	right 0
+	bottom 0
+	
+.pub-video-li
+	width 240px
+	text-align center
+	align-items center
+	justify-content center
+	height 280px
+	
+.pub-video-img
+	widthZ 60px
+	
+.pub-video-text
+	color #333
+	margin-top 20px
+
+.pub-video-close
+	position absolute
+	bottom 30px
+	left 0
+	right 0
+	justify-content center
+	align-items center
+	
+.pub-video-close-img
+	width 30px
+	height 30px

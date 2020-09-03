@@ -2,25 +2,58 @@
 	<div class="flex" :style="{'height': windowHeight + 'px'}">
 		<div class="home-video-wrap">
 			<video class="home-myvideo"
-			:autoplay="true"
+			:autoplay="status"
+			:loop="true"
 			:controls="false"
+			:muted="true"
+			:show-center-play-btn="false"
 			src="https://limitao.myuan.cn/gongyong/shangchuan/yinpin/33/2020/05/E1n1us3N3511hzbt5thh3c137tU15T.mp4"
+			poster="https://limitao.myuan.cn/gongyong/shangchuan/tu/33/2020/05/CF4664h6q64v7Vzvx6M4moveznuZv4.jpg"
+			@click="play"
+			id="myVideo"
 			>
 			</video>
 		</div>
-		<div class="home-personal" :style="{'top': 300 + 'px'}">
+		
+		<view class="play-status" :style="{'top': playTop}" v-if="!status">
+			<image class="play-status-img" src="@/static/image/449745_200x200.png" mode=""></image>
+		</view>
+		
+		<div class="home-content">
+			<text class="content-title">@前端开发工程师</text>
+			<text class="content-desc">最怕有一天你离我而去，没有了你我该怎么活</text>
+		</div>
+		
+		<div class="home-personal" :style="{'top': 250 + 'px'}">
 			<div class="home-personal-ul">
-				<div class="home-personal-li">
-					<image class="home-personal-img" src="../../src/static/img/01c881_128x128.png" mode=""></image>
-					<text class="home-personal-span">28.0w</text>
+				<!-- 头像 -->
+				<div class="h-picture">
+					<div class="h-pict" @click="gotoLink">
+						<image class="h-pict-image" src="@/static/image/40200d_1043x1043.png" mode=""></image>
+					</div>
+					<div class="h-add-ico-wrap">
+						<image @click="guanzhu" class="h-add-ico" src="@/static/image/103c3f_200x200.png" mode=""></image>
+					</div>
 				</div>
-				<div class="home-personal-li">
-					<image class="home-personal-img" src="../../src/static/img/01c881_128x128.png" mode=""></image>
-					<text class="home-personal-span">28.0w</text>
+				<!-- 点赞 -->
+				<div class="home-personal-li" @click="dianzan">
+					<image v-if="zan" class="home-personal-img" src="@/static/image/336b3c_200x200.png" mode=""></image>
+					<image v-else class="home-personal-img" src="@/static/image/336b4c_200x200.png" mode=""></image>
+					<text class="home-personal-span">128</text>
 				</div>
-				<div class="home-personal-li">
-					<image class="home-personal-img" src="../../src/static/img/01c881_128x128.png" mode=""></image>
-					<text class="home-personal-span">28.0w</text>
+				<!-- 评论 -->
+				<div class="home-personal-li" @click="pinglun">
+					<image class="home-personal-img" src="@/static/image/b91cd4_200x200.png" mode=""></image>
+					<text class="home-personal-span">128</text>
+				</div>
+				<!-- 分享 -->
+				<div class="home-personal-li" @click="share">
+					<image class="home-personal-img" src="@/static/image/349745_200x200.png" mode=""></image>
+					<text class="home-personal-span">62</text>
+				</div>
+				<!-- 礼物 -->
+				<div class="home-personal-li" @click="liwu">
+					<image class="home-personal-img" src="@/static/image/b91cd4_221x200.png" mode=""></image>
 				</div>
 			</div>
 		</div>
@@ -28,20 +61,72 @@
 </template>
 
 <script>
+	const { windowWidth, windowHeight } = uni.getSystemInfoSync();
 	export default {
 		data(){
 			return {
-				windowHeight: 0
+				windowHeight: windowHeight,
+				playTop: (windowHeight / 2) - 40 + 'px',
+				status: true,
+				zan: true,
+				
 			}
 		},
-		created() {
-			const { windowWidth, windowHeight } = uni.getSystemInfoSync();
-			console.log(windowHeight);
-			this.windowHeight = windowHeight
+		onReady: function (res) {
+			
 		},
+		created() {
+			
+		},
+		onLoad() {
+		},
+		methods: {
+			play(){
+				var video = uni.createVideoContext('myVideo')
+				if(this.status){
+					video.pause();
+					this.status=false
+				}else{
+					video.play();
+					this.status=true
+				}
+			},
+			guanzhu(){
+				uni.showToast({
+					title: '关注成功',
+					icon:'none'
+				})
+			},
+			dianzan(){
+				this.zan = !this.zan
+			},
+			pinglun(){
+				uni.showToast({
+					title: '评论成功',
+					icon:'none'
+				})
+			},
+			share(){
+				uni.showToast({
+					title: '分享成功',
+					icon:'none'
+				})
+			},
+			liwu(){
+				uni.showToast({
+					title: '刷礼物',
+					icon:'none'
+				})
+			},
+			gotoLink(){
+				uni.navigateTo({
+					url: '../user/video1'
+				})
+			},
+		}
 	}
 </script>
 
-<style>	
-	
+<style lang="stylus">
+			
 </style>

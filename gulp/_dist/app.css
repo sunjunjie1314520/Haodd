@@ -8,7 +8,7 @@
   right: 0;
   bottom: 0;
   z-index: 2;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.8);
   padding: 5upx 0;
 }
 .app-footer-ul {
@@ -53,12 +53,132 @@
 .home-personal {
   position: fixed;
   right: 30upx;
+  z-index: 2;
 }
 .home-personal-img {
-  width: 30upx;
-  height: 30upx;
+  width: 50upx;
+  height: 50upx;
+}
+.home-personal-li {
+  margin-top: 40upx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .home-personal-span {
   color: #fff;
   font-size: 24upx;
+  margin-top: 10upx;
+}
+.h-picture {
+  position: relative;
+  width: 100upx;
+  height: 120upx;
+}
+.h-pict {
+  width: 100upx;
+  height: 100upx;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-direction: column;
+}
+.h-pict-image {
+  flex: 1;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #fff;
+  border-width: 5upx;
+}
+.h-add-ico-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: row;
+  justify-content: center;
+}
+.h-add-ico {
+  width: 40upx;
+  height: 40upx;
+}
+.home-content {
+  position: fixed;
+  left: 30upx;
+  bottom: 200upx;
+  flex-direction: column;
+  width: 405upx;
+}
+.content-title {
+  color: #fff;
+  font-size: 30upx;
+  font-weight: bold;
+}
+.content-desc {
+  color: #fff;
+  font-size: 30upx;
+  margin-top: 20upx;
+  line-height: 40upx;
+}
+.play-status {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 100upx;
+  z-index: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.play-status-img {
+  width: 80upx;
+  height: 80upx;
+  opacity: 0.6;
+}
+.pub-video-select {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.pub-video-ul {
+  height: 360upx;
+  background-color: #fff;
+  border-top-right-radius: 30upx;
+  border-top-left-radius: 30upx;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 90upx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.pub-video-li {
+  width: 240upx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 280upx;
+}
+.pub-video-img {
+  width: 60upx;
+  height: 60upx;
+}
+.pub-video-text {
+  color: #333;
+  margin-top: 20upx;
+}
+.pub-video-close {
+  position: absolute;
+  bottom: 30upx;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+}
+.pub-video-close-img {
+  width: 30upx;
+  height: 30upx;
 }
