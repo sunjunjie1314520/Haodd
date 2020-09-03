@@ -275,14 +275,9 @@
 	fw 1
 	padding 0 38px
 	background-color color1
-	.title
-		fw 1
-		text-align center
-		line-height 90px
-		margin-top var(--status-bar-height)
-		color font-color
 	.notice
 		fw 1
+		padding-top 30px
 		.ul
 			display flex
 			justify-content space-between
@@ -623,6 +618,9 @@
 					.i12
 						backi '../../src/static/img/9211c9_128x128.png' 40px
 						background-size 30px
+					.i13
+						backi '../../src/static/img/1c6c3d_128x128.png' 40px
+						background-size 30px
 						
 
 .set-page
@@ -656,7 +654,7 @@
 .shop-tabs
 	fw 1
 	.banner
-		background-color #fcc
+		background-color #f1f1f1
 		fw 1
 		.ul
 			.li
@@ -741,8 +739,8 @@
 			width 25%
 			text-align center
 			image
-				width 60px
-				height 60px
+				width 80px
+				height 80px
 			text
 				display block
 				color #fff
@@ -758,10 +756,12 @@
 			margin-bottom 20px
 			padding  0 10px
 			.pict
-				height 200px
+				height 340px
+				overflow hidden
+				background-color #ccc
 				image
 					width 100%
-					height 100%
+					min-height 100%
 			.info-text
 				background-color #fff
 				padding 20px
@@ -776,6 +776,7 @@
 					display block
 					margin-top 20px
 					font-size 34px
+					ov 1
 				.sell-number
 					margin-top 20px
 					.b
@@ -849,11 +850,6 @@
 			display block
 			line-height 1.6
 			color font-color
-
-.pub-etc
-	text-align center
-	color #fff
-	padding 150px 0
 
 .my-task
 	fw 1
@@ -1039,7 +1035,7 @@
 	.ul
 		.li
 			fw 1
-			padding 30px 30px
+			padding 40px 30px
 			border-bottom solid 1px border-color
 			.pict
 				float left
@@ -1087,9 +1083,10 @@
 					margin-top 18px
 					display flex
 					align-items center
+					justify-content space-between
 					.wrap
 						float left
-						width 255px
+						flex-grow 1
 						height 26px
 						background-color color2
 						border-radius 30px
@@ -1102,10 +1099,9 @@
 							border-radius 30px
 							transition .3s
 					.span
-						float left
 						color #fff
-						margin-left 20px
 						font-size 26px
+						margin-left 20px
 					
 .team-page
 	fw 1
@@ -1345,3 +1341,844 @@
 				line-height 100px
 				display block
 				margin-left 30px
+
+.address-manage-page
+	margin-top 20px
+	fw 1
+	.ul
+		background color2
+		fw 1
+		.li
+			fw 1
+			border-top 1px solid #eee
+			border-topN 1
+			.box
+				padding 28px 0
+				fw 1
+			.fl
+				width 75%
+				margin-left 28px
+				.one
+					fw 1
+					text
+						font-size 28px
+						float left
+					.s1
+						width 152px
+						color #fff
+					.s2
+						color #fff
+				.two
+					fw 1
+					margin-top 20px
+					position relative
+					.p
+						font-size 24px
+						color font-color
+			
+			.fr
+				.edit
+					back1 '../../src/static/img/d2714c_24x23.png' 24px
+					float right
+					width 100px
+					height 60px
+					display block
+					margin-top 10px
+
+			
+.newconsignee-page
+	fw 1
+	.ul
+		padding 0 28px
+		.li
+			width 100%
+			height 88px
+			border-top 1px solid border-color
+			border-topN 1
+			position relative
+			.span
+				float left
+				width 154px
+				line-height 88px
+				color font-color
+			text
+				line-height 88px
+				color #999
+				&.acti
+					color #fff
+			text
+			input
+				float right
+				widthC 154px
+				height 88px
+			input
+				color #fff
+			.address
+				position absolute
+				width 26px
+				height 100%
+				right 0
+				top 0
+				back1 '../../src/static/img/0aff0f_26x32.png' 26px
+		
+	.pub-button
+		margin-top 81px
+		padding 0 28px
+
+.personal-page
+	fw 1
+	padding 0 30px
+	.pict-wrap
+		widthZ 178px
+		margin 100px auto
+		position relative
+		.pict
+			width 100%
+			height 100%
+			border-radius 50%
+			overflow hidden
+			image
+				width 100%
+				height 100%
+		.box
+			position absolute
+			left 0
+			right 0
+			bottom 0
+			top 0
+			border-radius 50%
+			back1 '../../src/static/img/0d89cc_158x128.png' 60px
+			background-color rgba(#000, .4)
+	.ul
+		fw 1
+		border-top solid 1px border-color
+		.li
+			height 120px
+			display flex
+			justify-content space-between
+			align-items center
+			padding 0 30px
+			.span
+				float left
+				color font-color
+			.fr
+				.field
+					opacity .6
+					color #fff
+					background url(../../src/static/img/7a4bce_14x24.png) right center/14px no-repeat
+					padding-right 24px
+			
+	
+.video-page
+	fw 1
+	.number
+		fw 1
+		padding 0 30px
+		.ul
+			.li
+				float left
+				width 25%
+				text-align center
+				.h2
+					color #fff
+					font-weight bold
+				.span
+					color font-color
+					margin-left 6px
+	.video-tabs1
+		fw 1
+		margin-top 40px
+		text
+			float left
+			width 50%
+			text-align center
+			color #fff
+			line-height 100px
+			&.active
+				font-weight bold
+				position relative
+				&:after
+					content ''
+					position absolute
+					left 0
+					right 0
+					height 6px
+					background-color bg
+					bottom 0
+	.video-list
+		fw 1
+		margin-top 9px
+		.ul
+			fw 1
+			.li
+				width 244px
+				height 244px
+				position relative
+				float left
+				margin-left 9px
+				ml 0 3
+				.play
+					position absolute
+					backi '../../src/static/img/f3d1ca_101x128.png' 30px
+					background-size 20px
+					color #fff
+					white-space nowrap
+					left 20px
+					bottom 20px
+				image
+					width 100%
+					height 100%
+		.no-more
+			fw 1
+			color font-color
+			text-align center
+			padding 50px 0
+	.user-layout
+		fw 1
+		padding 60px 35px 80px
+		.pict
+			float left
+			widthZ 150px true
+		.text
+			float left
+			widthC 150px
+			padding 15px 0 15px 35px
+			height 150px
+			display flex
+			flex-direction column
+			justify-content space-around
+			position relative
+			text
+				color #FFFFFF
+				display block
+			.p
+				font-size 36px
+			.span
+				color font-color
+				font-size 26px
+			.modify
+				center 2
+				right 0
+				color #999999
+				font-weight bold
+				white-space nowrap
+				background-color color2
+				padding 20px 40px
+				border-radius 4px
+			.jubao
+				right 0
+				top 0
+				position absolute
+				center 2
+				text
+					width 160px
+					heightL 50px
+					border-radius 60px
+					background-color bg
+					text-align center
+					margin-top 15px
+					mt 0
+					
+.service-page
+	fw 1
+	.ul
+		.li
+			fw 1
+			margin-top 80px
+			.pict
+				widthZ 250px
+				margin 0 auto
+				image
+					width 100%
+					height 100%
+			.p
+				color #fff
+				display block
+				text-align center
+				margin-top 20px
+
+.detail-page
+	fw 1
+	.banner
+		background-color #f1f1f1
+		height 400px
+		position relative
+		.paging
+			widthZ 60px
+			border-radius 50%
+			background-color rgba(#000, .3)
+			position absolute
+			z-index 3
+			bottom 10px
+			right 20px
+			color #fff
+			display flex
+			align-items center
+			justify-content center
+			font-size 24px
+		swiper
+			height 100%
+		.ul
+			height 100%
+			.li
+				float left
+				image
+					width 100%
+					float left
+					height 100%
+	.title
+		background-color color2
+		padding 30px 30px
+		margin-top 20px
+		fw 1
+		text
+			display block
+		.h2
+			color #fff
+			font-size 34px
+		.price
+			fw 1
+			margin-top 30px
+			.p
+				color bg
+				float left
+			.b
+				text-decoration line-through
+				color font-color
+				float left
+				margin-left 20px
+	.guige
+		fw 1
+		margin-top 20px
+		padding 0 30px
+		background-color color2
+		.ul
+			.li
+				fw 1
+				border-top solid 1px border-color
+				border-topN 1
+				text
+					color #fff
+					line-height 100px
+					display block
+				.more
+					background url(../../src/static/img/7a4bce_14x24.png) right center/14px no-repeat
+	.context
+		fw 1
+		.tt
+			text-align center
+			df 1
+			justify-content center
+			padding 35px 0
+			text
+				display block
+			.h2
+				color #fff
+				margin 0 15px
+			.line
+				height 2px
+				background-color #fff
+				width 60px
+		.context-wrap
+			fw 1
+			image
+				width 100%
+				
+
+.detail-bottom
+	position fixed
+	left 0
+	right 0
+	bottom 0
+	background-color color2
+	padding 25px 30px
+	text
+		border-radius 10px
+		width 45%
+		df 1
+		justify-content center
+		height 80px
+		&.fl
+			color bg
+			border solid 1px bg
+		&.fr
+			color #fff
+			background-color bg
+			
+.news-page
+	fw 1
+	padding 80px 30px 20px
+	.title
+		fw 1
+		text
+			display block
+		.h2
+			color #fff
+			font-size 36px
+			line-height 1.5
+		.p
+			color font-color
+			margin-top 25px
+	.content
+		fw 1
+		margin-top 60px
+		padding-top 60px
+		border-top solid 1px border-color
+		.p
+			line-height 1.5
+			color font-color
+			margin-top 50px
+			display block
+		image
+			width 100%
+		
+.businessman-page
+	fw 1
+	padding 0 30px 30px
+	.ul
+		fw 1
+		.li
+			fw 1
+			margin-top 25px
+			background-color color2
+			border-radius 8px
+			padding 0 20px
+			.type
+			input
+				height 80px
+				color #fff
+				width 100%
+			.type
+				display block
+				color font-color
+				line-height 80px
+				background color2 url(../../src/static/img/7a4bce_14x24.png) right center/14px no-repeat
+	.ul1
+		fw 1
+		border-top solid 1px border-color
+		margin-top 50px
+		padding-top 50px
+		.li
+			fw 1
+			margin-bottom 62px
+			.h2
+				color font-color
+				font-size 36px
+				display block
+				text-align center
+			.input
+				fw 1
+				border-radius 8px
+				background-color color2
+				padding 0 20px
+				margin-top 20px
+				mt 50px
+				input
+					height 80px
+			.upload-area
+				fw 1
+				.pict
+					width 385px
+					height 226px
+					margin 48px auto 0
+					overflow hidden
+					back1 '../../src/static/img/fe3840_100x100.png' 62px
+					background-color color2
+					image
+						width 100%
+				.desc
+					color font-color
+					display block
+					text-align center
+					line-height 1.4
+					padding 0 20%
+					margin-top 20px
+					font-size 26px
+				.h3
+					color font-color
+					font-size 36px
+					display block
+					text-align center
+					margin-top 30px
+					
+
+.order-page
+	fw 1
+	.tabs
+		fw 1
+		background-color color2
+		.txt
+			float left
+			width 20%
+			text-align center
+			color #fff
+			line-height 90px
+			&.active
+				color bg
+				position relative
+				&:after
+					content ''
+					position absolute
+					left 0
+					right 0
+					height 4px
+					bottom 0
+					background-color bg
+	.ul
+		.li
+			fw 1
+			padding 0 30px
+			background-color color2
+			margin-top 20px
+			.one
+				fw 1
+				padding 25px 0
+				.pict
+					float left
+					widthZ 150px
+					position relative
+					overflow hidden
+					image
+						width 100%
+						min-height 100%
+				.text
+					widthC 150px
+					float right
+					padding-left 30px
+					.h2
+						color #fff
+						display block
+						line-height 1.4
+					.price
+						margin-top 25px
+						df 1
+						.del
+							float left
+							color font-color
+							text-decoration line-through
+							font-size 26px
+						.p
+							float left
+							color font-color
+							margin-left 30px
+							font-size 26px
+							text
+								color bg
+								font-size 36px
+			.two
+				fw 1
+				padding 25px 0
+				border-top solid 1px border-color
+				.btn
+					display flex
+					justify-content flex-end
+					text
+						border solid 1px bg
+						color bg
+						margin-left 15px
+						ml 0
+						padding 15px 25px
+						border-radius 60px
+						flex-shrink 0
+						font-size 26px
+
+.params-alert
+	position fixed
+	left 0
+	right 0
+	bottom 0
+	top 0
+	background-color rgba(#000, .3)
+	visibility hidden
+	&.active
+		visibility initial
+		.layout
+			bottom 0
+			opacity 1
+	.layout
+		position absolute
+		left 0
+		right 0
+		bottom -1200px
+		background-color color2
+		min-height 800px
+		transition .3s
+		opacity 0
+		.close
+			position absolute
+			right 30px
+			top 30px
+			widthZ 50px
+			back1 '../../src/static/img/93b888_128x128.png' 36px
+			opacity .6
+		.pict-wrap
+			fw 1
+			padding 80px 30px
+			.pict
+				widthZ 160px
+				overflow hidden
+				float left
+				image
+					width 100%
+					min-height 100%
+			.text
+				float right
+				widthC 160px
+				df 5 2
+				height 160px
+				padding 10px 0 10px 30px
+				text
+					display block
+					mt 0
+				.h2
+					color bg
+					font-size 36px
+					
+				.p
+					color font-color
+		.params-wrap
+			fw 1
+			border-top solid 1px border-color
+			.ul
+				.li
+					padding 20px 30px
+					fw 1
+					margin-top 30px
+					.b
+						color #fff
+						line-height 50px
+						display block
+					.p
+						width 120px
+						heightL 60px
+						text-align center
+						background-color bg
+						color #fff
+						border-radius 6px
+						display block
+						margin-top 15px
+					&.row
+						display flex
+						justify-content space-between
+		.pub-button
+			padding 60px 30px 30px
+					
+.fabu-page
+	df 1
+	justify-content space-between
+	padding 0 30px
+	text
+		color #fff
+		width 48%
+		text-align center
+		line-height 90px
+		background-color color2
+		&:nth-child(2)
+			background-color bg
+
+.cart-fixed-bottom
+	position fixed
+	left 0
+	right 0
+	bottom 0
+	padding 20px 25px
+	background-color color2
+	.fl
+		df 1
+		height 60px
+		.ico
+			float left
+			widthZ 32px
+			border solid 1px border-color
+			border-radius 4px
+			&.active
+				back '../../src/static/img/abf042_128x128.png'
+				border none
+		.sp1
+			color bg
+			float left
+			margin-left 12px
+	.fr
+		.box1
+			float left
+			.s1
+				float left
+				line-height 60px
+				color font-color
+			.s2
+				float left
+				line-height 60px
+				color bg
+		.btn
+			float left
+			width 160px
+			heightL 60px
+			text-align center
+			background-color bg
+			color #fff
+			border-radius 60px
+			margin-left 20px
+
+.cart-page
+	fw 1
+	.ul
+		.li
+			fw 1
+			background-color color2
+			padding-top 30px
+			.check
+				float left
+				width 90px
+				height 166px
+				display flex
+				align-items center
+				.ico
+					widthZ 40px
+					border solid 1px border-color
+					display block
+					border-radius 50%
+					margin 0 auto
+				&.active	
+					.ico
+						back '../../src/static/img/ff0d5b_128x128.png'
+						background-color #fff
+						border none
+				
+			.pict
+				width 166px
+				height 166px
+				float left
+				overflow hidden
+				image
+					width 100%
+			.text
+				float left
+				widthC 256px
+				padding 25px 30px 0
+				text
+					color #fff
+					display block
+				.h2
+					font-size 32px
+					margin-top 20px
+				.p
+					font-size 24px
+					margin-top 20px
+				.price
+					display flex
+					justify-content space-between
+					margin-top 20px
+					.pb
+						.d
+							color bg
+							float left
+						.b
+							float left
+							margin-left 10px
+			.count
+				fw 1
+				border-top solid 1px border-color
+				padding 30px 30px
+				margin-top 30px
+				.p
+					color #fff
+					float right
+					
+.confirmation-page
+	fw 1
+	padding 30px
+	.add-ress
+		fw 1
+		border-radius 20px
+		background-color color2
+		padding 0 30px
+		.wrap
+			backi '../../src/static/img/b052a9_128x128.png' 35px
+			background-size 30px
+			fw 1
+			.select-address
+				line-height 110px
+				color font-color
+				display block
+				back2 '../../src/static/img/7a4bce_14x24.png' 14px
+		.wrap1
+			backi '../../src/static/img/f331c0_128x128.png' 80px
+			background-size 60px
+			fw 1
+		.select
+			fw 1
+			padding 30px 0
+			back2 '../../src/static/img/7a4bce_14x24.png' 14px
+			.name
+				fw 1
+				text
+					float left
+				.h2
+					color #fff
+				.b
+					color font-color
+					margin-left 30px
+			.p
+				display block
+				margin-top 20px
+				fw 1
+				color #fff
+				
+	.ul
+		fw 1
+		margin-top 25px
+		.li
+			fw 1
+			padding 30px
+			border-radius 20px
+			background-color color2
+			.box1
+				fw 1
+				.pict
+					widthZ 166px
+					float left
+					image
+						width 100%
+						min-height 100%
+				.text
+					float left
+					widthC 166px
+					padding-left 30px
+					padding-top 10px
+					text
+						display block
+						color #fff
+					.h3
+						color #fff
+					.p
+						color font-color
+						margin-top 30px
+					.b
+						display flex
+						justify-content space-between
+						margin-top 30px
+						.red
+							color bg
+						.gray
+							color font-color
+			.box2
+				fw 1
+				padding-top 20px
+				text
+					color #fff
+					float left
+					line-height 60px
+				input
+					height 60px
+					width 50%
+					float left
+					margin-left 20px
+					color #fff
+			.box3
+				fw 1
+				display flex
+				justify-content flex-end
+				.s1
+					color font-color
+				.s2
+					color bg

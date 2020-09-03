@@ -39,10 +39,11 @@ plug.install = function(Vue, options) {
         },
         methods:{
 			// 提示
-			toast(msg){
+			toast(msg, icon='none'){
 				uni.showToast({
 					title: msg,
-					icon: 'none',
+					icon: icon,
+					mask: true
 				})
 			},
 			// 发送验证码

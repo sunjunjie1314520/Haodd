@@ -15,6 +15,8 @@ import assist from './tool/utils/play.js'
 
 // 自定义组件
 // import Footer from "@/components/type-compon/Footer.vue";
+import Loadding from '@/components/type-compon/Loadding.vue'
+Vue.component('uni-loadding', Loadding)
 
 // 全局注册组件
 // Vue.component('uni-footer', Footer)

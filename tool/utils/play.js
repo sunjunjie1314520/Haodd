@@ -174,7 +174,6 @@ assist.clearForm = function(_this){
 assist.prePage = function(){
 	let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    
     // #ifdef H5
     return prevPage;
     // #endif

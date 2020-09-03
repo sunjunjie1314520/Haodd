@@ -84,6 +84,9 @@
 .placeholder-class {
   color: rgba(255,255,255,0.6);
 }
+.placeholder-class1 {
+  color: #ccc;
+}
 .hover-class {
   background: none;
   opacity: 1;
@@ -178,7 +181,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #f7f7f7;
   padding: 30upx 30upx;
   z-index: 99;
 }
@@ -202,7 +204,7 @@
   font-size: 32upx;
 }
 .pub-fixed-button .btn {
-  background: theme-color;
+  background: -webkit-linear-gradient(left, #ff9016, #ff4084);
   color: #fff;
 }
 .pub-fixed-button .btn.red {
@@ -859,5 +861,67 @@
   display: block;
   float: left;
   height: 100%;
-  background: theme-color;
+  background: #f7224e;
+}
+.pub-etc {
+  text-align: center;
+  padding: 150upx 0;
+}
+.pub-etc text {
+  color: #fff;
+  display: block;
+  margin-top: 30upx;
+  font-size: 32upx;
+}
+.pub-etc image {
+  width: 80upx;
+  height: 80upx;
+  opacity: 0.6;
+}
+.pub-etc image.active {
+  -webkit-filter: blur(.5px);
+  filter: blur(.5px);
+}
+.input-page {
+  float: left;
+  width: 100%;
+  margin-top: 20upx;
+  padding: 0 30upx 30upx;
+}
+.input-page input {
+  width: 100%;
+  height: 88upx;
+  color: #fff;
+}
+.input-page .btn {
+  display: block;
+  height: 88upx;
+  line-height: 88upx;
+  background: -webkit-linear-gradient(left, #ff9016, #ff4084);
+  color: #fff;
+  margin-top: 30upx;
+  text-align: center;
+  margin-top: 30upx;
+  border-radius: 6upx;
+}
+.pub-add {
+  display: flex;
+}
+.pub-add .num {
+  color: #fff;
+  width: 80upx;
+  text-align: center;
+  line-height: 50upx;
+}
+.pub-add .jian,
+.pub-add .jia {
+  width: 50upx;
+  height: 50upx;
+  border: solid .5px rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }

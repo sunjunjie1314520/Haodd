@@ -46,15 +46,15 @@
 					<image src="../../src/static/img/a6a555_200x200.png" mode=""></image>
 					<text>淘宝</text>
 				</view>
-				<view class="li">
+				<view class="li" @click="gotoLink('https://m.jd.com/')">
 					<image src="../../src/static/img/b6e2b1_80x80.png" mode=""></image>
 					<text>京东</text>
 				</view>
-				<view class="li">
+				<view class="li" @click="gotoLink('https://www.tmall.com/')">
 					<image src="../../src/static/img/def8ce_121x121.png" mode=""></image>
 					<text>天猫</text>
 				</view>
-				<view class="li">
+				<view class="li" @click="gotoLink('https://m.pinduoduo.com/home/')">
 					<image src="../../src/static/img/e95379_126x126.png" mode=""></image>
 					<text>拼多多</text>
 				</view>
@@ -80,61 +80,61 @@
 		
 		<view class="product">
 			<view class="ul">
-				<view class="li">
+				<view class="li" @click="gotoDetail(1)">
 					<view class="pict">
-						<image src="https://img.alicdn.com/imgextra/i1/1770991118/TB2.8ggcpXXXXavXXXXXXXXXXXX_!!1770991118.jpg" mode=""></image>
+						<image src="https://g-search1.alicdn.com/img/bao/uploaded/i4/imgextra/i2/457630161/O1CN01mV8PUC1D3mLo7U905_!!0-saturn_solar.jpg_250x250.jpg_.webp" mode="widthFix"></image>
 					</view>
 					<view class="info-text">
 						<view class="price">
 							<text class="t1">￥</text>
 							<text class="t2">0.0</text>
 						</view>
-						<text class="h2">某某产品</text>
+						<text class="h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
 						<view class="sell-number">
 							<text class="b">已售 | 200</text>
 						</view>
 					</view>
 				</view>
-				<view class="li">
+				<view class="li" @click="gotoDetail(1)">
 					<view class="pict">
-						<image src="https://img.alicdn.com/tps/i1/T1iT_5FgdeXXX9hhfo-80-80.jpg" mode=""></image>
+						<image src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/1621502511/O1CN01ex7D9I1UQ54cYHhfb_!!0-item_pic.jpg_250x250.jpg_.webp" mode="widthFix"></image>
 					</view>
 					<view class="info-text">
 						<view class="price">
 							<text class="t1">￥</text>
 							<text class="t2">0.0</text>
 						</view>
-						<text class="h2">某某产品</text>
+						<text class="h2">初秋轻熟御姐女神范衣服连衣裙子2020新款成熟风女装气质高端显瘦</text>
 						<view class="sell-number">
 							<text class="b">已售 | 200</text>
 						</view>
 					</view>
 				</view>
-				<view class="li">
+				<view class="li" @click="gotoDetail(1)">
 					<view class="pict">
-						<image src="https://img.alicdn.com/tps/i1/T1cXNsFD8eXXX9hhfo-80-80.jpg" mode=""></image>
+						<image src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2845660845/O1CN01sWR1d91I73HV6qrke_!!0-item_pic.jpg_250x250.jpg_.webp" mode="widthFix"></image>
 					</view>
 					<view class="info-text">
 						<view class="price">
 							<text class="t1">￥</text>
 							<text class="t2">0.0</text>
 						</view>
-						<text class="h2">某某产品</text>
+						<text class="h2">初秋季2020年新款女装连衣裙子仙女裙收腰显瘦高端名媛气质女神范</text>
 						<view class="sell-number">
 							<text class="b">已售 | 200</text>
 						</view>
 					</view>
 				</view>
-				<view class="li">
+				<view class="li" @click="gotoDetail(1)">
 					<view class="pict">
-						<image src="https://img.alicdn.com/tps/i1/T1EGIZFf8dXXX9hhfo-80-80.jpg" mode=""></image>
+						<image src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/3142422799/O1CN01kGzRZ71WXzBJg0V6M_!!3142422799.jpg_250x250.jpg_.webp" mode="widthFix"></image>
 					</view>
 					<view class="info-text">
 						<view class="price">
 							<text class="t1">￥</text>
 							<text class="t2">0.0</text>
 						</view>
-						<text class="h2">某某产品</text>
+						<text class="h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
 						<view class="sell-number">
 							<text class="b">已售 | 200</text>
 						</view>
@@ -164,6 +164,11 @@
 			gotoLink(url){
 				uni.navigateTo({
 					url:'../webBrowser/index?url=' + url
+				})
+			},
+			gotoDetail(id){
+				uni.navigateTo({
+					url:'../product/detail?id=' + id
 				})
 			}
 		}

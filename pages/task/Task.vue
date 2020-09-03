@@ -1,6 +1,5 @@
 <template>
 	<view class="task-tabs">
-		<view class="title">消息</view>
 		<view class="notice">
 			<view class="ul">
 				<view class="li">

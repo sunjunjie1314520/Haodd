@@ -28,8 +28,8 @@
 				</view>
 			</view>
 			<view class="set">
-				<navigator class="ico i1" url="../user/code"></navigator>
-				<navigator class="ico i2" url="../set/set"></navigator>
+				<navigator hover-class="hover-class" class="ico i1" url="../user/code"></navigator>
+				<navigator hover-class="hover-class" class="ico i2" url="../set/set"></navigator>
 			</view>
 			<view class="dou">
 				<view class="left">
@@ -72,7 +72,7 @@
 				<view class="content">
 					<text>俄罗斯首支新冠疫苗已经注册，免疫力可持续两年，普京女儿已接种</text>
 				</view>
-				<text class="more">更多</text>
+				<text @click="gotoNews" class="more">更多</text>
 			</view>
 		</view>
 		
@@ -146,14 +146,13 @@
 				<text class="h3">视频</text>
 				<view class="ul">
 					<view class="li">
-						<navigator url="../user/real" hover-class="hover-class">
+						<navigator url="../user/video" hover-class="hover-class">
 							<text class="ico i1"></text>
 							<text class="p">我的视频</text>
 						</navigator>
 					</view>
-
 					<view class="li">
-						<navigator url="../task/Task" hover-class="hover-class">
+						<navigator url="../user/personal" hover-class="hover-class">
 							<text class="ico i3"></text>
 							<text class="p">个人资料</text>
 						</navigator>
@@ -185,25 +184,31 @@
 				<text class="h3">商城</text>
 				<view class="ul">
 					<view class="li">
-						<navigator url="../shop/AddressList" hover-class="hover-class">
+						<navigator url="../shop/cart" hover-class="hover-class">
+							<text class="ico i13"></text>
+							<text class="p">购物车</text>
+						</navigator>
+					</view>
+					<view class="li">
+						<navigator url="../order/address_manage" hover-class="hover-class">
 							<text class="ico i6"></text>
 							<text class="p">收货地址</text>
 						</navigator>
 					</view>
 					<view class="li">
-						<navigator url="../shop/AddressList" hover-class="hover-class">
+						<navigator url="../user/order" hover-class="hover-class">
 							<text class="ico i7"></text>
 							<text class="p">我的订单</text>
 						</navigator>
 					</view>
 					<view class="li">
-						<navigator url="../shop/AddressList" hover-class="hover-class">
+						<navigator url="../user/businessman" hover-class="hover-class">
 							<text class="ico i8"></text>
 							<text class="p">我是商家</text>
 						</navigator>
 					</view>
 					<view class="li">
-						<navigator url="../shop/AddressList" hover-class="hover-class">
+						<navigator url="../user/service" hover-class="hover-class">
 							<text class="ico i12"></text>
 							<text class="p">我的客服</text>
 						</navigator>
@@ -236,6 +241,11 @@
 						url: '../invitation/Opening'
 					})
 				}
+			},
+			gotoNews(){
+				uni.navigateTo({
+					url:'../user/news'
+				})
 			}
 		}
 	}

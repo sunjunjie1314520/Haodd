@@ -22,7 +22,7 @@
 						<text @tap="userLogin" class="button">登录</text>
 					</view>
 					<view class="li">
-						<navigator class="navig" url="../login/Forget">忘记密码</navigator>
+						<navigator class="navig" url="./Forget" hover-class="hover-class">忘记密码</navigator>
 					</view>
 				</view>
 				
@@ -44,7 +44,7 @@
 				
 			
 			<view class="other-user">
-				<navigator url="../register/register">还没有账号？立即注册</navigator>
+				<navigator url="../register/register" hover-class="hover-class">还没有账号？立即注册</navigator>
 			</view>
 			<view class="back">
 				<image src="../../src/static/img/9d0552_697x977.jpg" mode=""></image>

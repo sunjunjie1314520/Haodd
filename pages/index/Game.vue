@@ -1,7 +1,8 @@
 <template>
 	<view class="game-tabs bg-six" :style="{'min-height': windowHeight + 'px'}">
 		<view class="pub-etc">
-			游戏模块待开发
+			<image src="../../src/static/img/103ab0_128x128.png" mode=""></image>
+			<text>游戏模块内容待定...</text>
 		</view>
 	</view>
 </template>
