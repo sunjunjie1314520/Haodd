@@ -66,8 +66,8 @@
 		},
 		methods: {
 			userLogin(){
-				uni.switchTab({
-					url: '../index/Home'
+				uni.navigateTo({
+					url:'../index1/Index'
 				})
 			}
 		}

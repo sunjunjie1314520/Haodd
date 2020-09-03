@@ -1,0 +1,47 @@
+<template>
+	<div class="flex" :style="{'height': windowHeight + 'px'}">
+		<div class="home-video-wrap">
+			<video class="home-myvideo"
+			:autoplay="true"
+			:controls="false"
+			src="https://limitao.myuan.cn/gongyong/shangchuan/yinpin/33/2020/05/E1n1us3N3511hzbt5thh3c137tU15T.mp4"
+			>
+			</video>
+		</div>
+		<div class="home-personal" :style="{'top': 300 + 'px'}">
+			<div class="home-personal-ul">
+				<div class="home-personal-li">
+					<image class="home-personal-img" src="../../src/static/img/01c881_128x128.png" mode=""></image>
+					<text class="home-personal-span">28.0w</text>
+				</div>
+				<div class="home-personal-li">
+					<image class="home-personal-img" src="../../src/static/img/01c881_128x128.png" mode=""></image>
+					<text class="home-personal-span">28.0w</text>
+				</div>
+				<div class="home-personal-li">
+					<image class="home-personal-img" src="../../src/static/img/01c881_128x128.png" mode=""></image>
+					<text class="home-personal-span">28.0w</text>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		data(){
+			return {
+				windowHeight: 0
+			}
+		},
+		created() {
+			const { windowWidth, windowHeight } = uni.getSystemInfoSync();
+			console.log(windowHeight);
+			this.windowHeight = windowHeight
+		},
+	}
+</script>
+
+<style>	
+	
+</style>

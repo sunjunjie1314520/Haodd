@@ -252,6 +252,13 @@
 				}
 				
 			}
+		},
+		{
+			"path" : "pages/index1/Index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"				
+			}
 		}
 	],
 	"globalStyle": {
@@ -266,7 +273,7 @@
 		"list": [
 			{
 				"name": "主入口",
-				"path": "pages/index/Home",
+				"path": "pages/index1/Index",
 				"query": ""
 			}
 		]

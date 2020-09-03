@@ -27,12 +27,12 @@ plug.install = function(Vue, options) {
             
         },
         created(){
-			
-        },
-		onLoad() {
 			const { windowWidth, windowHeight } = uni.getSystemInfoSync();
 			this.windowHeight = windowHeight;
 			console.log(windowHeight);
+        },
+		onLoad() {
+			
 		},
         mounted(){
             

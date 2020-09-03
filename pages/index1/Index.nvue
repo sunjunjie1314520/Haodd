@@ -1,0 +1,33 @@
+<template>
+	<div class="app">
+		<Home></Home>
+		<Footer @change="change" :tabs="tabs"></Footer>
+	</div>
+</template>
+
+<script>
+	import Footer from './Footer.nvue'
+	import Home from './Home.nvue'
+	export default {
+		components:{
+			Footer,
+			Home,
+		},
+		data(){
+			return {
+				tabs:0
+			}
+		},
+		methods: {
+			change(dex){
+				console.log(dex);
+				this.tabs = dex
+			}
+		},
+		
+	}
+</script>
+
+<style>
+
+</style>
