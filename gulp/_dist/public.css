@@ -91,10 +91,6 @@
   background: none;
   opacity: 1;
 }
-.hover-class.active {
-  -webkit-filter: blur(.5px);
-  filter: blur(.5px);
-}
 .select-active {
   color: #bebebe;
 }
@@ -111,11 +107,6 @@
 .pub-select .option {
   color: #bbb;
   display: block;
-}
-.flex-center {
-  height: 100%;
-  display: flex;
-  align-items: center;
 }
 .flex-page {
   display: flex;
@@ -862,25 +853,6 @@
   float: left;
   height: 100%;
   background: #f7224e;
-}
-.pub-etc {
-  text-align: center;
-  padding: 150upx 0;
-}
-.pub-etc text {
-  color: #fff;
-  display: block;
-  margin-top: 30upx;
-  font-size: 32upx;
-}
-.pub-etc image {
-  width: 80upx;
-  height: 80upx;
-  opacity: 0.6;
-}
-.pub-etc image.active {
-  -webkit-filter: blur(.5px);
-  filter: blur(.5px);
 }
 .input-page {
   float: left;

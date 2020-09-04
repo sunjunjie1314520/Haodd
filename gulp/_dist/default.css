@@ -1,0 +1,7 @@
+
+
+.flex{
+	/* #ifdef H5 */
+	display: flex;
+	/* #endif */
+}

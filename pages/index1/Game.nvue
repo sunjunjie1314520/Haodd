@@ -1,0 +1,42 @@
+<template>
+	<view class="game-tabs">
+		<view class="pub-etc flex-center-column">
+			<image class="image" src="../../src/static/img/103ab0_128x128.png" mode=""></image>
+			<text class="text">游戏类目待开发</text>
+			<text class="text op">时间待定</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data(){
+			return {
+				
+			}
+		},
+		created() {
+			
+		},
+		methods:{
+			
+		}
+	}
+</script>
+
+<style lang="stylus" scoped>
+	.pub-etc
+		text-align center
+		padding 250upx 0 30upx
+	.text
+		color #fff
+		margin-top 10upx
+		font-size 32upx
+	.image
+		width 80upx
+		height 80upx
+		opacity .6
+		margin-bottom 20upx
+	.op
+		opacity .6
+</style>

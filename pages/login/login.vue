@@ -19,7 +19,7 @@
 						<input type="text" placeholder-class="placeholder-class1" value="" placeholder="请输入密码" />
 					</view>
 					<view class="li">
-						<text @tap="userLogin" class="button">登录</text>
+						<text @tap="userLogin" class="button2">登录</text>
 					</view>
 					<view class="li">
 						<navigator class="navig" url="./Forget" hover-class="hover-class">忘记密码</navigator>
@@ -35,7 +35,7 @@
 						<text class="get-code">获取验证码</text>
 					</view>
 					<view class="li">
-						<text class="button">登录</text>
+						<text class="button2">登录</text>
 					</view>
 <!-- 					<view class="li">
 						<navigator class="navig" url="../register/register">忘记密码</navigator>

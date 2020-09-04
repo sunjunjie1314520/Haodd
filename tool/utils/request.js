@@ -1,4 +1,4 @@
-import url_config from '../common/config.js'
+import url_config, { qiniu } from '@/tool/common/config.js'
 
 const request = {}
 
@@ -73,7 +73,7 @@ request.globalRequest = (url, method, data, power, loading) => {
 　　})
 }
 
-request.globalChooseImage = (url, power, sourceType) => {
+request.globalChooseImage = (url, power, sourceType, token) => {
     const headers = {}
 	switch (power){
 	    case 1:
@@ -99,9 +99,12 @@ request.globalChooseImage = (url, power, sourceType) => {
                 tempFilePaths.forEach(item=>{
                     var p = new Promise(resolve => {
                         uni.uploadFile({
-                            url: url_config + url,
+                            url: qiniu + url,
                             filePath: item,
                             name: 'file',
+							formData: {
+								'token': token,
+							},
                             header: headers,
                             success: (uploadFileRes) => {
                                 let data = JSON.parse(uploadFileRes.data)
@@ -118,24 +121,14 @@ request.globalChooseImage = (url, power, sourceType) => {
                 Promise.all(group)
                 .then(res => {
                     // console.log(res);
-                    var url = []
-                    var id = []
-                    var source = []
+                    var key = []
                     res.forEach(item=>{
-                        id.push(item.result.id)
-                        url.push(item.result.url)
-                        source.push(item.result)
+                        key.push(item.key)
                     })
-                    var data = {
-                        id,
-                        url,
-                        source
-                    }
-                    console.log(data);
-                    
+					
                     uni.hideLoading()
                     
-                    resolve(data)
+                    resolve(key)
                 })
             },
             error:function(){

@@ -33,7 +33,7 @@ export default {
 		var month = date.getMonth() + 1
 		var days = []
 		var day = date.getDate()
-		for (let i = 1990; i <= date.getFullYear(); i++) {
+		for (let i = 1937; i <= date.getFullYear(); i++) {
 			years.push(i)
 		}
 		for (let i = 1; i <= 12; i++) {

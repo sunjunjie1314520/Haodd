@@ -1,25 +1,31 @@
 <template>
-	<div class="app">
-		<Home></Home>
+	
+	<div class="app-plus">
+		<Home v-if="tabs==0"></Home>
+		<Shop v-if="tabs==1"></Shop>
+		<Game v-if="tabs==2"></Game>
+		<Center v-if="tabs==3"></Center>
 		<Footer @change="change" @fabu="show=true" :tabs="tabs"></Footer>
 		
 		<div class="pub-video-select" @click="test" v-if="show">
 			<div class="pub-video-ul">
 				<div class="pub-video-li">
-					<view class="pict1-color1">
+					<div class="pict1-color1">
 						<image class="pub-video-img" src="@/static/image/a9fa32_200x200.png" mode=""></image>
-					</view>
+					</div>
 					<text class="pub-video-text">拍摄视频</text>
 				</div>
-				<div class="pub-video-li">
-					<view class="pict1-color2">
+				<div class="pub-video-li" @click="toast">
+					<div class="pict1-color2">
 						<image class="pub-video-img" src="@/static/image/a9fa33_200x200.png" mode=""></image>
-					</view>
+					</div>
 					<text class="pub-video-text">开始直播</text>
 				</div>
-				<view class="pub-video-close">
-					<image @click="closeHandle" class="pub-video-close-img" src="@/static/image/close.png" mode=""></image>
-				</view>
+				<div class="pub-video-close">
+					<div class="pub-video-close-wrap" @click="closeHandle">
+						<image class="pub-video-close-img" src="@/static/image/close.png" mode=""></image>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -28,14 +34,22 @@
 <script>
 	import Footer from './Footer.nvue'
 	import Home from './Home.nvue'
+	
+	import Shop from './Shop.nvue'
+	import Center from './Center.nvue'
+	import Game from './Game.nvue'
+	
 	export default {
 		components:{
 			Footer,
 			Home,
+			Shop,
+			Game,
+			Center,
 		},
 		data(){
 			return {
-				tabs:0,
+				tabs: 0,
 				show: false,
 			}
 		},
@@ -49,6 +63,12 @@
 			},
 			closeHandle(){
 				this.show = false
+			},
+			toast(){
+				uni.showToast({
+					title: '功能未开放',
+					icon: 'none'
+				})
 			}
 		},
 		

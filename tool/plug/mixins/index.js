@@ -29,7 +29,6 @@ plug.install = function(Vue, options) {
         created(){
 			const { windowWidth, windowHeight } = uni.getSystemInfoSync();
 			this.windowHeight = windowHeight;
-			console.log(windowHeight);
         },
 		onLoad() {
 			

@@ -272,8 +272,18 @@
 		"current": 0,
 		"list": [
 			{
-				"name": "主入口",
+				"name": "首页",
 				"path": "pages/index1/Index",
+				"query": ""
+			},
+			{
+				"name": "登录",
+				"path": "pages/login/login",
+				"query": ""
+			},
+			{
+				"name": "临时",
+				"path": "pages/register/setinfo",
 				"query": ""
 			}
 		]
