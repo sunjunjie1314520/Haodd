@@ -41,12 +41,12 @@
   font-size: 24upx;
   margin-top: 6upx;
 }
-.app-footer-li-active {
-  color: #f7224e;
-}
 .app-footer-li-ico {
   width: 45upx;
   height: 45upx;
+}
+.app-footer-li-active {
+  color: #f7224e;
 }
 .app-footer-li-center {
   width: 76upx;
@@ -68,17 +68,32 @@
   position: fixed;
   right: 30upx;
   z-index: 2;
-  bottom: 260upx;
+  bottom: 160upx;
 }
 .home-personal-img {
   width: 70upx;
   height: 70upx;
+}
+.home-personal-img1 {
+  width: 90upx;
+  height: 90upx;
+}
+.home-personal-img2 {
+  width: 50upx;
+  height: 50upx;
+  position: absolute;
+  left: 26upx;
+  top: 22upx;
 }
 .home-personal-li {
   margin-top: 40upx;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.home-personal-li-last {
+  margin-top: 100upx;
 }
 .home-personal-span {
   color: #fff;
@@ -119,7 +134,7 @@
 .home-content {
   position: fixed;
   left: 30upx;
-  bottom: 200upx;
+  bottom: 120upx;
   flex-direction: column;
   width: 405upx;
 }
@@ -133,6 +148,15 @@
   font-size: 30upx;
   margin-top: 20upx;
   line-height: 40upx;
+}
+.music-name {
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20upx;
+}
+.music-image {
+  width: 34upx;
+  height: 34upx;
 }
 .play-status {
   position: fixed;

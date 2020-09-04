@@ -28,7 +28,10 @@
 	z-index 2
 	background-color #111118
 	padding 5px 0
-
+	// border-style solid
+	// border-top-width 1px
+	// border-color rgba(#fff, .3)
+	
 .app-footer-ul
 	flex-direction row
 	
@@ -42,14 +45,14 @@
 	
 .app-footer-li-white
 	color rgba(#fff, .6)
-	font-size 24upx
+	font-size 24px
 	margin-top 6px
-
-.app-footer-li-active
-	color bg
-		
+	
 .app-footer-li-ico
 	widthZ 45px
+	
+.app-footer-li-active
+	color bg
 	
 .app-footer-li-center
 	widthZ 76px
@@ -69,17 +72,30 @@
 	position fixed
 	right 30upx
 	z-index 2
-	bottom 260px
-	
+	bottom 160px
+		
 .home-personal-img
 	width 70px
 	height 70px
+	
+.home-personal-img1
+	widthZ 90px
+	
+.home-personal-img2
+	widthZ 50px
+	position absolute
+	left 26px
+	top 22px
 	
 .home-personal-li
 	margin-top 40px
 	flex-direction column
 	justify-content center
 	align-items center
+	position relative
+	
+.home-personal-li-last
+	margin-top 100px
 	
 .home-personal-span
 	color #FFFFFF
@@ -118,7 +134,7 @@
 .home-content
 	position fixed
 	left 30px
-	bottom 200px
+	bottom 120px
 	flex-direction column
 	width 405px
 
@@ -132,7 +148,15 @@
 	font-size 30px
 	margin-top 20px
 	line-height 40px
+.music-name
+	flex-direction row
+	align-items center
+	margin-top 20px
+	
 
+.music-image
+	width 34px
+	height 34px
 .play-status
 	position fixed
 	left 0

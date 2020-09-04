@@ -8,7 +8,7 @@
 			:autoplay="status"
 			:loop="true"
 			:controls="false"
-			:muted="true"
+			:muted="false"
 			objectFit="cover"
 			:show-center-play-btn="false"
 			src="https://limitao.myuan.cn/gongyong/shangchuan/yinpin/33/2020/05/E1n1us3N3511hzbt5thh3c137tU15T.mp4"
@@ -47,6 +47,21 @@
 		<div class="home-content">
 			<text class="content-title">@前端开发工程师</text>
 			<text class="content-desc">最怕有一天你离我而去，没有了你我该怎么活</text>
+			<div class="music-name">
+				<image class="music-image" src="@/static/image/e6a977_128x128.png" mode=""></image>
+				<!-- 文字滚动 -->
+				<uni-notice-bar
+				class="width1"
+				scrollable="true"
+				single="true"
+				text="歌手：周深 所属专辑：起风了"
+				background-color="transparent"
+				color="#fff"
+				:speed="50"
+				>
+				<!-- transparent -->
+				</uni-notice-bar>
+			</div>
 		</div>
 		
 		<div class="home-personal">
@@ -54,7 +69,7 @@
 				<!-- 头像 -->
 				<div class="h-picture">
 					<div class="h-pict" @click="gotoLink">
-						<image class="h-pict-image" src="@/static/image/40200d_1043x1043.png" mode="aspectFill"></image>
+						<image class="h-pict-image" src="@/static/image/40200d_1043x1043.png" mode="widthFix"></image>
 					</div>
 					<div class="h-add-ico-wrap">
 						<image @click="guanzhu" class="h-add-ico" src="@/static/image/103c3f_200x200.png" mode=""></image>
@@ -81,6 +96,11 @@
 					<image class="home-personal-img" src="@/static/image/b91cd4_221x200.png" mode=""></image>
 					<text class="home-personal-span">101</text>
 				</div>
+				<!-- 光盘 -->
+				<div class="home-personal-li home-personal-li-last" ref="test">
+					<image class="home-personal-img1" src="@/static/image/pan.png" mode=""></image>
+					<image class="home-personal-img2" src="@/src/static/img/116836_130x130.png" mode=""></image>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -88,6 +108,14 @@
 
 <script>
 	const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync();
+	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue'
+	
+	// #ifdef APP-NVUE
+		const animation = weex.requireModule('animation')
+		const modal = weex.requireModule('modal')
+		const dom = weex.requireModule('dom');
+	// #endif
+	
 	export default {
 		data(){
 			return {
@@ -105,9 +133,14 @@
 		},
 		created() {
 			console.log(uni.getSystemInfoSync());
+			setTimeout(()=>{
+				this.move();
+			}, 1000)
 		},
 		onLoad() {
+			
 		},
+		
 		methods: {
 			play(){
 				var video = uni.createVideoContext('myVideo')
@@ -155,11 +188,38 @@
 				uni.showToast({
 					title: '展开搜索',
 				})
+			},
+			move() {
+				const _this = this;
+				var testEl = this.$refs.test;
+				animation.transition(testEl, {
+					styles: {
+						transform: 'rotate(0deg)',
+					},
+					duration: 0
+				})
+				animation.transition(testEl, {
+				  styles: {
+					color: '#FF0000',
+					transform: 'rotate(360deg)',
+					transformOrigin: 'center center'
+				  },
+				  duration: 1200, //ms
+				  timingFunction: 'linear',
+				  delay: 0 //ms
+				}, function () {
+				  // modal.toast({ message: 'animation finished.' })
+				  _this.move();
+				})
 			}
+		},
+		components: {
+			uniNoticeBar
 		}
 	}
 </script>
 
 <style lang="stylus">
-			
+	.width1
+		flex 1
 </style>
