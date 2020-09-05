@@ -84,6 +84,7 @@
   position: absolute;
   left: 26px;
   top: 22px;
+  border-radius: 50%;
 }
 .home-personal-li {
   margin-top: 40px;

@@ -49,7 +49,7 @@
 		},
 		data(){
 			return {
-				tabs: 0,
+				tabs: 1,
 				show: false,
 			}
 		},

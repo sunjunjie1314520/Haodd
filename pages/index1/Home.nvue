@@ -3,12 +3,13 @@
 		
 		<div class="status-app" :style="{'height': statusBarHeight + 'px'}"></div>
 		
+		<!-- 视频 -->
 		<div class="home-video-wrap">
 			<video class="home-myvideo"
 			:autoplay="status"
 			:loop="true"
 			:controls="false"
-			:muted="false"
+			:muted="true"
 			objectFit="cover"
 			:show-center-play-btn="false"
 			src="https://limitao.myuan.cn/gongyong/shangchuan/yinpin/33/2020/05/E1n1us3N3511hzbt5thh3c137tU15T.mp4"
@@ -21,9 +22,11 @@
 		
 		<!-- 搜索区 -->
 		<div class="home-search" :style="{'top': statusBarHeight + 'px'}">
+			<!-- 直播 -->
 			<div class="home-live-fl">
 				<image class="search-fr-image" src="@/static/image/a9fa34_200x200.png" mode=""></image>
 			</div>
+			<!-- 切换 -->
 			<div class="home-search-center">
 				<div class="home-search-title" @click="tabs=0">
 					<text :class="['home-search-title-txt', tabs==0 ? 'home-search-title-active': '']">关注</text>
@@ -34,6 +37,7 @@
 					<div v-if="tabs==1" class="home-search-title-line"></div>
 				</div>
 			</div>
+			<!-- 搜索 -->
 			<div class="search-fr" @click="searchLink">
 				<image class="search-fr-image" src="@/static/image/2b293b_128x128.png" mode=""></image>
 			</div>
@@ -44,8 +48,9 @@
 			<image class="play-status-img" src="@/static/image/449745_200x200.png" mode=""></image>
 		</div>
 		
+		<!-- 内容 -->
 		<div class="home-content">
-			<text class="content-title">@前端开发工程师</text>
+			<text class="content-title" ref="test">@前端开发工程师</text>
 			<text class="content-desc">最怕有一天你离我而去，没有了你我该怎么活</text>
 			<div class="music-name">
 				<image class="music-image" src="@/static/image/e6a977_128x128.png" mode=""></image>
@@ -64,6 +69,7 @@
 			</div>
 		</div>
 		
+		<!-- 右侧 -->
 		<div class="home-personal">
 			<div class="home-personal-ul">
 				<!-- 头像 -->
@@ -99,7 +105,7 @@
 				<!-- 光盘 -->
 				<div class="home-personal-li home-personal-li-last" ref="test">
 					<image class="home-personal-img1" src="@/static/image/pan.png" mode=""></image>
-					<image class="home-personal-img2" src="@/src/static/img/116836_130x130.png" mode=""></image>
+					<image class="home-personal-img2" src="@/static/image/40200d_1043x1043.png" mode=""></image>
 				</div>
 			</div>
 		</div>
@@ -129,6 +135,9 @@
 			}
 		},
 		onReady: function (res) {
+			
+		},
+		mounted() {
 			
 		},
 		created() {

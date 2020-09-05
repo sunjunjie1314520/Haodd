@@ -902,35 +902,6 @@
   border-right: 9upx solid transparent;
   border-top: 9upx solid transparent;
 }
-.shop-keys-tabs {
-  float: left;
-  width: 100%;
-  overflow-y: auto;
-}
-.shop-keys-tabs .ul {
-  display: flex;
-}
-.shop-keys-tabs .ul .li {
-  float: left;
-  padding: 0 20upx;
-  color: #fff;
-  line-height: 110upx;
-  flex-shrink: 0;
-}
-.shop-keys-tabs .ul .li.active {
-  position: relative;
-  color: #f7224e;
-}
-.shop-keys-tabs .ul .li.active:after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 60upx;
-  height: 4upx;
-  background-color: #f7224e;
-  bottom: 0;
-}
 .out-link {
   float: left;
   width: 100%;
@@ -1674,29 +1645,6 @@
   display: block;
   line-height: 1.4;
   margin-top: 20upx;
-}
-.shop-keys-search {
-  float: left;
-  width: 100%;
-  padding: 20upx 30upx 0;
-}
-.shop-keys-search input {
-  float: left;
-  width: 78%;
-  height: 60upx;
-  border-radius: 30upx;
-  background-color: #fff;
-  padding: 0 25upx;
-}
-.shop-keys-search text {
-  float: right;
-  height: 60upx;
-  width: 18%;
-  border-radius: 6upx;
-  color: #fff;
-  background-color: #f7224e;
-  text-align: center;
-  line-height: 60upx;
 }
 .forget-page {
   float: left;
