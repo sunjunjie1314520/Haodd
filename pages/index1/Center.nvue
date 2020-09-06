@@ -3,108 +3,110 @@
 		<view class="status-bar fixed">
 			
 		</view>
-		<view class="user-layout">
-			<view class="pict-wrap">
-				<view class="leval"><text>V1</text></view>
-				<view class="pict">
-					<image src="../../src/static/img/c790d4_1200x1200.jpg" mode=""></image>
-				</view>
-				<view class="vip">经纪商</view>
-			</view>
-			<view class="text">
-				<view class="phone">
-					<text class="h1 font">198****5054</text>
-					<text class="wei">未实名</text>
-				</view>
-				<view class="wrap">
-					<text class="id font">ID: 62391491</text>
-					<view class="xin">
-						<text></text>
-						<text></text>
-						<text></text>
-						<text></text>
-					</view>
-					<view class="desc">四星达人</view>
-				</view>
-			</view>
-			<view class="set">
+		<div class="user-layout">
+			<div class="pict-wrap-top">
+				<div class="pict-wrap">
+					<div class="leval"><text>V1</text></div>
+					<div class="pict">
+						<image src="../../src/static/img/c790d4_1200x1200.jpg" mode=""></image>
+					</div>
+					<div class="vip">经纪商</div>
+				</div>
+				<div class="text pict-wrap-top-text">
+					<div class="phone">
+						<text class="h1 font">198****5054</text>
+						<text class="wei">未实名</text>
+					</div>
+					<div class="wrap">
+						<text class="id font">ID: 62391491</text>
+						<div class="xin">
+							<text></text>
+							<text></text>
+							<text></text>
+							<text></text>
+						</div>
+						<div class="desc">四星达人</div>
+					</div>
+				</div>
+			</div>
+			<div class="set">
 				<navigator hover-class="hover-class" class="ico i1" url="../user/code"></navigator>
 				<navigator hover-class="hover-class" class="ico i2" url="../set/set"></navigator>
-			</view>
-			<view class="dou">
-				<view class="left">
+			</div>
+			<div class="dou">
+				<div class="left">
 					<text class="h3">当前音豆</text>
-					<view class="number">
+					<div class="number">
 						<text class="sp1">0.0000</text>
 						<text class="sp2">个</text>
-					</view>
-				</view>
-				<view class="right">
+					</div>
+				</div>
+				<div class="right">
 					<text>手续费：100%</text>
-				</view>
-			</view>
-		</view>
+				</div>
+			</div>
+		</div>
 		
-		<view class="liveness">
-			<view class="ul">
-				<view class="li">
+		<div class="liveness">
+			<div class="ul flex-row">
+				<div class="li">
 					<text class="h2">+0.00</text>
 					<text class="p">加成活跃度</text>
-				</view>
-				<view class="li">
+				</div>
+				<div class="li">
 					<text class="h2">+0.00</text>
 					<text class="p">基础活跃度</text>
-				</view>
-				<view class="li">
+				</div>
+				<div class="li">
 					<text class="h2">+0.00</text>
 					<text class="p">锁定音豆</text>
-				</view>
-				<view class="li">
+				</div>
+				<div class="li">
 					<text class="h2">+0.00</text>
 					<text class="p">HDC</text>
-				</view>
-			</view>
-		</view>
+				</div>
+			</div>
+		</div>
 		
-		<view class="scroll-new">
-			<view class="layout">
+		<div class="scroll-new">
+			<div class="layout">
 				<text class="h3">最新公告</text>
-				<view class="content">
+				<div class="content">
 					<text>俄罗斯首支新冠疫苗已经注册，免疫力可持续两年，普京女儿已接种</text>
-				</view>
+				</div>
 				<text @click="gotoNews" class="more">更多</text>
-			</view>
-		</view>
+			</div>
+		</div>
 		
-		<view class="list-menu list-menu-1">
-			<view class="layout">
+		<div class="list-menu list-menu-1">
+			<div class="layout">
 				<text class="h3">常用工具</text>
-				<view class="ul">
-					<view class="li">
+				<div class="ul">
+					<div class="li">
 						<navigator url="../user/real" hover-class="hover-class">
 							<image src="../../src/static/img/812afe_108x108.png" mode=""></image>
 							<text>实名认证</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="li">
 						<navigator url="../commonly/team" hover-class="hover-class">
 							<image src="../../src/static/img/8588dc_90x90.png" mode=""></image>
 							<text>我的团队</text>
 						</navigator>
-					</view>
-					<view class="li" @click="invitation">
+					</div>
+					<div class="li" @click="invitation">
 						<image src="../../src/static/img/28567a_85x85.png" mode=""></image>
 						<text>经纪商</text>
-					</view>
-					<view class="li">
+					</div>
+					<div class="li">
 						<navigator url="../commonly/agent" hover-class="hover-class">
 							<image src="../../src/static/img/f4810a_90x90.png" mode=""></image>
 							<text>区域代理</text>
 						</navigator>
-					</view>
-				</view>
-			</view>
-		</view>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<view class="center-box-img w">
 			<view class="box">
@@ -112,34 +114,34 @@
 			</view>
 		</view>
 		
-		<view class="my-task">
-			<view class="ul">
-				<view class="li">
-					<view class="ico">
+		<div class="my-task">
+			<div class="ul my-task-ul">
+				<div class="li my-task-li">
+					<div class="ico">
 						<image src="../../src/static/img/c4f59a_128x128.png" mode=""></image>
-					</view>
-					<view class="text">
+					</div>
+					<div class="text">
 						<text class="h2">点赞(0/5)</text>
 						<text class="p">点赞喜欢的视频</text>
-					</view>
-					<view class="fr">
+					</div>
+					<div class="fr">
 						<text>未完成</text>
-					</view>
-				</view>
-				<view class="li">
-					<view class="ico">
+					</div>
+				</div>
+				<div class="li">
+					<div class="ico">
 						<image src="../../src/static/img/f3ffc8_128x128.png" mode=""></image>
-					</view>
-					<view class="text">
+					</div>
+					<div class="text">
 						<text class="h2">评论(0/5)</text>
 						<text class="p">点赞评论的视频</text>
-					</view>
-					<view class="fr">
+					</div>
+					<div class="fr">
 						<text>未完成</text>
-					</view>
-				</view>
-			</view>
-		</view>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<view class="list-menu list-menu-2">
 			<view class="layout">
@@ -217,13 +219,12 @@
 			</view>
 		</view>
 		
-		<!-- #ifdef H5 -->
-			<view class="pub-button-null1"></view>
-		<!-- #endif -->
+		<div class="pub-button-null1"></div>
 	</view>
 </template>
 
 <script>
+	
 	export default {
 		data (){
 			return{

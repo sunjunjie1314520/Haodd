@@ -1,12 +1,12 @@
 <template>
 	<div class="app-footer">
-		<div class="app-footer-ul">
-			<div class="app-footer-li" @click="toggleTabs(0)">
+		<div class="app-footer-ul h5-flex">
+			<div class="app-footer-li h5-flex" @click="toggleTabs(0)">
 				<image v-if="tabs==0" class="app-footer-li-ico" src="@/static/image/navbar/e8aa1a_128x128.png" mode=""></image>
 				<image v-else class="app-footer-li-ico" src="@/static/image/navbar/f00b14_128x128.png" mode=""></image>
 				<text :class="['app-footer-li-white', tabs==0 ? 'app-footer-li-active':'']">首页</text>
 			</div>
-			<div class="app-footer-li" @click="toggleTabs(1)">
+			<div class="app-footer-li h5-flex" @click="toggleTabs(1)">
 				<image v-if="tabs==1" class="app-footer-li-ico" src="@/static/image/navbar/bdf59d_128x128.png" mode=""></image>
 				<image v-else class="app-footer-li-ico" src="@/static/image/navbar/0dbdcd_128x128.png" mode=""></image>
 				<text :class="['app-footer-li-white', tabs==1 ? 'app-footer-li-active':'']">商城</text>
@@ -16,12 +16,12 @@
 					<image class="app-footer-li-ico1" src="@/static/image/navbar/fcc15c_128x128.png" mode=""></image>
 				</div>
 			</div>
-			<div class="app-footer-li" @click="toggleTabs(2)">
+			<div class="app-footer-li h5-flex" @click="toggleTabs(2)">
 				<image v-if="tabs==2" class="app-footer-li-ico" src="@/static/image/navbar/ed8513_128x128.png" mode=""></image>
 				<image v-else class="app-footer-li-ico" src="@/static/image/navbar/d6c645_128x128.png" mode=""></image>
 				<text :class="['app-footer-li-white', tabs==2 ? 'app-footer-li-active':'']">游戏中心</text>
 			</div>
-			<div class="app-footer-li" @click="toggleTabs(3)">
+			<div class="app-footer-li h5-flex" @click="toggleTabs(3)">
 				<image v-if="tabs==3" class="app-footer-li-ico" src="@/static/image/navbar/30e98a_129x128.png" mode=""></image>
 				<image v-else class="app-footer-li-ico" src="@/static/image/navbar/dc73f3_129x128.png" mode=""></image>
 				<text :class="['app-footer-li-white', tabs==3 ? 'app-footer-li-active':'']">我的</text>

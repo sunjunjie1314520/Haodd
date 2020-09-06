@@ -75,64 +75,86 @@ assist.formatTime = function (number, format) {
 
 // 表单验证
 assist.ver = function (yz) {
-    yz.forEach(item => {
-        switch (item.type) {
-            case 'phone':
-                if (item.val != "") {
-                    if (!assist.validatePhoneNumber(item.val)) {
-                        uni.showToast({
-                            title: '手机号格式错误!',
-                            icon: 'none'
-                        })
-                        throw new Error('phone validate', item.phone)
-                    }
-                } else {
-                    uni.showToast({
-                        title: '手机号不能为空',
-                        icon: 'none'
-                    })
-                    throw new Error('phone null', item.msg)
-                }
-                break;
-            case 'null':
-                if (item.val === "") {
-                    uni.showToast({
-                        title: item.msg,
-                        icon: 'none'
-                    })
-                    throw new Error('null', item.msg)
-                }
-                break;
-            case 'password':
-                if (item.val1 != "" && item.val2 != "") {
-                    if (item.val2 != item.val1) {
-                        uni.showToast({
-                            title: '两次密码不一样!',
-                            icon: 'none'
-                        })
-                        throw new Error('null', item.msg)
-                    }
-                } else {
-                    uni.showToast({
-                        title: '密码不能为空!',
-                        icon: 'none'
-                    })
-                    throw new Error('null', item.msg)
-                }
-                break;
-            default:
-                break;
-        }
+	var status = true;
+	try{
+		yz.forEach(item => {
+			switch (item.type) {
+				case 'phone':
+					if (item.val != "") {
+						if (!assist.validatePhoneNumber(item.val)) {
+							uni.showToast({
+								title: '手机号格式错误!',
+								icon: 'none'
+							})
+							throw Error();
+						}
+					} else {
+						uni.showToast({
+							title: '手机号不能为空',
+							icon: 'none'
+						})
+						throw Error();
+					}
+					break;
+				case 'null':
+					if (item.val === "") {
+						uni.showToast({
+							title: item.msg,
+							icon: 'none'
+						})
+						throw Error();
+					}
+					break;
+				case 'password':
+					if (item.val1 != "" && item.val2 != "") {
+						if (item.val2 != item.val1) {
+							uni.showToast({
+								title: '两次密码不一样!',
+								icon: 'none'
+							})
+							throw Error();
+						}
+					} else {
+						uni.showToast({
+							title: '密码不能为空!',
+							icon: 'none'
+						})
+						throw Error();
+					}
+					break;
+				case 'len':
+					if (item.val === "") {
+						uni.showToast({
+							title: item.field + '不能为空',
+							icon: 'none'
+						})
+						throw Error();
+					}else if(item.val.length < item.min) {
+						uni.showToast({
+							title: item.field + '不能少于' + item.min + '位数',
+							icon: 'none'
+						})
+						throw Error();
+					}
+					break;
+				default:
+					break;
+			}
+		})
 
-    })
+	}catch(e){
+		//TODO handle the exception
+		status = false
+	}
+	return status
 }
 
 // 提示消息
 assist.msg = function (res, message, isReturn = false) {
-    if (res.code === 0) {
+    if (res.code === 1) {
         if (message) {
 			setTimeout(()=>{
-				toast(res.msg, 'success')
+				toast(res.msg || message, 'success')
 			}, 200)
 		}
         if (isReturn) {

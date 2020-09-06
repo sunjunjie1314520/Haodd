@@ -1,9 +1,19 @@
+.flex-row {
+  flex-direction: row;
+}
 .flex {
   flex-direction: column;
 }
 .flex-center-column {
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+}
+.fz26 {
+  font-size: 26px;
+}
+.fz28 {
+  font-size: 28px;
 }
 .fz30 {
   font-size: 30px;
@@ -21,9 +31,9 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -1px;
   z-index: 2;
-  background-color: #111118;
+  background-color: #1e1e27;
   padding: 5px 0;
 }
 .app-footer-ul {
@@ -295,4 +305,21 @@
   right: 0;
   top: 0;
   background-color: #111118;
+}
+.my-task,
+.my-task-ul {
+  flex-direction: column;
+}
+.my-task-li {
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-layout {
+  flex-direction: column;
+}
+.pict-wrap-top {
+  flex-direction: row;
+}
+.pict-wrap-top-text {
+  flex: 1;
 }

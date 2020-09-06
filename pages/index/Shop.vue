@@ -1,16 +1,12 @@
 <template>
-	<view class="shop-tabs bg-six">
+	<view class="shop-tabs flex">
 		
-		<view class="status-bar fixed">
-			
-		</view>
-		<view class="app-bar">
-			
-		</view>
-		<view class="shop-keys-search">
+		<div class="status-app" :style="{'height': statusBarHeight + 'px'}"></div>
+		
+		<div class="shop-keys-search">
 			<input type="text" value="" placeholder="请输入关键字" />
 			<text class="search">搜索</text>
-		</view>
+		</div>
 		
 		<view class="shop-keys-tabs">
 			<view class="ul">
@@ -150,9 +146,11 @@
 </template>
 
 <script>
+	const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync();
 	export default {
 		data(){
 			return {
+				statusBarHeight: statusBarHeight,
 				tabs: 0,
 				indicatorDots: true,
 				autoplay: true,

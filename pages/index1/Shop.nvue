@@ -1,160 +1,166 @@
 <template>
-	<view class="shop-tabs">
+	<div class="shop-tabs bg-six">
 		
-		<view class="status-bar fixed">
-			
-		</view>
+		<div class="status-app" :style="{'height': statusBarHeight + 'px'}"></div>
+		<div class="status-app-null" :style="{'height': statusBarHeight + 'px'}"></div>
 		
-		<view class="app-bar">
-			
-		</view>
+		<div class="shop-keys-search h5-flex">
+			<input class="shop-keys-search-input" type="text" value="" placeholder="请输入关键字" />
+			<text class="shop-keys-search-search">搜索</text>
+		</div>
 		
-		<view class="shop-keys-search">
-			<input class="input" type="text" value="" placeholder="请输入关键字" />
-			<text class="search">搜索</text>
-		</view>
+		<div class="shop-keys-tabs">
+			<div class="shop-keys-tabs-ul h5-flex">
+				<div @click="tabs=0" class="shop-keys-tabs-li">
+					<text :class="['tabs-li-txt', tabs==0 ? 'tabs-li-txt-active' : '']">家居百货</text>
+				</div>
+				<div @click="tabs=1" class="shop-keys-tabs-li">
+					<text :class="['tabs-li-txt', tabs==1 ? 'tabs-li-txt-active' : '']">家用电器</text>
+				</div>
+				<div @click="tabs=2" class="shop-keys-tabs-li">
+					<text :class="['tabs-li-txt', tabs==2 ? 'tabs-li-txt-active' : '']">美妆护肤</text>
+				</div>
+				<div @click="tabs=3" class="shop-keys-tabs-li">
+					<text :class="['tabs-li-txt', tabs==3 ? 'tabs-li-txt-active' : '']">服装配饰</text>
+				</div>
+				<div @click="tabs=4" class="shop-keys-tabs-li">
+					<text :class="['tabs-li-txt', tabs==4 ? 'tabs-li-txt-active' : '']">手机数码</text>
+				</div>
+				<div @click="tabs=5" class="shop-keys-tabs-li">
+					<text :class="['tabs-li-txt', tabs==5 ? 'tabs-li-txt-active' : '']">母婴用品</text>
+				</div>
+				<div @click="tabs=6" class="shop-keys-tabs-li">
+					<text :class="['tabs-li-txt', tabs==6 ? 'tabs-li-txt-active' : '']">食品酒水</text>
+				</div>
+			</div>
+		</div>
 		
-		<view class="shop-keys-tabs">
-			<view class="shop-keys-tabs-ul">
-				<view @click="tabs=0" :class="['shop-keys-tabs-li', tabs==0 ? 'shop-keys-tabs-active':'']">家居百货</view>
-				<view @click="tabs=1" :class="['shop-keys-tabs-li', tabs==1 ? 'shop-keys-tabs-active':'']">家用电器</view>
-				<view @click="tabs=2" :class="['shop-keys-tabs-li', tabs==2 ? 'shop-keys-tabs-active':'']">美妆护肤</view>
-				<view @click="tabs=3" :class="['shop-keys-tabs-li', tabs==3 ? 'shop-keys-tabs-active':'']">服装配饰</view>
-				<view @click="tabs=4" :class="['shop-keys-tabs-li', tabs==4 ? 'shop-keys-tabs-active':'']">手机数码</view>
-				<view @click="tabs=5" :class="['shop-keys-tabs-li', tabs==5 ? 'shop-keys-tabs-active':'']">母婴用品</view>
-				<view @click="tabs=6" :class="['shop-keys-tabs-li', tabs==6 ? 'shop-keys-tabs-active':'']">食品酒水</view>
-			</view>
-		</view>
+		<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+			<swiper-item class="li">
+				<image class="swiper-image" src="https://gw.alicdn.com/tfs/TB17emto4n1gK0jSZKPXXXvUXXa-1035-390.png_790x10000.jpg_.webp" mode=""></image>
+			</swiper-item>
+			<swiper-item class="li">
+				<image class="swiper-image" src="https://gw.alicdn.com/imgextra/i4/1209780/O1CN01nM4jxa2M7I8QHfyTC_!!1209780-0-lubanu.jpg_790x10000Q75.jpg_.webp" mode=""></image>
+			</swiper-item>
+			<swiper-item class="li">
+				<image  class="swiper-image" src="https://gw.alicdn.com/imgextra/i1/1414079/O1CN01QMAlZt1g0EAE7soAi_!!1414079-0-lubanu.jpg_790x10000Q75.jpg_.webp" mode=""></image>
+			</swiper-item>
+		</swiper>
 		
-		<view class="banner">
-			<view class="ul">
-				<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-					<swiper-item class="li">
-						<image src="https://gw.alicdn.com/tfs/TB17emto4n1gK0jSZKPXXXvUXXa-1035-390.png_790x10000.jpg_.webp" mode="aspectFill"></image>
-					</swiper-item>
-					<swiper-item class="li">
-						<image src="https://gw.alicdn.com/imgextra/i4/1209780/O1CN01nM4jxa2M7I8QHfyTC_!!1209780-0-lubanu.jpg_790x10000Q75.jpg_.webp" mode="aspectFill"></image>
-					</swiper-item>
-					<swiper-item class="li">
-						<image src="https://gw.alicdn.com/imgextra/i1/1414079/O1CN01QMAlZt1g0EAE7soAi_!!1414079-0-lubanu.jpg_790x10000Q75.jpg_.webp" mode="aspectFill"></image>
-					</swiper-item>
-				</swiper>
-			</view>
-		</view>
-		
-		<view class="out-link">
-			<view class="out-link-ul">
-				<view class="out-link-li" @click="gotoLink('https://main.m.taobao.com/?sprefer=sypc00')">
+		<div class="out-link">
+			<div class="out-link-ul h5-flex">
+				<div class="out-link-li h5-flex" @click="gotoLink('https://main.m.taobao.com/?sprefer=sypc00')">
 					<image class="out-link-ul-li-image" src="../../src/static/img/a6a555_200x200.png" mode=""></image>
 					<text class="out-link-ul-li-txt">淘宝</text>
-				</view>
-				<view class="out-link-li" @click="gotoLink('https://m.jd.com/')">
+				</div>
+				<div class="out-link-li h5-flex" @click="gotoLink('https://m.jd.com/')">
 					<image class="out-link-ul-li-image" src="../../src/static/img/b6e2b1_80x80.png" mode=""></image>
 					<text class="out-link-ul-li-txt">京东</text>
-				</view>
-				<view class="out-link-li" @click="gotoLink('https://www.tmall.com/')">
+				</div>
+				<div class="out-link-li h5-flex" @click="gotoLink('https://www.tmall.com/')">
 					<image class="out-link-ul-li-image" src="../../src/static/img/def8ce_121x121.png" mode=""></image>
 					<text class="out-link-ul-li-txt">天猫</text>
-				</view>
-				<view class="out-link-li" @click="gotoLink('https://m.pinduoduo.com/home/')">
+				</div>
+				<div class="out-link-li h5-flex" @click="gotoLink('https://m.pinduoduo.com/home/')">
 					<image class="out-link-ul-li-image" src="../../src/static/img/e95379_126x126.png" mode=""></image>
 					<text class="out-link-ul-li-txt">拼多多</text>
-				</view>
-			</view>
-		</view>
+				</div>
+			</div>
+		</div>
 		
-		<view class="shop-sort">
-			<view class="shop-sort-ul">
-				<view class="shop-sort-li active">
-					<text class="shop-sort-li-txt">综合</text>
-				</view>
-				<view class="shop-sort-li">
+		<div class="shop-sort">
+			<div class="shop-sort-ul h5-flex">
+				<div class="shop-sort-li">
+					<text class="shop-sort-li-txt shop-sort-li-active">综合</text>
+				</div>
+				<div class="shop-sort-li">
 					<text class="shop-sort-li-txt">销量</text>
-				</view>
-				<view class="shop-sort-li">
+				</div>
+				<div class="shop-sort-li">
 					<text class="shop-sort-li-txt">最新</text>
-				</view>
-				<view class="shop-sort-li down">
+				</div>
+				<div class="shop-sort-li">
 					<text class="shop-sort-li-txt">价格</text>
-				</view>
-			</view>
-		</view>
+				</div>
+			</div>
+		</div>
 		
-		<view class="product">
-			<view class="product-ul">
-				<view class="product-li" @click="gotoDetail(1)">
-					<view class="pict">
-						<image src="https://g-search1.alicdn.com/img/bao/uploaded/i4/imgextra/i2/457630161/O1CN01mV8PUC1D3mLo7U905_!!0-saturn_solar.jpg_250x250.jpg_.webp" mode="widthFix"></image>
-					</view>
-					<view class="info-text">
-						<view class="price">
-							<text class="t1">￥</text>
-							<text class="t2">0.0</text>
-						</view>
-						<text class="h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
-						<view class="sell-number">
-							<text class="b">已售 | 200</text>
-						</view>
-					</view>
-				</view>
-				<view class="product-li" @click="gotoDetail(1)">
-					<view class="pict">
-						<image src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/1621502511/O1CN01ex7D9I1UQ54cYHhfb_!!0-item_pic.jpg_250x250.jpg_.webp" mode="widthFix"></image>
-					</view>
-					<view class="info-text">
-						<view class="price">
-							<text class="t1">￥</text>
-							<text class="t2">0.0</text>
-						</view>
-						<text class="h2">初秋轻熟御姐女神范衣服连衣裙子2020新款成熟风女装气质高端显瘦</text>
-						<view class="sell-number">
-							<text class="b">已售 | 200</text>
-						</view>
-					</view>
-				</view>
-				<view class="product-li" @click="gotoDetail(1)">
-					<view class="pict">
-						<image src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2845660845/O1CN01sWR1d91I73HV6qrke_!!0-item_pic.jpg_250x250.jpg_.webp" mode="widthFix"></image>
-					</view>
-					<view class="info-text">
-						<view class="price">
-							<text class="t1">￥</text>
-							<text class="t2">0.0</text>
-						</view>
-						<text class="h2">初秋季2020年新款女装连衣裙子仙女裙收腰显瘦高端名媛气质女神范</text>
-						<view class="sell-number">
-							<text class="b">已售 | 200</text>
-						</view>
-					</view>
-				</view>
-				<view class="product-li" @click="gotoDetail(1)">
-					<view class="pict">
-						<image src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/3142422799/O1CN01kGzRZ71WXzBJg0V6M_!!3142422799.jpg_250x250.jpg_.webp" mode="widthFix"></image>
-					</view>
-					<view class="info-text">
-						<view class="price">
-							<text class="t1">￥</text>
-							<text class="t2">0.0</text>
-						</view>
-						<text class="h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
-						<view class="sell-number">
-							<text class="b">已售 | 200</text>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
+		<div class="product">
+			<div class="product-ul h5-flex">
+				<div class="product-li" @click="gotoDetail(1)">
+					<div class="product-pict">
+						<image class="product-pict-image" src="https://g-search1.alicdn.com/img/bao/uploaded/i4/imgextra/i2/457630161/O1CN01mV8PUC1D3mLo7U905_!!0-saturn_solar.jpg_250x250.jpg_.webp" mode=""></image>
+					</div>
+					<div class="product-info-text">
+						<div class="product-info-price">
+							<text class="price-t1">￥</text>
+							<text class="price-t2">0.0</text>
+						</div>
+						<text class="product-info-text-h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
+						<div class="sell-number">
+							<text class="sell-number-b">已售 | 200</text>
+						</div>
+					</div>
+				</div>
+				<div class="product-li" @click="gotoDetail(1)">
+					<div class="product-pict">
+						<image class="product-pict-image" src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/1621502511/O1CN01ex7D9I1UQ54cYHhfb_!!0-item_pic.jpg_250x250.jpg_.webp" mode=""></image>
+					</div>
+					<div class="product-info-text">
+						<div class="product-info-price">
+							<text class="price-t1">￥</text>
+							<text class="price-t2">0.0</text>
+						</div>
+						<text class="product-info-text-h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
+						<div class="sell-number">
+							<text class="sell-number-b">已售 | 200</text>
+						</div>
+					</div>
+				</div>
+				<div class="product-li" @click="gotoDetail(1)">
+					<div class="product-pict">
+						<image class="product-pict-image" src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2845660845/O1CN01sWR1d91I73HV6qrke_!!0-item_pic.jpg_250x250.jpg_.webp" mode=""></image>
+					</div>
+					<div class="product-info-text">
+						<div class="product-info-price">
+							<text class="price-t1">￥</text>
+							<text class="price-t2">0.0</text>
+						</div>
+						<text class="product-info-text-h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
+						<div class="sell-number">
+							<text class="sell-number-b">已售 | 200</text>
+						</div>
+					</div>
+				</div>
+				<div class="product-li" @click="gotoDetail(1)">
+					<div class="product-pict">
+						<image class="product-pict-image" src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/3142422799/O1CN01kGzRZ71WXzBJg0V6M_!!3142422799.jpg_250x250.jpg_.webp" mode=""></image>
+					</div>
+					<div class="product-info-text">
+						<div class="product-info-price">
+							<text class="price-t1">￥</text>
+							<text class="price-t2">0.0</text>
+						</div>
+						<text class="product-info-text-h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
+						<div class="sell-number">
+							<text class="sell-number-b">已售 | 200</text>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
-		<!-- #ifdef H5 -->
-			<view class="pub-button-null1"></view>
-		<!-- #endif -->
-	</view>
+		<div class="pub-button-null1"></div>
+
+	</div>
 </template>
 
 <script>
+	const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync();
 	export default {
 		data(){
 			return {
+				statusBarHeight: statusBarHeight,
 				tabs: 0,
 				indicatorDots: true,
 				autoplay: true,
@@ -184,13 +190,14 @@
 		padding 20upx 30upx
 		justify-content space-between
 		flex-direction row
-	.input
+	.shop-keys-search-input
 		height 60upx
 		border-radius 30upx
 		background-color #fff
 		padding 0 25upx
 		flex 1
-	.search
+		font-size 26upx
+	.shop-keys-search-search
 		height 60upx
 		width 120upx
 		border-radius 6upx
@@ -199,50 +206,57 @@
 		text-align center
 		line-height 60upx
 		margin-left 20upx
+		font-size 26upx
+		
 	.shop-keys-tabs
-		background-color #ccc
-		padding 20upx 0
+		background-color #1e1e27
 	.shop-keys-tabs-ul
 		flex-direction row
 	.shop-keys-tabs-li
+		padding 25upx 0
+		/* #ifdef H5 */
+		flex-shrink 0
+		/* #endif */
+	.tabs-li-txt
+		font-size 30upx
 		padding 0 20upx
 		color #fff
-		line-height 110px
-	.shop-keys-tabs-active
-		position relative
+	.tabs-li-txt-active
 		color #f7224e
-
 	.out-link-ul
 		flex-direction row
-		justify-content space-between
+		justify-content space-around
 		padding 25upx 0
+		
 	.out-link-li
 		flex-direction column
 		justify-content center
 		align-items center
-		padding 0 30px
+				
 	.out-link-ul-li-image
-		width 60upx
-		height 60upx
+		width 80upx
+		height 80upx
+		
 	.out-link-ul-li-txt
 		color #fff
-		font-size 32upx
-		margin-top 20upx
+		font-size 30upx
+		margin-top 12upx
 	
 	.shop-sort
-		padding 20upx 30upx
-		background-color #ccc
+		padding 25upx 0
+		background-color #1e1e27
 		
 	.shop-sort-ul
 		flex-direction row
 		flex-wrap wrap
-		justify-content space-between
+		justify-content space-around
 		
 	.shop-sort-li
 		justify-content center
 		
 	.shop-sort-li-txt
 		color #fff
+		font-size 30upx
 	
 	.product
 		padding 0 12upx
@@ -254,5 +268,34 @@
 		
 	.product-li
 		width 360upx
-		
+		margin-top 10upx
+	.product-pict
+		height 360upx
+	.product-pict-image
+		height 360upx
+		width 360upx
+	.product-info-text
+		flex-direction column
+		padding-top 10upx
+	.product-info-price
+		flex-direction row
+		align-items center
+	.price-t1
+		font-size 24upx
+		color #f7224e
+	.price-t2
+		font-size 30upx
+		color #f7224e
+	.product-info-text-h2
+		color rgba(#fff, .6)
+		font-size 30upx
+		text-overflow ellipsis
+	.sell-number-b
+		color #fff
+		font-size 26upx
+	.swiper
+		width 750upx
+	.swiper-image
+		width 750upx
+		height 283upx
 </style>

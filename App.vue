@@ -16,6 +16,6 @@
 <style>
 	/* 全局样式 */
 	@import 'src/static/css/font.css';
-	/* @import 'src/static/css/style.min.css'; */
-	@import 'gulp/_dist/app.css';
+	@import 'src/static/css/style.min.css';
+	/* @import 'gulp/_dist/app.css'; */
 </style>

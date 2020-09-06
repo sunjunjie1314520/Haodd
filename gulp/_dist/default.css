@@ -5,3 +5,9 @@
 	display: flex;
 	/* #endif */
 }
+
+.h5-flex{
+	/* #ifdef APP-NVUE */
+	display: flex;
+	/* #endif */
+}

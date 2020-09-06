@@ -14,13 +14,13 @@ request.globalRequest = (url, method, data, power, loading) => {
         case 1:
             const token = uni.getStorageSync('token');
 			if (token) {
-				headers['token'] = token
+				headers['x2-token'] = token
 			}else{
-                headers['token'] = '...'
+                headers['x2-token'] = '...'
 			}
             break;
         default:
-            headers['token'] = 'Need to log in'
+            headers['x2-token'] = 'Need to log in'
             break;
     }
     return uni.request({
@@ -37,9 +37,10 @@ request.globalRequest = (url, method, data, power, loading) => {
 		if(res[0]){
             throw { statusCode : 500 }
 		}else if (res[1].statusCode == 200) {
-            if (res[1].data.code == -1){
-                uni.reLaunch({
-                	url: '../login/login'
+            if (res[1].data.code === 0){
+                uni.showToast({
+                	title: res[1].data.msg || '',
+					icon: 'none',
                 })
             }
 			return res[1].data

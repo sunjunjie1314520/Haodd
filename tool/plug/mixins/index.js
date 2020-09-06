@@ -47,9 +47,20 @@ plug.install = function(Vue, options) {
 			},
 			// 发送验证码
             sendCode(phone){
+				let yz = [
+					{
+						type: 'phone',
+						val: phone,
+					}
+				]
+				
+				if(!this.$assist.ver(yz)){
+					return false;
+				}
+				
 				this.$api.login.sendCode({phone: phone})
 				.then(res=>{
-					this.toast(res.msg)
+					this.toast(res.msg, 'success')
 				})
 			}
         }

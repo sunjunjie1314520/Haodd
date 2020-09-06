@@ -13,6 +13,10 @@ import store from './tool/store'
 // 功能模块
 import assist from './tool/utils/play.js'
 
+// MD5
+import md5 from './tool/utils/md5.js'
+
+
 // 自定义组件
 // import Footer from "@/components/type-compon/Footer.vue";
 import Loadding from '@/components/type-compon/Loadding.vue'
@@ -29,6 +33,7 @@ Vue.prototype.$api = api
 Vue.prototype.$url = url_config
 Vue.prototype.$store = store
 Vue.prototype.$assist = assist
+Vue.prototype.$md5 = md5
 
 // debug
 console.log('接口地址:', url_config)
