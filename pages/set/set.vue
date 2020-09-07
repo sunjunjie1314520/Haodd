@@ -5,24 +5,24 @@
 				<view class="li">
 					<text class="span">版本</text>
 					<view class="fr">
-						<text class="sp1">1.0</text>
+						<text class="sp1">{{$user.version}}</text>
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">手机号</text>
 					<view class="fr">
-						<text class="sp1">19871455054</text>
+						<text class="sp1">{{$user.phone}}</text>
 					</view>
 				</view>
 				<view class="li more">
 					<text class="span">用户名</text>
 					<view class="fr">
-						<navigator hover-class="hover-class" class="sp1" url="../user/modify">198****5054</navigator>
+						<navigator hover-class="hover-class" class="sp1" url="../user/modify">{{$user.phone | phone}}</navigator>
 					</view>
 				</view>
 				<view class="li more">
 					<navigator hover-class="hover-class" class="sp1" url="../user/setpass">
-						<text class="span">设置登录密码</text>
+						<text class="span">修改登录密码</text>
 						<view class="fr">
 						</view>
 					</navigator>
@@ -37,7 +37,7 @@
 				</view>
 				<view class="li more">
 					<navigator hover-class="hover-class" class="sp1" url="../user/settrans">
-						<text class="span">设置交易密码</text>
+						<text class="span">修改交易密码</text>
 						<view class="fr">
 							
 						</view>
@@ -45,7 +45,7 @@
 				</view>
 			</view>
 			<view class="ul">
-				<view class="li">
+				<view class="li" @click="quit">
 					<text class="span">退出登录</text>
 					<view class="fr">
 						
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+	
 	export default {
 		data() {
 			return {
@@ -64,7 +65,12 @@
 			}
 		},
 		methods: {
-			
+			quit(){
+				uni.clearStorageSync();
+				uni.reLaunch({
+					url: '../login/login'
+				})
+			}
 		}
 	}
 </script>

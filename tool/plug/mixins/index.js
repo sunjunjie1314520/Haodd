@@ -19,12 +19,14 @@ plug.install = function(Vue, options) {
     Vue.mixin({
         data(){
             return {
-                windowHeight: null,
-				code: null
+                windowHeight: null
             }
         },
         computed: {
-            
+            ...mapState('Personal', {
+                $user: state => state.me,
+                $aes: state => state.aes,
+            })
         },
         created(){
 			const { windowWidth, windowHeight } = uni.getSystemInfoSync();

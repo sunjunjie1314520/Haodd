@@ -4,7 +4,12 @@ function Double(val) {
 }
 
 export default function FilterStore(Vue) {
-    
+    Vue.filter('phone', data => {
+        var str = data
+        var s1 = str.substring(0, 3)
+        var s2 = str.substring(str.length - 4, str.length)
+        return s1 + '****' + s2
+    })
     // 小于10
     Vue.filter('Double', data => {
         return data < 10 ? '0' + data : '' + data
@@ -31,8 +36,6 @@ export default function FilterStore(Vue) {
                 return data
         }
     })
-
-
     // 期号
     Vue.filter('lotteryNumber', (data, length) => {
         // 202005220609

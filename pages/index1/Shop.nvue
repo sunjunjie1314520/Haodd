@@ -196,7 +196,7 @@
 		background-color #fff
 		padding 0 25upx
 		flex 1
-		font-size 26upx
+		font-size 28upx
 	.shop-keys-search-search
 		height 60upx
 		width 120upx
@@ -206,7 +206,7 @@
 		text-align center
 		line-height 60upx
 		margin-left 20upx
-		font-size 26upx
+		font-size 28upx
 		
 	.shop-keys-tabs
 		background-color #1e1e27
@@ -276,7 +276,8 @@
 		width 360upx
 	.product-info-text
 		flex-direction column
-		padding-top 10upx
+		padding 10upx
+		
 	.product-info-price
 		flex-direction row
 		align-items center
@@ -287,12 +288,15 @@
 		font-size 30upx
 		color #f7224e
 	.product-info-text-h2
-		color rgba(#fff, .6)
+		lines 1
+		color #fff
 		font-size 30upx
 		text-overflow ellipsis
+		margin-top 10upx
 	.sell-number-b
-		color #fff
+		color rgba(#fff, .6)
 		font-size 26upx
+		margin-top 10upx
 	.swiper
 		width 750upx
 	.swiper-image

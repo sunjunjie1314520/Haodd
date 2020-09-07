@@ -49,11 +49,17 @@
 		},
 		data(){
 			return {
-				tabs: 1,
+				tabs: 3,
 				show: false,
 			}
 		},
+		onShow() {
+			this.loadData();
+		},
 		methods: {
+			loadData(){
+				this.$store.dispatch('Personal/me');
+			},
 			change(dex){
 				console.log(dex);
 				this.tabs = dex

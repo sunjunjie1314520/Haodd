@@ -1,68 +1,70 @@
 <template>
-	<view class="center-tabs">
-		<view class="status-bar fixed">
-			
-		</view>
+	<div class="center-tabs bg-six flex" v-if="$user" :style="{'min-height': windowHeight + 'px'}">
+		
+		<div class="status-app" :style="{'height': statusBarHeight + 'px'}"></div>
+		<div class="status-app-null" :style="{'height': statusBarHeight + 'px'}"></div>
+		
 		<div class="user-layout">
 			<div class="pict-wrap-top">
 				<div class="pict-wrap">
-					<div class="leval"><text>V1</text></div>
-					<div class="pict">
-						<image src="../../src/static/img/c790d4_1200x1200.jpg" mode=""></image>
+					<div class="user-layout-pict">
+						<image class="user-layout-pict-image" v-if="$user.avatar.length > 5" :src="qiniuURL + $user.avatar" mode=""></image>
+						<image class="user-layout-pict-image" v-else src="@/static/image/cbe47_1657x1657.png" mode=""></image>
 					</div>
-					<div class="vip">经纪商</div>
+					<div class="leval">
+						<text class="leval-text">{{$user.group_name}}</text>
+					</div>
+					<div class="vip" v-if="$user.parther">经纪商</div>
 				</div>
 				<div class="text pict-wrap-top-text">
-					<div class="phone">
-						<text class="h1 font">198****5054</text>
-						<text class="wei">未实名</text>
+					<div class="pict-wrap-top-text-phone">
+						<text class="pict-wrap-top-text-phone-h1 font">{{$user.phone | phone}}</text>
+						<text class="pict-wrap-top-text-phone-wei" v-if="$user.user_card_id">已实名</text>
+						<text class="pict-wrap-top-text-phone-wei" v-else>未实名</text>
 					</div>
-					<div class="wrap">
-						<text class="id font">ID: 62391491</text>
-						<div class="xin">
-							<text></text>
-							<text></text>
-							<text></text>
-							<text></text>
+					<div class="pict-wrap-top-wrap">
+						<text class="pict-wrap-top-wrap-id font">ID: {{$aes.id}}</text>
+						<div class="pict-wrap-top-wrap-xin" v-if="xinHandle($user.level_name)">
+							<text class="pict-wrap-top-wrap-xin-text" v-for="item in xin" :key="item"></text>
 						</div>
-						<div class="desc">四星达人</div>
+						<div class="pict-wrap-top-wrap-desc">{{$user.level_name}}</div>
 					</div>
 				</div>
 			</div>
-			<div class="set">
-				<navigator hover-class="hover-class" class="ico i1" url="../user/code"></navigator>
-				<navigator hover-class="hover-class" class="ico i2" url="../set/set"></navigator>
-			</div>
-			<div class="dou">
-				<div class="left">
-					<text class="h3">当前音豆</text>
-					<div class="number">
-						<text class="sp1">0.0000</text>
-						<text class="sp2">个</text>
+			<div class="user-layout-dou">
+				<div class="user-layout-left">
+					<text class="user-layout-h3">当前音豆</text>
+					<div class="user-layout-number">
+						<text class="user-layout-sp1">{{$user.amount}}</text>
+						<text class="user-layout-sp2">个</text>
 					</div>
 				</div>
-				<div class="right">
-					<text>手续费：100%</text>
+				<div class="user-layout-right">
+					<text class="user-layout-text">手续费：{{$user.group_fee}}%</text>
 				</div>
+			</div>
+			<div class="user-layout-set">
+				<navigator hover-class="hover-class" class="user-layout-set-ico user-layout-set-i1" url="../user/code"></navigator>
+				<navigator hover-class="hover-class" class="user-layout-set-ico user-layout-set-i2" url="../set/set"></navigator>
 			</div>
 		</div>
 		
 		<div class="liveness">
 			<div class="ul flex-row">
 				<div class="li">
-					<text class="h2">+0.00</text>
+					<text class="h2">+{{$user.bouns_value}}</text>
 					<text class="p">加成活跃度</text>
 				</div>
 				<div class="li">
-					<text class="h2">+0.00</text>
+					<text class="h2">+{{$user.base_value}}</text>
 					<text class="p">基础活跃度</text>
 				</div>
 				<div class="li">
-					<text class="h2">+0.00</text>
+					<text class="h2">+{{$user.lock_amount}}</text>
 					<text class="p">锁定音豆</text>
 				</div>
 				<div class="li">
-					<text class="h2">+0.00</text>
+					<text class="h2">+{{$user.hdc_amount}}</text>
 					<text class="p">HDC</text>
 				</div>
 			</div>
@@ -79,40 +81,40 @@
 		</div>
 		
 		<div class="list-menu list-menu-1">
-			<div class="layout">
-				<text class="h3">常用工具</text>
-				<div class="ul">
-					<div class="li">
+			<div class="list-menu-layout">
+				<text class="list-menu-layout-h3">常用工具</text>
+				<div class="list-menu-1-ul h5-flex">
+					<div class="list-menu-1-li h5-flex">
 						<navigator url="../user/real" hover-class="hover-class">
-							<image src="../../src/static/img/812afe_108x108.png" mode=""></image>
-							<text>实名认证</text>
+							<image class="list-menu-1-image" src="../../src/static/img/812afe_108x108.png" mode=""></image>
+							<text class="list-menu-1-text">实名认证</text>
 						</navigator>
 					</div>
-					<div class="li">
+					<div class="list-menu-1-li h5-flex">
 						<navigator url="../commonly/team" hover-class="hover-class">
-							<image src="../../src/static/img/8588dc_90x90.png" mode=""></image>
-							<text>我的团队</text>
+							<image class="list-menu-1-image" src="../../src/static/img/8588dc_90x90.png" mode=""></image>
+							<text class="list-menu-1-text">我的团队</text>
 						</navigator>
 					</div>
-					<div class="li" @click="invitation">
-						<image src="../../src/static/img/28567a_85x85.png" mode=""></image>
-						<text>经纪商</text>
+					<div class="list-menu-1-li h5-flex" @click="invitation">
+						<image class="list-menu-1-image" src="../../src/static/img/28567a_85x85.png" mode=""></image>
+						<text class="list-menu-1-text">经纪商</text>
 					</div>
-					<div class="li">
+					<div class="list-menu-1-li h5-flex">
 						<navigator url="../commonly/agent" hover-class="hover-class">
-							<image src="../../src/static/img/f4810a_90x90.png" mode=""></image>
-							<text>区域代理</text>
+							<image class="list-menu-1-image" src="../../src/static/img/f4810a_90x90.png" mode=""></image>
+							<text class="list-menu-1-text">区域代理</text>
 						</navigator>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<view class="center-box-img w">
-			<view class="box">
+		<div class="center-box-img w">
+			<div class="box">
 				<image src="../../src/static/img/43bfff_854x123.jpg" mode="widthFix"></image>
-			</view>
-		</view>
+			</div>
+		</div>
 		
 		<div class="my-task">
 			<div class="ul my-task-ul">
@@ -143,95 +145,136 @@
 			</div>
 		</div>
 		
-		<view class="list-menu list-menu-2">
-			<view class="layout">
-				<text class="h3">视频</text>
-				<view class="ul">
-					<view class="li">
+		<div class="list-menu list-menu-2">
+			<div class="list-menu-layout">
+				<text class="list-menu-layout-h3">视频</text>
+				<div class="list-menu-layout-ul">
+					<div class="list-menu-2-li">
 						<navigator url="../user/video" hover-class="hover-class">
 							<text class="ico i1"></text>
 							<text class="p">我的视频</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="list-menu-2-li">
 						<navigator url="../user/personal" hover-class="hover-class">
 							<text class="ico i3"></text>
 							<text class="p">个人资料</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="list-menu-2-li">
 						<navigator url="../task/Task" hover-class="hover-class">
 							<text class="ico i4"></text>
 							<text class="p">任务中心</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="list-menu-2-li">
 						<navigator url="../commonly/reel" hover-class="hover-class">
 							<text class="ico i11"></text>
 							<text class="p">我的卷轴</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="list-menu-2-li">
 						<navigator url="../commonly/transaction" hover-class="hover-class">
 							<text class="ico i10"></text>
 							<text class="p">收支明细</text>
 						</navigator>
-					</view>
-				</view>
-			</view>
-		</view>
+					</div>
+				</div>
+			</div>
+		</div>
 		
-		<view class="list-menu list-menu-2">
-			<view class="layout">
-				<text class="h3">商城</text>
-				<view class="ul">
-					<view class="li">
+		<div class="list-menu list-menu-2">
+			<div class="list-menu-layout">
+				<text class="list-menu-layout-h3">商城</text>
+				<div class="list-menu-layout-ul">
+					<div class="list-menu-2-li">
 						<navigator url="../shop/cart" hover-class="hover-class">
 							<text class="ico i13"></text>
 							<text class="p">购物车</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="list-menu-2-li">
 						<navigator url="../order/address_manage" hover-class="hover-class">
 							<text class="ico i6"></text>
 							<text class="p">收货地址</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="list-menu-2-li">
 						<navigator url="../user/order" hover-class="hover-class">
 							<text class="ico i7"></text>
 							<text class="p">我的订单</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="list-menu-2-li">
 						<navigator url="../user/businessman" hover-class="hover-class">
 							<text class="ico i8"></text>
 							<text class="p">我是商家</text>
 						</navigator>
-					</view>
-					<view class="li">
+					</div>
+					<div class="list-menu-2-li">
 						<navigator url="../user/service" hover-class="hover-class">
 							<text class="ico i12"></text>
 							<text class="p">我的客服</text>
 						</navigator>
-					</view>
-				</view>
-			</view>
-		</view>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<div class="pub-button-null1"></div>
-	</view>
+	</div>
 </template>
 
 <script>
-	
+	const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync();
+	import { mapState } from 'vuex'
+	import { qiniuURL } from '@/tool/common/config.js'
+	import CryptoJS from "@/js_sdk/crypto-js/crypto-js.js"
 	export default {
 		data (){
 			return{
-				state: 2
+				statusBarHeight: statusBarHeight,
+				windowHeight: windowHeight,
+				state: 2,
+				qiniuURL: qiniuURL,
+				config: {},
+				xin: [1,2]
 			}
 		},
+		computed:{
+			...mapState('Personal', {
+				$user: state => state.me,
+				$aes: state => state.aes,
+			})
+		},
+		created() {
+			this.AES128()
+		},
 		methods: {
+			xinHandle(e){
+				if(e){
+					this.xin.push(1)
+				}else{
+					return false
+				}
+			},
+			AES128(){
+				var key = CryptoJS.enc.Utf8.parse("c021a20e9912492c");
+				var options = {
+				    iv: CryptoJS.enc.Utf8.parse("c021a20e9912492c"),
+				    mode: CryptoJS.mode.CBC,
+				    padding: CryptoJS.pad.Pkcs7,
+				}
+				var token = uni.getStorageSync('token');
+				// 解密
+				var decryptedData = CryptoJS.AES.decrypt(token, key, options);
+				
+				// 解密后，需要按照Utf8的方式将明文转位字符串
+				var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8).toString();
+				var json = JSON.parse(decryptedStr)
+				console.log(json);
+				this.$store.commit('Personal/ADD_AES', json)
+			},
 			invitation(){
 				if(this.state == 1){
 					uni.navigateTo({
@@ -247,6 +290,14 @@
 				uni.navigateTo({
 					url:'../user/news'
 				})
+			}
+		},
+		filters:{
+			phone(data){
+				var str = data
+				var s1 = str.substring(0, 3)
+				var s2 = str.substring(str.length - 4, str.length)
+				return s1 + '****' + s2
 			}
 		}
 	}

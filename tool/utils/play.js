@@ -99,24 +99,34 @@ assist.ver = function (yz) {
 				case 'null':
 					if (item.val === "") {
 						uni.showToast({
-							title: item.msg,
+							title: '请输入' + item.field,
 							icon: 'none'
 						})
 						throw Error();
 					}
 					break;
 				case 'password':
-					if (item.val1 != "" && item.val2 != "") {
-						if (item.val2 != item.val1) {
-							uni.showToast({
-								title: '两次密码不一样!',
-								icon: 'none'
-							})
-							throw Error();
-						}
-					} else {
+					if(item.val1 == ''){
 						uni.showToast({
-							title: '密码不能为空!',
+							title: item.field + '不能为空',
+							icon: 'none'
+						})
+						throw Error();
+					}else if (item.val2 == '') {
+						uni.showToast({
+							title: '确认' + item.field + '不能为空',
+							icon: 'none'
+						})
+						throw Error();
+					} else if(item.val1.length < item.min || item.val2.length < item.min){
+						uni.showToast({
+							title: item.field + '不能少于' + item.min + '位数',
+							icon: 'none'
+						})
+						throw Error();
+					}else if(item.val2 != item.val1){
+						uni.showToast({
+							title: '两次密码不一样',
 							icon: 'none'
 						})
 						throw Error();

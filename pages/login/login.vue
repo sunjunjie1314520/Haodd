@@ -58,11 +58,11 @@
 			return {
 				tabs: 0,
 				config: {
-					username: '',
+					username: '15971345754',
 					password: '',
-		
 				},
-				password: '',
+
+				password: '123456',
 				
 				config1: {
 					phone: '',
@@ -135,7 +135,7 @@
 			success(token){
 				setTimeout(()=>{
 					uni.setStorageSync('token', token);
-					uni.redirectTo({
+					uni.reLaunch({
 						url:'../index1/Index'
 					})
 				}, 1600)

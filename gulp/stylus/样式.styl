@@ -349,136 +349,11 @@
 				
 
 .center-tabs
-	fw 1
-	min-height 100vh
-	padding-bottom 30px
-	background color1
 	.user-layout
-		padding calc(var(--status-bar-height) + 50px) 30px 40px
-		position relative
-		.pict-wrap
-			float left
-			position relative
-			width 100px
-			.leval
-				width 34px
-				heightL 34px
-				background-color #6a25e2
-				border-radius 50%
-				position absolute
-				z-index 1
-				right 0
-				top 70px
-				display flex
-				align-items center
-				justify-content center
-				border solid 1px #111118
-				box-sizing content-box
-				text
-					transform scale(.6)
-					color #fff
-					font-size 26px
-			.vip
-				// center 1
-				color #fff
-				backi '../../src/static/img/2704a8_151x128.png' 28px
-				background-size 24px
-				font-size 24px
-				fw 1
-				margin-top 16px
-				
-		.pict
-			width 100%
-			height 100px
-			border-radius 50%
-			float left
-			background-color #fff
-			overflow hidden
-			position relative
-			image
-				height 100%
-				width 100%
-		.text
-			height 120px
-			display flex
-			flex-direction column
-			justify-content space-around
-			padding-left 40px
-			.phone
-				fw 1
-				df 1
-				.h1
-					float left
-					color #fff
-					font-size 34px
-				.wei
-					color font-color
-					float left
-					margin-left 30px
-					font-size 24px
-			.wrap
-				float left
-				df 1
-				.id
-					float left
-					font-size 34px
-					color #fff
-				.xin
-					float left
-					margin-left 30px
-					text
-						float left
-						width 30px
-						height 30px
-						back '../../src/static/img/d0a7f4_128x128.png'
-				.desc
-					float left
-					color font-color
-					font-size 24px
-					margin-left 20px
-						
-		.set
-			// float right
-			df 1
-			height 120px
-			position absolute
-			right 30px
-			top var(--status-bar-height)
-			margin-top 10px
-			.ico
-				float left
-				background-color #F1F1F1
-				margin-left 40px
-				ml 0
-				&.i1
-					back '../../src/static/img/975eb6_128x128.png'
-					widthZ 46px
-				&.i2
-					back '../../src/static/img/1190b0_128x128.png'
-					widthZ 50px
-		.dou
-			padding-top 50px
-			flex 1
-			.left
-				float left
-				width 40%
-			.h3
-				color #FFFFFF
-			.number
-				margin-top 15px
-				.sp1
-					color #fff
-					font-size 66px
-					font-family 'din'
-				.sp2
-					color #fff
-			.right
-				float right
-				text
-					color #fff
-					display block
-					margin-top 20px
-					mt 0
+		padding 50px 30px 40px
+		position relative						
+		
+		
 	.liveness
 		.ul
 			.li
@@ -530,38 +405,22 @@
 	.list-menu
 		padding 0 30px
 		margin-top 30px
-		.layout
-			background-color color2
-			border-radius 10px
-			fw 1
-			.h3
-				display block
-				line-height 80px
-				padding 0 30px
-				border-bottom solid .5px rgba(#fff, .4)
-				color #fff
-				font-weight bold
-	.list-menu-1
-		.layout
-			.ul
-				height 186px
-				.li
-					float left
-					padding 25px 0
-					width 25%
-					text-align center
-					image
-						width 92px
-						height 92px
-					text
-						display block
-						margin-top 20px
-						color font-color
-						font-size 26px
+	.list-menu-layout
+		background-color color2
+		border-radius 10px
+		fw 1
+	.list-menu-layout-h3
+		display block
+		line-height 80px
+		padding 0 30px
+		border-bottom solid .5px rgba(#fff, .4)
+		color #fff
+		font-weight bold
+	
 	.list-menu-2
-		.layout
-			.ul
-				.li
+		.list-menu-layout
+			.list-menu-layout-ul
+				.list-menu-2-li
 					float left
 					width 100%
 					border-top solid .5px rgba(#fff, .2)
@@ -671,7 +530,7 @@
 			border-bottom solid .5px border-color
 			input
 				height 100%
-				color font-color
+				color #fff
 				&.short
 					width 50%
 					float left
@@ -701,7 +560,7 @@
 				padding-left 30px
 			input
 				height 100px
-				color font-color
+				color #fff
 				width 100%
 			.picker-type
 				line-height 100px

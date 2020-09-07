@@ -67,6 +67,27 @@
 </template>
 
 <script>
+	export default {
+		data(){
+			return {
+				page: 1,
+			}
+		},
+		created(){
+			this.getNetData();
+		},
+		methods: {
+			getNetData(){
+				let data = {
+					page: this.page
+				}
+				this.$api.personal.user_team(data)
+				.then(res=>{
+					console.log(res);
+				})
+			}
+		}
+	}
 </script>
 
 <style>

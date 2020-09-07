@@ -99,6 +99,14 @@
 				this.$api.personal.save(data)
 				.then(res=>{
 					console.log(res);
+					if(res.code === 1){
+						this.toast(res.msg, 'success');
+						setTimeout(()=>{
+							uni.redirectTo({
+								url:'../index1/Index'
+							})
+						}, 1600)
+					}
 				})
 			}
 		},

@@ -4,27 +4,21 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-import state from './state.js'
-import mutations from './mutations.js'
-import actions from './actions.js'
-
-// import Websocket from "./modules/Websocket.js";
-
-import Banner from "./modules/Banner.js";
+import Personal from "./modules/Personal.js";
 
 const store = new Vuex.Store({
+    strict: true,
     modules: {
-        // Websocket,
-        Banner,
+        Personal,
     },
     state: {
-        ...state,
+        
     },
     mutations: {
-        ...mutations
+        
     },
     actions:{
-        ...actions,
+        
     }
 })
 
