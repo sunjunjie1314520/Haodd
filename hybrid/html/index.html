@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>正在付款</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<script src="js/beecloud.js"></script>
+		<script type="text/javascript">
+			
+			// ALI_APP 支付宝
+			// WX_APP 微信
+			function beecloudPay(bcChannel) {
+				
+				// 开通经纪商
+				var payData = {
+					app_id: "41770ae0-c3d2-4410-8d7e-b3086557ba80",
+					channel: bcChannel,
+					title: "经纪商22",
+					total_fee: 1,
+					bill_no: beecloud.genBillNo(),
+					optional: {
+						'x2-token': 'asdfasdfasdfasdf',  // 要开通的实名的账户token
+						'partner': 1
+					},
+					bill_timeout: 360
+				};
+				// 开通实名认证
+				var payData = {
+					app_id: "41770ae0-c3d2-4410-8d7e-b3086557ba80",
+					channel: bcChannel,
+					title: "实名认证",
+					total_fee: 1,
+					bill_no: beecloud.genBillNo(),
+					optional: {
+						"x2-token": "asdfasdfasdfasdf", // 要开通的实名的账户token
+						"card_name": "胡歌", // 身份名字
+						"card_number": 33038555555555, // 身份号码
+						"card": 1, // 代表开通是实名的
+					},
+					bill_timeout: 360
+				};
+				beecloud.payReq(payData, function(result) {
+					mui.alert("----- 支付成功 -----" + str);
+				}, function(e) {
+					mui.alert("----- 支付失败 -----\n" + "错误码：" + e.code + '\n' + e.message);
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<button type="button" class="mui-btn mui-btn-blue" onclick="beecloudPay('ALI_APP')">按钮</button>
+	</body>
+</html>

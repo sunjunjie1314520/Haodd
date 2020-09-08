@@ -1,13 +1,7 @@
 <template>
 	<view class="app" :style="{'height': windowHeight + 'px'}">
         <view class="invitation">
-<!--            <div class="header">
-                <div class="text">
-                    邀请收益
-                </div>
-                <div class="retu"></div>
-            </div> -->
-            <div class="container">
+            <div class="container1">
                 <div class="customer">
                     <div class="content">
                         <div class="customer-bg">
@@ -27,7 +21,7 @@
                                     我的广告分红收益
                                 </div>
                                 <div class="number">
-                                    ￥100.0
+                                    ￥{{pageData.log_amount}}
                                 </div>
                             </div>
                             <div class="yesterday">
@@ -35,7 +29,7 @@
                                     当日分红收益
                                 </div>
                                 <div class="num">
-                                    ￥100.0
+                                    ￥{{pageData.today_amount}}
                                 </div>
                             </div>
                         </div>
@@ -63,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="number fr">
-                                 人数：10
+                                 人数：{{pageData.chid_count}}
                             </div>
                         </div>
                         <div class="item">
@@ -76,13 +70,13 @@
                                 </div>
                             </div>
                             <div class="number fr">
-                                 人数：10
+                                 人数：{{pageData.team_count}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="button1">
-                    <button type="primary">转让经纪商</button>
+					<text class="primary" @click="transfer">转让经纪商</text>
                 </div>
             </div>
         </view>
@@ -93,11 +87,27 @@
 	export default {
 		data() {
 			return {
-				
+				page: 1,
+				pageData: false,
 			}
 		},
+		created() {
+			this.getNetData();
+		},
 		methods: {
-			
+			getNetData(){
+				let data = {
+					page: this.page
+				}
+				this.$api.personal.me_partner(data)
+				.then(res=>{
+					console.log(res);
+					this.pageData = res.data
+				})
+			},
+			transfer(){
+				this.toast('转让成功', 'success')
+			}
 		}
 	}
 </script>

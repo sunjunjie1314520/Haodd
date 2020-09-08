@@ -33,7 +33,7 @@
 						<input type="number" maxlength="11" v-model="config1.phone" placeholder-class="placeholder-class" value="" placeholder="请输入您的手机号" />
 					</view>
 					<view class="li">
-						<input class="short" maxlength="6" v-model="config1.verity_code" type="text" placeholder-class="placeholder-class" value="" placeholder="请输入密码" />
+						<input type="number" class="short" maxlength="6" v-model="config1.verity_code" placeholder-class="placeholder-class" value="" placeholder="请输入密码" />
 						<text class="get-code" @click="sendCode(config1.phone)">获取验证码</text>
 					</view>
 					<view class="li">
@@ -65,7 +65,7 @@
 				password: '123456',
 				
 				config1: {
-					phone: '',
+					phone: '15971345754',
 					verity_code: ''
 				}
 			}

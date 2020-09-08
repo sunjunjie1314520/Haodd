@@ -32,7 +32,7 @@
 				
 			</view>
 			<view class="pub-button fixed two">
-				<text class="btn">立即开通</text>
+				<text v-if="!$user.card_name" class="btn" @click="gotoPay">立即开通</text>
 				<text class="btn" @tap="myLink">我的经纪商</text>
 			</view>
 		</view>
@@ -51,7 +51,23 @@
 				uni.navigateTo({
 					url: '../invitation/invitation'
 				})
-			}
+			},
+			gotoPay(){
+				var token = uni.getStorageSync('token');
+				var payData = {
+					app_id: "41770ae0-c3d2-4410-8d7e-b3086557ba80",
+					channel: 'ALI_APP',
+					title: "开通经纪商",
+					total_fee: 699 * 100,
+					bill_no: this.$assist.genBillNo(),
+					optional: {
+						'x2-token': token,  // 要开通的实名的账户token
+						'partner': 1
+					},
+					bill_timeout: 360
+				}
+				this.$store.commit('payReq', payData)
+			},
 		}
 		
 	}

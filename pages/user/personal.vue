@@ -1,9 +1,9 @@
 <template>
 	<view class="app">
 		<view class="personal-page" :style="{'height': windowHeight + 'px'}">
-			<view class="pict-wrap">
+			<view class="pict-wrap1">
 				<view class="pict"	>
-					<image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598873289295&di=5c049235ef74beb9077aa5dad9e25787&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201309%2F15%2F102651flir191rqasoz2kq.jpg" mode=""></image>
+					<image :src="qiniuURL + $user.avatar" mode=""></image>
 				</view>
 				<view class="box" @click="uploadFile">
 					
@@ -13,39 +13,41 @@
 				<view class="li">
 					<text class="span">姓名</text>
 					<view class="fr">
-						<text class="field" @click="gotoPage(config.name, '姓名', 'newname')">{{config.name}}</text>
+						 <!-- @click="gotoPage($user.card_name || '', '姓名', 'newname')" -->
+						<text class="field" @click="gotoYan">{{$user.card_name || '去实名验证'}}</text>
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">昵称</text>
 					<view class="fr">
-						<text class="field" @click="gotoPage(config.nick, '昵称', 'newnick')">{{config.nick}}</text>
+						<text class="field" @click="gotoPage($user.nickname || '', '昵称', 'newnick')">{{$user.nickname}}</text>
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">性别</text>
 					<view class="fr">
-						<picker @change="bindPickerChange" :value="index" :range="array">
-							<text class="field">{{array[index]}}</text>
+						<picker @change="bindPickerChange" :value="$user.sex" :range="array">
+							<text class="field">{{array[$user.sex]}}</text>
 						</picker>
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">出生日期</text>
 					<view class="fr">
-						<text class="field" @click="show=true">{{birth}}</text>
+						<text v-if="$user.birth" class="field" @click="show=true">{{$user.birth | timestampToTime}}</text>
+						<text v-else class="field" @click="show=true">{{birth}}</text>
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">所在地</text>
 					<view class="fr">
-						<text class="field" @click="openAddres">{{config.address}}</text>
+						<text class="field" @click="openAddres">{{$user.address || address}}</text>
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">个人介绍</text>
 					<view class="fr">
-						<text class="field" @click="gotoPage(config.jieshao, '个人介绍', 'newjieshao')">{{config.jieshao}}</text>
+						<text class="field" @click="gotoPage($user.des, '个人介绍', 'newjieshao')">{{$user.des}}</text>
 					</view>
 				</view>
 			</view>
@@ -58,25 +60,21 @@
 
 <script>
 	import birthTime from '@/components/BirthTime/index.vue'
+	import { qiniuURL } from '@/tool/common/config.js'
 	export default {
 		data(){
 			return {
+				qiniuURL: qiniuURL,
 				show: false,
 				
-				// 男女
-				array: ['男', '女'],
+				// 女男
+				array: ['女', '男'],
 				index: 0,
 				// 年月日
 				cityPickerValueDefault: [0, 0, 1],
 				
-				config: {
-					name: '幽幽xx',
-					nick: '与寂寞陪伴',
-					jieshao:'我喜欢睡觉打游戏~',
-					address: '请选择',
-				},
-				
-				birth: '2020-09-05',
+				birth: '未选择',
+				address:'未选择',
 				
 				newname:'',
 				newnick:'',
@@ -86,21 +84,27 @@
 		watch: {
 			newname(name){
 				console.log(name);
-				this.config.name = name;
-				// this.updateName(newName)
+				this.userSave({username: name});
 			},
 			newnick(nick){
 				console.log(nick);
-				this.config.nick = nick;
-				// this.updateDescribe(nick)
+				this.userSave({nickname: nick});
 			},
 			newjieshao(nick){
 				console.log(nick);
-				this.config.jieshao = nick;
-				// this.updateDescribe(nick)
+				this.userSave({des: nick});
 			},
 		},
+		created() {
+			// console.log(this.$user);
+			// this.index = this.$user.sex
+		},
 		methods: {
+			gotoYan(){
+				uni.navigateTo({
+					url: '../user/real'
+				})
+			},
 			// 修改名字
 			gotoPage(name, place, newname){
 				uni.navigateTo({
@@ -108,11 +112,13 @@
 				})
 			},
 			bindPickerChange(e) {
-				this.index = e.target.value
+				// this.index = e.target.value
+				this.userSave({sex: e.target.value});
 			},
+			
 			onConfirm(e) {
 				console.log(e);
-				this.config.address = e.label
+				this.userSave({address: e.label});
 			},
 			openAddres() {
 				this.cityPickerValueDefault = [0,0,1]
@@ -121,11 +127,20 @@
 			confirm(date){
 				this.show=false;
 				this.birth = date;
+				
+				var date1 = new Date(date).getTime() / 1000;
+				console.log(date1);
+				this.userSave({birth: date1});
 			},
 			uploadFile(){
-				this.$api.upload.image()
+				this.$api.upload.qiniu()
 				.then(res=>{
-					console.log(res)
+					console.log(res);
+					this.$api.upload.image(['album ', 'camera'], res.token)
+					.then(res=>{
+						console.log(res);
+						this.userSave({avatar: res[0]});
+					})
 				})
 			}
 		},

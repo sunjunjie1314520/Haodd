@@ -11,26 +11,8 @@
 		
 		<div class="shop-keys-tabs">
 			<div class="shop-keys-tabs-ul h5-flex">
-				<div @click="tabs=0" class="shop-keys-tabs-li">
-					<text :class="['tabs-li-txt', tabs==0 ? 'tabs-li-txt-active' : '']">家居百货</text>
-				</div>
-				<div @click="tabs=1" class="shop-keys-tabs-li">
-					<text :class="['tabs-li-txt', tabs==1 ? 'tabs-li-txt-active' : '']">家用电器</text>
-				</div>
-				<div @click="tabs=2" class="shop-keys-tabs-li">
-					<text :class="['tabs-li-txt', tabs==2 ? 'tabs-li-txt-active' : '']">美妆护肤</text>
-				</div>
-				<div @click="tabs=3" class="shop-keys-tabs-li">
-					<text :class="['tabs-li-txt', tabs==3 ? 'tabs-li-txt-active' : '']">服装配饰</text>
-				</div>
-				<div @click="tabs=4" class="shop-keys-tabs-li">
-					<text :class="['tabs-li-txt', tabs==4 ? 'tabs-li-txt-active' : '']">手机数码</text>
-				</div>
-				<div @click="tabs=5" class="shop-keys-tabs-li">
-					<text :class="['tabs-li-txt', tabs==5 ? 'tabs-li-txt-active' : '']">母婴用品</text>
-				</div>
-				<div @click="tabs=6" class="shop-keys-tabs-li">
-					<text :class="['tabs-li-txt', tabs==6 ? 'tabs-li-txt-active' : '']">食品酒水</text>
+				<div @click="tabs=index" class="shop-keys-tabs-li" v-for="(item, index) in $category" :key="item.id">
+					<text :class="['tabs-li-txt', tabs==index ? 'tabs-li-txt-active' : '']">{{item.name}}</text>
 				</div>
 			</div>
 		</div>
@@ -87,63 +69,19 @@
 		
 		<div class="product">
 			<div class="product-ul h5-flex">
-				<div class="product-li" @click="gotoDetail(1)">
+				<div class="product-li" @click="gotoDetail(item)" v-for="item in $product" :key="item.id">
 					<div class="product-pict">
-						<image class="product-pict-image" src="https://g-search1.alicdn.com/img/bao/uploaded/i4/imgextra/i2/457630161/O1CN01mV8PUC1D3mLo7U905_!!0-saturn_solar.jpg_250x250.jpg_.webp" mode=""></image>
+						<image class="product-pict-image" :src="qiniuURL + item.thumb" mode=""></image>
 					</div>
-					<div class="product-info-text">
+					<div class="product-info-text h5-flex">
 						<div class="product-info-price">
 							<text class="price-t1">￥</text>
-							<text class="price-t2">0.0</text>
+							<text class="price-t2">{{item.amount}}音豆</text>
 						</div>
-						<text class="product-info-text-h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
+						<text class="product-info-text-h2">{{item.name}}</text>
+						<text class="product-info-text-var">{{item.des}}</text>
 						<div class="sell-number">
-							<text class="sell-number-b">已售 | 200</text>
-						</div>
-					</div>
-				</div>
-				<div class="product-li" @click="gotoDetail(1)">
-					<div class="product-pict">
-						<image class="product-pict-image" src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/1621502511/O1CN01ex7D9I1UQ54cYHhfb_!!0-item_pic.jpg_250x250.jpg_.webp" mode=""></image>
-					</div>
-					<div class="product-info-text">
-						<div class="product-info-price">
-							<text class="price-t1">￥</text>
-							<text class="price-t2">0.0</text>
-						</div>
-						<text class="product-info-text-h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
-						<div class="sell-number">
-							<text class="sell-number-b">已售 | 200</text>
-						</div>
-					</div>
-				</div>
-				<div class="product-li" @click="gotoDetail(1)">
-					<div class="product-pict">
-						<image class="product-pict-image" src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i3/2845660845/O1CN01sWR1d91I73HV6qrke_!!0-item_pic.jpg_250x250.jpg_.webp" mode=""></image>
-					</div>
-					<div class="product-info-text">
-						<div class="product-info-price">
-							<text class="price-t1">￥</text>
-							<text class="price-t2">0.0</text>
-						</div>
-						<text class="product-info-text-h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
-						<div class="sell-number">
-							<text class="sell-number-b">已售 | 200</text>
-						</div>
-					</div>
-				</div>
-				<div class="product-li" @click="gotoDetail(1)">
-					<div class="product-pict">
-						<image class="product-pict-image" src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i4/3142422799/O1CN01kGzRZ71WXzBJg0V6M_!!3142422799.jpg_250x250.jpg_.webp" mode=""></image>
-					</div>
-					<div class="product-info-text">
-						<div class="product-info-price">
-							<text class="price-t1">￥</text>
-							<text class="price-t2">0.0</text>
-						</div>
-						<text class="product-info-text-h2">出口日本蚕丝被100%桑蚕丝夏凉被空调被春秋被子冬被子母被芯双人</text>
-						<div class="sell-number">
-							<text class="sell-number-b">已售 | 200</text>
+							<text class="sell-number-b">已售 | {{item.sales_count}}{{item.unit}}</text>
 						</div>
 					</div>
 				</div>
@@ -157,16 +95,36 @@
 
 <script>
 	const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync();
+	import { mapState } from 'vuex'
+	import { qiniuURL } from '@/tool/common/config.js'
 	export default {
 		data(){
 			return {
+				qiniuURL: qiniuURL,
 				statusBarHeight: statusBarHeight,
-				tabs: 0,
+				
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
-				duration: 500
+				duration: 500,
+				
+				tabs: 0,
+				page: 1,
+				
 			}
+		},
+		created() {
+			this.$store.dispatch('Shop/category_index')
+			.then(res=>{
+				console.log(res);
+			})
+			this.product_index();
+		},
+		computed:{
+			...mapState('Shop', {
+				$category: state => state.category_index,
+				$product: state => state.product_index,
+			})
 		},
 		methods:{
 			gotoLink(url){
@@ -174,10 +132,19 @@
 					url:'../webBrowser/index?url=' + url
 				})
 			},
-			gotoDetail(id){
+			gotoDetail(item){
+				this.$store.commit('Shop/SET_PRODUCT', item)
 				uni.navigateTo({
-					url:'../product/detail?id=' + id
+					url:'../product/detail?id=' + item.id
 				})
+			},
+			
+			product_index(){
+				let data = {
+					page: this.page,
+					cat: this.tabs,
+				}
+				this.$store.dispatch('Shop/product_index', data);
 			}
 		}
 		
@@ -269,6 +236,7 @@
 	.product-li
 		width 360upx
 		margin-top 10upx
+		background-color #1e1e27
 	.product-pict
 		height 360upx
 	.product-pict-image
@@ -287,18 +255,28 @@
 	.price-t2
 		font-size 30upx
 		color #f7224e
+	
 	.product-info-text-h2
 		lines 1
 		color #fff
 		font-size 30upx
 		text-overflow ellipsis
 		margin-top 10upx
+		flex 1
+	.product-info-text-var
+		lines 1
+		color rgba(#fff, .6)
+		font-size 24upx
+		text-overflow ellipsis
+		margin-top 10upx
+		flex 1
 	.sell-number-b
 		color rgba(#fff, .6)
-		font-size 26upx
+		font-size 24upx
 		margin-top 10upx
 	.swiper
 		width 750upx
+		height 283upx
 	.swiper-image
 		width 750upx
 		height 283upx

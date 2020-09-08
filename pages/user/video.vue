@@ -1,7 +1,7 @@
 <template>
 	<view class="app">
 		<view class="video-page" :style="{'min-height': windowHeight + 'px'}">
-			<view class="user-layout">
+			<view class="video-layout">
 				<view class="pict">
 					<image src="../../src/static/img/116836_130x130.png" mode=""></image>
 				</view>

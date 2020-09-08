@@ -7,8 +7,8 @@
 					</view>
 					<view class="select">
 						<view class="name">
-							<text class="h2">{{address.name}}</text>
-							<text class="b">{{address.phone}}</text>
+							<text class="h2">{{address.consignee}}</text>
+							<text class="b">{{address.consignee_phone}}</text>
 						</view>
 						<text class="p">{{address.province + address.city + address.area + address.address}}</text>
 					</view>
@@ -32,39 +32,84 @@
 							</view>
 						</view>
 					</view>
-					<view class="box2">
-						<text>商品备注</text>
-						<input type="text" value="" placeholder="选填:留言" placeholder-class="placeholder-class" />
-					</view>
 					<view class="box3">
 						<text class="s1">共1件　小计：</text>
 						<text class="s2">10.00音豆</text>
 					</view>
 				</view>
 			</view>
+			<view class="box2-mark">
+				<text>商品备注</text>
+				<input type="text" value="" v-model="mark" placeholder="选填:留言" placeholder-class="placeholder-class" />
+			</view>
 		</view>
 		<view class="pub-button fixed">
-		    <text @click="submitFun" class="btn">提交订单</text>
+		    <text @click="sub1" class="btn">提交订单</text>
+		</view>
+		<view class="alert-yaoyi" v-if="show">
+			<view class="layout">
+				<text class="h2">提示</text>
+				<input type="password" maxlength="18" v-model="safe_code" value="" placeholder="请输入交易密码" />
+				<view class="btn">
+					<text class="s1" @click="show=false">取消</text>
+					<text class="s2" @click="confirm">确定</text>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	
 	export default {
+		components:{
+			
+		},
 		data(){
 			return {
-				address: false
+				address: false,
+				mark: '',
+				show: true,
+				safe_code:''
 			}
 		},
 		methods: {
+			sub1(){
+				if(!this.address){
+					this.toast('请先选择收货地址')
+					return false
+				}
+				this.show = true;
+			},
+			confirm(){
+				this.show = false;
+				this.submitFun()
+			},
+
 			submitFun(){
-				this.toast('正在调用支付,请稍等...')
+				let data = {
+					user_con_id: this.address.id,
+					safe_code: this.safe_code,
+					mark: this.mark || '无',
+					order: [
+						{
+							"product_id": 15,
+							"buy_number": 1
+						}
+					]
+				}
+				this.$api.shop.add_order(data)
+				.then(res=>{
+					console.log(res);
+					this.safe_code = ''
+				})
 			},
 			SelectAddress(){
 				uni.navigateTo({
 					url: '../order/address_manage?select=ture'
 				})
 			}
+			
 		}
 	}
 </script>

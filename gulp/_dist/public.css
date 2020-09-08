@@ -150,6 +150,9 @@
   font-size: 34upx;
   line-height: 90upx;
 }
+.pub-button .btn.active {
+  background: #ccc;
+}
 .pub-button.fixed {
   background-color: #111118;
   position: fixed;
@@ -163,7 +166,10 @@
   justify-content: space-between;
 }
 .pub-button.two .btn {
-  width: 44%;
+  flex: 1 1 auto;
+}
+.pub-button.two .btn:nth-child(2) {
+  margin-left: 60upx;
 }
 .pub-fixed-button {
   position: fixed;
@@ -894,4 +900,18 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+}
+.loadding-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50upx 0;
+  float: left;
+  width: 100%;
+  color: #fff;
+}
+.null-data {
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  padding: 60upx 0;
 }

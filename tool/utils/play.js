@@ -79,6 +79,22 @@ assist.ver = function (yz) {
 	try{
 		yz.forEach(item => {
 			switch (item.type) {
+				case 'name':
+					var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
+					if(item.val == ''){
+						uni.showToast({
+							title: '姓名不能为空',
+							icon: 'none'
+						})
+						throw Error();
+					} else if(!nameReg.test(item.val)){
+						uni.showToast({
+							title: '姓名只能为汉字',
+							icon: 'none'
+						})
+						throw Error();
+					}
+					break;
 				case 'phone':
 					if (item.val != "") {
 						if (!assist.validatePhoneNumber(item.val)) {
@@ -210,13 +226,26 @@ assist.prePage = function(){
     return prevPage;
     // #endif
     return prevPage.$vm;
-}
+};
+
+assist.genBillNo = function() {
+	var d = new Date();
+	var vYear = d.getFullYear();
+	var vMon = d.getMonth() + 1;
+	var vDay = d.getDate();
+	var h = d.getHours();
+	var m = d.getMinutes();
+	var se = d.getSeconds();
+	var ms = d.getMilliseconds();
+	var billno = "" + vYear + (vMon < 10 ? "0" + vMon : vMon) + (vDay < 10 ? "0" + vDay : vDay) + (h < 10 ? "0" + h : h) + (m < 10 ? "0" + m : m) + (se < 10 ? "0" + se : se) + ms;
+	return billno;
+};
 
 // 数据01格式
 function formatNumber(n) {
     n = n.toString()
     return n[1] ? n : '0' + n
-}
+};
 
 // 轻提示
 function toast(title, icon = 'none') {
@@ -224,7 +253,7 @@ function toast(title, icon = 'none') {
         title: title,
         icon: icon,
     })
-}
+};
 
 
 export default assist

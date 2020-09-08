@@ -13,6 +13,10 @@
 					<input type="password" maxlength="20" value="" placeholder="请输入密码" v-model="password" />
 					<text class="fr desc">密码由6-20位数字和字母组成</text>
                 </view>
+				<view class="li">
+					<input type="text" maxlength="10" value="" placeholder="请输入邀请码" v-model="config.pid" />
+					<text class="fr desc">邀请码</text>
+                </view>
             </view>
 			<view class="button">
 				<text @tap="registerFun" class="btn active">确定</text>
@@ -29,6 +33,7 @@
 					phone:'',
 					verity_code:'',
 					password: '',
+					pid:''
 				},
 				password: '',
 			}
@@ -54,6 +59,12 @@
 						type: 'len',
 						val: this.password,
 						field: '密码',
+						min: 6
+					},
+					{
+						type: 'len',
+						val: this.config.pid,
+						field: '邀请码',
 						min: 6
 					},
 				]

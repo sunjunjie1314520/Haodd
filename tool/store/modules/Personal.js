@@ -19,7 +19,7 @@ const getters = {
 const mutations = {
     ADD_AES(state, payload){
         state.aes = payload
-    }
+    },
 }
 
 const actions = {

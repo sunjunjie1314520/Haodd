@@ -7,13 +7,13 @@
                     <view class="span">
                         收货人
                     </view>
-                    <input v-model="formData.name" type="text" value="" placeholder-class="placeholder-class" placeholder="请填写收货人姓名" />
+                    <input v-model="formData.consignee" type="text" value="" placeholder-class="placeholder-class" placeholder="请填写收货人姓名" />
                 </view>
                 <view class="li">
                     <view class="span">
                         手机号码
                     </view>
-                    <input v-model="formData.phone" class="short" type="number" maxlength="11" placeholder-class="placeholder-class" placeholder="请填写收货人手机号" />
+                    <input v-model="formData.consignee_phone" class="short" type="number" maxlength="11" placeholder-class="placeholder-class" placeholder="请填写收货人手机号" />
                 </view>
                 <view class="li">
                     <view class="span">
@@ -56,9 +56,7 @@
 
 <script>
 	import simpleAddress from '@/components/simple-address/simple-address.nvue'
-	import { PERSONAL_LIST_ADDRESS } from '@/tool/common/constants.js'
-	import { mapState } from 'vuex'
-	
+
 	export default {
 		data(){
 			return {
@@ -67,8 +65,8 @@
 					label:""
 				},
 				formData:{
-					name:'',
-					phone:'',
+					consignee:'',
+					consignee_phone:'',
 					province:'',
 					city:'',
 					area:'',
@@ -83,47 +81,62 @@
 			if(e.id){
 				this.params = true
 				this.id = e.id
-				this.addressDetail()
+				this.formData.consignee = this.$current.consignee
+				this.formData.consignee_phone = this.$current.consignee_phone
+				this.formData.address = this.$current.address
+				this.formData.province = this.$current.province
+				this.formData.city = this.$current.city
+				this.formData.area = this.$current.area
+				this.pickerText.label = this.$current.province + '-' + this.$current.city + '-' + this.$current.area
 			}
 		},
-		computed: {
-			...mapState('Personal/', {
-				addressList: state => state[PERSONAL_LIST_ADDRESS]
-			})
+		created(){
+			
 		},
 		methods:{
-			// 地址详情
-			addressDetail(){
-				this.$api.personal.addressDetail({id: this.id})
-				.then(res=>{
-					var data = res.result
-					this.formData = data
-					var arr = []
-					arr.push(data.province)
-					arr.push(data.city)
-					arr.push(data.area)
-					this.pickerText.label = arr.join('-')
-				})
-			},
 			// 保存地址
 			submitFun(){
-				this.$api.personal.insertAddress(this.formData)
+				let yz = [
+					{
+						type: 'name',
+						val: this.formData.consignee,
+					},
+					{
+						type: 'phone',
+						val: this.formData.consignee_phone,
+					},
+					{
+						type: 'null',
+						val: this.pickerText.label,
+						field: '地址'
+					},
+					{
+						type: 'null',
+						val: this.formData.address,
+						field: '详情地址'
+					}
+				]
+				
+				if(!this.$assist.ver(yz)){
+					return false;
+				}
+				
+				this.$api.shop.consignee_save(this.formData)
 				.then(res=>{
 					if (this.$assist.msg(res, true, true)){
-						this.$store.dispatch(`Personal/${PERSONAL_LIST_ADDRESS}`)
+						this.$store.dispatch('Shop/consignee_index', {page: 1})
 					}
 				})
 			},
 			// 修改地址
 			updateAddress(){
-				this.$api.personal.updateAddress({...this.formData,...{id:this.id}})
+				this.$api.shop.consignee_save({...this.formData,...{id:this.id}})
 				.then(res=>{
 					if (this.$assist.msg(res, true, true)){
-						this.$store.dispatch(`Personal/${PERSONAL_LIST_ADDRESS}`)
+						this.$store.dispatch('Shop/consignee_index', {page: 1})
 					}
 				})
 			},
-			
 			openAddres() {
 				this.cityPickerValueDefault = [0,0,1]
 				this.$refs.simpleAddress.open();

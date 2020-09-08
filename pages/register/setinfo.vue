@@ -16,7 +16,7 @@
 				<view class="li">
 					<text>取个名称吧</text>
 					<view class="wrap">
-						<input type="text" v-model="username" placeholder-class="placeholder-class" value="" placeholder="请输入名称" />
+						<input type="text" v-model="nickname" placeholder-class="placeholder-class" value="" placeholder="请输入名称" />
 					</view>
                 </view>
 				<view class="li">
@@ -65,7 +65,7 @@
 				qiniuURL: qiniuURL,
 				
 				sex: 0,
-				username:'',
+				nickname:'',
 				birth: '',
 				avatar:'',
 			}
@@ -90,11 +90,15 @@
 				})
 			},
 			submitFun(){
+				if(this.nickname == '' || this.avatar==''){
+					this.toast('信息填写不完整');
+					return false;
+				}
 				var data = {
 					sex: this.sex,
 					avatar: this.avatar,
 					birth: this.birth,
-					username: this.username
+					nickname: this.nickname
 				}
 				this.$api.personal.save(data)
 				.then(res=>{

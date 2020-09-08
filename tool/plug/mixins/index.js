@@ -8,6 +8,8 @@ import Berror from "./component/Berror";
 
 import { mapState } from "vuex";
 
+import { qiniuURL } from '@/tool/common/config.js'
+
 let plug = {}
 
 plug.install = function(Vue, options) {
@@ -19,6 +21,7 @@ plug.install = function(Vue, options) {
     Vue.mixin({
         data(){
             return {
+                qiniuURL: qiniuURL,
                 windowHeight: null
             }
         },
@@ -26,6 +29,13 @@ plug.install = function(Vue, options) {
             ...mapState('Personal', {
                 $user: state => state.me,
                 $aes: state => state.aes,
+            }),
+            ...mapState('Shop', {
+                $current: state => state.current,
+                $addressList: state => state.consignee_index,
+                $category: state => state.category_index,
+                $product: state => state.product_index,
+                $product_detail: state => state.product,
             })
         },
         created(){
@@ -64,7 +74,26 @@ plug.install = function(Vue, options) {
 				.then(res=>{
 					this.toast(res.msg, 'success')
 				})
-			}
+            },
+            // 修改资料
+            userSave(data){
+                this.$api.personal.save(data)
+                .then(res=>{
+                    console.log(res);
+                    if(res.code == 1){
+                        this.$store.dispatch('Personal/me');
+                    }
+                })
+            },
+            // 分页功能
+            store(data, count) {
+                this.list = this.list.concat(data)
+                if (count <= this.size || count <= this.list.length) {
+                    this.next = false;
+                } else {
+                    this.page = this.page + 1;
+                }
+            }
         }
     })
 

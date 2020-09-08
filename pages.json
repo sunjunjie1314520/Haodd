@@ -259,6 +259,12 @@
 				"navigationBarTitleText": "首页",
 				"navigationStyle": "custom"				
 			}
+		},
+		{
+			"path" : "pages/pay/pay",
+			"style": {
+				"navigationBarTitleText": "确认支付"
+			}
 		}
 	],
 	"globalStyle": {
