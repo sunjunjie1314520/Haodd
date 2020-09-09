@@ -10,11 +10,13 @@
 		</div>
 		
 		<div class="shop-keys-tabs">
-			<div class="shop-keys-tabs-ul h5-flex">
-				<div @click="tabs=index" class="shop-keys-tabs-li" v-for="(item, index) in $category" :key="item.id">
-					<text :class="['tabs-li-txt', tabs==index ? 'tabs-li-txt-active' : '']">{{item.name}}</text>
+			<scroll-view class="scroll-view_H" scroll-x="true">
+				<div class="shop-keys-tabs-ul h5-flex">
+					<div @click="tabs=index" class="shop-keys-tabs-li" v-for="(item, index) in $category" :key="item.id">
+						<text :class="['tabs-li-txt', tabs==index ? 'tabs-li-txt-active' : '']">{{item.name}}</text>
+					</div>
 				</div>
-			</div>
+			</scroll-view>
 		</div>
 		
 		<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">

@@ -26,5 +26,11 @@ config.add_cart = params => request.globalRequest('/cart/add_cart', 'POST', para
 // 创建订单
 config.add_order = params => request.globalRequest('/order/add_order', 'POST', params, 1, '正在下单')
 
+// 购物车列表详情
+config.cart_index = params => request.globalRequest('/cart/page_index', 'POST', params, 1)
+
+// 订单产品列表详情
+config.order_index = params => request.globalRequest('/order/page_index', 'POST', params, 1)
+
 
 export default config

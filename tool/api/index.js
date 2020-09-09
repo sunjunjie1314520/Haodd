@@ -8,6 +8,8 @@ import personal from "./modules/personal.js";
 
 import shop from "./modules/shop.js";
 
+import video from "./modules/video.js";
+
 const modules = {
     ...{
         upload
@@ -21,6 +23,9 @@ const modules = {
     ...{
         shop
     },
+    ...{
+        video
+    }
 }
 
 console.log(modules);

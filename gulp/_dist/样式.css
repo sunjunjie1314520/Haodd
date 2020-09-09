@@ -1311,7 +1311,7 @@
 }
 .video-page .number .ul .li {
   float: left;
-  width: 25%;
+  width: 33.33%;
   text-align: center;
 }
 .video-page .number .ul .li .h2 {
@@ -1399,6 +1399,7 @@
   border-radius: 50%;
   overflow: hidden;
   display: block;
+  background: #1e1e27;
 }
 .video-page .video-layout .pict navigator,
 .video-page .video-layout .pict a {
@@ -1433,6 +1434,13 @@
 .video-page .video-layout .text .span {
   color: rgba(255,255,255,0.6);
   font-size: 26upx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  width: 300upx;
 }
 .video-page .video-layout .text .modify {
   position: absolute;
@@ -1720,7 +1728,7 @@
 }
 .businessman-page .ul1 .li .h2 {
   color: rgba(255,255,255,0.6);
-  font-size: 36upx;
+  font-size: 34upx;
   display: block;
   text-align: center;
 }
@@ -1760,11 +1768,11 @@
   line-height: 1.4;
   padding: 0 20%;
   margin-top: 20upx;
-  font-size: 26upx;
+  font-size: 24upx;
 }
 .businessman-page .ul1 .li .upload-area .h3 {
   color: rgba(255,255,255,0.6);
-  font-size: 36upx;
+  font-size: 30upx;
   display: block;
   text-align: center;
   margin-top: 30upx;
@@ -2055,15 +2063,25 @@
   border-radius: 60upx;
   margin-left: 20upx;
 }
+.cart-page-null {
+  height: 100upx;
+  float: left;
+  width: 100%;
+}
 .cart-page {
   float: left;
   width: 100%;
 }
-.cart-page .ul .li {
+.cart-page .ul {
   float: left;
   width: 100%;
   background-color: #1e1e27;
+  margin-bottom: 30upx;
   padding-top: 30upx;
+}
+.cart-page .ul .li {
+  float: left;
+  width: 100%;
 }
 .cart-page .ul .li .check {
   float: left;
@@ -2125,14 +2143,14 @@
   float: left;
   margin-left: 10upx;
 }
-.cart-page .ul .li .count {
+.cart-page .ul .count {
   float: left;
   width: 100%;
   border-top: solid .5px rgba(255,255,255,0.2);
   padding: 30upx 30upx;
   margin-top: 30upx;
 }
-.cart-page .ul .li .count .p {
+.cart-page .ul .count .p {
   color: #fff;
   float: right;
 }
@@ -2189,11 +2207,12 @@
   margin-left: 30upx;
 }
 .confirmation-page .add-ress .select .p {
-  display: block;
-  margin-top: 20upx;
   float: left;
   width: 100%;
+  margin-top: 20upx;
   color: #fff;
+  padding-right: 30upx;
+  line-height: 1.4;
 }
 .confirmation-page .box2-mark {
   float: left;
@@ -2204,13 +2223,15 @@
   color: #fff;
   float: left;
   line-height: 60upx;
+  width: 150upx;
 }
-.confirmation-page .box2-mark input {
-  height: 60upx;
-  width: 50%;
-  float: left;
-  margin-left: 20upx;
+.confirmation-page .box2-mark textarea {
+  height: 200upx;
+  width: calc(100% - 150upx);
+  float: right;
   color: #fff;
+  line-height: 1.5;
+  padding: 10upx 0;
 }
 .confirmation-page .ul {
   float: left;
@@ -2232,10 +2253,12 @@
   width: 166upx;
   height: 166upx;
   float: left;
+  overflow: hidden;
 }
 .confirmation-page .ul .li .box1 .pict image {
   width: 100%;
   min-height: 100%;
+  max-height: 100%;
 }
 .confirmation-page .ul .li .box1 .text {
   float: left;

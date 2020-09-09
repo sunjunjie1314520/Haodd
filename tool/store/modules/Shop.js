@@ -14,7 +14,8 @@ const state = {
     [CATEGORY_INDEX]: false,
     [PRODUCT_INDEX]: false,
     current: {},
-    product: {}
+    product: {},
+    confirm: []
 }
 
 const getters = {
@@ -27,7 +28,10 @@ const mutations = {
     },
     SET_PRODUCT(state, payload) {
         state.product = payload
-    }
+    },
+    SET_CONFIRM(state, payload) {
+        state.confirm = payload
+    },
 }
 
 const actions = {

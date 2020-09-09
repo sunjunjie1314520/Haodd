@@ -1026,7 +1026,7 @@
 		.ul
 			.li
 				float left
-				width 25%
+				width 33.33%
 				text-align center
 				.h2
 					color #fff
@@ -1088,6 +1088,7 @@
 		.pict
 			float left
 			widthZ 150px true
+			background color2 
 		.text
 			float left
 			widthC 150px
@@ -1105,6 +1106,9 @@
 			.span
 				color font-color
 				font-size 26px
+				display block
+				ov 1
+				width 300px
 			.modify
 				center 2
 				right 0
@@ -1315,7 +1319,7 @@
 			margin-bottom 62px
 			.h2
 				color font-color
-				font-size 36px
+				font-size 34px
 				display block
 				text-align center
 			.input
@@ -1345,10 +1349,10 @@
 					line-height 1.4
 					padding 0 20%
 					margin-top 20px
-					font-size 26px
+					font-size 24px
 				.h3
 					color font-color
-					font-size 36px
+					font-size 30px
 					display block
 					text-align center
 					margin-top 30px
@@ -1573,13 +1577,18 @@
 			border-radius 60px
 			margin-left 20px
 
+.cart-page-null
+	height 100px
+	fw 1
 .cart-page
 	fw 1
 	.ul
+		fw 1
+		background-color color2
+		margin-bottom 30px
+		padding-top 30px
 		.li
 			fw 1
-			background-color color2
-			padding-top 30px
 			.check
 				float left
 				width 90px
@@ -1629,14 +1638,14 @@
 						.b
 							float left
 							margin-left 10px
-			.count
-				fw 1
-				border-top solid 1px border-color
-				padding 30px 30px
-				margin-top 30px
-				.p
-					color #fff
-					float right
+		.count
+			fw 1
+			border-top solid 1px border-color
+			padding 30px 30px
+			margin-top 30px
+			.p
+				color #fff
+				float right
 					
 .confirmation-page
 	fw 1
@@ -1673,10 +1682,11 @@
 					color font-color
 					margin-left 30px
 			.p
-				display block
-				margin-top 20px
 				fw 1
+				margin-top 20px
 				color #fff
+				padding-right 30px
+				line-height 1.4
 	.box2-mark
 		fw 1
 		padding-top 20px
@@ -1684,12 +1694,14 @@
 			color #fff
 			float left
 			line-height 60px
-		input
-			height 60px
-			width 50%
-			float left
-			margin-left 20px
+			width 150px
+		textarea
+			height 200px
+			widthC 150px
+			float right
 			color #fff
+			line-height 1.5
+			padding 10px 0
 	.ul
 		fw 1
 		margin-top 25px
@@ -1703,9 +1715,11 @@
 				.pict
 					widthZ 166px
 					float left
+					overflow hidden
 					image
 						width 100%
 						min-height 100%
+						max-height 100%
 				.text
 					float left
 					widthC 166px

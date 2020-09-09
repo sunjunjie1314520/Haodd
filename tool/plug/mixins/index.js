@@ -22,7 +22,7 @@ plug.install = function(Vue, options) {
         data(){
             return {
                 qiniuURL: qiniuURL,
-                windowHeight: null
+                windowHeight: null,
             }
         },
         computed: {
@@ -36,6 +36,7 @@ plug.install = function(Vue, options) {
                 $category: state => state.category_index,
                 $product: state => state.product_index,
                 $product_detail: state => state.product,
+                $confirm: state => state.confirm,
             })
         },
         created(){

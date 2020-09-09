@@ -25,7 +25,7 @@
 					<view class="two">
 						<view class="btn">
 							<text>删除订单</text>
-							<text>评价</text>
+							<text>确认收货</text>
 							<text>查看物流</text>
 						</view>
 					</view>
@@ -46,7 +46,7 @@
 					<view class="two">
 						<view class="btn">
 							<text>删除订单</text>
-							<text>评价</text>
+							<text>确认收货</text>
 							<text>查看物流</text>
 						</view>
 					</view>
@@ -61,8 +61,28 @@
 		data(){
 			return {
 				tabs: 0,
+				
+				first: false,
+				
+				next: true,
+				page: 1,
+				list: []
 			}
 		},
+		created() {
+			this.getNetData();
+		},
+		methods: {
+			getNetData(){
+				let data = {
+					page: this.page,
+				}
+				this.$api.shop.order_index(data)
+				.then(res=>{
+					console.log(res);
+				})
+			}
+		}
 	}
 </script>
 

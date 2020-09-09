@@ -17,7 +17,7 @@
 				<text class="h2">{{pageData.name}}</text>
 				<view class="price">
 					<text class="p">￥{{pageData.amount}}音豆</text>
-					<text class="b">￥{{pageData.old_amount | toFixed(2)}}</text>
+					<text class="b">￥{{pageData.old_amount.toFixed(2)}}</text>
 				</view>
 			</view>
 			<view class="guige">
@@ -149,6 +149,11 @@
 				// }, 1500)
 			},
 			gouShop(){
+				let data = [{
+					...this.pageData,
+					num: this.num,
+				}]
+				this.$store.commit('Shop/SET_CONFIRM', data);
 				uni.navigateTo({
 					url: '../shop/confirmation'
 				})

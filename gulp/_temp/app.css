@@ -466,6 +466,7 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  background: #1e1e27;
 }
 .pict-wrap {
   float: left;

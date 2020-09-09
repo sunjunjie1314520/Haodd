@@ -68,9 +68,18 @@
 				tabs: 0,
 			}
 		},
+		created() {
+			this.getNetData();
+		},
 		methods: {
 			tabsToggle(index){
-				this.tabs = index
+				this.tabs = index;
+			},
+			getNetData(){
+				this.$api.video.video_home()
+				.then(res=>{
+					console.log(res);
+				})
 			}
 		}
 	}
