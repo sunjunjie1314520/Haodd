@@ -29,6 +29,7 @@ plug.install = function(Vue, options) {
             ...mapState('Personal', {
                 $user: state => state.me,
                 $aes: state => state.aes,
+                $current_new: state => state.current_new
             }),
             ...mapState('Shop', {
                 $current: state => state.current,

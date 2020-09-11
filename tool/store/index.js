@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 import Personal from "./modules/Personal.js";
 import Shop from "./modules/Shop.js";
+import Video from "./modules/Video.js";
 
 var channels = null;
 
@@ -43,6 +44,7 @@ const store = new Vuex.Store({
     modules: {
 		Personal,
 		Shop,
+		Video,
     },
     state: {
         

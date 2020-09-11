@@ -53,4 +53,10 @@ config.usermineral = params => request.globalRequest('/UserMineral/page_index', 
 // 我的任务完成情况
 config.today_count = params => request.globalRequest('/user_task/today_count', 'GET', params, 1)
 
+// 系统公告
+config.news = params => request.globalRequest('/sys/news', 'POST', params, 1)
+
+// 下载软件配置
+config.download = params => request.globalRequest('/sys/download', 'POST', params, 1)
+
 export default config

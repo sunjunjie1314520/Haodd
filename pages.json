@@ -224,6 +224,12 @@
 			}
 		},
 		{
+			"path": "pages/order/logistics",
+			"style": {
+				"navigationBarTitleText": "物流信息"
+			}
+		},
+		{
 			"path" : "pages/inputInfo/inputInfo",
 			"style": {
 				"navigationBarTitleText": "修改"

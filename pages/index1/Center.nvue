@@ -76,25 +76,23 @@
 			</div>
 		</div>
 		
-		<div class="scroll-new">
+		<div class="scroll-new" v-if="$news && $news.length > 0">
 			<div class="scroll-new-layout h5-flex">
 				<text class="scroll-new-h3">最新公告</text>
 				<div class="scroll-new-content">
-					<text class="scroll-new-text">俄罗斯首支新冠疫苗已经注册，免疫力可持续两年，普京女儿已接种</text>
+					<text class="scroll-new-text">{{$news[0].title}}</text>
 				</div>
-				<text @click="gotoNews" class="scroll-new-more">更多</text>
+				<text @click="gotoNews($news[0])" class="scroll-new-more">更多</text>
 			</div>
 		</div>
 		
 		<div class="list-menu list-menu-1">
-			<div class="list-menu-layout">
+			<div class="list-menu-layout h5-flex">
 				<text class="list-menu-layout-h3">常用工具</text>
 				<div class="list-menu-1-ul h5-flex">
-					<div class="list-menu-1-li h5-flex">
-						<navigator url="../user/real" hover-class="hover-class">
-							<image class="list-menu-1-image" src="../../src/static/img/812afe_108x108.png" mode=""></image>
-							<text class="list-menu-1-text">实名认证</text>
-						</navigator>
+					<div class="list-menu-1-li h5-flex" @click="userReal">
+						<image class="list-menu-1-image" src="../../src/static/img/812afe_108x108.png" mode=""></image>
+						<text class="list-menu-1-text">实名认证</text>
 					</div>
 					<div class="list-menu-1-li h5-flex">
 						<navigator url="../commonly/team" hover-class="hover-class">
@@ -102,9 +100,11 @@
 							<text class="list-menu-1-text">我的团队</text>
 						</navigator>
 					</div>
-					<div class="list-menu-1-li h5-flex" @click="invitation">
-						<image class="list-menu-1-image" src="../../src/static/img/28567a_85x85.png" mode=""></image>
-						<text class="list-menu-1-text">经纪商</text>
+					<div class="list-menu-1-li h5-flex">
+						<navigator url="../invitation/Opening" hover-class="hover-class">
+							<image class="list-menu-1-image" src="../../src/static/img/28567a_85x85.png" mode=""></image>
+							<text class="list-menu-1-text">经纪商</text>
+						</navigator>
 					</div>
 					<div class="list-menu-1-li h5-flex">
 						<navigator url="../commonly/agent" hover-class="hover-class">
@@ -124,28 +124,16 @@
 		
 		<div class="my-task">
 			<div class="my-task-ul">
-				<div class="my-task-li">
+				<div class="my-task-li" v-for="item in $task.list" :key="item.id">
 					<div class="my-task-li-ico">
-						<image class="my-task-li-image" src="../../src/static/img/c4f59a_128x128.png" mode=""></image>
+						<image class="my-task-li-image" :src="item.task_name=='点赞'?'../../src/static/img/c4f59a_128x128.png':'../../src/static/img/f3ffc8_128x128.png'" mode=""></image>
 					</div>
 					<div class="my-task-li-text">
-						<text class="my-task-li-h2">点赞(0/5)</text>
-						<text class="my-task-li-p">点赞喜欢的视频</text>
+						<text class="my-task-li-h2">{{item.task_name}}({{item.step}}/{{item.quota}})</text>
+						<text class="my-task-li-p">{{item.task_des}}</text>
 					</div>
 					<div class="my-task-li-fr">
-						<text class="my-task-li-b">未完成</text>
-					</div>
-				</div>
-				<div class="my-task-li">
-					<div class="my-task-li-ico">
-						<image class="my-task-li-image" src="../../src/static/img/f3ffc8_128x128.png" mode=""></image>
-					</div>
-					<div class="my-task-li-text">
-						<text class="my-task-li-h2">评论(0/5)</text>
-						<text class="my-task-li-p">点赞评论的视频</text>
-					</div>
-					<div class="my-task-li-fr">
-						<text class="my-task-li-b">未完成</text>
+						<text class="my-task-li-b">{{item.status ? '已完成' : '未完成'}}</text>
 					</div>
 				</div>
 			</div>
@@ -246,6 +234,13 @@
 	import { mapState } from 'vuex'
 	import { qiniuURL } from '@/tool/common/config.js'
 	import CryptoJS from "@/js_sdk/crypto-js/crypto-js.js"
+	
+	// #ifdef APP-NVUE
+		const animation = weex.requireModule('animation')
+		const modal = weex.requireModule('modal')
+		const dom = weex.requireModule('dom');
+	// #endif
+	
 	export default {
 		data (){
 			return{
@@ -261,10 +256,15 @@
 			...mapState('Personal', {
 				$user: state => state.me,
 				$aes: state => state.aes,
+				$task: state => state.today_count,
+				$news: state => state.news,
 			})
 		},
 		created() {
 			this.AES128();
+			this.$store.dispatch('Personal/today_count');
+			this.$store.dispatch('Personal/news', {page: 1});
+			
 			// #ifdef APP-NVUE
 			const dom = weex.requireModule('dom');
 			dom.addRule('fontFace', {
@@ -300,20 +300,21 @@
 				var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8).toString();
 				var json = JSON.parse(decryptedStr)
 				console.log(json);
-				this.$store.commit('Personal/ADD_AES', json)
+				this.$store.commit('Personal/ADD_AES', json);
 			},
-			invitation(){
-				if(this.state == 1){
-					uni.navigateTo({
-						url: '../invitation/invitation'
-					})
+			userReal(){
+				if(this.$user.card_name){
+					// #ifdef APP-NVUE
+						modal.toast({message:'您已经实名认证过了', duration: 2})
+					// #endif
 				}else{
 					uni.navigateTo({
-						url: '../invitation/Opening'
+						url: '../user/real'
 					})
 				}
 			},
-			gotoNews(){
+			gotoNews(item){
+				this.$store.commit('Personal/SET_CURRENT_NEWS', item)
 				uni.navigateTo({
 					url:'../user/news'
 				})

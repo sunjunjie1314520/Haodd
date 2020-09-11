@@ -151,7 +151,10 @@
 			gouShop(){
 				let data = [{
 					...this.pageData,
-					num: this.num,
+					pro_name: this.pageData.name,
+					pro_unit: this.pageData.unit,
+					buy_amount: this.pageData.amount,
+					buy_number: this.num,
 				}]
 				this.$store.commit('Shop/SET_CONFIRM', data);
 				uni.navigateTo({

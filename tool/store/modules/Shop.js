@@ -5,7 +5,8 @@ import {
     SHOP,
     CONSIGNEE_INDEX,
     CATEGORY_INDEX,
-    PRODUCT_INDEX
+    PRODUCT_INDEX,
+    PRODUCT_SYS_SHOP,
 } from "../../common/constants";
 
 
@@ -13,6 +14,7 @@ const state = {
     [CONSIGNEE_INDEX]: false,
     [CATEGORY_INDEX]: false,
     [PRODUCT_INDEX]: false,
+    [PRODUCT_SYS_SHOP]: false,
     current: {},
     product: {},
     confirm: []

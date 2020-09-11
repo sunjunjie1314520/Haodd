@@ -1,6 +1,6 @@
 <template>
 	<view class="app">
-		<view class="confirmation-page" :style="{'height': windowHeight + 'px'}">
+		<view class="confirmation-page" :style="{'min-height': windowHeight + 'px'}">
 			<view class="add-ress">
 				<view class="wrap1" v-if="address" @click="SelectAddress">
 					<view class="ico">
@@ -24,17 +24,17 @@
 							<image :src="qiniuURL + item.thumb"></image>
 						</view>
 						<view class="text">
-							<text class="h3">{{item.name}}</text>
-							<text class="p">单位：{{item.unit}}</text>
+							<text class="h3">{{item.pro_name}}</text>
+							<text class="p">单位：{{item.pro_unit}}</text>
 							<view class="b">
-								<text class="red">{{item.amount.toFixed(2)}}音豆</text>
-								<text class="gray">x{{item.num}}</text>
+								<text class="red">{{item.buy_amount.toFixed(2)}}音豆</text>
+								<text class="gray">x{{item.buy_number}}</text>
 							</view>
 						</view>
 					</view>
 					<view class="box3">
 						<text class="s1">共1件　小计：</text>
-						<text class="s2">{{item.amount.toFixed(2)}}音豆</text>
+						<text class="s2">{{(item.buy_amount * item.buy_number).toFixed(2)}}音豆</text>
 					</view>
 				</view>
 			</view>
@@ -109,9 +109,9 @@
 				.then(res=>{
 					console.log(res);
 					this.safe_code = '';
-					if(res.code == 1){
+					if(this.$assist.msg(res, true)){
 						uni.navigateTo({
-							url: '../shop/cart'
+							url: '../user/order'
 						})
 					}
 				})

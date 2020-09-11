@@ -31,19 +31,26 @@
 				<text @tap="tabsToggle(0)" :class="{'active': tabs==0}">作品 {{pageData.my_creation_count}}</text>
 				<text @tap="tabsToggle(1)" :class="{'active': tabs==1}">喜欢 {{pageData.my_love_count}}</text>
 			</view>
-			<view class="video-list">
+			<!-- 作品 -->
+			<view class="video-list" v-if="tabs==0">
 				<view class="ul">
-					<view class="li">
-						<image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1783209632,1526904456&fm=26&gp=0.jpg" mode=""></image>
-						<text class="play">2.1w</text>
+					<view class="li" v-for="item in list" :key="item.id">
+						<!-- <image :src="qiniuURL + 'lssLc2AFKPMH_PTT0ftaN4_ZjEMs'" mode=""></image> -->
+						<video :src="qiniuURL + item.video_src"></video>
+						<text class="play">{{item.number_of_comments}}</text>
 					</view>
-					<view class="li">
-						<image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3202856619,3789906183&fm=26&gp=0.jpg" mode=""></image>
-						<text class="play">2.1w</text>
-					</view>
-					<view class="li">
-						<image src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=363637414,3913883749&fm=26&gp=0.jpg" mode=""></image>
-						<text class="play">2.1w</text>
+				</view>
+				<view class="no-more">
+					暂时没有更多了
+				</view>
+			</view>
+			<!-- 喜欢 -->
+			<view class="video-list" v-if="tabs==1">
+				<view class="ul">
+					<view class="li" v-for="item in list1" :key="item.id">
+						<!-- <image :src="qiniuURL + 'lssLc2AFKPMH_PTT0ftaN4_ZjEMs'" mode=""></image> -->
+						<video :src="qiniuURL + item.video_src"></video>
+						<text class="play">{{item.number_of_comments}}</text>
 					</view>
 				</view>
 				<view class="no-more">
@@ -63,7 +70,8 @@
 				pageData: false,
 				next: true,
 				page:1,
-				list:[]
+				list:[],
+				list1:[],
 			}
 		},
 		created() {
@@ -82,6 +90,8 @@
 				.then(res=>{
 					console.log(res);
 					this.pageData = res.data
+					this.list = this.pageData.my_creation
+					this.list1 = this.pageData.my_love
 					// this.store(res.data, res.count)
 				})
 			}

@@ -32,7 +32,7 @@
 				
 			</view>
 			<view class="pub-button fixed two">
-				<text v-if="!$user.card_name" class="btn" @click="gotoPay">立即开通</text>
+				<text v-if="$user" class="btn" @click="gotoPay">立即开通</text>
 				<text class="btn" @tap="myLink">我的经纪商</text>
 			</view>
 		</view>

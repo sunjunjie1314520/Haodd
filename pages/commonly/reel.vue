@@ -5,7 +5,7 @@
 			<text @click="status=1" :class="{'active': status==1}">已完成</text>
 		</view>
 		<view class="reel-page" v-if="paegData">
-			<view class="ul">
+			<view class="ul" v-if="list.length > 0">
 				<view class="li" v-for="item in list" :key="item.id">
 					<view class="pict">
 						<image :src="importHandle(item.mineral_id)" mode=""></image>
@@ -30,6 +30,9 @@
 						</view>
 					</view>
 				</view>
+			</view>
+			<view class="null-data">
+				您还没有任何卷轴
 			</view>
 		</view>
 		<view class="reel-page" v-else>

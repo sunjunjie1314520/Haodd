@@ -32,5 +32,16 @@ config.cart_index = params => request.globalRequest('/cart/page_index', 'POST', 
 // 订单产品列表详情
 config.order_index = params => request.globalRequest('/order/page_index', 'POST', params, 1)
 
+// 商城轮播图
+config.sys_shop = params => request.globalRequest('/sys_shop/index', 'POST', params, 1)
+
+// 确认收货
+config.confim_status = params => request.globalRequest('/order/confim_status', 'POST', params, 1)
+
+// 删除订单
+config.order_delete = params => request.globalRequest('/order/delete', 'POST', params, 1)
+
+// 物流单号
+config.order_delivery = params => request.globalRequest('/order_delivery/index', 'POST', params, 1)
 
 export default config

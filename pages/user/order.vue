@@ -1,57 +1,47 @@
 <template>
-	<view class="app">
-		<view class="order-page" :style="{'min-height': windowHeight + 'px'}">
+	<view class="app" :style="{'min-height': windowHeight + 'px'}">
+		<view class="order-page">
 			<view class="tabs">
-				<text :class="['txt', {'active': tabs==0}]" @tap="tabs=0">全部</text>
-				<text :class="['txt', {'active': tabs==1}]" @tap="tabs=1">待付款</text>
+				<text :class="['txt', {'active': tabs===''}]" @tap="tabs=''">全部</text>
+				<text :class="['txt', {'active': tabs===0}]" @tap="tabs=0">待付款</text>
+				<text :class="['txt', {'active': tabs==1}]" @tap="tabs=1">已付款</text>
 				<text :class="['txt', {'active': tabs==2}]" @tap="tabs=2">待发货</text>
 				<text :class="['txt', {'active': tabs==3}]" @tap="tabs=3">待收货</text>
 				<text :class="['txt', {'active': tabs==4}]" @tap="tabs=4">已完成</text>
 			</view>
-			<view class="ul">
-				<view class="li">
-					<view class="one">
-						<view class="pict">
-							<image src="https://img.alicdn.com/imgextra/i3/883737303/O1CN019CHHUJ23op5QuSYc9_!!883737303.jpg_600x600Q90.jpg" mode="widthFix"></image>
-						</view>
-						<view class="text">
-							<text class="h2">【包邮】名创优品优雅夏花无火藤条香薰精油180mL室内持久香氛</text>
-							<view class="price">
-								<text class="del">原价：￥503.00</text>
-								<view class="p">实付款：<text>200</text>音豆</view>
+			<view class="tabs-wrap" v-if="first">
+				<view class="ul" v-if="list.length > 0">
+					<view class="li" v-for="item in list" :key="item.id">
+						<view class="wrap">
+							<view class="one" v-for="item1 in item.OrderDetail" :key="item1.id">
+								<view class="pict">
+									<image :src=" qiniuURL + item1.thumb" mode="widthFix"></image>
+								</view>
+								<view class="text">
+									<text class="h2">{{item1.pro_name}}</text>
+									<view class="price">
+										<text class="del">原价：￥{{item1.old_amount}}.00</text>
+										<view class="p">实付款：<text>{{item1.amount}}</text>音豆</view>
+									</view>
+									<view class="span">数量：<text>x{{item1.buy_number}}</text></view>
+								</view>
 							</view>
 						</view>
-					</view>
-					<view class="two">
-						<view class="btn">
-							<text>删除订单</text>
-							<text>确认收货</text>
-							<text>查看物流</text>
+						<view class="two">
+							<view class="btn">
+								<text v-if="item.status==0 || item.status==1 || item.status==2">{{item.status | status}}</text>
+								<text @click="delete_order(item.id)" v-if="item.status==4">删除订单</text>
+								<text @click="confirm_order(item.order_number)" v-if="item.status==3">确认收货</text>
+								<text @click="look_order(item.order_number)" v-if="item.status==3">查看物流</text>
+							</view>
 						</view>
 					</view>
 				</view>
-				<view class="li">
-					<view class="one">
-						<view class="pict">
-							<image src="https://img.alicdn.com/imgextra/i4/2616970884/O1CN01eUiHyH1IOujyBEVhA_!!2616970884.jpg_600x600Q90.jpg_.webp" mode="widthFix"></image>
-						</view>
-						<view class="text">
-							<text class="h2">【包邮】名创优品优雅夏花无火藤条香薰精油180mL室内持久香氛</text>
-							<view class="price">
-								<text class="del">原价：￥503.00</text>
-								<view class="p">实付款：<text>200</text>音豆</view>
-							</view>
-						</view>
-					</view>
-					<view class="two">
-						<view class="btn">
-							<text>删除订单</text>
-							<text>确认收货</text>
-							<text>查看物流</text>
-						</view>
-					</view>
+				<view class="null-data" v-else>
+					您还没有任何订单记录
 				</view>
 			</view>
+			<uni-loadding v-else></uni-loadding>
 		</view>
 	</view>
 </template>
@@ -64,23 +54,72 @@
 				
 				first: false,
 				
+				size: 10,
 				next: true,
 				page: 1,
 				list: []
 			}
 		},
+		watch:{
+			tabs(n){
+				this.first = false
+				this.list = []
+				this.next = true
+				this.page = 1
+				setTimeout(()=>{
+					this.getNetData();
+				}, 300)
+			}
+		},
 		created() {
-			this.getNetData();
+			setTimeout(()=>{
+				this.getNetData();
+			}, 300)
 		},
 		methods: {
 			getNetData(){
 				let data = {
 					page: this.page,
 				}
+				if(this.tabs!==''){
+					data.status=this.tabs
+				}
 				this.$api.shop.order_index(data)
+				.then(res=>{
+					this.first = res;
+					this.store(res.data, res.count)
+				})
+			},
+			// 删除订单
+			delete_order(id){
+				this.$api.shop.order_delete({id: id})
 				.then(res=>{
 					console.log(res);
 				})
+			},
+			// 确定收货
+			confirm_order(order_number){
+				this.$api.shop.confim_status({order_number: order_number})
+				.then(res=>{
+					console.log(res);
+				})
+			},
+			look_order(order_number){
+				uni.navigateTo({
+					url: '../order/logistics?order_number=' + order_number
+				})
+			}
+		},
+		filters:{
+			status(data){
+				switch (data){
+					case 0:
+						return '待付款'
+					case 1:
+						return '已付款'
+					case 2:
+						return '待发货'
+				}
 			}
 		}
 	}

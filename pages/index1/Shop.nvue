@@ -1,12 +1,12 @@
 <template>
-	<div class="shop-tabs bg-six">
+	<div class="shop-tabs bg-six" :style="{'min-height': windowHeight + 'px'}">
 		
 		<div class="status-app" :style="{'height': statusBarHeight + 'px'}"></div>
 		<div class="status-app-null" :style="{'height': statusBarHeight + 'px'}"></div>
 		
 		<div class="shop-keys-search h5-flex">
-			<input class="shop-keys-search-input" type="text" value="" placeholder="请输入关键字" />
-			<text class="shop-keys-search-search">搜索</text>
+			<input class="shop-keys-search-input" v-model="name" type="text" value="" placeholder="请输入关键字" />
+			<text class="shop-keys-search-search" @click="product_index()">搜索</text>
 		</div>
 		
 		<div class="shop-keys-tabs">
@@ -20,14 +20,8 @@
 		</div>
 		
 		<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-			<swiper-item class="li">
-				<image class="swiper-image" src="https://gw.alicdn.com/tfs/TB17emto4n1gK0jSZKPXXXvUXXa-1035-390.png_790x10000.jpg_.webp" mode=""></image>
-			</swiper-item>
-			<swiper-item class="li">
-				<image class="swiper-image" src="https://gw.alicdn.com/imgextra/i4/1209780/O1CN01nM4jxa2M7I8QHfyTC_!!1209780-0-lubanu.jpg_790x10000Q75.jpg_.webp" mode=""></image>
-			</swiper-item>
-			<swiper-item class="li">
-				<image  class="swiper-image" src="https://gw.alicdn.com/imgextra/i1/1414079/O1CN01QMAlZt1g0EAE7soAi_!!1414079-0-lubanu.jpg_790x10000Q75.jpg_.webp" mode=""></image>
+			<swiper-item class="li" v-for="item in $sys_shop" :key="item.id">
+				<image @click="gotoLink(item.href)" class="swiper-image" :src="qiniuURL + item.image_url" mode=""></image>
 			</swiper-item>
 		</swiper>
 		
@@ -54,16 +48,16 @@
 		
 		<div class="shop-sort">
 			<div class="shop-sort-ul h5-flex">
-				<div class="shop-sort-li">
-					<text class="shop-sort-li-txt shop-sort-li-active">综合</text>
+				<div :class="['shop-sort-li', 'h5-flex', sort==0 ? 'shop-sort-li-active':'']" @click="sort=0; product_index();">
+					<text class="shop-sort-li-txt">综合</text>
 				</div>
-				<div class="shop-sort-li">
+				<div :class="['shop-sort-li', 'h5-flex', sort==1 ? 'shop-sort-li-active':'']" @click="sort=1; product_index('sales_count');">
 					<text class="shop-sort-li-txt">销量</text>
 				</div>
-				<div class="shop-sort-li">
+				<div :class="['shop-sort-li', 'h5-flex', sort==2 ? 'shop-sort-li-active':'']" @click="sort=2; product_index('create_time');">
 					<text class="shop-sort-li-txt">最新</text>
 				</div>
-				<div class="shop-sort-li">
+				<div :class="['shop-sort-li', 'h5-flex', sort==3 ? 'shop-sort-li-active':'']" @click="sort=3; product_index('amount');">
 					<text class="shop-sort-li-txt">价格</text>
 				</div>
 			</div>
@@ -104,6 +98,7 @@
 			return {
 				qiniuURL: qiniuURL,
 				statusBarHeight: statusBarHeight,
+				windowHeight: windowHeight,
 				
 				indicatorDots: true,
 				autoplay: true,
@@ -112,20 +107,27 @@
 				
 				tabs: 0,
 				page: 1,
+				name:'',
 				
+				sort: 0,
 			}
 		},
 		created() {
 			this.$store.dispatch('Shop/category_index')
-			.then(res=>{
-				console.log(res);
-			})
+			this.$store.dispatch('Shop/sys_shop')
 			this.product_index();
+		},
+		watch:{
+			tabs(){
+				this.sort = 0
+				this.product_index();
+			}
 		},
 		computed:{
 			...mapState('Shop', {
 				$category: state => state.category_index,
 				$product: state => state.product_index,
+				$sys_shop: state => state.sys_shop,
 			})
 		},
 		methods:{
@@ -141,10 +143,15 @@
 				})
 			},
 			
-			product_index(){
+			product_index(order='', sort='desc'){
 				let data = {
 					page: this.page,
 					cat: this.tabs,
+					name: this.name,
+					sort: sort,
+				}
+				if(order){
+					data.order = order
 				}
 				this.$store.dispatch('Shop/product_index', data);
 			}
@@ -212,17 +219,21 @@
 		margin-top 12upx
 	
 	.shop-sort
-		padding 25upx 0
 		background-color #1e1e27
-		
-	.shop-sort-ul
+		height 90upx
 		flex-direction row
-		flex-wrap wrap
-		justify-content space-around
-		
+	.shop-sort-ul
+		flex 1
+		flex-direction row
+		height 90upx
 	.shop-sort-li
+		flex-direction row
 		justify-content center
-		
+		align-items center
+		flex 1
+		height 90upx
+	.shop-sort-li-active
+		background-color #f7224e
 	.shop-sort-li-txt
 		color #fff
 		font-size 30upx

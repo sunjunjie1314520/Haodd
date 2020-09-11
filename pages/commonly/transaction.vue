@@ -15,6 +15,9 @@
 						<text class="fr">{{item.create_time}}</text>
 					</view>
 				</view>
+				<view class="null-data" v-if="list.length == 0">
+					没有任何记录
+				</view>
 			</view>
 			<view class="ul" v-else>
 				<uni-loadding></uni-loadding>

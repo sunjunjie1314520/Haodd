@@ -41,6 +41,12 @@
 				time: null,
 			}
 		},
+		created() {
+			
+		},
+		onLoad() {
+			
+		},
 		methods: {
 			pay(){
 				if(this.click){

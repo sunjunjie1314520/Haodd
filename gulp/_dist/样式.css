@@ -1350,7 +1350,6 @@
 .video-page .video-list {
   float: left;
   width: 100%;
-  margin-top: 9upx;
 }
 .video-page .video-list .ul {
   float: left;
@@ -1362,9 +1361,15 @@
   position: relative;
   float: left;
   margin-left: 9upx;
+  overflow: hidden;
+  margin-top: 9upx;
 }
 .video-page .video-list .ul .li:nth-child(3n+1) {
   margin-left: 0;
+}
+.video-page .video-list .ul .li video {
+  width: 100%;
+  height: 100%;
 }
 .video-page .video-list .ul .li .play {
   position: absolute;
@@ -1672,8 +1677,7 @@
 .news-page .content {
   float: left;
   width: 100%;
-  margin-top: 60upx;
-  padding-top: 60upx;
+  margin-top: 30upx;
   border-top: solid .5px rgba(255,255,255,0.2);
 }
 .news-page .content .p {
@@ -1684,6 +1688,10 @@
 }
 .news-page .content image {
   width: 100%;
+}
+.news-page .content rich-text {
+  color: #fff;
+  line-height: 1.4;
 }
 .businessman-page {
   float: left;
@@ -1788,7 +1796,7 @@
 }
 .order-page .tabs .txt {
   float: left;
-  width: 20%;
+  width: 16.66%;
   text-align: center;
   color: #fff;
   line-height: 90upx;
@@ -1856,10 +1864,24 @@
   color: rgba(255,255,255,0.6);
   margin-left: 30upx;
   font-size: 26upx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .order-page .ul .li .one .text .price .p text {
   color: #f7224e;
   font-size: 36upx;
+}
+.order-page .ul .li .one .text .span {
+  color: rgba(255,255,255,0.6);
+  font-size: 20upx;
+  margin-top: 20upx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.order-page .ul .li .one .text .span text {
+  color: rgba(255,255,255,0.6);
 }
 .order-page .ul .li .two {
   float: left;
@@ -2082,6 +2104,7 @@
 .cart-page .ul .li {
   float: left;
   width: 100%;
+  margin-top: 20upx;
 }
 .cart-page .ul .li .check {
   float: left;
@@ -2112,11 +2135,12 @@
 }
 .cart-page .ul .li .pict image {
   width: 100%;
+  height: 100%;
 }
 .cart-page .ul .li .text {
   float: left;
   width: calc(100% - 256upx);
-  padding: 25upx 30upx 0;
+  padding: 15upx 30upx 0;
 }
 .cart-page .ul .li .text text {
   color: #fff;
@@ -2351,4 +2375,8 @@
   border-radius: 0 0 15upx 0;
   background: #f7224e;
   color: #fff;
+}
+.tabs-wrap {
+  float: left;
+  width: 100%;
 }

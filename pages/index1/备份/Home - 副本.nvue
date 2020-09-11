@@ -1,6 +1,15 @@
 <template>
-		<list :pagingEnabled="true"   class="zhi_index04" :offset-accuracy="videoStyle.height" :show-scrollbar="false"  @loadmore="Jiazai" ref="list" :loadmoreoffset="loadMoreHeight" @scroll="Scroll" >
-			<cell style="position:relative;" :style="videoStyle"  v-for="(l,i) in lie" :key='i'  @disappear="Disappear($event,i)"  @appear="onappear"   >
+		<list
+		:pagingEnabled="true" 
+		class="zhi_index04"
+		:offset-accuracy="videoStyle.height"
+		:show-scrollbar="false" 
+		@loadmore="Jiazai"
+		ref="list"
+		:loadmoreoffset="loadMoreHeight"
+		@scroll="Scroll">
+		
+			<cell style="position:relative;" :style="videoStyle"  v-for="(l,i) in lie" :key='i'  @disappear="Disappear($event,i)"  @appear="onappear">
 			   <video :style="videoStyle" v-if="index==i" @play='panduanpofang' @timeupdate="Timeupdate" :id="`video_${i}`" :ref="`video_${i}`" :loop="true" :src="l.shipin" controls="false" :enable-progress-gesture="false"  :show-center-play-btn="false" :objectFit="$xitong.platform=='ios'?'fill':'cover'" />
 			   <image :src="l.tu" v-if="!l.fengmian && suo==0 " :style="videoStyle"  class="zhi_index05" mode="aspectFill"></image>   
 				<div  class="zhi_index06">  

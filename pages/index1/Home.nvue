@@ -3,23 +3,6 @@
 		
 		<div class="status-app" :style="{'height': statusBarHeight + 'px'}"></div>
 		
-		<!-- 视频 -->
-		<div class="home-video-wrap">
-			<video class="home-myvideo"
-			:autoplay="status"
-			:loop="true"
-			:controls="false"
-			:muted="true"
-			objectFit="cover"
-			:show-center-play-btn="false"
-			src="https://limitao.myuan.cn/gongyong/shangchuan/yinpin/33/2020/05/E1n1us3N3511hzbt5thh3c137tU15T.mp4"
-			poster="https://limitao.myuan.cn/gongyong/shangchuan/tu/33/2020/05/CF4664h6q64v7Vzvx6M4moveznuZv4.jpg"
-			@click="play"
-			id="myVideo"
-			>
-			</video>
-		</div>
-		
 		<!-- 搜索区 -->
 		<div class="home-search" :style="{'top': statusBarHeight + 'px'}">
 			<!-- 直播 -->
@@ -43,78 +26,102 @@
 			</div>
 		</div>
 		
-		<!-- 播放按钮 -->
-		<div class="play-status" :style="{'top': playTop}" v-if="!status">
-			<image class="play-status-img" src="@/static/image/449745_200x200.png" mode=""></image>
-		</div>
-		
-		<!-- 内容 -->
-		<div class="home-content">
-			<text class="content-title" ref="test">@前端开发工程师</text>
-			<text class="content-desc">最怕有一天你离我而去，没有了你我该怎么活</text>
-			<div class="music-name">
-				<image class="music-image" src="@/static/image/e6a977_128x128.png" mode=""></image>
-				<!-- 文字滚动 -->
-				<uni-notice-bar
-				class="width1"
-				scrollable="true"
-				single="true"
-				text="歌手：周深 所属专辑：起风了"
-				background-color="transparent"
-				color="#fff"
-				:speed="50"
+		<list v-if="$video_list" :style="{'height': windowHeight + 'px'}">
+			<cell v-for="item in $video_list" :key="item.id" :style="{'height': windowHeight + 'px'}">
+			<!-- 视频 -->
+			<div class="home-video-wrap">
+				<video class="home-myvideo"
+				:autoplay="status"
+				:loop="true"
+				:controls="false"
+				:muted="false"
+				objectFit="cover"
+				:show-center-play-btn="false"
+				:src="qiniuURL + item.video_src"
+				poster="https://limitao.myuan.cn/gongyong/shangchuan/tu/33/2020/05/CF4664h6q64v7Vzvx6M4moveznuZv4.jpg"
+				@click="play"
+				id="myVideo"
 				>
-				<!-- transparent -->
-				</uni-notice-bar>
+				</video>
 			</div>
-		</div>
-		
-		<!-- 右侧 -->
-		<div class="home-personal">
-			<div class="home-personal-ul">
-				<!-- 头像 -->
-				<div class="h-picture">
-					<div class="h-pict" @click="gotoLink">
-						<image class="h-pict-image" src="@/static/image/40200d_1043x1043.png" mode="widthFix"></image>
-					</div>
-					<div class="h-add-ico-wrap">
-						<image @click="guanzhu" class="h-add-ico" src="@/static/image/103c3f_200x200.png" mode=""></image>
-					</div>
-				</div>
-				<!-- 点赞 -->
-				<div class="home-personal-li" @click="dianzan">
-					<image v-if="zan" class="home-personal-img" src="@/static/image/336b3c_200x200.png" mode=""></image>
-					<image v-else class="home-personal-img" src="@/static/image/336b4c_200x200.png" mode=""></image>
-					<text class="home-personal-span">4140</text>
-				</div>
-				<!-- 评论 -->
-				<div class="home-personal-li" @click="pinglun">
-					<image class="home-personal-img" src="@/static/image/b91cd4_200x200.png" mode=""></image>
-					<text class="home-personal-span">806</text>
-				</div>
-				<!-- 分享 -->
-				<div class="home-personal-li" @click="share">
-					<image class="home-personal-img" src="@/static/image/349745_200x200.png" mode=""></image>
-					<text class="home-personal-span">1068</text>
-				</div>
-				<!-- 礼物 -->
-				<div class="home-personal-li" @click="liwu">
-					<image class="home-personal-img" src="@/static/image/b91cd4_221x200.png" mode=""></image>
-					<text class="home-personal-span">101</text>
-				</div>
-				<!-- 光盘 -->
-				<div class="home-personal-li home-personal-li-last" ref="test">
-					<image class="home-personal-img1" src="@/static/image/pan.png" mode=""></image>
-					<image class="home-personal-img2" src="@/static/image/40200d_1043x1043.png" mode=""></image>
+					
+			<!-- 播放按钮 -->
+			<div class="play-status" :style="{'top': playTop}" v-if="!status">
+				<image class="play-status-img" src="@/static/image/449745_200x200.png" mode=""></image>
+			</div>
+			
+			<!-- 内容 -->
+			<div class="home-content">
+				<text class="content-title" ref="test">@{{item.upload_username}}</text>
+				<text class="content-desc">{{item.video_des || '该作者没有写任何内容'}}</text>
+				<div class="music-name">
+					<image class="music-image" src="@/static/image/e6a977_128x128.png" mode=""></image>
+					<!-- 文字滚动 -->
+					<uni-notice-bar
+					class="width1"
+					scrollable="true"
+					single="true"
+					text="歌手：周深 所属专辑：起风了"
+					background-color="transparent"
+					color="#fff"
+					:speed="50"
+					>
+					<!-- transparent -->
+					</uni-notice-bar>
 				</div>
 			</div>
-		</div>
+			
+			<!-- 右侧 -->
+			<div class="home-personal">
+				<div class="home-personal-ul">
+					<!-- 头像 -->
+					<div class="h-picture">
+						<div class="h-pict" @click="gotoLink">
+							<image class="h-pict-image" src="@/static/image/40200d_1043x1043.png" mode="widthFix"></image>
+						</div>
+						<div class="h-add-ico-wrap">
+							<image @click="guanzhu" class="h-add-ico" src="@/static/image/103c3f_200x200.png" mode=""></image>
+						</div>
+					</div>
+					<!-- 点赞 -->
+					<div class="home-personal-li" @click="dianzan">
+						<image v-if="zan" class="home-personal-img" src="@/static/image/336b3c_200x200.png" mode=""></image>
+						<image v-else class="home-personal-img" src="@/static/image/336b4c_200x200.png" mode=""></image>
+						<text class="home-personal-span">{{item.like}}</text>
+					</div>
+					<!-- 评论 -->
+					<div class="home-personal-li" @click="pinglun">
+						<image class="home-personal-img" src="@/static/image/b91cd4_200x200.png" mode=""></image>
+						<text class="home-personal-span">{{item.number_of_comments}}</text>
+					</div>
+					<!-- 分享 -->
+					<div class="home-personal-li" @click="share">
+						<image class="home-personal-img" src="@/static/image/349745_200x200.png" mode=""></image>
+						<text class="home-personal-span">0</text>
+					</div>
+					<!-- 礼物 -->
+					<div class="home-personal-li" @click="liwu">
+						<image class="home-personal-img" src="@/static/image/b91cd4_221x200.png" mode=""></image>
+						<text class="home-personal-span">0</text>
+					</div>
+					<!-- 光盘 -->
+					<div class="home-personal-li home-personal-li-last" ref="test">
+						<image class="home-personal-img1" src="@/static/image/pan.png" mode=""></image>
+						<image class="home-personal-img2" src="@/static/image/40200d_1043x1043.png" mode=""></image>
+					</div>
+				</div>
+			</div>
+			</cell>
+		</list>
 	</div>
 </template>
 
 <script>
 	const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync();
 	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue'
+	
+	import { mapState } from 'vuex'
+	import { qiniuURL } from '@/tool/common/config.js'
 	
 	// #ifdef APP-NVUE
 		const animation = weex.requireModule('animation')
@@ -125,6 +132,7 @@
 	export default {
 		data(){
 			return {
+				qiniuURL: qiniuURL,
 				windowHeight: windowHeight,
 				statusBarHeight: statusBarHeight,
 				playTop: (windowHeight / 2) - 40 + 'px',
@@ -132,25 +140,36 @@
 				zan: true,
 				tabs: 1,
 				
+				page:1,
 			}
 		},
-		onReady: function (res) {
-			
-		},
-		mounted() {
-			
-		},
 		created() {
-			console.log(uni.getSystemInfoSync());
-			setTimeout(()=>{
-				this.move();
-			}, 1000)
+			this.loadData();
 		},
-		onLoad() {
-			
+		computed: {
+			...mapState('Video', {
+				$video_list: state => {
+					if(state.video_index){
+						return state.video_index.splice(0, 1)
+					}else{
+						return state.video_index
+					}
+				}
+			})
 		},
-		
 		methods: {
+			loadData(){
+				let data = {
+					page: this.page,
+				}
+				this.$store.dispatch('Video/video_index', data)
+				.then(res=>{
+					console.log(res);
+					setTimeout(()=>{
+						this.move();
+					}, 3000)
+				})
+			},
 			play(){
 				var video = uni.createVideoContext('myVideo')
 				if(this.status){
