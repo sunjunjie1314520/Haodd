@@ -15,4 +15,6 @@ export const SHOP = [CONSIGNEE_INDEX, CATEGORY_INDEX, PRODUCT_INDEX, PRODUCT_SYS
 
 // Video.js
 export const VIDEO_INDEX = 'video_index'
-export const VIDEO = [VIDEO_INDEX]
+export const VIDEO_CLICK = 'video_click'
+export const VIDEO_FOLLOW_ADD = 'follow_add'
+export const VIDEO = [VIDEO_INDEX, VIDEO_CLICK, VIDEO_FOLLOW_ADD]

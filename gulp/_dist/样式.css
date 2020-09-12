@@ -1479,6 +1479,9 @@
 .video-page .video-layout .text .jubao text:nth-of-type(1) {
   margin-top: 0;
 }
+.video-page .video-layout .text .jubao text.cancel {
+  background: #1e1e27;
+}
 .service-page {
   float: left;
   width: 100%;
@@ -2379,4 +2382,29 @@
 .tabs-wrap {
   float: left;
   width: 100%;
+}
+.search-page {
+  float: left;
+  width: 100%;
+  padding: 30upx;
+}
+.search-page input {
+  float: left;
+  width: 100%;
+  height: 80upx;
+  background: #1e1e27;
+  padding: 0 20upx;
+  color: #fff;
+}
+.search-page .btn {
+  height: 80upx;
+  line-height: 80upx;
+  background: #f7224e;
+  color: #fff;
+  font-size: 30upx;
+  display: block;
+  margin-top: 25upx;
+  float: left;
+  width: 100%;
+  text-align: center;
 }

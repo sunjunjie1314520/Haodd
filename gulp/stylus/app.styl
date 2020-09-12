@@ -33,11 +33,14 @@
 	right 0
 	bottom -1px
 	z-index 2
-	background-color #1e1e27
 	padding 5px 0
-	// border-style solid
-	// border-top-width 1px
-	// border-color rgba(#fff, .3)
+	border-style solid
+	border-top-width 1px
+	border-color rgba(#fff, .1)
+	background-color rgba(#1e1e27, .1)
+	
+.app-footer-active
+	background-color #1e1e27
 	
 .app-footer-ul
 	flex-direction row
@@ -75,39 +78,40 @@
 	flex 1
 	height 1000px
 	width 750px
+
 .home-personal
-	position fixed
-	right 30upx
+	position absolute
+	right 30px
 	z-index 2
-	bottom 160px
+	bottom 140px
 		
 .home-personal-img
-	width 70px
-	height 70px
+	width 80px
+	height 80px
 	
 .home-personal-img1
 	widthZ 90px
 	
 .home-personal-img2
 	widthZ 50px
-	position absolute
-	left 26px
+	position absolute !important
+	left 22px
 	top 22px
 	border-radius 50%
 	
 .home-personal-li
-	margin-top 40px
+	margin-top 30px
 	flex-direction column
 	justify-content center
 	align-items center
 	position relative
 	
 .home-personal-li-last
-	margin-top 100px
+	margin-top 60px
 	
 .home-personal-span
 	color #FFFFFF
-	font-size 24px
+	font-size 30px
 	margin-top 4px
 	
 .h-picture
@@ -141,7 +145,7 @@
 	widthZ 40px
 	
 .home-content
-	position fixed
+	position absolute
 	left 30px
 	bottom 120px
 	flex-direction column
@@ -167,7 +171,7 @@
 	width 34px
 	height 34px
 .play-status
-	position fixed
+	position absolute
 	left 0
 	right 0
 	height 100px
@@ -175,11 +179,11 @@
 	flex-direction row
 	justify-content center
 	align-items center
+	pointer-events none
 	
 .play-status-img
 	widthZ 80px
 	opacity .6
-
 
 // 视频选择	
 
@@ -248,6 +252,7 @@
 	height 100px
 	justify-content space-between
 	flex-direction row
+	z-index 2
 	
 .home-search-center
 	width 200px
@@ -616,12 +621,14 @@
 	border-top-color rgba(#fff, .2)
 	border-top-width 1px
 	border-topN 1
+
 .list-menu-2-li-navigator
 	flex 1
 	padding 30px 20px 30px 30px
 	display flex
 	flex-direction row
 	align-items center
+
 .list-menu-2-li-p
 	color font-color
 	font-size 26px
@@ -629,6 +636,7 @@
 	flex 1
 	line-height 40px
 	padding-left 15px
+
 .list-menu-2-li-ico
 	float left
 	height 40px
@@ -639,42 +647,120 @@
 .list-menu-2-li-more
 	color font-color
 	font-size 26px
-.list-menu-2-li-i1
-	backi '../../src/static/img/99b87e_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i2
-	backi '../../src/static/img/1cc50b_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i3
-	backi '../../src/static/img/436850_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i4
-	backi '../../src/static/img/1b998d_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i5
-	backi '../../src/static/img/de9f73_128x126.png' 40px
-	background-size 30px
-.list-menu-2-li-i6
-	backi '../../src/static/img/1d4fb3_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i7
-	backi '../../src/static/img/01c881_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i8
-	backi '../../src/static/img/50eb93_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i9
-	backi '../../src/static/img/51fc96_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i10
-	backi '../../src/static/img/22b736_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i11
-	backi '../../src/static/img/b9fe32_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i12
-	backi '../../src/static/img/9211c9_128x128.png' 40px
-	background-size 30px
-.list-menu-2-li-i13
-	backi '../../src/static/img/1c6c3d_128x128.png' 40px
-	background-size 30px
+
+.comment-slide
+	position fixed
+	left 0
+	right 0
+	bottom 0
+	z-index 999
+	top 0
+	background-color transparent
+
+.comment-slide-layout
+	position absolute
+	left 0
+	right 0
+	bottom 97px
+	background-color rgba(#000, .9)
+	z-index 1
+	min-height 1000px
+	
+
+.comment-title
+	display flex
+	height 100px
+	flex-direction row
+	justify-content center
+	position relative
+	align-items center
+
+.comment-h2
+	color #fff
+	text-align center
+	font-size 32px
+
+.comment-close
+	position absolute !important
+	right 0
+	top 0
+	color #fff
+	line-height 100px
+	width 100px
+	text-align center
+	font-size 36px
+
+.comment-li
+	flex-direction row
+	padding 20px 30px
+	justify-content space-between
+	border-top-style solid
+	border-top-color rgba(#fff, .1)
+	border-top-width 1px
+	
+.comment-pict
+	border-radius 50%
+	widthZ 80px
+
+.comment-text
+	margin-left 20px
+	flex 1
+
+.comment-pict-image
+	widthZ 80px
+	border-radius 50%
+
+.comment-content-h2
+	color #fff
+	opacity .6
+	font-size 30px
+
+.comment-content
+	flex-direction row
+
+.comment-content-h3
+	color #fff
+	font-size 26px
+
+.comment-content-p
+	color #fff
+	margin-left 15px
+	font-size 26px
+
+.comment-fr
+	flex-direction column
+	opacity .6
+	justify-content center
+	align-items center
+.comment-fr-s1
+	color #fff
+	font-size 26px
+
+.comment-fr-s2
+	color #fff
+	font-size 26px
+
+.input-text
+	position absolute
+	left 0
+	bottom 0
+	right 0
+	flex-direction row
+	justify-content space-between
+	padding 15px
+	background-color #000
+
+.input-text-input
+	width 530px
+	height 80px
+	font-size 30px
+	background-color color1
+	padding 0 20px
+.comment-btn
+	width 150px
+	height 80px
+	background-color bg
+	color #fff
+	font-size 30px
+	text-align center
+	line-height 80px

@@ -4,7 +4,8 @@ let url_config = null
 console.log(process.env);
 
 // 接口地址
-const serverURL = 'http://192.168.1.50/index.php'
+// const serverURL = 'http://192.168.1.50/index.php'
+const serverURL = 'http://101.200.171.163/public/index.php'
 
 // 上传文件地址
 const qiniu = 'http://up-z2.qiniup.com'

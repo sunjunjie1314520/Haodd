@@ -97,7 +97,7 @@
 				this.config.password = this.$md5(this.password)
 				this.$api.login.sign(this.config)
 				.then(res=>{
-					console.log(res);
+					// console.log(res);
 					if(res.code === 1){
 						this.toast(res.msg, 'success')
 						this.success(res.data);

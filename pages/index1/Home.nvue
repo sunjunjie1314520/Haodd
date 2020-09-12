@@ -1,16 +1,17 @@
 <template>
 	<div class="flex" :style="{'height': windowHeight + 'px'}">
 		
-		<div class="status-app" :style="{'height': statusBarHeight + 'px'}"></div>
+		<!-- 导航区 -->
+		<div class="status-app" :style="{'height': statusBarHeight}"></div>
 		
 		<!-- 搜索区 -->
-		<div class="home-search" :style="{'top': statusBarHeight + 'px'}">
+		<div class="home-search h5-flex" :style="{'top': statusBarHeight}">
 			<!-- 直播 -->
-			<div class="home-live-fl">
-				<image class="search-fr-image" src="@/static/image/a9fa34_200x200.png" mode=""></image>
+			<div class="home-live-fl h5-flex">
+				<image @click="dai" class="search-fr-image" src="@/static/image/a9fa34_200x200.png" mode=""></image>
 			</div>
 			<!-- 切换 -->
-			<div class="home-search-center">
+			<div class="home-search-center h5-flex">
 				<div class="home-search-title" @click="tabs=0">
 					<text :class="['home-search-title-txt', tabs==0 ? 'home-search-title-active': '']">关注</text>
 					<div v-if="tabs==0" class="home-search-title-line"></div>
@@ -21,47 +22,67 @@
 				</div>
 			</div>
 			<!-- 搜索 -->
-			<div class="search-fr" @click="searchLink">
+			<div class="search-fr h5-flex" @click="searchLink">
 				<image class="search-fr-image" src="@/static/image/2b293b_128x128.png" mode=""></image>
 			</div>
 		</div>
 		
-		<list v-if="$video_list" :style="{'height': windowHeight + 'px'}">
-			<cell v-for="item in $video_list" :key="item.id" :style="{'height': windowHeight + 'px'}">
+		<list
+		class="list-wrap"
+		v-if="$video_list"
+		:pagingEnabled="true"
+		:offset-accuracy="videoStyle.height"
+		:show-scrollbar="false"
+		:loadmoreoffset="loadMoreHeight"
+		ref="list"
+		@loadmore="Jiazai"
+		@scroll="Scroll"
+		>
+			<cell
+			class="list-cell"
+			v-for="(item, index) in $video_list"
+			:key="item.id"
+			:style="videoStyle"
+			@disappear="Disappear($event, index)"
+			@appear="onappear"
+			>
 			<!-- 视频 -->
-			<div class="home-video-wrap">
+			<div class="home-video-wrap" :style="videoStyle">
 				<video class="home-myvideo"
-				:autoplay="status"
+				:style="videoStyle"
+				:autoplay="false"
 				:loop="true"
 				:controls="false"
 				:muted="false"
 				objectFit="cover"
 				:show-center-play-btn="false"
+				:enable-progress-gesture="false"
 				:src="qiniuURL + item.video_src"
 				poster="https://limitao.myuan.cn/gongyong/shangchuan/tu/33/2020/05/CF4664h6q64v7Vzvx6M4moveznuZv4.jpg"
-				@click="play"
-				id="myVideo"
+				:id="`video_${index}`"
+				:ref="`video_${index}`"
+				@click="play(index)"
 				>
 				</video>
 			</div>
 					
 			<!-- 播放按钮 -->
-			<div class="play-status" :style="{'top': playTop}" v-if="!status">
+			<div class="play-status h5-flex" :style="{'top': playTop}" v-if="!play_status">
 				<image class="play-status-img" src="@/static/image/449745_200x200.png" mode=""></image>
 			</div>
 			
 			<!-- 内容 -->
-			<div class="home-content">
-				<text class="content-title" ref="test">@{{item.upload_username}}</text>
+			<div class="home-content h5-flex">
+				<text class="content-title" ref="test">@{{item.upload_nickname}}</text>
 				<text class="content-desc">{{item.video_des || '该作者没有写任何内容'}}</text>
-				<div class="music-name">
+				<div class="music-name h5-flex">
 					<image class="music-image" src="@/static/image/e6a977_128x128.png" mode=""></image>
 					<!-- 文字滚动 -->
 					<uni-notice-bar
 					class="width1"
 					scrollable="true"
 					single="true"
-					text="歌手：周深 所属专辑：起风了"
+					text="歌手：未知 所属专辑：歌曲正在播放中..."
 					background-color="transparent"
 					color="#fff"
 					:speed="50"
@@ -76,49 +97,105 @@
 				<div class="home-personal-ul">
 					<!-- 头像 -->
 					<div class="h-picture">
-						<div class="h-pict" @click="gotoLink">
-							<image class="h-pict-image" src="@/static/image/40200d_1043x1043.png" mode="widthFix"></image>
+						<div class="h-pict h5-flex" @click="gotoLink(item.upload_user_id)">
+							<image class="h-pict-image" :src="qiniuURL + item.upload_avatar" mode="widthFix"></image>
 						</div>
-						<div class="h-add-ico-wrap">
-							<image @click="guanzhu" class="h-add-ico" src="@/static/image/103c3f_200x200.png" mode=""></image>
+						<div class="h-add-ico-wrap h5-flex" v-if="item.mine_follow==0">
+							<image @click="guanzhu(item.upload_user_id, index, item.mine_follow)" class="h-add-ico" src="@/static/image/103c3f_200x200.png" mode=""></image>
 						</div>
 					</div>
 					<!-- 点赞 -->
-					<div class="home-personal-li" @click="dianzan">
-						<image v-if="zan" class="home-personal-img" src="@/static/image/336b3c_200x200.png" mode=""></image>
+					<div class="home-personal-li h5-flex" @click="dianzan(item.id, item.upload_user_id, index, item.mine_like_count)">
+						<image v-if="item.mine_like_count==0" class="home-personal-img" src="@/static/image/336b3c_200x200.png" mode=""></image>
 						<image v-else class="home-personal-img" src="@/static/image/336b4c_200x200.png" mode=""></image>
 						<text class="home-personal-span">{{item.like}}</text>
 					</div>
 					<!-- 评论 -->
-					<div class="home-personal-li" @click="pinglun">
+					<div class="home-personal-li h5-flex" @click="comment_in">
 						<image class="home-personal-img" src="@/static/image/b91cd4_200x200.png" mode=""></image>
 						<text class="home-personal-span">{{item.number_of_comments}}</text>
 					</div>
 					<!-- 分享 -->
-					<div class="home-personal-li" @click="share">
+					<div class="home-personal-li h5-flex" @click="share">
 						<image class="home-personal-img" src="@/static/image/349745_200x200.png" mode=""></image>
-						<text class="home-personal-span">0</text>
+						<text class="home-personal-span">{{item.follow}}</text>
 					</div>
 					<!-- 礼物 -->
-					<div class="home-personal-li" @click="liwu">
+					<div class="home-personal-li h5-flex" @click="liwu">
 						<image class="home-personal-img" src="@/static/image/b91cd4_221x200.png" mode=""></image>
 						<text class="home-personal-span">0</text>
 					</div>
 					<!-- 光盘 -->
-					<div class="home-personal-li home-personal-li-last" ref="test">
-						<image class="home-personal-img1" src="@/static/image/pan.png" mode=""></image>
-						<image class="home-personal-img2" src="@/static/image/40200d_1043x1043.png" mode=""></image>
+					<div class="home-personal-li home-personal-li-last h5-flex" :ref="`test_${index}`">
+						<pan></pan>
 					</div>
 				</div>
 			</div>
 			</cell>
 		</list>
+		
+		<!-- 评论弹窗 -->
+		<div class="comment-slide" ref="comment" @click="abc">
+			<div class="comment-slide-layout">
+				<div class="comment-title">
+					<text class="comment-h2">39条评论</text>
+					<text class="comment-close" @click="out">x</text>
+				</div>
+				<div class="comment-wrap">
+					<div class="comment-ul">
+						<div class="comment-li h5-flex">
+							<div class="comment-pict">
+								<image class="comment-pict-image" src="../../src/static/img/116836_130x130.png" mode=""></image>
+							</div>
+							<div class="comment-text">
+								<div class="comment-name">
+									<text class="comment-content-h2">浪子二少</text>
+								</div>
+								<div class="comment-content">
+									<text class="comment-content-h3">阿杰</text>
+									<text class="comment-content-p">2020-05-05 15:32:15</text>
+								</div>
+							</div>
+							<div class="comment-fr h5-flex">
+								<text class="comment-fr-s1">◆</text>
+								<text class="comment-fr-s2">3</text>
+							</div>
+						</div>
+						<div class="comment-li h5-flex">
+							<div class="comment-pict">
+								<image class="comment-pict-image" src="../../src/static/img/116836_130x130.png" mode=""></image>
+							</div>
+							<div class="comment-text">
+								<div class="comment-name">
+									<text class="comment-content-h2">浪子二少</text>
+								</div>
+								<div class="comment-content">
+									<text class="comment-content-h3">阿杰</text>
+									<text class="comment-content-p">2020-05-05 15:32:15</text>
+								</div>
+							</div>
+							<div class="comment-fr h5-flex">
+								<text class="comment-fr-s1">◆</text>
+								<text class="comment-fr-s2">3</text>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="input-text h5-flex">
+					<input class="input-text-input" v-model="comment_content" type="text" placeholder="请输入评论内容" placeholder-class="placeholder-class">
+					<text class="comment-btn" @click="pinglun">确定</text>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 	const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync();
+	
 	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue'
+	import pan from './pan.nvue'
 	
 	import { mapState } from 'vuex'
 	import { qiniuURL } from '@/tool/common/config.js'
@@ -130,17 +207,33 @@
 	// #endif
 	
 	export default {
+		components: {
+			uniNoticeBar,
+			pan,
+		},
 		data(){
 			return {
 				qiniuURL: qiniuURL,
 				windowHeight: windowHeight,
-				statusBarHeight: statusBarHeight,
+				statusBarHeight: statusBarHeight + 'px',
 				playTop: (windowHeight / 2) - 40 + 'px',
-				status: true,
-				zan: true,
+				
+				// statusBarHeight:deviceInfo.statusBarHeight+'px',
+				loadMoreHeight: windowHeight * 2,
+				videoStyle:{
+					width:"750upx",
+					height: windowHeight + 'px',
+				},
+				
+				comment_content:'',
+								
 				tabs: 1,
 				
-				page:1,
+				page: 1,
+				
+				index: -1,
+				prev: -1,
+				play_status: false,
 			}
 		},
 		created() {
@@ -148,106 +241,196 @@
 		},
 		computed: {
 			...mapState('Video', {
-				$video_list: state => {
-					if(state.video_index){
-						return state.video_index.splice(0, 1)
-					}else{
-						return state.video_index
-					}
-				}
+				$video_list: state => state.video_index
 			})
 		},
+		mounted() {
+			this.$nextTick(()=>{
+				
+			})
+		},
+		onHide(){
+			uni.createVideoContext(`video_${this.index}`,this).pause()
+			this.play_status = false;
+		},
 		methods: {
+			abc(){
+				
+			},
 			loadData(){
+				uni.showLoading({
+					title: '视频加载中'
+				})
+				const _this = this;
 				let data = {
 					page: this.page,
 				}
 				this.$store.dispatch('Video/video_index', data)
 				.then(res=>{
+					uni.showToast({
+						title: `已为您推荐了${res.data.length}条视频`,
+						icon: 'none'
+					})
 					console.log(res);
+					// 加载之后播放
 					setTimeout(()=>{
-						this.move();
-					}, 3000)
+						this.index = 0
+						this.prev = 0
+						this.play_status = true
+						uni.createVideoContext(`video_${this.index}`,this).play();
+					}, 200)
 				})
 			},
-			play(){
-				var video = uni.createVideoContext('myVideo')
-				if(this.status){
-					video.pause();
-					this.status=false
+			// 暂停和播放
+			play(index){
+				if(this.play_status){
+					uni.createVideoContext(`video_${this.index}`,this).pause();
+					this.play_status = false
 				}else{
-					video.play();
-					this.status=true
+					this.play_status = true
+					uni.createVideoContext(`video_${this.index}`,this).play();
 				}
 			},
-			guanzhu(){
-				uni.showToast({
-					title: '关注成功',
-					icon:'none'
+			// 关注函数
+			guanzhu(to_from_id, index, mine_follow){
+				let data = {
+					to_from_id,	// 视频id
+				}
+				this.$store.dispatch('Video/follow_add', data)
+				.then(res=>{
+					this.$store.commit('Video/SET_MINE_FOLLOW', {index, mine_follow})
+					uni.showToast({
+						title: res.msg,
+						icon:'none'
+					})
 				})
 			},
-			dianzan(){
-				this.zan = !this.zan
+			// 点赞函数
+			dianzan(video_id, to_from_id, index, mine_like_count){
+				let data = {
+					video_id, // 视频id
+					to_from_id, // 作者id
+				}
+				this.$store.dispatch('Video/video_click', data)
+				.then(res=>{
+					this.$store.commit('Video/SET_DIANZAN', {index, mine_like_count})
+					uni.showToast({
+						title: res.msg,
+					})
+				})
 			},
+			// 评论
 			pinglun(){
+				
 				uni.showToast({
 					title: '评论成功',
 					icon:'none'
 				})
 			},
+			// 分享
 			share(){
 				uni.showToast({
 					title: '分享成功',
 					icon:'none'
 				})
 			},
+			// 礼物
 			liwu(){
 				uni.showToast({
 					title: '刷礼物',
 					icon:'none'
 				})
 			},
-			gotoLink(){
+			// 头像跳转
+			gotoLink(user_id){
 				uni.navigateTo({
-					url: '../user/video1'
+					url: '../user/video?id=' + user_id
 				})
 			},
+			// 右上角搜索
 			searchLink(){
-				uni.showToast({
-					title: '展开搜索',
+				uni.navigateTo({
+					url: '../video/search'
 				})
 			},
-			move() {
+			// 加载函数
+			Jiazai(){
+				console.log('加载一次');
+			},
+			// 滑动事情
+			Disappear(e, index){
+				this.index = e.direction=='up' ? index + 1: index - 1;
+				setTimeout(()=>{
+					console.log(this.index);
+					uni.createVideoContext(`video_${this.index}`,this).play();
+					if(this.index != this.prev){
+						uni.createVideoContext(`video_${this.prev}`,this).pause();
+						this.prev = this.index
+					}
+					console.log(this.prev);
+				},300)
+			},
+			// 移出
+			onappear (e) {
+				// console.log(e);
+			},
+			dai(){
+				uni.showToast({
+					title: '直播功能未开放',
+					icon: 'none',
+				})
+			},
+			out(){
+				console.log('out');
 				const _this = this;
-				var testEl = this.$refs.test;
+				var testEl = _this.$refs['comment'];
 				animation.transition(testEl, {
 					styles: {
-						transform: 'rotate(0deg)',
+						transform: 'translateY(1000px)',
 					},
-					duration: 0
+					duration: 500
+				}, function(){
+					// modal.toast({ message: 'animation finished.' })
 				})
-				animation.transition(testEl, {
-				  styles: {
-					color: '#FF0000',
-					transform: 'rotate(360deg)',
-					transformOrigin: 'center center'
-				  },
-				  duration: 1200, //ms
-				  timingFunction: 'linear',
-				  delay: 0 //ms
-				}, function () {
-				  // modal.toast({ message: 'animation finished.' })
-				  _this.move();
+			},
+			comment_in(){
+				console.log('comment_in');
+				const _this = this;
+				var testEl = _this.$refs['comment'];
+				
+				dom.getComponentRect(testEl, (res) => {
+					console.log(res.size);
+					animation.transition(testEl, {
+						styles: {
+							// transform: `translateY(-${res.size.height}upx)`,
+							bottom: '100px'
+						},
+						duration: 500
+					})
 				})
-			}
-		},
-		components: {
-			uniNoticeBar
+			},
 		}
 	}
 </script>
 
-<style lang="stylus">
-	.width1
-		flex 1
+<style scoped>
+	.list-wrap{
+		flex-direction: column;
+		width: 750upx;
+		flex: 1;
+		background-color: #000000;
+	}
+	.list-cell{
+		position: relative;
+		/* #ifdef H5 */
+			flex: 1;
+			display: block;
+		/* #endif */
+	}
+	.width1{
+		flex: 1;
+	}
+	.comment-slide{
+		transform: translateY(1000px);
+	}
 </style>

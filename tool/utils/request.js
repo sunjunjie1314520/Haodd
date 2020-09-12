@@ -43,6 +43,9 @@ request.globalRequest = (url, method, data, power, loading) => {
 					icon: 'none',
                 })
             }
+			/*这里写判断*/
+			
+			
 			return res[1].data
         } 
 		else{

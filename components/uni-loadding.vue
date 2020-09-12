@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: 'loadding',
+        name: 'uni-loadding',
         props: {
             more:{
                 type: Boolean,

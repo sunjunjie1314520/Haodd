@@ -1,0 +1,70 @@
+<template>
+	<div class="pan">
+		<div class="pan-wrap" ref="test">
+			<image class="home-personal-img1" src="@/static/image/pan.png" mode=""></image>
+			<image class="home-personal-img2" src="@/static/image/40200d_1043x1043.png" mode=""></image>
+		</div>
+	</div>
+</template>
+
+<script>
+	
+	// #ifdef APP-NVUE
+		const animation = weex.requireModule('animation')
+		const modal = weex.requireModule('modal')
+		const dom = weex.requireModule('dom');
+	// #endif
+	
+	export default {
+		data(){
+			return {
+				
+			}
+		},
+		onLoad() {
+			
+		},
+		mounted() {
+			this.$nextTick(() => {
+				this.move()
+			})
+		},
+		methods: {
+			// 旋转
+			move() {
+				// #ifdef APP-NVUE
+					const _this = this;
+					var testEl = _this.$refs['test'];
+					animation.transition(testEl, {
+						styles: {
+							transform: 'rotate(0deg)',
+						},
+						duration: 0
+					})
+					animation.transition(testEl, {
+					  styles: {
+						color: '#FF0000',
+						transform: 'rotate(360deg)',
+						transformOrigin: 'center center'
+					  },
+					  duration: 1200, //ms
+					  timingFunction: 'linear',
+					  delay: 0 //ms
+					}, function () {
+					  // modal.toast({ message: 'animation finished.' })
+					  _this.move();
+					})
+				// #endif
+			},
+		}
+	}
+</script>
+
+<style>
+	.pan{}
+	.pan-wrap{
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+</style>

@@ -10,12 +10,12 @@
 		<div class="pub-video-select" @click="test" v-if="show">
 			<div class="pub-video-ul">
 				<div class="pub-video-li">
-					<div class="pict1-color1">
+					<div class="pict1-color1" @click="toast('拍摄')">
 						<image class="pub-video-img" src="@/static/image/a9fa32_200x200.png" mode=""></image>
 					</div>
 					<text class="pub-video-text">拍摄视频</text>
 				</div>
-				<div class="pub-video-li" @click="toast">
+				<div class="pub-video-li" @click="toast('直播')">
 					<div class="pict1-color2">
 						<image class="pub-video-img" src="@/static/image/a9fa33_200x200.png" mode=""></image>
 					</div>
@@ -76,9 +76,9 @@
 			closeHandle(){
 				this.show = false
 			},
-			toast(){
+			toast(title){
 				uni.showToast({
-					title: '功能未开放',
+					title: `${title}功能未开放`,
 					icon: 'none'
 				})
 			}

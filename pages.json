@@ -271,6 +271,12 @@
 			"style": {
 				"navigationBarTitleText": "确认支付"
 			}
+		},
+		{
+			"path" : "pages/video/search",
+			"style": {
+				"navigationBarTitleText": "用户搜索"
+			}
 		}
 	],
 	"globalStyle": {

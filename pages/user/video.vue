@@ -6,9 +6,16 @@
 					<image :src="qiniuURL + $user.avatar" mode=""></image>
 				</view>
 				<view class="text">
-					<text class="p font">ID:{{$aes.id}}</text>
+					<text class="p font" v-if="id">ID:{{id}}</text>
+					<text class="p font" v-else>ID:{{$aes.id}}</text>
+					
 					<text class="span">{{$user.des}}</text>
-					<navigator url="../user/personal" class="modify">修改资料</navigator>
+					<view class="jubao" v-if="id">
+						<text>举报</text>
+						<text v-if="pageData.is_follow" class="cancel">取消关注</text>
+						<text v-else>关注</text>
+					</view>
+					<navigator v-else url="../user/personal" class="modify">修改资料</navigator>
 				</view>
 			</view>
 			<view class="number">
@@ -67,14 +74,22 @@
 			return {
 				tabs: 0,
 				
+				size: 10,
 				pageData: false,
 				next: true,
 				page:1,
+				
 				list:[],
 				list1:[],
+				
+				id: '',
 			}
 		},
-		created() {
+		onLoad(e) {
+			console.log(e);
+			if(e.id){
+				this.id = e.id
+			}
 			this.getNetData();
 		},
 		methods: {
@@ -84,7 +99,7 @@
 			getNetData(){
 				let data = {
 					page: this.page,
-					id:'',
+					id: this.id,
 				}
 				this.$api.video.video_home(data)
 				.then(res=>{

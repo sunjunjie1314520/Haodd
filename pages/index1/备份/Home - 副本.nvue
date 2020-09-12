@@ -1,6 +1,6 @@
 <template>
 		<list
-		:pagingEnabled="true" 
+		:pagingEnabled="true"
 		class="zhi_index04"
 		:offset-accuracy="videoStyle.height"
 		:show-scrollbar="false" 
@@ -93,7 +93,7 @@
 				videoStyle:{
 					width:"750rpx",
 					height:deviceInfo.windowHeight+'px',
-				},					
+				},
 				so: {
 					jingdu: '',
 					weidu: '',
@@ -151,7 +151,6 @@
 					this.lie[this.index].guanzhu=0
 				}
 			},
-			
 			panduanpofang(){
 				if(that.kebofang==0){
 					uni.createVideoContext(`video_${this.index}`,this).pause()
@@ -177,7 +176,7 @@
 					this.index=(e.direction=='up')?i+1:i-1;
 					setTimeout(()=>{
 							uni.createVideoContext(`video_${this.index}`,this).play()
-					},300)					
+					},300)			
 				}		
 			},
 			Scroll(e){
