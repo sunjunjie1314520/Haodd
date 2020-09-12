@@ -5,6 +5,7 @@
 		<Shop v-if="tabs==1"></Shop>
 		<Game v-if="tabs==2"></Game>
 		<Center v-if="tabs==3"></Center>
+		
 		<Footer @change="change" @fabu="show=true" :tabs="tabs"></Footer>
 		
 		<div class="pub-video-select" @click="test" v-if="show">
@@ -68,13 +69,13 @@
 				this.$store.dispatch('Personal/me');
 			},
 			change(dex){
-				this.tabs = dex
+				this.tabs = dex;
 			},
 			test(){
 				console.log(1);
 			},
 			closeHandle(){
-				this.show = false
+				this.show = false;
 			},
 			toast(title){
 				uni.showToast({

@@ -738,7 +738,13 @@
   bottom: 97upx;
   background-color: rgba(0,0,0,0.9);
   z-index: 1;
-  min-height: 1000upx;
+  height: 1000upx;
+}
+.comment-wrap {
+  height: 805upx;
+}
+.comment-ul-list {
+  height: 805upx;
 }
 .comment-title {
   display: flex;
@@ -788,19 +794,21 @@
 .comment-content-h2 {
   color: #fff;
   opacity: 0.6;
-  font-size: 30upx;
+  font-size: 26upx;
 }
 .comment-content {
-  flex-direction: row;
+  flex-direction: column;
+  margin-top: 10upx;
 }
 .comment-content-h3 {
   color: #fff;
-  font-size: 26upx;
+  font-size: 30upx;
 }
 .comment-content-p {
   color: #fff;
-  margin-left: 15upx;
   font-size: 26upx;
+  opacity: 0.6;
+  margin-top: 6upx;
 }
 .comment-fr {
   flex-direction: column;
@@ -832,6 +840,7 @@
   font-size: 30upx;
   background-color: #111118;
   padding: 0 20upx;
+  color: #fff;
 }
 .comment-btn {
   width: 150upx;

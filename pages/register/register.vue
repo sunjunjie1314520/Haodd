@@ -65,7 +65,7 @@
 						type: 'len',
 						val: this.config.pid,
 						field: '邀请码',
-						min: 6
+						min: 8
 					},
 				]
 				

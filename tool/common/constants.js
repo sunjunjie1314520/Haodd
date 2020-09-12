@@ -17,4 +17,6 @@ export const SHOP = [CONSIGNEE_INDEX, CATEGORY_INDEX, PRODUCT_INDEX, PRODUCT_SYS
 export const VIDEO_INDEX = 'video_index'
 export const VIDEO_CLICK = 'video_click'
 export const VIDEO_FOLLOW_ADD = 'follow_add'
-export const VIDEO = [VIDEO_INDEX, VIDEO_CLICK, VIDEO_FOLLOW_ADD]
+export const VIDEO_COMMENT_INDEX = 'comment_index'
+export const VIDEO_COMMENT_SAVE = 'comment_save'
+export const VIDEO = [VIDEO_INDEX, VIDEO_CLICK, VIDEO_FOLLOW_ADD, VIDEO_COMMENT_INDEX, VIDEO_COMMENT_SAVE]

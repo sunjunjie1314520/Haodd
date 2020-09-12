@@ -5,13 +5,13 @@
 				<view class="li">
 					<text class="span">姓名:</text>
 					<view class="fr">
-						<input type="text" v-model="config.card_name" maxlength="3" value="" placeholder="请输入身份证姓名" placeholder-class="placeholder-class" />
+						<input type="text" confirm-type="next" v-model="config.card_name" maxlength="3" value="" placeholder="请输入身份证姓名" placeholder-class="placeholder-class" />
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">身份证号码:</text>
 					<view class="fr">
-						<input type="text" v-model="config.card_number" value="" maxlength="18" placeholder="请输入18位身份证号码" placeholder-class="placeholder-class" />
+						<input type="text" confirm-type="done" v-model="config.card_number" value="" maxlength="18" placeholder="请输入18位身份证号码" placeholder-class="placeholder-class" />
 					</view>
 				</view>
 			</view>
