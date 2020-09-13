@@ -26,6 +26,8 @@
 </template>
 
 <script>
+	//引入插件
+	const sharetrace = uni.requireNativePlugin('shoot-sharetrace');
 	export default {
 		data(){
 			return {
@@ -38,12 +40,27 @@
 				password: '',
 			}
 		},
+		onReady() {
+			//获取安装携带参数
+			sharetrace.getInstallTrace( data => {
+				this.showResult(JSON.stringify(data));
+			});
+		},
 		created() {
 			
 		},
 		methods:{
+			showResult(data) {
+				uni.showModal({
+					title: 'ShareTrace',
+					content: data,
+					showCancel:false,
+					success: function (res) {
+
+					}
+				});
+			},
 			registerFun(){
-				
 				let yz = [
 					{
 						type: 'phone',

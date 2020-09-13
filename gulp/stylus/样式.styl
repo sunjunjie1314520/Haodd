@@ -1603,27 +1603,29 @@
 		background-color color2
 		margin-bottom 30px
 		padding-top 30px
+		.check
+			float left
+			width 90px
+			height 166px
+			display flex
+			align-items center
+			.ico
+				widthZ 40px
+				border solid 1px border-color
+				display block
+				border-radius 50%
+				margin 0 auto
+			&.active	
+				.ico
+					back '../../src/static/img/ff0d5b_128x128.png'
+					background-color #fff
+					border none
+		.wrap
+			widthC 90px
+			float right
 		.li
 			fw 1
-			margin-top 20px
-			.check
-				float left
-				width 90px
-				height 166px
-				display flex
-				align-items center
-				.ico
-					widthZ 40px
-					border solid 1px border-color
-					display block
-					border-radius 50%
-					margin 0 auto
-				&.active	
-					.ico
-						back '../../src/static/img/ff0d5b_128x128.png'
-						background-color #fff
-						border none
-				
+			margin-top 20px				
 			.pict
 				width 166px
 				height 166px

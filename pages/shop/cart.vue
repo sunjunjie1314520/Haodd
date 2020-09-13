@@ -2,25 +2,28 @@
 	<view class="app">
 		<view class="cart-page" :style="{'min-height': windowHeight + 'px'}">
 			<view class="ul" v-for="(item, index) in list" :key="item.id">
-				<view class="li" v-for="(item1, index1) in item.CartDetail">
-					<view :class="['check', {active: item.check}]" @click="checkHandle(index)">
-						<text class="ico"></text>
-					</view>
-					<view class="pict">
-						<image :src="qiniuURL + item1.thumb" mode=""></image>
-					</view>
-					<view class="text">
-						<text class="h3">{{item1.pro_name}}</text>
-						<text class="p">单位:{{item1.pro_unit}}</text>
-						<view class="price">
-							<view class="pb">
-								<text class="d font">{{item1.amount}}.00</text>
-								<text class="b">音豆</text>
+				<view :class="['check', {active: item.check}]" @click="checkHandle(index)">
+					<text class="ico"></text>
+				</view>
+				<view class="wrap">
+					<view class="li" v-for="(item1, index1) in item.CartDetail">
+						<view class="pict">
+							<image :src="qiniuURL + item1.thumb" mode=""></image>
+						</view>
+						<view class="text">
+							<text class="h3">{{item1.pro_name}}</text>
+							<text class="p">单位:{{item1.pro_unit}}</text>
+							<view class="price">
+								<view class="pb">
+									<text class="d font">{{item1.amount}}.00</text>
+									<text class="b">音豆</text>
+								</view>
+								<text class="b">x{{item1.buy_number}}</text>
 							</view>
-							<text class="b">x{{item1.buy_number}}</text>
 						</view>
 					</view>
 				</view>
+				
 				<view class="count">
 					<text class="p">合计: {{item.total_amount}}.00</text>
 				</view>
