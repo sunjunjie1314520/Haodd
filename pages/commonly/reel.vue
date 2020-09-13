@@ -31,7 +31,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="null-data">
+			<view class="null-data" v-else>
 				您还没有任何卷轴
 			</view>
 		</view>

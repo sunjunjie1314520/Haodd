@@ -153,7 +153,7 @@
 .home-content {
   position: absolute;
   left: 30px;
-  bottom: 120px;
+  bottom: 140px;
   flex-direction: column;
   width: 405px;
 }
@@ -167,15 +167,6 @@
   font-size: 30px;
   margin-top: 20px;
   line-height: 40px;
-}
-.music-name {
-  flex-direction: row;
-  align-items: center;
-  margin-top: 20px;
-}
-.music-image {
-  width: 34px;
-  height: 34px;
 }
 .play-status {
   position: absolute;
@@ -476,12 +467,12 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  background: #1e1e27;
 }
 .user-layout-pict-image {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: #1e1e27;
 }
 .pict-wrap {
   float: left;

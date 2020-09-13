@@ -104,6 +104,29 @@
                     }
                 }
             }
+        },
+        "nativePlugins" : {
+            "shoot-sharetrace" : {
+                "sharetrace-appkey" : "05b42dd51cbe3d52",
+                "__plugin_info__" : {
+                    "name" : "sharetrace 免填邀请码",
+                    "description" : "sharetrace uniapp 插件",
+                    "platforms" : "Android,iOS",
+                    "url" : "https://ext.dcloud.net.cn/plugin?id=1893",
+                    "android_package_name" : "uni.UNIB779857",
+                    "ios_bundle_id" : "uni.UNIB779857",
+                    "isCloud" : true,
+                    "bought" : 1,
+                    "pid" : "1893",
+                    "parameters" : {
+                        "sharetrace-appkey" : {
+                            "des" : "sharetrace appkey",
+                            "key" : "com.sharetrace.APP_KEY",
+                            "value" : ""
+                        }
+                    }
+                }
+            }
         }
     },
     /* 快应用特有相关 */

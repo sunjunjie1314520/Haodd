@@ -47,6 +47,7 @@
 			@appear="onappear"
 			>
 			<!-- 视频 -->
+			<!-- :poster="qiniuURL + item.upload_avatar" -->
 			<div class="home-video-wrap" :style="videoStyle">
 				<video class="home-myvideo"
 				:style="videoStyle"
@@ -58,7 +59,7 @@
 				:show-center-play-btn="false"
 				:enable-progress-gesture="false"
 				:src="qiniuURL + item.video_src"
-				poster="https://limitao.myuan.cn/gongyong/shangchuan/tu/33/2020/05/CF4664h6q64v7Vzvx6M4moveznuZv4.jpg"
+				:poster="qiniuURL + item.upload_avatar"
 				:id="`video_${index}`"
 				:ref="`video_${index}`"
 				@click="play(index)"
@@ -75,21 +76,6 @@
 			<div class="home-content h5-flex">
 				<text class="content-title" ref="test">@{{item.upload_nickname}}</text>
 				<text class="content-desc">{{item.video_des || '该作者没有写任何内容'}}</text>
-				<div class="music-name h5-flex">
-					<image class="music-image" src="@/static/image/e6a977_128x128.png" mode=""></image>
-					<!-- 文字滚动 -->
-					<uni-notice-bar
-					class="width1"
-					scrollable="true"
-					single="true"
-					text="歌手：未知 所属专辑：歌曲正在播放中..."
-					background-color="transparent"
-					color="#fff"
-					:speed="50"
-					>
-					<!-- transparent -->
-					</uni-notice-bar>
-				</div>
 			</div>
 			
 			<!-- 右侧 -->

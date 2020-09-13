@@ -39,8 +39,8 @@
 						<text class="user-layout-sp2">个</text>
 					</div>
 				</div>
-				<div class="user-layout-right">
-					<text class="user-layout-text">手续费：{{$user.group_fee}}%</text>
+				<div class="user-layout-right h5-flex">
+					<text class="user-layout-text">手续费：{{$user.group_fee * 100}}%</text>
 				</div>
 			</div>
 			<div class="user-layout-set h5-flex">
@@ -122,7 +122,7 @@
 			</div>
 		</div>
 		
-		<div class="my-task">
+		<div class="my-task" v-if="$task.list.length > 0">
 			<div class="my-task-ul">
 				<div class="my-task-li" v-for="item in $task.list" :key="item.id">
 					<div class="my-task-li-ico">
