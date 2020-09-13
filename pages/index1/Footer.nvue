@@ -1,6 +1,6 @@
 <template>
-	<div :class="['app-footer', tabs != 0 ? 'app-footer-active':'']">
-		<div :class="['app-footer-ul', 'h5-flex', tabs != 0 ? 'app-footer-active':'']">
+	<div :class="['app-footer', true ? 'app-footer-active':'']">
+		<div class="app-footer-ul h5-flex">
 			<div class="app-footer-li h5-flex" @click="toggleTabs(0)">
 				<image v-if="tabs==0" class="app-footer-li-ico" src="@/static/image/navbar/e8aa1a_128x128.png" mode=""></image>
 				<image v-else class="app-footer-li-ico" src="@/static/image/navbar/f00b14_128x128.png" mode=""></image>

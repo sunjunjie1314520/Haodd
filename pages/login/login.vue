@@ -62,7 +62,7 @@
 					password: '',
 				},
 
-				password: '111111',
+				password: '123456',
 				
 				config1: {
 					phone: '15971345754',

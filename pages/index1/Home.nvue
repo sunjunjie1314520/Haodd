@@ -111,7 +111,7 @@
 						<text class="home-personal-span">{{item.like}}</text>
 					</div>
 					<!-- 评论 -->
-					<div class="home-personal-li h5-flex" @click="comment_in">
+					<div class="home-personal-li h5-flex" @click="comment_in(item.id, item.upload_user_id)">
 						<image class="home-personal-img" src="@/static/image/b91cd4_200x200.png" mode=""></image>
 						<text class="home-personal-span">{{item.number_of_comments}}</text>
 					</div>
@@ -138,47 +138,33 @@
 		<div class="comment-slide" ref="comment" @click="abc">
 			<div class="comment-slide-layout">
 				<div class="comment-title">
-					<text class="comment-h2">39条评论</text>
-					<text class="comment-close" @click="out">x</text>
+					<text class="comment-h2">{{comment_count}}条评论</text>
+					<text class="comment-close" @click="comment_out">x</text>
 				</div>
 				<div class="comment-wrap">
 					<div class="comment-ul">
-						<div class="comment-li h5-flex">
-							<div class="comment-pict">
-								<image class="comment-pict-image" src="../../src/static/img/116836_130x130.png" mode=""></image>
-							</div>
-							<div class="comment-text">
-								<div class="comment-name">
-									<text class="comment-content-h2">浪子二少</text>
+						<list class="comment-ul-list">
+							<cell v-for="item in $comment_list" :key="item.id">
+								<div class="comment-li h5-flex">
+									<div class="comment-pict">
+										<image class="comment-pict-image" :src="qiniuURL + item.form_avatar" mode=""></image>
+									</div>
+									<div class="comment-text">
+										<div class="comment-name">
+											<text class="comment-content-h2">{{item.from_nickname}}</text>
+										</div>
+										<div class="comment-content">
+											<text class="comment-content-h3">{{item.comments}}</text>
+											<text class="comment-content-p">{{item.create_time}}</text>
+										</div>
+									</div>
+									<div class="comment-fr h5-flex" v-if="false">
+										<text class="comment-fr-s1">◆</text>
+										<text class="comment-fr-s2">3</text>
+									</div>
 								</div>
-								<div class="comment-content">
-									<text class="comment-content-h3">阿杰</text>
-									<text class="comment-content-p">2020-05-05 15:32:15</text>
-								</div>
-							</div>
-							<div class="comment-fr h5-flex">
-								<text class="comment-fr-s1">◆</text>
-								<text class="comment-fr-s2">3</text>
-							</div>
-						</div>
-						<div class="comment-li h5-flex">
-							<div class="comment-pict">
-								<image class="comment-pict-image" src="../../src/static/img/116836_130x130.png" mode=""></image>
-							</div>
-							<div class="comment-text">
-								<div class="comment-name">
-									<text class="comment-content-h2">浪子二少</text>
-								</div>
-								<div class="comment-content">
-									<text class="comment-content-h3">阿杰</text>
-									<text class="comment-content-p">2020-05-05 15:32:15</text>
-								</div>
-							</div>
-							<div class="comment-fr h5-flex">
-								<text class="comment-fr-s1">◆</text>
-								<text class="comment-fr-s2">3</text>
-							</div>
-						</div>
+							</cell>
+						</list>
 					</div>
 				</div>
 				
@@ -225,7 +211,12 @@
 					height: windowHeight + 'px',
 				},
 				
+				comment_count:0,
 				comment_content:'',
+				comment_config: {
+					to_from_id: '',
+					video_id: '',
+				},
 								
 				tabs: 1,
 				
@@ -234,6 +225,10 @@
 				index: -1,
 				prev: -1,
 				play_status: false,
+				
+				
+				// 评论分页
+				cpage: 1,
 			}
 		},
 		created() {
@@ -241,7 +236,8 @@
 		},
 		computed: {
 			...mapState('Video', {
-				$video_list: state => state.video_index
+				$video_list: state => state.video_index,
+				$comment_list: state => state.comment_index,
 			})
 		},
 		mounted() {
@@ -252,6 +248,9 @@
 		onHide(){
 			uni.createVideoContext(`video_${this.index}`,this).pause()
 			this.play_status = false;
+		},
+		onUnload() {
+			console.log('onUnload');
 		},
 		methods: {
 			abc(){
@@ -321,11 +320,26 @@
 			},
 			// 评论
 			pinglun(){
-				
-				uni.showToast({
-					title: '评论成功',
-					icon:'none'
+				const _this = this;
+				console.log(this.comment_config);
+				let data = {
+					comments: this.comment_content,
+					to_from_id: this.comment_config.to_from_id, // 作者id,
+					video_id: this.comment_config.video_id, // 视频id					
+				}
+				this.$store.dispatch('Video/comment_save', data)
+				.then(res=>{
+					this.comment_content = ''
+					console.log(res);
+					if(res.code==1){
+						this.comment_load_data();
+						uni.showToast({
+							title: '评论成功',
+							icon:'none'
+						})
+					}
 				})
+				
 			},
 			// 分享
 			share(){
@@ -363,6 +377,7 @@
 				setTimeout(()=>{
 					console.log(this.index);
 					uni.createVideoContext(`video_${this.index}`,this).play();
+					this.play_status = true;
 					if(this.index != this.prev){
 						uni.createVideoContext(`video_${this.prev}`,this).pause();
 						this.prev = this.index
@@ -374,14 +389,14 @@
 			onappear (e) {
 				// console.log(e);
 			},
+			// 待开发
 			dai(){
 				uni.showToast({
 					title: '直播功能未开放',
 					icon: 'none',
 				})
 			},
-			out(){
-				console.log('out');
+			comment_out(){
 				const _this = this;
 				var testEl = _this.$refs['comment'];
 				animation.transition(testEl, {
@@ -393,17 +408,30 @@
 					// modal.toast({ message: 'animation finished.' })
 				})
 			},
-			comment_in(){
-				console.log('comment_in');
+			comment_load_data(video_id){
+				let data = {
+					video_id: this.comment_config.video_id, // 视频id
+					page: this.cpage, // 分页
+				}
+				this.$store.dispatch('Video/comment_index', data)
+				.then(res=>{
+					console.log(res);
+					this.comment_count = res.count
+				})
+			},
+			comment_in(video_id, to_from_id){
 				const _this = this;
-				var testEl = _this.$refs['comment'];
 				
+				this.comment_config.video_id = video_id
+				this.comment_config.to_from_id = to_from_id
+				
+				this.comment_load_data()
+				
+				var testEl = _this.$refs['comment'];
 				dom.getComponentRect(testEl, (res) => {
-					console.log(res.size);
 					animation.transition(testEl, {
 						styles: {
-							// transform: `translateY(-${res.size.height}upx)`,
-							bottom: '100px'
+							bottom: '0px'
 						},
 						duration: 500
 					})

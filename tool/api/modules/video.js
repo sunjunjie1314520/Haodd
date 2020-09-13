@@ -14,4 +14,11 @@ config.video_click = params => request.globalRequest('/video_like/click', 'POST'
 // 关注取消对方
 config.follow_add = params => request.globalRequest('/user_follow/add', 'POST', params, 1)
 
+// 评论列表
+config.comment_index = params => request.globalRequest('/video_comment/page_index', 'POST', params, 1)
+
+// 发表评论
+config.comment_save = params => request.globalRequest('/video_comment/save', 'POST', params, 1)
+
+
 export default config

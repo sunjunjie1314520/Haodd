@@ -161,15 +161,7 @@
 	font-size 30px
 	margin-top 20px
 	line-height 40px
-.music-name
-	flex-direction row
-	align-items center
-	margin-top 20px
-	
 
-.music-image
-	width 34px
-	height 34px
 .play-status
 	position absolute
 	left 0
@@ -664,8 +656,13 @@
 	bottom 97px
 	background-color rgba(#000, .9)
 	z-index 1
-	min-height 1000px
-	
+	height 1000px
+
+.comment-wrap
+	height 805px
+
+.comment-ul-list
+	height 805px
 
 .comment-title
 	display flex
@@ -713,19 +710,21 @@
 .comment-content-h2
 	color #fff
 	opacity .6
-	font-size 30px
+	font-size 26px
 
 .comment-content
-	flex-direction row
+	flex-direction column
+	margin-top 10px
 
 .comment-content-h3
 	color #fff
-	font-size 26px
+	font-size 30px
 
 .comment-content-p
 	color #fff
-	margin-left 15px
 	font-size 26px
+	opacity .6
+	margin-top 6px
 
 .comment-fr
 	flex-direction column
@@ -756,6 +755,8 @@
 	font-size 30px
 	background-color color1
 	padding 0 20px
+	color #fff
+
 .comment-btn
 	width 150px
 	height 80px
