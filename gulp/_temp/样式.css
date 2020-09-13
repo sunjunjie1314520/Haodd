@@ -2185,6 +2185,11 @@
   color: #fff;
   float: right;
 }
+.cart-page .ul .count .del-btn {
+  color: #f7224e;
+  float: left;
+  font-size: 28px;
+}
 .confirmation-page {
   float: left;
   width: 100%;

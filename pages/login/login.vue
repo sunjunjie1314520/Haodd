@@ -58,14 +58,14 @@
 			return {
 				tabs: 0,
 				config: {
-					username: '15971345754',
+					username: '',
 					password: '',
 				},
 
-				password: '123456',
+				password: '',
 				
 				config1: {
-					phone: '15971345754',
+					phone: '',
 					verity_code: ''
 				}
 			}

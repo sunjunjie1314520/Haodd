@@ -45,7 +45,7 @@
 				</view>
             </view>
 			<view class="button">
-				<text class="btn">下一步</text>
+				<text class="btn" @click="submitFun">下一步</text>
 			</view>
         </view>
 		

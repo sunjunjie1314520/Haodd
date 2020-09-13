@@ -25,6 +25,7 @@
 				</view>
 				
 				<view class="count">
+					<text class="del-btn" @click="cartDelete(item.id)">删除</text>
 					<text class="p">合计: {{item.total_amount}}.00</text>
 				</view>
 			</view>
@@ -86,6 +87,17 @@
 			this.getNetData();
 		},
 		methods: {
+			cartDelete(id){
+				this.page = 1;
+				let data = {
+					id: id,
+				}
+				this.$api.shop.cart_delete(data)
+				.then(res=>{
+					this.toast(res.msg, 'success')
+					this.getNetData();
+				})
+			},
 			// 单选
 			checkHandle(index,){
 				console.log(this.list[index])

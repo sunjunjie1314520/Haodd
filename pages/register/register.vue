@@ -14,7 +14,7 @@
 					<text class="fr desc">密码由6-20位数字和字母组成</text>
                 </view>
 				<view class="li">
-					<input type="text" maxlength="10" value="" placeholder="请输入邀请码" v-model="config.pid" />
+					<input type="text" :disabled="qing" maxlength="10" value="" placeholder="请输入邀请码" v-model="config.pid" />
 					<text class="fr desc">邀请码</text>
                 </view>
             </view>
@@ -38,12 +38,19 @@
 					pid:''
 				},
 				password: '',
+				qing: false,
 			}
 		},
 		onReady() {
 			//获取安装携带参数
 			sharetrace.getInstallTrace( data => {
-				this.showResult(JSON.stringify(data));
+				// this.showResult(JSON.stringify(data.data.paramsData));
+				var str = data.data.paramsData
+				if(str){
+					this.qing = true;
+					let arr = str.split('=')
+					this.config.pid = arr[1]
+				}
 			});
 		},
 		created() {

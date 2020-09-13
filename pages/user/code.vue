@@ -34,7 +34,7 @@
 		},
 		methods: {
 			getqr(){
-				this.qr = Qr.createQrCodeImg(this.url + '?id=' + this.$aes.id)
+				this.qr = Qr.createQrCodeImg(this.url + '?uuid=' + this.$aes.id)
 			},
 			bcFn(){
 				uni.showLoading({
@@ -53,7 +53,7 @@
 			getConfig(){
 				this.$api.personal.download()
 				.then(res=>{
-					console.log(res);
+					// console.log(res);
 					this.url = res.data;
 					this.getqr();
 				})
