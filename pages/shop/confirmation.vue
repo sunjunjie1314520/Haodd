@@ -76,7 +76,7 @@
 				this.$confirm.forEach(item=>{
 					let obj = {
 						product_id: item.id,
-						buy_number: item.num,
+						buy_number: item.buy_number,
 					}
 					arr.push(obj)
 				})

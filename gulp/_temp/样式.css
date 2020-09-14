@@ -1796,13 +1796,13 @@
   float: left;
   width: 100%;
   background-color: #1e1e27;
+  display: flex;
 }
 .order-page .tabs .txt {
-  float: left;
-  width: 16.66%;
   text-align: center;
   color: #fff;
   line-height: 90px;
+  flex: 1;
 }
 .order-page .tabs .txt.active {
   color: #f7224e;

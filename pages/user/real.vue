@@ -34,6 +34,8 @@
 				config:{
 					card_name: '',
 					card_number:'',
+					// card_name: '孙俊杰',
+					// card_number:'4211261993091416016',
 				},
 				init: 5 * 60, // 默认的时间
 				click: true,
@@ -49,6 +51,7 @@
 		},
 		methods: {
 			pay(){
+				const _this = this;
 				if(this.click){
 					this.second = this.init;
 					let yz = [
@@ -75,22 +78,23 @@
 						app_id: "41770ae0-c3d2-4410-8d7e-b3086557ba80",
 						channel: 'ALI_APP',
 						title: "实名认证",
-						total_fee: 1.5 * 100,
+						total_fee: 0.01 * 100,
 						bill_no: this.$assist.genBillNo(),
 						optional: {
 							"x2-token": token, // 要开通的实名的账户token
 							...this.config,
-							// "card_name": '', // 身份名字
-							// "card_number": '', // 身份号码
 							"card": 1, // 代表开通是实名的
 						},
 						bill_timeout: 360
 					};
-					this.$store.commit('payReq', payData)
+					this.$store.commit('payReq', {data:payData, callback(){
+						uni.navigateBack({
+							delta: 1,
+						})
+					}})
 					
 					this.time = setInterval(()=>{
 						this.second = this.second - 1
-						
 						if(this.second <= 0){
 							this.click = true;
 							clearInterval(this.time);

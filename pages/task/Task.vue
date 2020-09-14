@@ -76,6 +76,7 @@
 				.then(res=>{
 					console.log(res);
 					this.$assist.msg(res, true)
+					this.$store.dispatch('Personal/me');
 				})
 			}
 		}

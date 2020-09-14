@@ -4,10 +4,9 @@
 			<view class="tabs">
 				<text :class="['txt', {'active': tabs===''}]" @tap="tabs=''">全部</text>
 				<text :class="['txt', {'active': tabs===0}]" @tap="tabs=0">待付款</text>
-				<text :class="['txt', {'active': tabs==1}]" @tap="tabs=1">已付款</text>
-				<text :class="['txt', {'active': tabs==2}]" @tap="tabs=2">待发货</text>
-				<text :class="['txt', {'active': tabs==3}]" @tap="tabs=3">待收货</text>
-				<text :class="['txt', {'active': tabs==4}]" @tap="tabs=4">已完成</text>
+				<text :class="['txt', {'active': tabs==1}]" @tap="tabs=1">待发货</text>
+				<text :class="['txt', {'active': tabs==2}]" @tap="tabs=2">待收货</text>
+				<text :class="['txt', {'active': tabs==3}]" @tap="tabs=3">已完成</text>
 			</view>
 			<view class="tabs-wrap" v-if="first">
 				<view class="ul" v-if="list.length > 0">
@@ -29,7 +28,7 @@
 						</view>
 						<view class="two">
 							<view class="btn">
-								<text v-if="item.status==0 || item.status==1 || item.status==2">{{item.status | status}}</text>
+								<text v-if="item.status==0 || item.status==1 || item.status==2" @click="handle(item.status)">{{item.status | status}}</text>
 								<text @click="delete_order(item.id)" v-if="item.status==4">删除订单</text>
 								<text @click="confirm_order(item.order_number)" v-if="item.status==3">确认收货</text>
 								<text @click="look_order(item.order_number)" v-if="item.status==3">查看物流</text>
@@ -104,17 +103,32 @@
 					console.log(res);
 				})
 			},
+			// 查询物流
 			look_order(order_number){
 				uni.navigateTo({
 					url: '../order/logistics?order_number=' + order_number
 				})
+			},
+			handle(status){
+				console.log(status);
+				switch(status){
+					case 0:
+						console.log('去付款');
+						this.$api.shop.confim_pay({})
+						.then(res=>{
+							console.log(res);
+						})
+						break;
+					default:
+						break;
+				}
 			}
 		},
 		filters:{
 			status(data){
 				switch (data){
 					case 0:
-						return '待付款'
+						return '去付款'
 					case 1:
 						return '已付款'
 					case 2:

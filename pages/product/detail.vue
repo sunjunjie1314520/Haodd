@@ -69,7 +69,7 @@
 								<view class="pub-add">
 									<text class="jian" @click="num > 1 ? num-- : 1">-</text>
 									<text class="num">{{num}}</text>
-									<text class="jia" @click="num++">+</text>
+									<text class="jia" @click="num < pageData.stock_count ? num++ : num=pageData.stock_count">+</text>
 								</view>
 							</view>
 						</view>
@@ -149,6 +149,10 @@
 				// }, 1500)
 			},
 			gouShop(){
+				if(this.pageData.stock_count == 0){
+					this.toast('库存不够')
+					return false;
+				}
 				let data = [{
 					...this.pageData,
 					pro_name: this.pageData.name,

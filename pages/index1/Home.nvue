@@ -365,7 +365,9 @@
 					uni.createVideoContext(`video_${this.index}`,this).play();
 					this.play_status = true;
 					if(this.index != this.prev){
-						uni.createVideoContext(`video_${this.prev}`,this).pause();
+						let curr = uni.createVideoContext(`video_${this.prev}`,this);
+						curr.pause();
+						curr.seek(0);
 						this.prev = this.index
 					}
 					console.log(this.prev);

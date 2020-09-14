@@ -73,6 +73,8 @@
 		created() {
 			// var a = plus.navigator.getCookie('pid')
 			// console.log(a);
+			let phone = uni.getStorageSync('phone')
+			this.config.username = phone;
 		},
 		methods: {
 			userLogin(){
@@ -127,6 +129,7 @@
 				.then(res=>{
 					console.log(res);
 					if(res.code === 1){
+						uni.setStorageSync('phone', this.config.username)
 						this.toast(res.msg, 'success')
 						this.success(res.data);
 					}

@@ -55,7 +55,7 @@
 				
 				pageData: false,
 				
-				
+				size: 10,
 				next: true,
 				page: 1,
 				list: [],
@@ -95,6 +95,10 @@
 				this.$api.shop.cart_delete(data)
 				.then(res=>{
 					this.toast(res.msg, 'success')
+					this.list = []
+					this.pageData = false
+					this.next = true
+					this.page = 1
 					this.getNetData();
 				})
 			},
