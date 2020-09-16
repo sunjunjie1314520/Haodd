@@ -34,7 +34,8 @@
 					</view>
 					<view class="li">
 						<input type="number" class="short" maxlength="6" v-model="config1.verity_code" placeholder-class="placeholder-class" value="" placeholder="请输入密码" />
-						<text class="get-code" @click="sendCode(config1.phone)">获取验证码</text>
+						<text class="get-code" v-if="code_config.down == 0" @click="sendCode(config1.phone)">获取验证码</text>
+						<text class="get-code" v-else>({{code_config.down}})s</text>
 					</view>
 					<view class="li">
 						<text class="button2" @click="UserPhoneLogin">登录</text>
@@ -74,6 +75,7 @@
 			// var a = plus.navigator.getCookie('pid')
 			// console.log(a);
 			let phone = uni.getStorageSync('phone')
+			console.log(phone);
 			this.config.username = phone;
 		},
 		methods: {
@@ -101,6 +103,7 @@
 				.then(res=>{
 					// console.log(res);
 					if(res.code === 1){
+						uni.setStorageSync('phone', this.config.username)
 						this.toast(res.msg, 'success')
 						this.success(res.data);
 					}
@@ -129,7 +132,6 @@
 				.then(res=>{
 					console.log(res);
 					if(res.code === 1){
-						uni.setStorageSync('phone', this.config.username)
 						this.toast(res.msg, 'success')
 						this.success(res.data);
 					}

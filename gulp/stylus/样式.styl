@@ -20,7 +20,7 @@
 				float left
 				flex-grow 1
 				padding-right 15px
-				color font-color
+				color #fff
 			.fr
 				color font-color
 				line-height 108px
@@ -82,7 +82,7 @@
 				input
 					height 100%
 					float left
-					color font-color
+					color #fff
 					width 550px
 				.ico-down
 					float right
@@ -208,6 +208,8 @@
 				float right
 				color font-color
 				heightL 90px
+				width 160px
+				text-align center
 			input
 				height 90px
 				border-radius 60px
@@ -410,7 +412,7 @@
 			.get-code
 				float right
 				line-height 100px
-				color #fff
+				color font-color
 				
 			
 .binddata-page
@@ -710,14 +712,14 @@
 	.list
 		fw 1
 		padding 0 24px 0
-		margin-top 25px
+		margin-top 40px
 		.ul
 			.li
 				fw 1
 				background-color color2
 				border-radius 20px
-				padding 39px 32px
-				margin-top 15px
+				padding 20px 20px
+				margin-bottom 15px
 				.fl-layout
 					float left
 					width 134px
@@ -744,13 +746,14 @@
 							justify-content center
 							text
 								color #fff
-								font-size 26px
-								transform scale(.72)
+								font-size 20px
 						.pict
 							float left
 							width 134px
 							height 134px
 							border-radius 50%
+							overflow hidden
+							background color1
 							image
 								width 100%
 								height 100%
@@ -758,33 +761,36 @@
 						float left
 						color #fff
 						text-align center
-						linear 1
 						line-height 41px
 						border-radius 50px
-						font-size 24px
+						font-size 22px
 						width 108px
 						margin-top 23px
+						&.label-0
+							background #999
+						&.label-1
+							linear 1
 				.text
 					float left
 					widthC 134px
-					padding 10px 0 0 35px
+					padding 10px 0 0 25px
 					position relative
 					.h2
 						color #fff
-						font-size 36px
+						font-size 34px
 						display block
 					.yue
 						position absolute
 						right 0
-						padding-top 10px
+						padding-top 15px
 						top 0
 						// border solid 1px #f60
 						bottom 0
 						display flex
 						align-items flex-start
 						flex-direction column
-						width 38%
 						justify-content space-between
+						width 216px
 						.b
 							color font-color
 							font-size 26px
@@ -810,7 +816,6 @@
 							color #fff
 							float left
 							margin-left 10px
-
 
 .opening-page
 	fw 1
@@ -887,7 +892,8 @@
 				color font-color
 				line-height 100px
 				display block
-				margin-left 30px
+				width 200px
+				text-align center
 
 .address-manage-page
 	margin-top 20px
@@ -967,7 +973,10 @@
 				right 0
 				top 0
 				back1 '../../src/static/img/0aff0f_26x32.png' 26px
-		
+			.more
+				backico '../../src/static/img/13da7a_128x128.png' 0px
+				background-size 26px
+
 	.pub-button
 		margin-top 81px
 		padding 0 28px
@@ -1838,4 +1847,3 @@
 		margin-top 25px
 		fw 1
 		text-align center
-		

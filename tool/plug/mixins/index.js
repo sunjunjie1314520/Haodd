@@ -23,6 +23,12 @@ plug.install = function(Vue, options) {
             return {
                 qiniuURL: qiniuURL,
                 windowHeight: null,
+
+                code_config: {
+                    init: 10,
+                    down: 0,
+                    timer: 0,
+                }
             }
         },
         computed: {
@@ -74,8 +80,19 @@ plug.install = function(Vue, options) {
 				
 				this.$api.login.sendCode({phone: phone})
 				.then(res=>{
-					this.toast(res.msg, 'success')
+                    this.toast(res.msg, 'success');
+                    this.cutDown();
 				})
+            },
+            cutDown(){
+                this.code_config.down = this.code_config.init
+                this.code_config.down = this.code_config.down - 1
+                this.code_config.timer = setInterval(() => {
+                    this.code_config.down = this.code_config.down - 1
+                    if (this.code_config.down == 0){
+                        clearInterval(this.code_config.timer)
+                    }
+                }, 1000);
             },
             // 修改资料
             userSave(data){
@@ -99,7 +116,7 @@ plug.install = function(Vue, options) {
                 } else {
                     this.page = this.page + 1;
                 }
-            }
+            },
         }
     })
 

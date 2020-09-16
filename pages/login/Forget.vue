@@ -7,7 +7,8 @@
 				</view>
 				<view class="li">
 					<input v-model="config.verity_code" maxlength="6" type="number" value="" placeholder="请输入验证码" />
-					<text class="get-code" @click="sendCode(config.phone)">获取验证码</text>
+					<text class="get-code" v-if="code_config.down == 0" @click="sendCode(config.phone)">获取验证码</text>
+					<text class="get-code" v-else>({{code_config.down}})s</text>
 				</view>
 				<view class="li">
 					<input maxlength="20" v-model="password" type="password" value="" placeholder="请输入密码" />

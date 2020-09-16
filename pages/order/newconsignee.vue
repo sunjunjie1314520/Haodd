@@ -19,7 +19,7 @@
                     <view class="span">
                         所在地区
                     </view>
-                    <text @tap="openAddres" :class="{'acti': pickerText.label}">{{pickerText.label ? pickerText.label : '省市县、乡镇等'}}</text>
+                    <text @tap="openAddres" class="more" :class="{'acti': pickerText.label}">{{pickerText.label ? pickerText.label : '省市县、乡镇等'}}</text>
                     <!-- <view class="address"></view> -->
                 </view>
                 <view class="li">

@@ -28,9 +28,14 @@ const mutations = {
     SET_DIANZAN(state, payload){
 		if(payload.mine_like_count === 0){
 			state.video_index[payload.index].mine_like_count = 1
+			state.video_index[payload.index].like = state.video_index[payload.index].like + 1
 		} else if(payload.mine_like_count === 1){
 			state.video_index[payload.index].mine_like_count = 0
+			state.video_index[payload.index].like = state.video_index[payload.index].like - 1
 		}
+	},
+	SET_ADD_COMMENTS(state, payload){
+		state.video_index[payload].number_of_comments = state.video_index[payload].number_of_comments + 1
 	},
 	SET_MINE_FOLLOW(state, payload){
 		console.log(state.follow_add, payload);

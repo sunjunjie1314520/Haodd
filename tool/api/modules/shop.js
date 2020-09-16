@@ -47,7 +47,6 @@ config.order_delivery = params => request.globalRequest('/order_delivery/index',
 // 删除购物车
 config.cart_delete = params => request.globalRequest('/cart/delete', 'POST', params, 1, '正在删除')
 
-// http: //101.200.171.163/public/index.php/order/confim_pay?order_number=J914692010624036160448209&safe_code=e10adc3949ba59abbe56e057f20f883e
 // 订单付款
 config.confim_pay = params => request.globalRequest('/order/confim_pay', 'POST', params, 1)
 

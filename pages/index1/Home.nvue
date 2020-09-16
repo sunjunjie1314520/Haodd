@@ -97,7 +97,7 @@
 						<text class="home-personal-span">{{item.like}}</text>
 					</div>
 					<!-- 评论 -->
-					<div class="home-personal-li h5-flex" @click="comment_in(item.id, item.upload_user_id)">
+					<div class="home-personal-li h5-flex" @click="comment_in(item.id, item.upload_user_id, index)">
 						<image class="home-personal-img" src="@/static/image/b91cd4_200x200.png" mode=""></image>
 						<text class="home-personal-span">{{item.number_of_comments}}</text>
 					</div>
@@ -202,6 +202,7 @@
 				comment_config: {
 					to_from_id: '',
 					video_id: '',
+					index: '',
 				},
 								
 				tabs: 1,
@@ -306,6 +307,13 @@
 			},
 			// 评论
 			pinglun(){
+				if(!this.comment_content){
+					uni.showToast({
+						title: '请写入内容',
+						icon:'none'
+					})
+					return false;
+				}
 				const _this = this;
 				console.log(this.comment_config);
 				let data = {
@@ -319,6 +327,7 @@
 					console.log(res);
 					if(res.code==1){
 						this.comment_load_data();
+						this.$store.commit('Video/SET_ADD_COMMENTS', this.comment_config.index)
 						uni.showToast({
 							title: '评论成功',
 							icon:'none'
@@ -407,11 +416,12 @@
 					this.comment_count = res.count
 				})
 			},
-			comment_in(video_id, to_from_id){
+			comment_in(video_id, to_from_id, index){
 				const _this = this;
 				
 				this.comment_config.video_id = video_id
 				this.comment_config.to_from_id = to_from_id
+				this.comment_config.index = index
 				
 				this.comment_load_data()
 				

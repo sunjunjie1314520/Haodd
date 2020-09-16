@@ -28,7 +28,7 @@
 						</view>
 						<view class="two">
 							<view class="btn">
-								<text v-if="item.status==0 || item.status==1 || item.status==2" @click="handle(item.status)">{{item.status | status}}</text>
+								<text v-if="item.status==0 || item.status==1 || item.status==2" @click="confirm(item)">{{item.status | status}}</text>
 								<text @click="delete_order(item.id)" v-if="item.status==4">删除订单</text>
 								<text @click="confirm_order(item.order_number)" v-if="item.status==3">确认收货</text>
 								<text @click="look_order(item.order_number)" v-if="item.status==3">查看物流</text>
@@ -42,6 +42,17 @@
 			</view>
 			<uni-loadding v-else></uni-loadding>
 		</view>
+		
+		<view class="alert-yaoyi" v-if="show">
+			<view class="layout">
+				<text class="h2">提示</text>
+				<input type="password" maxlength="18" v-model="safe_code" value="" placeholder="请输入交易密码" />
+				<view class="btn">
+					<text class="s1" @click="show=false;safe_code=''">取消</text>
+					<text class="s2" @click="handle">确定</text>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -49,6 +60,7 @@
 	export default {
 		data(){
 			return {
+				show: false,
 				tabs: 0,
 				
 				first: false,
@@ -56,7 +68,10 @@
 				size: 10,
 				next: true,
 				page: 1,
-				list: []
+				list: [],
+				
+				safe_code:'',
+				item: {},
 			}
 		},
 		watch:{
@@ -109,14 +124,33 @@
 					url: '../order/logistics?order_number=' + order_number
 				})
 			},
-			handle(status){
-				console.log(status);
-				switch(status){
+			confirm(item){
+				this.item = item;
+				switch(item.status){
 					case 0:
-						console.log('去付款');
-						this.$api.shop.confim_pay({})
+						this.show = true;
+						break;
+					default:
+						break;
+				}
+			},
+			handle(){
+				if(!this.safe_code){
+					this.toast('请输入交易密码');
+					return false;
+				}
+				var item = this.item
+				switch(item.status){
+					case 0:
+						let data = {
+							order_number: item.order_number,
+							safe_code: this.$md5(this.safe_code),
+						}
+						this.$api.shop.confim_pay(data)
 						.then(res=>{
 							console.log(res);
+							this.show = false;
+							this.safe_code = '';
 						})
 						break;
 					default:
