@@ -18,7 +18,7 @@ import md5 from './tool/utils/md5.js'
 
 
 // 自定义组件
-// import Footer from "@/components/type-compon/Footer.vue";
+import Keyboard from "@/components/uni-keyboard.vue";
 // import Loadding from '@/components/type-compon/Loadding.vue'
 // Vue.component('uni-loadding', Loadding)
 
@@ -26,7 +26,8 @@ import uniLoadding from "@/components/uni-loadding.vue"
 Vue.component('uni-loadding', uniLoadding)
 
 // 全局注册组件
-// Vue.component('uni-footer', Footer)
+Vue.component('uni-keyboard', Keyboard)
+
 import mixins from "@/tool/plug/mixins/index.js";
 Vue.use(mixins)
 

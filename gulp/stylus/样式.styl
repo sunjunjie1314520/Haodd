@@ -413,7 +413,6 @@
 				float right
 				line-height 100px
 				color font-color
-				
 			
 .binddata-page
 	fw 1
@@ -1847,3 +1846,190 @@
 		margin-top 25px
 		fw 1
 		text-align center
+
+
+.alert1
+	width 100%
+	height 100%
+	background rgba(0,0,0,.6)
+	position fixed
+	left 0
+	top 0
+	z-index 99
+	.alert-password
+		width 570upx
+		height 380upx
+		background-color #fff
+		border-radius 10px
+		position absolute
+		left 50%
+		top calc((100% - 432upx - 380upx) / 2)
+		margin-left -285upx
+		padding-top 52upx
+		.alert-error-close
+			width 80upx
+			height 80upx
+			background url(../../src/static/img/close.png)center no-repeat
+			background-size 26upx 26upx
+			position absolute
+			top: 0upx
+			right 0upx
+		.alert-password-title
+			width 100%
+			text
+				display block
+				text-align center
+				font-size 26upx
+				color #9798a9
+				line-height 44upx
+				&.tit
+					line-height 58upx
+					font-size 36upx
+					font-weight bold
+					color #303153
+		.alert-password-input
+			padding 32upx 0 20upx
+			width 100%
+			text-align center
+			.password-input-col
+				width 490upx
+				height 82upx
+				border 1px solid #d5d9de
+				display flex
+				justify-content space-between
+				margin 0 auto
+				text
+					width calc(100% / 6)
+					height 81upx
+					border-right: 1px solid #d5d9de
+					display inline-block
+					position relative
+					&:last-child
+						border-right: none
+					&.active
+						&:after
+							content: ''
+							position absolute
+							left 50%
+							top: 50%
+							margin-left: -8upx
+							margin-top -8upx
+							width 20upx
+							height 20upx
+							background-color #000000
+							border-radius: 50%
+		.alert-password-forget
+			width 100%
+			height 68upx
+			line-height 68upx
+			padding: 0 40upx
+			font-size 28upx
+			text-align right
+			text
+				color #1354ff
+				display inline-block
+				line-height 60upx
+				padding-left 15upx
+	.alert-keyboard
+		width 100%
+		height 432upx
+		background-color #fff
+		position fixed
+		left 0
+		bottom 0
+		display flex
+		justify-content space-between
+		flex-wrap: wrap
+		.alert-keyboard-box
+			width calc(100% / 3)
+			border-right: 1px solid #cdd1d7
+			border-bottom: 1px solid #cdd1d7
+			&:active
+				background #e5e5e5
+			&:nth-child(3n)
+				border-right: none
+			&:nth-child(11)
+				border-bottom none
+			&:nth-child(12)
+				border-bottom: none
+			.alert-keyboard-number
+				width 100%
+				height 100%
+				display flex
+				justify-content center
+				font-size 60upx
+				align-items center
+				color #111
+				font-family: Arial, Helvetica, sans-serif
+				position relative
+			.alert-keyboard-en
+				width 100% 
+				text-align center
+				line-height 48upx
+				text
+					padding 0 4upx
+					font-size 24upx
+					line-height 48upx
+					font-family: Arial, Helvetica, sans-serif
+					color #111
+			.alert-keyboard-null
+				width 100%
+				height 100%
+				background-color #cdd1d7
+			.alert-keyboard-del
+				width 100%
+				height 100%
+				background #cdd1d7 url(../../src/static/img/77c15_42x30.png) center no-repeat
+				background-size 42upx 30upx
+	.alert-error
+		width 570upx
+		height 290upx
+		background-color #fff
+		position absolute
+		left 50%
+		margin-left -285upx
+		top: 50%
+		margin-top -145upx
+		border-radius: 20upx
+		.alert-error-close
+			width 80upx
+			height 80upx
+			background url(../../src/static/img/close.png)center no-repeat
+			background-size 26upx 26upx
+			position absolute
+			top 0
+			right 0
+		.alert-error-txt
+			width 100%
+			height 180upx
+			display flex
+			justify-content center
+			align-items center
+			color #333
+		.alert-error-button
+			width 100%
+			height calc(100% - 180upx)
+			display flex
+			justify-content space-between
+			position relative
+			border-top: .5upx solid #ebeaec
+			
+			text
+				flex 1
+				height 100%
+				display flex
+				justify-content center
+				align-items center
+				font-size 30upx
+				&.forgot
+					color #000
+					&:after
+						content: ''
+						position absolute
+						left 50%
+						top: 0
+						width .5upx
+						height 100%
+						background-color #ebeaec
+				&.retry
+					color #1354ff

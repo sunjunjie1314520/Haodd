@@ -1577,6 +1577,15 @@ module.exports = {
     "paddingRight": "30upx",
     "paddingBottom": "30upx",
     "paddingLeft": "30upx"
+  },
+  "alert1": {
+    "width": 100,
+    "height": 100,
+    "background": "rgba(0,0,0,.6)",
+    "position": "fixed",
+    "left": 0,
+    "top": 0,
+    "zIndex": 99
   }
 }
 

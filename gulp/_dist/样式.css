@@ -2430,3 +2430,218 @@
   width: 100%;
   text-align: center;
 }
+.alert1 {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+.alert1 .alert-password {
+  width: 570upx;
+  height: 380upx;
+  background-color: #fff;
+  border-radius: 10upx;
+  position: absolute;
+  left: 50%;
+  top: calc((100% - 432upx - 380upx) / 2);
+  margin-left: -285upx;
+  padding-top: 52upx;
+}
+.alert1 .alert-password .alert-error-close {
+  width: 80upx;
+  height: 80upx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAABf0lEQVRIS62WzVWDUBCF7yzytqYDLSElhA5SQtKBbOjhvY12YAlqBWoFYgcpgaxZjGc4gMD7B9kFct43d37uGzLGHAA8MXOjlLqUZdngHx6t9UnOJaI9gIK01g0R3fVn17vdrtgKM8acAbxM4v0iY8wVwP3k5SZYn6HvRVLeRdGJiF4XH1bBesgHAElX9zDzj1LqSPJDpDLz8ySF8joLFoJIKTpQDzsw8+caWAwi54+gtbAUiAXKhaVCnKBUWA7EC4rB2rZ9AODsLt8Mzmq0NASJ2tUgAARktXBo0IOggLIxpmFOYm4SBYVgqZBgjaZpdBU+1xujigKQIZYkB4k2g6O7bl0q/hw/ya68IM+c3Ijo2Jtlll05QSFIVVV1aM4AXIb/TOtsgVIgESOWG7pYwixTddVE0uWKMqDMgs2uiVxIjrLh4pMFZeldXeF9ShLtalQmO8NmSIoyazlh5iwlicrq2bq1FeJT1p07LCYArkR0Tq3JUolLGYA3Zt4T0eMvGu56JS0edcIAAAAASUVORK5CYII=) center no-repeat;
+  background-size: 26upx 26upx;
+  position: absolute;
+  top: 0upx;
+  right: 0upx;
+}
+.alert1 .alert-password .alert-password-title {
+  width: 100%;
+}
+.alert1 .alert-password .alert-password-title text {
+  display: block;
+  text-align: center;
+  font-size: 26upx;
+  color: #9798a9;
+  line-height: 44upx;
+}
+.alert1 .alert-password .alert-password-title text.tit {
+  line-height: 58upx;
+  font-size: 36upx;
+  font-weight: bold;
+  color: #303153;
+}
+.alert1 .alert-password .alert-password-input {
+  padding: 32upx 0 20upx;
+  width: 100%;
+  text-align: center;
+}
+.alert1 .alert-password .alert-password-input .password-input-col {
+  width: 490upx;
+  height: 82upx;
+  border: .5px solid #d5d9de;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.alert1 .alert-password .alert-password-input .password-input-col text {
+  width: calc(100% / 6);
+  height: 81upx;
+  border-right: .5px solid #d5d9de;
+  display: inline-block;
+  position: relative;
+}
+.alert1 .alert-password .alert-password-input .password-input-col text:last-child {
+  border-right: none;
+}
+.alert1 .alert-password .alert-password-input .password-input-col text.active:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -8upx;
+  margin-top: -8upx;
+  width: 20upx;
+  height: 20upx;
+  background-color: #000;
+  border-radius: 50%;
+}
+.alert1 .alert-password .alert-password-forget {
+  width: 100%;
+  height: 68upx;
+  line-height: 68upx;
+  padding: 0 40upx;
+  font-size: 28upx;
+  text-align: right;
+}
+.alert1 .alert-password .alert-password-forget text {
+  color: #1354ff;
+  display: inline-block;
+  line-height: 60upx;
+  padding-left: 15upx;
+}
+.alert1 .alert-keyboard {
+  width: 100%;
+  height: 432upx;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.alert1 .alert-keyboard .alert-keyboard-box {
+  width: calc(100% / 3);
+  border-right: .5px solid #cdd1d7;
+  border-bottom: .5px solid #cdd1d7;
+}
+.alert1 .alert-keyboard .alert-keyboard-box:active {
+  background: #e5e5e5;
+}
+.alert1 .alert-keyboard .alert-keyboard-box:nth-child(3n) {
+  border-right: none;
+}
+.alert1 .alert-keyboard .alert-keyboard-box:nth-child(11) {
+  border-bottom: none;
+}
+.alert1 .alert-keyboard .alert-keyboard-box:nth-child(12) {
+  border-bottom: none;
+}
+.alert1 .alert-keyboard .alert-keyboard-box .alert-keyboard-number {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 60upx;
+  align-items: center;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+}
+.alert1 .alert-keyboard .alert-keyboard-box .alert-keyboard-en {
+  width: 100%;
+  text-align: center;
+  line-height: 48upx;
+}
+.alert1 .alert-keyboard .alert-keyboard-box .alert-keyboard-en text {
+  padding: 0 4upx;
+  font-size: 24upx;
+  line-height: 48upx;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111;
+}
+.alert1 .alert-keyboard .alert-keyboard-box .alert-keyboard-null {
+  width: 100%;
+  height: 100%;
+  background-color: #cdd1d7;
+}
+.alert1 .alert-keyboard .alert-keyboard-box .alert-keyboard-del {
+  width: 100%;
+  height: 100%;
+  background: #cdd1d7 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAeCAYAAABaKIzgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkE4NTYxRDMzMkZEOTExRUE5QjVGQ0ExRUY3MzE3NzAwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkE4NTYxRDM0MkZEOTExRUE5QjVGQ0ExRUY3MzE3NzAwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QTg1NjFEMzEyRkQ5MTFFQTlCNUZDQTFFRjczMTc3MDAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QTg1NjFEMzIyRkQ5MTFFQTlCNUZDQTFFRjczMTc3MDAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4rEYbIAAAC7UlEQVR42sSYv47aQBDGbWOkSCCFFKCUTgcC6e7egEfwGxw8QSjTAU9wXHepwlUpHcpUXN6ASIApobsIClMgpQCcb9AabRb/WZszrIQwy3r3tzPzzaytKjFapVIxNU1rq6p6q1ym/XBdtzuZTEaq7B3VarUBwG/K5Zuz3W7vMjEs+V25TnsHA33So0aVy2Ujk8kcLQlXLPb7fQt9TsqAdXza7PomFNQwjAKALFwWWNcaH9O27VHaZqzVaooHCosaWtjgXC73wAsH1mxRYF/D/3qEeBreb7j7cTqd9v2sns/nP2MTc2ziOU4GgbduIJTn2Ww2TwQKyFte4YD4DchWgNV7+LrHeLqvDthmnAwC2DsKp6h7ND8L4cviutabzaYuYyXyAGKrk0aaOwGFGy0KXq7LnM/ngQrHJlpkca6rTTCSkCTOTmxQZg3eet3xePwSNgFtgizOwxKMCOsHiXvqsuLU+ODm8hbF5QCQUrv1YJmFTmDFmI8LeQT1S+pYuBEnhgiWFhdh4SU6GwzPgTyABiX1sLgMarS4CMtisHAO5AH0rZN6AOxRmEnnJterSjrNPelwXSPpZBp22PBRbOLzJhPOkHO3IsRsPalFld1uZwqusljifwvIrjh3EkMcQFmtNbmdG5T4z4WEp5qU4oSYLdC4uLDHPMoSe5c/D0aVQ77s+kEirPqCwJSksP9VJrb7AV8Oo2KKIJE5AiGFbNBMCqv51G4S14KPKSoIIWfWnpDeTiA52L4PbC8RKEv0vLi8giDTukGQQbC4liosvg93y+XytVgsvmK3JhPXR/w20D/wsehLNpv9g4P1V5xZn2QWxTyjUqn0C5dUqr84jvNXHIP/yYvHMq5GKLkPyHsZt6bwzETaGAa6PuysCeiHc4rBOS2yfJKQdF2n+vzeeyEANzfSflxm6azjneak6jx7ELOUKzVKmVJvSlar1QxiWnjiunBbU4nPyI72lIrdfQBw+RKAWOsnKd+27dk/AQYAG/a/Ao1G254AAAAASUVORK5CYII=) center no-repeat;
+  background-size: 42upx 30upx;
+}
+.alert1 .alert-error {
+  width: 570upx;
+  height: 290upx;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  margin-left: -285upx;
+  top: 50%;
+  margin-top: -145upx;
+  border-radius: 20upx;
+}
+.alert1 .alert-error .alert-error-close {
+  width: 80upx;
+  height: 80upx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAABf0lEQVRIS62WzVWDUBCF7yzytqYDLSElhA5SQtKBbOjhvY12YAlqBWoFYgcpgaxZjGc4gMD7B9kFct43d37uGzLGHAA8MXOjlLqUZdngHx6t9UnOJaI9gIK01g0R3fVn17vdrtgKM8acAbxM4v0iY8wVwP3k5SZYn6HvRVLeRdGJiF4XH1bBesgHAElX9zDzj1LqSPJDpDLz8ySF8joLFoJIKTpQDzsw8+caWAwi54+gtbAUiAXKhaVCnKBUWA7EC4rB2rZ9AODsLt8Mzmq0NASJ2tUgAARktXBo0IOggLIxpmFOYm4SBYVgqZBgjaZpdBU+1xujigKQIZYkB4k2g6O7bl0q/hw/ya68IM+c3Ijo2Jtlll05QSFIVVV1aM4AXIb/TOtsgVIgESOWG7pYwixTddVE0uWKMqDMgs2uiVxIjrLh4pMFZeldXeF9ShLtalQmO8NmSIoyazlh5iwlicrq2bq1FeJT1p07LCYArkR0Tq3JUolLGYA3Zt4T0eMvGu56JS0edcIAAAAASUVORK5CYII=) center no-repeat;
+  background-size: 26upx 26upx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.alert1 .alert-error .alert-error-txt {
+  width: 100%;
+  height: 180upx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+.alert1 .alert-error .alert-error-button {
+  width: 100%;
+  height: calc(100% - 180upx);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-top: 0.5upx solid #ebeaec;
+}
+.alert1 .alert-error .alert-error-button text {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30upx;
+}
+.alert1 .alert-error .alert-error-button text.forgot {
+  color: #000;
+}
+.alert1 .alert-error .alert-error-button text.forgot:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 0.5upx;
+  height: 100%;
+  background-color: #ebeaec;
+}
+.alert1 .alert-error .alert-error-button text.retry {
+  color: #1354ff;
+}

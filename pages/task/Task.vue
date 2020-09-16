@@ -41,6 +41,9 @@
 		<view class="list" v-else>
 			<uni-loadding></uni-loadding>
 		</view>
+		
+		<uni-keyboard></uni-keyboard>
+		
 	</view>
 </template>
 
@@ -62,7 +65,7 @@
 		methods: {
 			getNetData(){
 				let data = {
-					page: this.page
+					page: this.page,
 				}
 				this.$api.personal.mineral(data)
 				.then(res=>{
@@ -72,7 +75,11 @@
 				})
 			},
 			convert(mineral_id){
-				this.$api.personal.add_mineral({mineral_id})
+				let data = {
+					mineral_id: mineral_id,
+					safe_code: this.$md5('111111'),
+				}
+				this.$api.personal.add_mineral(data)
 				.then(res=>{
 					console.log(res);
 					this.$assist.msg(res, true)

@@ -6,6 +6,17 @@
 		},
 		onShow: function() {
 			console.log('App Show')
+			// #ifdef APP-PLUS
+				// plus.navigator.setFullscreen(true) //隐藏状态栏
+				// plus.navigator.hideSystemNavigation() //隐藏虚拟按键
+			
+			var Color = plus.android.importClass("android.graphics.Color");
+			plus.android.importClass("android.view.Window");  
+			var mainActivity = plus.android.runtimeMainActivity();  
+			var window_android = mainActivity.getWindow();
+			window_android.setNavigationBarColor(Color.argb(255,30,30,39));
+			
+			// #endif
 		},
 		onHide: function() {
 			console.log('App Hide')
