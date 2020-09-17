@@ -3,7 +3,7 @@
 		<view class="set-page">
 			<view class="ul">
 				<view class="li">
-					<text class="span">版本</text>
+					<text class="span">版本号</text>
 					<view class="fr">
 						<text class="sp1">{{version_number}}</text>
 					</view>

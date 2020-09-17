@@ -119,7 +119,7 @@
 			</div>
 		</div>
 		
-		<div class="my-task" v-if="$task.list.length > 0">
+		<div class="my-task" v-if="$task && $task.list.length > 0">
 			<div class="my-task-ul">
 				<div class="my-task-li" v-for="item in $task.list" :key="item.id">
 					<div class="my-task-li-ico">
@@ -318,7 +318,7 @@
 				// 解密后，需要按照Utf8的方式将明文转位字符串
 				var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8).toString();
 				var json = JSON.parse(decryptedStr)
-				console.log(json);
+				// console.log(json);
 				this.$store.commit('Personal/ADD_AES', json);
 			},
 			userReal(){

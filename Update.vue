@@ -33,16 +33,16 @@
 		methods: {
 			// 检查更新
 			downFileUpdate(){
-				const url = 'http://www.okami.net.cn:5001/api/update';
+				const url = 'http://101.200.171.163:5001/api/update';
 				const _this = this;
 				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {  
-					console.log(widgetInfo);
+					console.log(widgetInfo.version);
 					uni.request({
 						url: url,
 						method:'POST',
 						data: widgetInfo,
 						success: (result) => {
-							// console.log(result);
+							console.log(result);
 							const data = result.data.data
 							_this.down_config = data
 							if (data.update && data.wgt_url) {

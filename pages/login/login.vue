@@ -125,7 +125,7 @@
 				
 				this.$api.login.sign(this.config1)
 				.then(res=>{
-					console.log(res);
+					// console.log(res);
 					if(res.code === 1){
 						this.toast(res.msg, 'success')
 						this.success(res.data);
@@ -135,10 +135,10 @@
 			success(token){
 				setTimeout(()=>{
 					uni.setStorageSync('token', token);
-					uni.reLaunch({
+					uni.redirectTo({
 						url:'../index1/Index'
 					})
-				}, 1600)
+				}, 1500)
 			}
 		}
 	}

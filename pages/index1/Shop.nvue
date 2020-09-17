@@ -12,11 +12,11 @@
 		<div class="shop-keys-tabs">
 			<div class="scroll-view_H" scroll-x="true">
 				<scroller scroll-direction="horizontal" style="flex-direction: row">
-				<div class="shop-keys-tabs-ul h5-flex">
-					<div @click="tabs=index" class="shop-keys-tabs-li" v-for="(item, index) in $category" :key="item.id">
-						<text :class="['tabs-li-txt', tabs==index ? 'tabs-li-txt-active' : '']">{{item.name}}</text>
+					<div class="shop-keys-tabs-ul h5-flex">
+						<div @click="tabs=index" class="shop-keys-tabs-li" v-for="(item, index) in $category" :key="item.id">
+							<text :class="['tabs-li-txt', tabs==index ? 'tabs-li-txt-active' : '']">{{item.name}}</text>
+						</div>
 					</div>
-				</div>
 				</scroller>
 			</div>
 		</div>
@@ -135,9 +135,16 @@
 		},
 		methods:{
 			gotoLink(url){
-				uni.navigateTo({
-					url:'../webBrowser/index?url=' + url
-				})
+				if(url){
+					uni.navigateTo({
+						url:'../webBrowser/index?url=' + url
+					})
+				}else{
+					uni.showToast({
+						title: '链接未添加',
+						icon: 'none'
+					})
+				}
 			},
 			gotoDetail(item){
 				this.$store.commit('Shop/SET_PRODUCT', item)

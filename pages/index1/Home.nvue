@@ -67,8 +67,9 @@
 				</video>
 			</div>
 					
+			<!-- :style="{'top': playTop}" -->
 			<!-- 播放按钮 -->
-			<div class="play-status h5-flex" :style="{'top': playTop}" v-if="!play_status">
+			<div class="play-status h5-flex" v-if="!play_status" @click="play(index)">
 				<image class="play-status-img" src="@/static/image/449745_200x200.png" mode=""></image>
 			</div>
 			
@@ -257,7 +258,6 @@
 						title: `已为您推荐了${res.data.length}条视频`,
 						icon: 'none'
 					})
-					console.log(res);
 					// 加载之后播放
 					setTimeout(()=>{
 						this.index = 0
