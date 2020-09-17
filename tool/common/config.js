@@ -13,6 +13,12 @@ const qiniu = 'http://up-z2.qiniup.com'
 // 图片显示地址
 const qiniuURL = 'http://api.ohtbmgn.cn/'
 
+// 支付金额配置
+const play_config = {
+	auth: 1.5, // 认证金额
+	broker: 699,  // 经纪商
+}
+
 if(process.env.NODE_ENV === 'development'){
     // 开发环境
 	url_config = serverURL
@@ -28,4 +34,5 @@ export {
     url_config,
     qiniu,
 	qiniuURL,
+	play_config
 }

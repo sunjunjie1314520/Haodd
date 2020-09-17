@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App'
 
 //服务器地址
-import url_config from './tool/common/config.js'
+import url_config, { play_config } from './tool/common/config.js'
 
 // 接口模块
 import api from './tool/api'
@@ -18,7 +18,7 @@ import md5 from './tool/utils/md5.js'
 
 
 // 自定义组件
-// import Footer from "@/components/type-compon/Footer.vue";
+import Keyboard from "@/components/uni-keyboard.vue";
 // import Loadding from '@/components/type-compon/Loadding.vue'
 // Vue.component('uni-loadding', Loadding)
 
@@ -26,7 +26,8 @@ import uniLoadding from "@/components/uni-loadding.vue"
 Vue.component('uni-loadding', uniLoadding)
 
 // 全局注册组件
-// Vue.component('uni-footer', Footer)
+Vue.component('uni-keyboard', Keyboard)
+
 import mixins from "@/tool/plug/mixins/index.js";
 Vue.use(mixins)
 
@@ -37,6 +38,7 @@ Vue.prototype.$url = url_config
 Vue.prototype.$store = store
 Vue.prototype.$assist = assist
 Vue.prototype.$md5 = md5
+Vue.prototype.$pay = play_config
 
 // debug
 console.log('接口地址:', url_config)

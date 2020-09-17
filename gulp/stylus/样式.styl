@@ -20,7 +20,7 @@
 				float left
 				flex-grow 1
 				padding-right 15px
-				color font-color
+				color #fff
 			.fr
 				color font-color
 				line-height 108px
@@ -82,7 +82,7 @@
 				input
 					height 100%
 					float left
-					color font-color
+					color #fff
 					width 550px
 				.ico-down
 					float right
@@ -208,6 +208,8 @@
 				float right
 				color font-color
 				heightL 90px
+				width 160px
+				text-align center
 			input
 				height 90px
 				border-radius 60px
@@ -292,7 +294,7 @@
 					border-radius 18px
 	.list
 		fw 1
-		height calc(100vh - 199px - 90px)
+		height calc(100% - 140px)
 		overflow hidden
 		overflow-y auto
 		margin-top 30px
@@ -410,8 +412,7 @@
 			.get-code
 				float right
 				line-height 100px
-				color #fff
-				
+				color font-color
 			
 .binddata-page
 	fw 1
@@ -442,12 +443,16 @@
 				padding-right 40px
 	.tips
 		fw 1
-		margin-top 40px
+		margin-top 60px
 		.p
 			display block
 			line-height 1.6
 			color font-color
-					
+		.h2
+			font-size 36px
+			color #fff
+			display block
+			padding-bottom 20px
 					
 .my-code
 	fw 1
@@ -710,14 +715,14 @@
 	.list
 		fw 1
 		padding 0 24px 0
-		margin-top 25px
+		margin-top 40px
 		.ul
 			.li
 				fw 1
 				background-color color2
 				border-radius 20px
-				padding 39px 32px
-				margin-top 15px
+				padding 20px 20px
+				margin-bottom 15px
 				.fl-layout
 					float left
 					width 134px
@@ -744,13 +749,14 @@
 							justify-content center
 							text
 								color #fff
-								font-size 26px
-								transform scale(.72)
+								font-size 20px
 						.pict
 							float left
 							width 134px
 							height 134px
 							border-radius 50%
+							overflow hidden
+							background color1
 							image
 								width 100%
 								height 100%
@@ -758,33 +764,36 @@
 						float left
 						color #fff
 						text-align center
-						linear 1
 						line-height 41px
 						border-radius 50px
-						font-size 24px
+						font-size 22px
 						width 108px
 						margin-top 23px
+						&.label-0
+							background #999
+						&.label-1
+							linear 1
 				.text
 					float left
 					widthC 134px
-					padding 10px 0 0 35px
+					padding 10px 0 0 25px
 					position relative
 					.h2
 						color #fff
-						font-size 36px
+						font-size 34px
 						display block
 					.yue
 						position absolute
 						right 0
-						padding-top 10px
+						padding-top 15px
 						top 0
 						// border solid 1px #f60
 						bottom 0
 						display flex
 						align-items flex-start
 						flex-direction column
-						width 38%
 						justify-content space-between
+						width 216px
 						.b
 							color font-color
 							font-size 26px
@@ -810,7 +819,6 @@
 							color #fff
 							float left
 							margin-left 10px
-
 
 .opening-page
 	fw 1
@@ -887,7 +895,8 @@
 				color font-color
 				line-height 100px
 				display block
-				margin-left 30px
+				width 200px
+				text-align center
 
 .address-manage-page
 	margin-top 20px
@@ -967,7 +976,10 @@
 				right 0
 				top 0
 				back1 '../../src/static/img/0aff0f_26x32.png' 26px
-		
+			.more
+				backico '../../src/static/img/13da7a_128x128.png' 0px
+				background-size 26px
+
 	.pub-button
 		margin-top 81px
 		padding 0 28px
@@ -1206,6 +1218,7 @@
 				color font-color
 				float left
 				margin-left 20px
+				font-size 26px
 	.guige
 		fw 1
 		margin-top 20px
@@ -1245,6 +1258,10 @@
 				line-height 1.5
 			image
 				width 100%
+			div
+				width 100%
+				img
+					width 100%
 				
 
 .detail-bottom
@@ -1371,12 +1388,12 @@
 	.tabs
 		fw 1
 		background-color color2
+		display flex
 		.txt
-			float left
-			width 16.66%
 			text-align center
 			color #fff
 			line-height 90px
+			flex 1
 			&.active
 				color bg
 				position relative
@@ -1838,3 +1855,190 @@
 		margin-top 25px
 		fw 1
 		text-align center
+
+
+.alert1
+	width 100%
+	height 100%
+	background rgba(0,0,0,.6)
+	position fixed
+	left 0
+	top 0
+	z-index 99
+	.alert-password
+		width 570upx
+		height 380upx
+		background-color #fff
+		border-radius 10px
+		position absolute
+		left 50%
+		top calc((100% - 432upx - 380upx) / 2)
+		margin-left -285upx
+		padding-top 52upx
+		.alert-error-close
+			width 80upx
+			height 80upx
+			background url(../../src/static/img/close.png)center no-repeat
+			background-size 26upx 26upx
+			position absolute
+			top: 0upx
+			right 0upx
+		.alert-password-title
+			width 100%
+			text
+				display block
+				text-align center
+				font-size 26upx
+				color #9798a9
+				line-height 44upx
+				&.tit
+					line-height 58upx
+					font-size 36upx
+					font-weight bold
+					color #303153
+		.alert-password-input
+			padding 32upx 0 20upx
+			width 100%
+			text-align center
+			.password-input-col
+				width 490upx
+				height 82upx
+				border 1px solid #d5d9de
+				display flex
+				justify-content space-between
+				margin 0 auto
+				text
+					width calc(100% / 6)
+					height 81upx
+					border-right: 1px solid #d5d9de
+					display inline-block
+					position relative
+					&:last-child
+						border-right: none
+					&.active
+						&:after
+							content: ''
+							position absolute
+							left 50%
+							top: 50%
+							margin-left: -8upx
+							margin-top -8upx
+							width 20upx
+							height 20upx
+							background-color #000000
+							border-radius: 50%
+		.alert-password-forget
+			width 100%
+			height 68upx
+			line-height 68upx
+			padding: 0 40upx
+			font-size 28upx
+			text-align right
+			text
+				color #1354ff
+				display inline-block
+				line-height 60upx
+				padding-left 15upx
+	.alert-keyboard
+		width 100%
+		height 432upx
+		background-color #fff
+		position fixed
+		left 0
+		bottom 0
+		display flex
+		justify-content space-between
+		flex-wrap: wrap
+		.alert-keyboard-box
+			width calc(100% / 3)
+			border-right: 1px solid #cdd1d7
+			border-bottom: 1px solid #cdd1d7
+			&:active
+				background #e5e5e5
+			&:nth-child(3n)
+				border-right: none
+			&:nth-child(11)
+				border-bottom none
+			&:nth-child(12)
+				border-bottom: none
+			.alert-keyboard-number
+				width 100%
+				height 100%
+				display flex
+				justify-content center
+				font-size 60upx
+				align-items center
+				color #111
+				font-family: Arial, Helvetica, sans-serif
+				position relative
+			.alert-keyboard-en
+				width 100% 
+				text-align center
+				line-height 48upx
+				text
+					padding 0 4upx
+					font-size 24upx
+					line-height 48upx
+					font-family: Arial, Helvetica, sans-serif
+					color #111
+			.alert-keyboard-null
+				width 100%
+				height 100%
+				background-color #cdd1d7
+			.alert-keyboard-del
+				width 100%
+				height 100%
+				background #cdd1d7 url(../../src/static/img/77c15_42x30.png) center no-repeat
+				background-size 42upx 30upx
+	.alert-error
+		width 570upx
+		height 290upx
+		background-color #fff
+		position absolute
+		left 50%
+		margin-left -285upx
+		top: 50%
+		margin-top -145upx
+		border-radius: 20upx
+		.alert-error-close
+			width 80upx
+			height 80upx
+			background url(../../src/static/img/close.png)center no-repeat
+			background-size 26upx 26upx
+			position absolute
+			top 0
+			right 0
+		.alert-error-txt
+			width 100%
+			height 180upx
+			display flex
+			justify-content center
+			align-items center
+			color #333
+		.alert-error-button
+			width 100%
+			height calc(100% - 180upx)
+			display flex
+			justify-content space-between
+			position relative
+			border-top: .5upx solid #ebeaec
+			
+			text
+				flex 1
+				height 100%
+				display flex
+				justify-content center
+				align-items center
+				font-size 30upx
+				&.forgot
+					color #000
+					&:after
+						content: ''
+						position absolute
+						left 50%
+						top: 0
+						width .5upx
+						height 100%
+						background-color #ebeaec
+				&.retry
+					color #1354ff

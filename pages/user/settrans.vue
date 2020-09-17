@@ -10,7 +10,8 @@
 				</view>
 				<view class="li">
 					<input v-model="config.verity_code" class="short" type="text" maxlength="6" value="" placeholder="请输入验证码" placeholder-class="placeholder-class" />
-					<text class="get-code" @click="sendCode($user.phone)">获取验证码</text>
+					<text class="get-code" v-if="code_config.down == 0" @click="sendCode($user.phone)">获取验证码</text>
+					<text class="get-code" v-else>({{code_config.down}})s</text>
 				</view>
 			</view>
 			<view class="pub-button">

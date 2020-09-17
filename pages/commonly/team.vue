@@ -26,19 +26,20 @@
 				</view>
 			</view>
 			<view class="list">
-				<view class="ul" v-if="all_data.length > 0">
-					<view class="li" v-for="item in all_data" :key="item.user_id">
+				<view class="ul" v-if="list.length > 0">
+					<view class="li" v-for="item in list" :key="item.user_id">
 						<view class="fl-layout">
 							<view class="pict-wrap">
 								<view class="pict">
 									<image v-if="item.avatar === '0'" src="../../src/static/img/116836_130x130.png" mode=""></image>
 									<image v-else :src="qiniuURL + item.avatar" mode=""></image>
 								</view>
-								<view class="leval1">
-									<text>{{item.group_name}}</text>
+								<view class="leval1" v-if="item.group_name">
+									<text class="font">{{item.group_name}}</text>
 								</view>
 							</view>
-							<text class="label" v-if="item.card_id">已认证</text>
+							<text class="label label-1" v-if="item.card_id">已认证</text>
+							<text class="label label-0" v-else>未认证</text>
 						</view>
 						<view class="text">
 							<text class="h2">{{item.nickname || '昵称未填写'}}</text>
@@ -53,15 +54,15 @@
 							</view>
 							
 							<view class="yue">
-								<text class="b">团队: {{item.team_basc_value}}</text>
-								<text class="b ml">基础: {{item.base_value}}</text>
+								<text class="b font">团队活跃度: {{item.team_basc_value}}</text>
+								<text class="b ml font">基础活跃度: {{item.base_value}}</text>
 							</view>
 							
 						</view>
 					</view>
-					<view class="loadding-text" v-if="more">正在加载中...</view>
+					<view class="loadding-text" v-if="next">正在加载中...</view>
 				</view>
-				<view class="null-data">您还没有任何队员</view>
+				<view class="null-data" v-else>您还没有任何队员</view>
 			</view>
 		</view>
 		<view v-else class="load">
@@ -75,11 +76,12 @@
 	export default {
 		data(){
 			return {
-				page: 1,
 				pageData: false,
-				more: true,
-				all_data:[],
-				qiniuURL: qiniuURL
+				
+				page: 1,
+				size:10,
+				next: true,
+				list:[],
 			}
 		},
 		created(){
@@ -87,7 +89,7 @@
 		},
 		methods: {
 			getNetData(){
-				if(!this.more){
+				if(!this.next){
 					return false;
 				}
 				let data = {
@@ -96,14 +98,11 @@
 				this.$api.personal.user_team(data)
 				.then(res=>{
 					console.log(res);
-					this.pageData = res.data
-					if(res.data.list.length < 20){
-						this.more = false
+					if(res.code){
+						this.pageData = res.data
+						this.store(res.data.list, res.data.list_count)
 					}else{
-						this.page = this.page + 1
-					}
-					if(this.more){
-						this.all_data = this.all_data.concat(res.data.list)
+						this.next = false;
 					}
 				})
 			}

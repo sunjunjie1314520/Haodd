@@ -45,6 +45,9 @@ config.order_delete = params => request.globalRequest('/order/delete', 'POST', p
 config.order_delivery = params => request.globalRequest('/order_delivery/index', 'POST', params, 1)
 
 // 删除购物车
-config.cart_delete = params => request.globalRequest('/cart/delete', 'POST', params, 1)
+config.cart_delete = params => request.globalRequest('/cart/delete', 'POST', params, 1, '正在删除')
+
+// 订单付款
+config.confim_pay = params => request.globalRequest('/order/confim_pay', 'POST', params, 1)
 
 export default config

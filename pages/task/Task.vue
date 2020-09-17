@@ -27,7 +27,7 @@
 							<text class="span">总产量：{{item.yield}}音豆</text>
 						</view>
 						<view class="fr">
-							<text class="span" @click="convert(item.id)">兑换</text>
+							<text class="span" @click="duihuan(item.price)">兑换</text>
 						</view>
 					</view>
 					<view class="activity">
@@ -41,6 +41,9 @@
 		<view class="list" v-else>
 			<uni-loadding></uni-loadding>
 		</view>
+		
+		<uni-keyboard @close="show=false" @confirm="confirm" v-if="show"></uni-keyboard>
+		
 	</view>
 </template>
 
@@ -53,16 +56,36 @@
 				size: 10,
 				page: 1,
 				next: true,
-				list: []
+				list: [],
+				
+				show: false,
+				safe_code: '',
+				mineral_id: ''
 			}
 		},
 		created() {
 			this.getNetData();
 		},
 		methods: {
+			duihuan(price){
+				if(this.$user.amount >= price){
+					this.show=true;
+					this.mineral_id = item.id;
+				}else{
+					this.toast('您的音豆不足，无法兑换!')
+				}
+			},
+			confirm(safe_code){
+				console.log(safe_code);
+				this.safe_code = safe_code;
+				this.show = false;
+				setTimeout(()=>{
+					this.convert();
+				}, 500)
+			},
 			getNetData(){
 				let data = {
-					page: this.page
+					page: this.page,
 				}
 				this.$api.personal.mineral(data)
 				.then(res=>{
@@ -71,11 +94,17 @@
 					this.store(res.data.reverse(), res.count);
 				})
 			},
-			convert(mineral_id){
-				this.$api.personal.add_mineral({mineral_id})
+			convert(){
+				let data = {
+					mineral_id: this.mineral_id,
+					safe_code: this.$md5(this.safe_code),
+				}
+				this.$api.personal.add_mineral(data)
 				.then(res=>{
 					console.log(res);
 					this.$assist.msg(res, true)
+					this.$store.dispatch('Personal/me');
+					
 				})
 			}
 		}

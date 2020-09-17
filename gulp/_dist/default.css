@@ -11,3 +11,16 @@
 	display: flex;
 	/* #endif */
 }
+
+
+/* #ifdef H5 */
+	@font-face {
+		font-family: 'iconfont';
+		src: url('//at.alicdn.com/t/font_2051613_03ys2qhimecl.eot');
+		src: url('//at.alicdn.com/t/font_2051613_03ys2qhimecl.eot?#iefix') format('embedded-opentype'),
+			url('//at.alicdn.com/t/font_2051613_03ys2qhimecl.woff2') format('woff2'),
+			url('//at.alicdn.com/t/font_2051613_03ys2qhimecl.woff') format('woff'),
+			url('//at.alicdn.com/t/font_2051613_03ys2qhimecl.ttf') format('truetype'),
+			url('//at.alicdn.com/t/font_2051613_03ys2qhimecl.svg#iconfont') format('svg');
+	}
+/* #endif */

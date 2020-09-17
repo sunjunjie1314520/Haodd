@@ -134,13 +134,19 @@ assist.ver = function (yz) {
 							icon: 'none'
 						})
 						throw Error();
-					} else if(item.val1.length < item.min || item.val2.length < item.min){
+					} else if(item.val1.length < item.min){
 						uni.showToast({
 							title: item.field + '不能少于' + item.min + '位数',
 							icon: 'none'
 						})
 						throw Error();
-					}else if(item.val2 != item.val1){
+					}else if(item.val2.length < item.min){
+						uni.showToast({
+							title: '确认' + item.field + '不能少于' + item.min + '位数',
+							icon: 'none'
+						})
+						throw Error();
+					} else if(item.val2 != item.val1){
 						uni.showToast({
 							title: '两次密码不一样',
 							icon: 'none'

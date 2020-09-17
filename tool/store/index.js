@@ -52,30 +52,33 @@ const store = new Vuex.Store({
     mutations: {
 		
         payReq(state, payload) {
+			const _this = this;
 			console.log('pay');
 			// #ifdef APP-PLUS
 			plus.payment.getChannels(function(s) {
-				console.log(s)
 				channels = s
 			})
 			var url = getRandomHost();
 			uni.request({
 				url: url,
 				method: 'POST',
-				data: JSON.stringify(payload),
+				data: JSON.stringify(payload.data),
 				dataType: 'json',
 				success(data) {
 					var result = data.data
 					if (result.result_code == 0) {
-						var payChannel = getPayChannel(payload.channel);
+						var payChannel = getPayChannel(payload.data.channel);
 						var paySrc = result.order_string
 						plus.payment.request(payChannel, paySrc, function(res){
 							console.log(res);
-							this.dispatch('Personal/me');
 							uni.showToast({
-								title: `支付成功${res}`,
-								icon:'success'
+								title: `${payload.data.title}-支付成功`,
+								icon:'none'
 							})
+							_this.dispatch('Personal/me');
+							setTimeout(() => {
+								payload.callback();
+							}, 1600);
 						}, function(e){
 							uni.showToast({
 								title: `${e.message}`,

@@ -32,7 +32,7 @@
 				
 			</view>
 			<view class="pub-button fixed two">
-				<text v-if="$user" class="btn" @click="gotoPay">立即开通</text>
+				<text v-if="!$user.parther" class="btn" @click="gotoPay">立即开通</text>
 				<text class="btn" @tap="myLink">我的经纪商</text>
 			</view>
 		</view>
@@ -57,8 +57,8 @@
 				var payData = {
 					app_id: "41770ae0-c3d2-4410-8d7e-b3086557ba80",
 					channel: 'ALI_APP',
-					title: "开通经纪商",
-					total_fee: 699 * 100,
+					title: "好逗短视频-开通经纪商",
+					total_fee: this.$pay.broker * 100,
 					bill_no: this.$assist.genBillNo(),
 					optional: {
 						'x2-token': token,  // 要开通的实名的账户token
@@ -66,7 +66,11 @@
 					},
 					bill_timeout: 360
 				}
-				this.$store.commit('payReq', payData)
+				this.$store.commit('payReq', {data:payData, callback(){
+					uni.navigateBack({
+						delta: 1,
+					})
+				}})
 			},
 		}
 		

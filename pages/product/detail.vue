@@ -42,7 +42,9 @@
 					<!-- <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598888672108&di=0822310e1878dfbb073eae805eac9dd2&imgtype=0&src=http%3A%2F%2Fdownza.img.zz314.com%2Fnews%2Fapple%2Frdzx-1029%2F2016-12-03%2F5f45c97553684803633a5a62ab8dc788.jpg" mode="widthFix"></image> -->
 				</view>
 			</view>
-		
+			
+			<view class="fl" style="height:140upx;width:100%"></view>
+			
 			<view :class="['params-alert', {'active': show}]">
 				<view class="layout">
 					<view class="close" @click="show=false">
@@ -69,7 +71,7 @@
 								<view class="pub-add">
 									<text class="jian" @click="num > 1 ? num-- : 1">-</text>
 									<text class="num">{{num}}</text>
-									<text class="jia" @click="num++">+</text>
+									<text class="jia" @click="num < pageData.stock_count ? num++ : num=pageData.stock_count">+</text>
 								</view>
 							</view>
 						</view>
@@ -79,6 +81,7 @@
 					</view>
 				</view>
 			</view>
+			
 		</view>
 		
 		<uni-loadding v-else></uni-loadding>
@@ -149,6 +152,10 @@
 				// }, 1500)
 			},
 			gouShop(){
+				if(this.pageData.stock_count == 0){
+					this.toast('库存不够')
+					return false;
+				}
 				let data = [{
 					...this.pageData,
 					pro_name: this.pageData.name,

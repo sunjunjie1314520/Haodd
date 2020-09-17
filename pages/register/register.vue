@@ -7,12 +7,17 @@
                 </view>
 				<view class="li">
 					<input type="number" maxlength="6" value="" placeholder="请输入验证码" v-model="config.verity_code" />
-					<text class="fr get-code" @click="sendCode(config.phone)">获取验证码</text>
+					<text class="fr get-code" v-if="code_config.down == 0" @click="sendCode(config.phone)">获取验证码</text>
+					<text class="fr get-code" v-else>({{code_config.down}})s</text>
                 </view>
 				<view class="li">
 					<input type="password" maxlength="20" value="" placeholder="请输入密码" v-model="password" />
 					<text class="fr desc">密码由6-20位数字和字母组成</text>
                 </view>
+				<view class="li">
+					<input type="password" maxlength="20" value="" placeholder="请再次输入密码" v-model="password1" />
+					<text class="fr desc">重复确认密码</text>
+				</view>
 				<view class="li">
 					<input type="text" :disabled="qing" maxlength="10" value="" placeholder="请输入邀请码" v-model="config.pid" />
 					<text class="fr desc">邀请码</text>
@@ -27,7 +32,9 @@
 
 <script>
 	//引入插件
-	const sharetrace = uni.requireNativePlugin('shoot-sharetrace');
+	// #ifdef APP-PLUS
+		const sharetrace = uni.requireNativePlugin('shoot-sharetrace');
+	// #endif
 	export default {
 		data(){
 			return {
@@ -38,20 +45,23 @@
 					pid:''
 				},
 				password: '',
+				password1: '',
 				qing: false,
 			}
 		},
 		onReady() {
-			//获取安装携带参数
-			sharetrace.getInstallTrace( data => {
-				// this.showResult(JSON.stringify(data.data.paramsData));
-				var str = data.data.paramsData
-				if(str){
-					this.qing = true;
-					let arr = str.split('=')
-					this.config.pid = arr[1]
-				}
-			});
+			// #ifdef APP-PLUS
+				//获取安装携带参数
+				sharetrace.getInstallTrace( data => {
+					// this.showResult(JSON.stringify(data.data.paramsData));
+					var str = data.data.paramsData
+					if(str){
+						this.qing = true;
+						let arr = str.split('=')
+						this.config.pid = arr[1]
+					}
+				});
+			// #endif
 		},
 		created() {
 			
@@ -80,8 +90,9 @@
 						min: 6
 					},
 					{
-						type: 'len',
-						val: this.password,
+						type: 'password',
+						val1: this.password,
+						val2: this.password1,
 						field: '密码',
 						min: 6
 					},
