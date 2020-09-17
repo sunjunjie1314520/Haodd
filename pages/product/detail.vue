@@ -42,7 +42,9 @@
 					<!-- <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1598888672108&di=0822310e1878dfbb073eae805eac9dd2&imgtype=0&src=http%3A%2F%2Fdownza.img.zz314.com%2Fnews%2Fapple%2Frdzx-1029%2F2016-12-03%2F5f45c97553684803633a5a62ab8dc788.jpg" mode="widthFix"></image> -->
 				</view>
 			</view>
-		
+			
+			<view class="fl" style="height:140upx;width:100%"></view>
+			
 			<view :class="['params-alert', {'active': show}]">
 				<view class="layout">
 					<view class="close" @click="show=false">
@@ -79,6 +81,7 @@
 					</view>
 				</view>
 			</view>
+			
 		</view>
 		
 		<uni-loadding v-else></uni-loadding>

@@ -57,8 +57,8 @@
 				var payData = {
 					app_id: "41770ae0-c3d2-4410-8d7e-b3086557ba80",
 					channel: 'ALI_APP',
-					title: "开通经纪商",
-					total_fee: 0.01 * 100,
+					title: "好逗短视频-开通经纪商",
+					total_fee: this.$pay.broker * 100,
 					bill_no: this.$assist.genBillNo(),
 					optional: {
 						'x2-token': token,  // 要开通的实名的账户token

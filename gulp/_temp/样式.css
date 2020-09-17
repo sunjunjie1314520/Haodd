@@ -357,7 +357,7 @@
 .task-tabs .list {
   float: left;
   width: 100%;
-  height: calc(100vh - 199px - 90px);
+  height: calc(100% - 140px);
   overflow: hidden;
   overflow-y: auto;
   margin-top: 30px;
@@ -555,12 +555,18 @@
 .binddata-page .tips {
   float: left;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 60px;
 }
 .binddata-page .tips .p {
   display: block;
   line-height: 1.6;
   color: rgba(255,255,255,0.6);
+}
+.binddata-page .tips .h2 {
+  font-size: 36px;
+  color: #fff;
+  display: block;
+  padding-bottom: 20px;
 }
 .my-code {
   float: left;
@@ -1585,6 +1591,7 @@
   color: rgba(255,255,255,0.6);
   float: left;
   margin-left: 20px;
+  font-size: 26px;
 }
 .detail-page .guige {
   float: left;
@@ -1642,6 +1649,12 @@
   line-height: 1.5;
 }
 .detail-page .context .context-wrap image {
+  width: 100%;
+}
+.detail-page .context .context-wrap div {
+  width: 100%;
+}
+.detail-page .context .context-wrap div img {
   width: 100%;
 }
 .detail-bottom {

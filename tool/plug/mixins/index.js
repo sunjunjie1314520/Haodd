@@ -25,7 +25,7 @@ plug.install = function(Vue, options) {
                 windowHeight: null,
 
                 code_config: {
-                    init: 10,
+                    init: 60,
                     down: 0,
                     timer: 0,
                 }

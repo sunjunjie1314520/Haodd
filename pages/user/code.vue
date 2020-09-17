@@ -37,16 +37,22 @@
 				this.qr = Qr.createQrCodeImg(this.url + '?uuid=' + this.$aes.id)
 			},
 			bcFn(){
+				const _this = this;
 				uni.showLoading({
 					title: '正在保存',
-					mask:true
+					mask: true
 				})
 				uni.saveImageToPhotosAlbum({  //保存图片
-					filePath:this.base64,  
+					filePath: _this.base64,  
 					success: (res) => {
 						uni.showToast({
 							title:'保存成功',
 						})
+					},
+					fail() {
+						setTimeout(()=>{
+							_this.bcFn();
+						}, 1000)
 					}
 				})
 			},
@@ -83,7 +89,7 @@
 								_this.base64 = res.tempFilePath
 							}
 						})
-					}, 1200)
+					}, 800)
 				}).exec();
 			},
 		}

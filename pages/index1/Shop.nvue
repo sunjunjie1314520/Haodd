@@ -21,7 +21,7 @@
 		
 		<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
 			<swiper-item class="li" v-for="item in $sys_shop" :key="item.id">
-				<image @click="gotoLink(item.href)" class="swiper-image" :src="qiniuURL + item.image_url" mode=""></image>
+				<image @click="gotoLink(item.href)" class="swiper-image" :src="qiniuURL + item.image_url" mode="widthFix"></image>
 			</swiper-item>
 		</swiper>
 		
@@ -73,6 +73,7 @@
 						<div class="product-info-price">
 							<text class="price-t1">￥</text>
 							<text class="price-t2">{{item.amount}}音豆</text>
+							<text class="price-t3">{{item.old_amount}}元</text>
 						</div>
 						<text class="product-info-text-h2">{{item.name}}</text>
 						<text class="product-info-text-var">{{item.des}}</text>
@@ -199,10 +200,11 @@
 		color #fff
 	.tabs-li-txt-active
 		color #f7224e
+		
 	.out-link-ul
 		flex-direction row
 		justify-content space-around
-		padding 25upx 0
+		padding 25upx 15upx
 		
 	.out-link-li
 		flex-direction column
@@ -210,8 +212,8 @@
 		align-items center
 				
 	.out-link-ul-li-image
-		width 80upx
-		height 80upx
+		width 120upx
+		height 120upx
 		
 	.out-link-ul-li-txt
 		color #fff
@@ -269,6 +271,13 @@
 		font-size 30upx
 		color #f7224e
 	
+	.price-t3
+		font-size 30upx
+		color #ccc
+		text-decoration line-through
+		margin-left 20upx
+		font-size 24upx
+	
 	.product-info-text-h2
 		lines 1
 		color #fff
@@ -292,5 +301,4 @@
 		height 283upx
 	.swiper-image
 		width 750upx
-		height 283upx
 </style>

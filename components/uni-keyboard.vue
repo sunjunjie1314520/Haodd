@@ -169,7 +169,6 @@
         },
         methods:{
             close(){
-                this.$assist.play()
                 this.$emit('close', false)
             },
             resetShi(){
@@ -185,12 +184,11 @@
                     this.number_arr.push(id)
                 }
                 if(this.number_arr.length==6){
-
                     uni.showLoading({
                         title:'验证中',
                         mask:true
                     })
-
+					this.$emit('confirm', this.number_arr.join(''))
                 }
             },
             BackSpace(){
@@ -202,7 +200,10 @@
                 
             },
             goToforPass(){
-                
+				this.close();
+                uni.navigateTo({
+                	url: '../user/settrans'
+                })
             }
         }
     }
