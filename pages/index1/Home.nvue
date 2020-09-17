@@ -59,7 +59,7 @@
 				:show-center-play-btn="false"
 				:enable-progress-gesture="false"
 				:src="qiniuURL + item.video_src"
-				:poster="qiniuURL + item.video + '?vframe/jpg/offset/1'"
+				:poster="qiniuURL + item.video_src + '?vframe/jpg/offset/1'"
 				:id="`video_${index}`"
 				:ref="`video_${index}`"
 				@click="play(index)"

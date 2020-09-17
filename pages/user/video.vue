@@ -43,7 +43,10 @@
 				<view class="ul">
 					<view class="li" v-for="item in list" :key="item.id">
 						<!-- <image :src="qiniuURL + 'lssLc2AFKPMH_PTT0ftaN4_ZjEMs'" mode=""></image> -->
-						<video :src="qiniuURL + item.video_src"></video>
+						<video
+						:src="qiniuURL + item.video_src"
+						:poster="qiniuURL + item.video_src + '?vframe/jpg/offset/1'"
+						></video>
 						<text class="play">{{item.number_of_comments}}</text>
 					</view>
 				</view>
@@ -56,7 +59,10 @@
 				<view class="ul">
 					<view class="li" v-for="item in list1" :key="item.id">
 						<!-- <image :src="qiniuURL + 'lssLc2AFKPMH_PTT0ftaN4_ZjEMs'" mode=""></image> -->
-						<video :src="qiniuURL + item.video_src"></video>
+						<video
+						:src="qiniuURL + item.video_src"
+						:poster="qiniuURL + item.video_src + '?vframe/jpg/offset/1'"
+						></video>
 						<text class="play">{{item.number_of_comments}}</text>
 					</view>
 				</view>

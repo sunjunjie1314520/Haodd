@@ -5,7 +5,7 @@
 				<view class="li">
 					<text class="span">版本</text>
 					<view class="fr">
-						<text class="sp1">{{$user.version}}</text>
+						<text class="sp1">{{version_number}}</text>
 					</view>
 				</view>
 				<view class="li">
@@ -14,12 +14,12 @@
 						<text class="sp1">{{$user.phone}}</text>
 					</view>
 				</view>
-				<view class="li more">
+				<!-- <view class="li more">
 					<text class="span">用户名</text>
 					<view class="fr">
 						<navigator hover-class="hover-class" class="sp1" url="../user/modify">{{$user.phone | phone}}</navigator>
 					</view>
-				</view>
+				</view> -->
 				<view class="li more">
 					<navigator hover-class="hover-class" class="sp1" url="../user/setpass">
 						<text class="span">修改登录密码</text>
@@ -61,10 +61,21 @@
 	export default {
 		data() {
 			return {
-				
+				version_number: '2.0.0'
 			}
 		},
+		created() {
+			// #ifdef APP-PLUS
+			this.version();
+			// #endif
+		},
 		methods: {
+			version(){
+				const _this = this;
+				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {
+					_this.version_number = widgetInfo.version;
+				})
+			},
 			quit(){
 				uni.clearStorageSync();
 				uni.reLaunch({

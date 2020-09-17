@@ -1540,26 +1540,25 @@ var render = function() {
                 { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
                 [
                   _c(
-                    "v-uni-text",
-                    { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
-                    [_vm._v("用户名")]
-                  ),
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+                    "v-uni-navigator",
+                    {
+                      staticClass: _vm._$g(12, "sc"),
+                      attrs: {
+                        "hover-class": "hover-class",
+                        url: "../user/setpass",
+                        _i: 12
+                      }
+                    },
                     [
                       _c(
-                        "v-uni-navigator",
-                        {
-                          staticClass: _vm._$g(14, "sc"),
-                          attrs: {
-                            "hover-class": "hover-class",
-                            url: "../user/modify",
-                            _i: 14
-                          }
-                        },
-                        [_vm._v(_vm._$g(14, "t0-0"))]
-                      )
+                        "v-uni-text",
+                        { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+                        [_vm._v("修改登录密码")]
+                      ),
+                      _c("v-uni-view", {
+                        staticClass: _vm._$g(14, "sc"),
+                        attrs: { _i: 14 }
+                      })
                     ],
                     1
                   )
@@ -1576,7 +1575,7 @@ var render = function() {
                       staticClass: _vm._$g(16, "sc"),
                       attrs: {
                         "hover-class": "hover-class",
-                        url: "../user/setpass",
+                        url: "../user/binddata",
                         _i: 16
                       }
                     },
@@ -1584,7 +1583,7 @@ var render = function() {
                       _c(
                         "v-uni-text",
                         { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
-                        [_vm._v("修改登录密码")]
+                        [_vm._v("绑定提现资料")]
                       ),
                       _c("v-uni-view", {
                         staticClass: _vm._$g(18, "sc"),
@@ -1606,7 +1605,7 @@ var render = function() {
                       staticClass: _vm._$g(20, "sc"),
                       attrs: {
                         "hover-class": "hover-class",
-                        url: "../user/binddata",
+                        url: "../user/settrans",
                         _i: 20
                       }
                     },
@@ -1614,41 +1613,11 @@ var render = function() {
                       _c(
                         "v-uni-text",
                         { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
-                        [_vm._v("绑定提现资料")]
+                        [_vm._v("修改交易密码")]
                       ),
                       _c("v-uni-view", {
                         staticClass: _vm._$g(22, "sc"),
                         attrs: { _i: 22 }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
-                [
-                  _c(
-                    "v-uni-navigator",
-                    {
-                      staticClass: _vm._$g(24, "sc"),
-                      attrs: {
-                        "hover-class": "hover-class",
-                        url: "../user/settrans",
-                        _i: 24
-                      }
-                    },
-                    [
-                      _c(
-                        "v-uni-text",
-                        { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
-                        [_vm._v("修改交易密码")]
-                      ),
-                      _c("v-uni-view", {
-                        staticClass: _vm._$g(26, "sc"),
-                        attrs: { _i: 26 }
                       })
                     ],
                     1
@@ -1661,13 +1630,13 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
+            { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
             [
               _c(
                 "v-uni-view",
                 {
-                  staticClass: _vm._$g(28, "sc"),
-                  attrs: { _i: 28 },
+                  staticClass: _vm._$g(24, "sc"),
+                  attrs: { _i: 24 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -1677,12 +1646,12 @@ var render = function() {
                 [
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
+                    { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
                     [_vm._v("退出登录")]
                   ),
                   _c("v-uni-view", {
-                    staticClass: _vm._$g(30, "sc"),
-                    attrs: { _i: 30 }
+                    staticClass: _vm._$g(26, "sc"),
+                    attrs: { _i: 26 }
                   })
                 ],
                 1
@@ -8153,6 +8122,7 @@ var render = function() {
                               _c("v-uni-video", {
                                 attrs: {
                                   src: _vm._$g("31-" + $30, "a-src"),
+                                  poster: _vm._$g("31-" + $30, "a-poster"),
                                   _i: "31-" + $30
                                 }
                               }),
@@ -8199,6 +8169,7 @@ var render = function() {
                               _c("v-uni-video", {
                                 attrs: {
                                   src: _vm._$g("37-" + $31, "a-src"),
+                                  poster: _vm._$g("37-" + $31, "a-poster"),
                                   _i: "37-" + $31
                                 }
                               }),

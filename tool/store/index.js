@@ -84,6 +84,9 @@ const store = new Vuex.Store({
 								title: `${e.message}`,
 								icon:'none'
 							})
+							setTimeout(() => {
+								payload.callback();
+							}, 1600);
 						});
 					}
 				}
