@@ -56,7 +56,7 @@
 				}
 				this.config.old_password = this.$md5(this.p1);
 				this.config.new_password = this.$md5(this.p2);
-				this.$api.personal.upd_safe(this.config)
+				this.$api.personal.upd_pwd(this.config)
 				.then(res=>{
 					console.log(res);
 					this.$assist.msg(res, true, true)

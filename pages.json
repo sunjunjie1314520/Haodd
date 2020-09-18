@@ -97,7 +97,7 @@
 		{
 			"path": "pages/user/setpass",
 			"style": {
-				"navigationBarTitleText": "设置登录密码"
+				"navigationBarTitleText": "修改登录密码"
 			}
 		},
 		{
@@ -109,7 +109,7 @@
 		{
 			"path": "pages/user/settrans",
 			"style": {
-				"navigationBarTitleText": "设置交易密码"
+				"navigationBarTitleText": "修改交易密码"
 			}
 		},
 		{
