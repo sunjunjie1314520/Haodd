@@ -165,7 +165,7 @@
 </template>
 
 <script>
-	const { windowWidth, windowHeight, statusBarHeight } = uni.getSystemInfoSync();
+	const { windowWidth, windowHeight, statusBarHeight, platform } = uni.getSystemInfoSync();
 	
 	import uniNoticeBar from '@/components/uni-notice-bar/uni-notice-bar.vue'
 	import pan from './pan.nvue'
@@ -366,21 +366,30 @@
 			Jiazai(){
 				console.log('加载一次');
 			},
-			// 滑动事情
+			// 安卓滑动
 			Disappear(e, index){
-				this.index = e.direction=='up' ? index + 1: index - 1;
-				setTimeout(()=>{
-					console.log(this.index);
-					uni.createVideoContext(`video_${this.index}`,this).play();
-					this.play_status = true;
-					if(this.index != this.prev){
-						let curr = uni.createVideoContext(`video_${this.prev}`,this);
-						curr.pause();
-						curr.seek(0);
-						this.prev = this.index
-					}
-					console.log(this.prev);
-				},300)
+				if(platform == 'android'){
+					this.index = e.direction=='up' ? index + 1: index - 1;
+					setTimeout(()=>{
+						console.log(this.index);
+						uni.createVideoContext(`video_${this.index}`,this).play();
+						this.play_status = true;
+						if(this.index != this.prev){
+							let curr = uni.createVideoContext(`video_${this.prev}`,this);
+							curr.pause();
+							curr.seek(0);
+							this.prev = this.index
+						}
+						console.log(this.prev);
+					},300)
+				}
+			},
+			// 苹果滑动
+			Scroll(e){
+				if(platform == 'ios'){
+					console.log('ios Scroll');
+					console.log(e);
+				}
 			},
 			// 移出
 			onappear (e) {

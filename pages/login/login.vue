@@ -71,7 +71,9 @@
 		},
 		created() {
 			let phone = uni.getStorageSync('phone');
-			this.config.username = phone;
+			if(phone){
+				this.config.username = phone;
+			}
 		},
 		methods: {
 			userLogin(){

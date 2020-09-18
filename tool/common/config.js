@@ -1,7 +1,7 @@
 let url_config = null
 
 // 显示环境信息
-console.log(process.env);
+// console.log(process.env);
 
 // 接口地址
 // const serverURL = 'http://192.168.1.50/index.php'
