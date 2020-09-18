@@ -25,7 +25,7 @@
 			}
 		},
 		created() {
-			console.log('Update Created');
+			// console.log('Update Created');
 			// #ifdef APP-PLUS
 			this.downFileUpdate();
 			// #endif
@@ -36,7 +36,7 @@
 				const url = 'http://101.200.171.163:5001/api/update';
 				const _this = this;
 				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {  
-					console.log(widgetInfo.version);
+					// console.log(widgetInfo.version); // 版本号
 					uni.request({
 						url: url,
 						method:'POST',

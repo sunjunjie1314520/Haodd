@@ -71,8 +71,12 @@
 		},
 		created() {
 			let phone = uni.getStorageSync('phone');
+			let password = uni.getStorageSync('password');
 			if(phone){
 				this.config.username = phone;
+			}
+			if(password){
+				this.password = password;
 			}
 		},
 		methods: {
@@ -101,6 +105,7 @@
 					// console.log(res);
 					if(res.code === 1){
 						uni.setStorageSync('phone', this.config.username)
+						uni.setStorageSync('password', this.password)
 						this.toast(res.msg, 'success')
 						this.success(res.data);
 					}

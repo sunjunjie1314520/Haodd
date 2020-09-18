@@ -29,7 +29,7 @@
 		
 		<list
 		class="list-wrap"
-		v-if="$video_list"
+		v-if="video_list.length > 0"
 		:pagingEnabled="true"
 		:offset-accuracy="videoStyle.height"
 		:show-scrollbar="false"
@@ -40,7 +40,7 @@
 		>
 			<cell
 			class="list-cell"
-			v-for="(item, index) in $video_list"
+			v-for="(item, index) in video_list"
 			:key="item.id"
 			:style="videoStyle"
 			@disappear="Disappear($event, index)"
@@ -217,55 +217,63 @@
 				
 				// 评论分页
 				cpage: 1,
+				
+				
+				// 视频
+				video_list: [],
 			}
 		},
 		created() {
-			this.loadData();
+			this.getVideo_list();
 		},
 		computed: {
 			...mapState('Video', {
-				$video_list: state => state.video_index,
 				$comment_list: state => state.comment_index,
 			})
 		},
 		mounted() {
-			this.$nextTick(()=>{
-				
-			})
+			
 		},
 		onHide(){
-			uni.createVideoContext(`video_${this.index}`,this).pause()
+			uni.createVideoContext(`video_${this.index}`,this).pause();
 			this.play_status = false;
 		},
 		onUnload() {
 			console.log('onUnload');
 		},
 		methods: {
+			getVideo_list(){
+				const _this = this;
+				uni.showLoading({
+					title: '视频加载中',
+					mask: true,
+				})
+				const token = uni.getStorageSync('token');
+				console.log(token);
+				uni.request({
+					url: `http://101.200.171.163/public/index.php/video/page_index?page=` + this.page,
+					method: 'GET',
+					header:{
+						'x2-token': token
+					},
+					success(res) {
+						_this.video_list = res.data.data;
+						uni.showToast({
+							title: `已为您推荐了${res.data.data.length}条视频`,
+							icon: 'none'
+						})
+						// 加载之后播放
+						setTimeout(()=>{
+							_this.index = 0
+							_this.prev = 0
+							_this.play_status = true
+							uni.createVideoContext(`video_${_this.index}`,_this).play();
+						}, 500)
+					}
+				})
+			},
 			abc(){
 				
-			},
-			loadData(){
-				uni.showLoading({
-					title: '视频加载中'
-				})
-				const _this = this;
-				let data = {
-					page: this.page,
-				}
-				this.$store.dispatch('Video/video_index', data)
-				.then(res=>{
-					uni.showToast({
-						title: `已为您推荐了${res.data.length}条视频`,
-						icon: 'none'
-					})
-					// 加载之后播放
-					setTimeout(()=>{
-						this.index = 0
-						this.prev = 0
-						this.play_status = true
-						uni.createVideoContext(`video_${this.index}`,this).play();
-					}, 200)
-				})
 			},
 			// 暂停和播放
 			play(index){
@@ -282,13 +290,26 @@
 				let data = {
 					to_from_id,	// 视频id
 				}
-				this.$store.dispatch('Video/follow_add', data)
-				.then(res=>{
-					this.$store.commit('Video/SET_MINE_FOLLOW', {index, mine_follow})
-					uni.showToast({
-						title: res.msg,
-						icon:'none'
-					})
+				const _this = this;
+				const token = uni.getStorageSync('token');
+				uni.request({
+					url: `http://101.200.171.163/public/index.php/user_follow/add`,
+					method: 'POST',
+					data: JSON.stringify(data),
+					header:{
+						'x2-token': token
+					},
+					success(res) {
+						uni.showToast({
+							title: res.data.data.msg,
+						})
+							
+						if(mine_follow === 0){ 
+							_this.$set(_this.video_list[index], 'mine_follow', 1)
+						} else if(mine_follow === 1){
+							_this.$set(_this.video_list[index], 'mine_follow', 0)
+						}
+					}
 				})
 			},
 			// 点赞函数
@@ -297,13 +318,30 @@
 					video_id, // 视频id
 					to_from_id, // 作者id
 				}
-				this.$store.dispatch('Video/video_click', data)
-				.then(res=>{
-					this.$store.commit('Video/SET_DIANZAN', {index, mine_like_count})
-					uni.showToast({
-						title: res.msg,
-					})
+				const _this = this;
+				const token = uni.getStorageSync('token');
+				uni.request({
+					url: `http://101.200.171.163/public/index.php/video_like/click`,
+					method: 'POST',
+					data: JSON.stringify(data),
+					header:{
+						'x2-token': token
+					},
+					success(res) {
+						uni.showToast({
+							title: res.data.msg,
+						})
+							
+						if(mine_like_count === 0){ 
+							_this.$set(_this.video_list[index], 'mine_like_count', 1)
+							_this.$set(_this.video_list[index], 'like', _this.video_list[index].like + 1)
+						} else if(mine_like_count === 1){
+							_this.$set(_this.video_list[index], 'mine_like_count', 0)
+							_this.$set(_this.video_list[index], 'like', _this.video_list[index].like - 1)
+						}
+					}
 				})
+	
 			},
 			// 评论
 			pinglun(){
@@ -315,26 +353,35 @@
 					return false;
 				}
 				const _this = this;
-				console.log(this.comment_config);
+				
 				let data = {
 					comments: this.comment_content,
 					to_from_id: this.comment_config.to_from_id, // 作者id,
 					video_id: this.comment_config.video_id, // 视频id					
 				}
-				this.$store.dispatch('Video/comment_save', data)
-				.then(res=>{
-					this.comment_content = ''
-					console.log(res);
-					if(res.code==1){
-						this.comment_load_data();
-						this.$store.commit('Video/SET_ADD_COMMENTS', this.comment_config.index)
-						uni.showToast({
-							title: '评论成功',
-							icon:'none'
-						})
+			
+				const token = uni.getStorageSync('token');
+				uni.request({
+					url: `http://101.200.171.163/public/index.php/video_comment/save`,
+					method: 'POST',
+					data: JSON.stringify(data),
+					header:{
+						'x2-token': token
+					},
+					success(res) {
+						console.log(res);
+						if(res.data.code==1){
+							uni.showToast({
+								title: '评论成功',
+							})
+							_this.comment_content = ''
+							_this.comment_load_data();
+							let index = this.comment_config.index;
+							_this.$set(_this.video_list[index], 'number_of_comments', _this.video_list[index].number_of_comments + 1)
+							// 
+						}
 					}
-				})
-				
+				})				
 			},
 			// 分享
 			share(){
@@ -387,8 +434,19 @@
 			// 苹果滑动
 			Scroll(e){
 				if(platform == 'ios'){
-					console.log('ios Scroll');
-					console.log(e);
+					this.index = Math.abs(e.contentOffset.y/windowHeight);
+					setTimeout(()=>{
+						console.log(this.index);
+						uni.createVideoContext(`video_${this.index}`,this).play();
+						this.play_status = true;
+						if(this.index != this.prev){
+							let curr = uni.createVideoContext(`video_${this.prev}`,this);
+							curr.pause();
+							curr.seek(0);
+							this.prev = this.index
+						}
+						console.log(this.prev);
+					}, 300)
 				}
 			},
 			// 移出
@@ -415,6 +473,7 @@
 				})
 			},
 			comment_load_data(video_id){
+				const _this = this;
 				let data = {
 					video_id: this.comment_config.video_id, // 视频id
 					page: this.cpage, // 分页
@@ -422,23 +481,23 @@
 				this.$store.dispatch('Video/comment_index', data)
 				.then(res=>{
 					console.log(res);
-					this.comment_count = res.count
+					_this.comment_count = res.count
 				})
 			},
 			comment_in(video_id, to_from_id, index){
 				const _this = this;
 				
-				this.comment_config.video_id = video_id
-				this.comment_config.to_from_id = to_from_id
-				this.comment_config.index = index
+				this.comment_config.video_id = video_id;
+				this.comment_config.to_from_id = to_from_id;
+				this.comment_config.index = index;
 				
-				this.comment_load_data()
+				this.comment_load_data();
 				
 				var testEl = _this.$refs['comment'];
 				dom.getComponentRect(testEl, (res) => {
 					animation.transition(testEl, {
 						styles: {
-							bottom: '0px'
+							transform: 'translateY(0px)',
 						},
 						duration: 500
 					})
