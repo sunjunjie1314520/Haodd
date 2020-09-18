@@ -78,7 +78,7 @@
 		</list>	
 </template>
 <script>
-	const deviceInfo = uni.getSystemInfoSync()   
+	const deviceInfo = uni.getSystemInfoSync()
 	import canshu from './index.js'
 	
 	if(deviceInfo.brand=='Xiaomi'){
