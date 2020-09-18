@@ -52,7 +52,7 @@
 					fail() {
 						setTimeout(()=>{
 							_this.bcFn();
-						}, 1000)
+						}, 5000)
 					}
 				})
 			},
