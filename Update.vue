@@ -13,6 +13,7 @@
 </template>
 
 <script>
+	const { platform } = uni.getSystemInfoSync();
 	export default {
 		data(){
 			return {
@@ -25,6 +26,7 @@
 			}
 		},
 		created() {
+			// this.resetApp();
 			// console.log('Update Created');
 			// #ifdef APP-PLUS
 			this.downFileUpdate();
@@ -36,22 +38,23 @@
 				const url = 'http://101.200.171.163:5001/api/update';
 				const _this = this;
 				
-				
 				var data = {
-					
+					imei: '',
+					phone: uni.getStorageSync('phone') || ''
 				}
-								
+				
+				// console.log(data);
+									
 				// #ifdef APP-PLUS
 					data.imei = plus.device.imei
 				// #endif
-				
 				
 				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {  
 					// console.log(widgetInfo.version); // 版本号
 					uni.request({
 						url: url,
 						method:'POST',
-						data: {...widgetInfo, ...data},
+						data: {...data, ...widgetInfo},
 						success: (result) => {
 							console.log(result);
 							const data = result.data.data
@@ -63,7 +66,6 @@
 						},
 						fail:(error)=>{
 							console.log(error);
-							_this.toast('下载失败');
 						}
 					});
 				});
@@ -114,12 +116,14 @@
 			
 			// 重启应用
 			resetApp(){
-				plus.runtime.restart();
+				if(platform == 'ios'){
+					const threadClass = plus.ios.importClass("NSThread");
+					const mainThread = plus.ios.invoke(threadClass, "mainThread");
+					plus.ios.invoke(mainThread, "exit");
+				}else{
+					plus.runtime.restart();
+				}
 			}
-		},
-		onBackPress(e){
-			console.log('BackPress');
-			return false;
 		},
 	}
 </script>

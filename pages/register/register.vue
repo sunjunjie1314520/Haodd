@@ -33,7 +33,7 @@
 <script>
 	//引入插件
 	// #ifdef APP-PLUS
-		const sharetrace = uni.requireNativePlugin('shoot-sharetrace');
+	const sharetrace = uni.requireNativePlugin('shoot-sharetrace');
 	// #endif
 	export default {
 		data(){

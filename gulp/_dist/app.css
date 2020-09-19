@@ -406,6 +406,10 @@
   margin-left: 30upx;
   flex-direction: row;
 }
+.pict-wrap-top-wrap-xin-image {
+  width: 30upx;
+  height: 30upx;
+}
 .pict-wrap-top-wrap-xin-text {
   color: #f60;
   margin-left: 6upx;

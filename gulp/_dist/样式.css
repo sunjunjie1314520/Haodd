@@ -293,11 +293,18 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 90upx;
+  bottom: 40upx;
   text-align: center;
   z-index: 2;
+}
+.login-page .other-user navigator {
   color: rgba(255,255,255,0.6);
   text-decoration: underline;
+}
+.login-page .other-user .version {
+  display: block;
+  color: rgba(255,255,255,0.6);
+  margin-top: 40upx;
 }
 .footer {
   position: fixed;

@@ -27,8 +27,8 @@
 					</div>
 					<div class="pict-wrap-top-wrap">
 						<text class="pict-wrap-top-wrap-id font">ID: {{$aes.id}}</text>
-						<div class="pict-wrap-top-wrap-xin h5-flex" v-show="$user.level_name">
-							<text class="iconfont pict-wrap-top-wrap-xin-text" v-for="item in xin" :key="item">&#xe601;</text>
+						<div class="pict-wrap-top-wrap-xin h5-flex" v-if="$user.level_name">
+							<image class="pict-wrap-top-wrap-xin-image" src="@/static/image/1983f5_128x128.png" mode="" v-for="item in xin" :key="item"></image>
 						</div>
 						<text class="pict-wrap-top-wrap-desc" v-show="$user.level_name">{{$user.level_name}}</text>
 					</div>
@@ -282,6 +282,7 @@
 		},
 		mounted() {
 			this.xinHandle(this.$user.level_name);
+			// this.xinHandle('四星达人');
 		},
 		methods: {
 			xinHandle(level_name){
