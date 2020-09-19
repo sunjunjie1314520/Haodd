@@ -11,10 +11,14 @@
 			<!-- 账号登录 -->
 			<view class="ul" v-if="tabs==0">
 				<view class="li">
-					<input type="number" v-model="config.username" maxlength="11" placeholder-class="placeholder-class" value="" placeholder="请输入您的手机号" />
+					<view class="box">
+						<input type="number" v-model="config.username" maxlength="11" placeholder-class="placeholder-class" value="" placeholder="请输入您的手机号" />
+					</view>
 				</view>
 				<view class="li">
-					<input type="password" v-model="password" maxlength="20" placeholder-class="placeholder-class" value="" placeholder="请输入密码" />
+					<view class="box">
+						<input type="password" v-model="password" maxlength="20" placeholder-class="placeholder-class" value="" placeholder="请输入密码" />
+					</view>
 				</view>
 				<view class="li">
 					<text @tap="userLogin" class="button2">登录</text>
@@ -26,10 +30,14 @@
 			<!-- 验证码登录 -->
 			<view class="ul" v-if="tabs==1">
 				<view class="li">
-					<input type="number" maxlength="11" v-model="config1.phone" placeholder-class="placeholder-class" value="" placeholder="请输入您的手机号" />
+					<view class="box">
+						<input type="number" maxlength="11" v-model="config1.phone" placeholder-class="placeholder-class" value="" placeholder="请输入您的手机号" />
+					</view>
 				</view>
 				<view class="li">
-					<input type="number" class="short" maxlength="6" v-model="config1.verity_code" placeholder-class="placeholder-class" value="" placeholder="请输入密码" />
+					<view class="box short">
+						<input type="number" maxlength="6" v-model="config1.verity_code" placeholder-class="placeholder-class" value="" placeholder="请输入密码" />
+					</view>
 					<text class="get-code" v-if="code_config.down == 0" @click="sendCode(config1.phone)">获取验证码</text>
 					<text class="get-code" v-else>({{code_config.down}})s</text>
 				</view>

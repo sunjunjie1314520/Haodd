@@ -14,13 +14,10 @@ request.globalRequest = (url, method, data, power, loading) => {
         case 1:
             const token = uni.getStorageSync('token');
 			if (token) {
-				headers['x2-token'] = token
-			}else{
-                headers['x2-token'] = '...'
+				headers['x2-token'] = token;
 			}
             break;
         default:
-            headers['x2-token'] = 'Need to log in'
             break;
     }
     return uni.request({

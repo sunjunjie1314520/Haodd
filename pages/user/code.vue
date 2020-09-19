@@ -3,6 +3,7 @@
 		<view class="my-code">
 			<view class="picture">
 				<canvas canvas-id="myCanvas" id='sss'></canvas>
+				<ourLoading :active="yijing" text="loading..." />
 				<!-- <image class="back" :src="back" mode="widthFix"></image> -->
 				<!-- <image class="pub-qr" :src="qr" mode=""></image> -->
 			</view>
@@ -22,6 +23,8 @@
 				base64:'',
 				backImg: '../../static/image/c8ff41_813x1324.png',
 				url: '',
+				
+				yijing: true,
 			}
 		},
 		created(){
@@ -73,6 +76,9 @@
 					hh = data.height
 					var ctx = uni.createCanvasContext('myCanvas') //绑定画布
 					ctx.drawImage(_this.backImg, 0, 0, ww, hh); //填充背景图片
+					
+					_this.yijing = false;
+					
 					ctx.drawImage(_this.qr, (106 / 300) * ww, (371 / 489) * hh, (87 / 300) * ww, (87 / 300) * ww); //填充二维码
 					ctx.setFillStyle('white')  //设置内容2的文字样式
 					ctx.setFontSize(16);
@@ -81,11 +87,11 @@
 					ctx.fillText(text, ww/2, (346 / 489) * hh)
 					
 					ctx.draw();  //输出到画布中
+					
 					setTimeout(()=>{  //不加延迟的话，base64有时候会赋予undefined
 						uni.canvasToTempFilePath({
 							canvasId:'myCanvas',
 							success: (res) => {
-								console.log(res);
 								_this.base64 = res.tempFilePath
 							}
 						})

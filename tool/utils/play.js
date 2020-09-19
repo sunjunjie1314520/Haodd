@@ -80,7 +80,7 @@ assist.ver = function (yz) {
 		yz.forEach(item => {
 			switch (item.type) {
 				case 'name':
-					var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
+					var nameReg = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,12}$/;
 					if(item.val == ''){
 						uni.showToast({
 							title: '姓名不能为空',
@@ -89,7 +89,7 @@ assist.ver = function (yz) {
 						throw Error();
 					} else if(!nameReg.test(item.val)){
 						uni.showToast({
-							title: '姓名只能为汉字',
+							title: '姓名至少为2个汉字',
 							icon: 'none'
 						})
 						throw Error();

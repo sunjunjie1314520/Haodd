@@ -339,14 +339,14 @@
   padding-left: 20upx;
 }
 .my-task-li-h2 {
-  font-size: 30upx;
+  font-size: 32upx;
   color: #fff;
 }
 .my-task-li-p {
   color: rgba(255,255,255,0.6);
   display: block;
-  margin-top: 15upx;
-  font-size: 30upx;
+  margin-top: 5upx;
+  font-size: 26upx;
 }
 .my-task-li-fr {
   height: 94upx;
@@ -463,7 +463,7 @@
   font-size: 30upx;
 }
 .user-layout {
-  padding: 60upx 30upx;
+  padding: 40upx 30upx 60upx;
   position: relative;
   flex-direction: column;
 }
@@ -484,8 +484,8 @@
   width: 100upx;
 }
 .leval {
-  width: 34upx;
-  height: 34upx;
+  width: 40upx;
+  height: 40upx;
   background-color: #6a25e2;
   border-radius: 50%;
   position: absolute;
@@ -569,7 +569,17 @@
   position: absolute;
   right: 30upx;
   top: 0;
-  margin-top: 10upx;
+}
+.iconfont-wrap {
+  background-color: #1f1f29;
+  width: 80upx;
+  height: 80upx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.iconfont-wrap-active {
+  margin-left: 10upx;
 }
 .iconfont {
   font-family: 'iconfont';
@@ -577,10 +587,6 @@
 .user-layout-set-ico1 {
   color: #fff;
   font-size: 38upx;
-  margin-left: 40upx;
-}
-.user-layout-set-ico1:nth-of-type(1) {
-  margin-left: 0;
 }
 .liveness {
   background-color: #1e1e27;

@@ -5,13 +5,13 @@
 				<view class="li">
 					<text class="span">版本号</text>
 					<view class="fr">
-						<text class="sp1">{{version_number}}</text>
+						<text class="sp1 font">{{version_number}}</text>
 					</view>
 				</view>
 				<view class="li">
 					<text class="span">手机号</text>
 					<view class="fr">
-						<text class="sp1">{{$user.phone}}</text>
+						<text class="sp1 font">{{$user.phone}}</text>
 					</view>
 				</view>
 				<!-- <view class="li more">

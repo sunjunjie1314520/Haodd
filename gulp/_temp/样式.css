@@ -251,6 +251,17 @@
   padding: 0 95px;
   margin-top: 48px;
 }
+.login-page .ul .li .box {
+  height: 90px;
+  background-color: #1e1e27;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+}
+.login-page .ul .li .box.short {
+  width: 400px;
+  float: left;
+}
 .login-page .ul .li .get-code {
   float: right;
   color: rgba(255,255,255,0.6);
@@ -260,16 +271,8 @@
   text-align: center;
 }
 .login-page .ul .li input {
-  height: 90px;
-  line-height: 90px;
-  border-radius: 60px;
-  background-color: #1e1e27;
   padding: 0 30px;
   color: #fff;
-}
-.login-page .ul .li input.short {
-  width: 400px;
-  float: left;
 }
 .login-page .ul .li .button2 {
   height: 90px;
@@ -577,6 +580,7 @@
 .my-code .picture {
   width: 600px;
   margin: 0 auto;
+  position: relative;
 }
 .my-code .picture image {
   width: 100%;
@@ -1703,6 +1707,7 @@
 .news-page .title .p {
   color: rgba(255,255,255,0.6);
   margin-top: 25px;
+  font-size: 28px;
 }
 .news-page .content {
   float: left;
@@ -1721,7 +1726,8 @@
 }
 .news-page .content rich-text {
   color: #fff;
-  line-height: 1.4;
+  line-height: 1.6;
+  text-align: justify;
 }
 .businessman-page {
   float: left;

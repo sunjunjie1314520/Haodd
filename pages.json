@@ -290,7 +290,7 @@
 	},
 	// 测试入口
 	"condition": {
-		"current": 1,
+		"current": 0,
 		"list": [
 			{
 				"name": "首页",

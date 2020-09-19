@@ -5,7 +5,7 @@
 				<view class="li">
 					<text class="span">姓名:</text>
 					<view class="fr">
-						<input type="text" confirm-type="next" v-model="config.card_name" maxlength="3" value="" placeholder="请输入身份证姓名" placeholder-class="placeholder-class" />
+						<input type="text" confirm-type="next" v-model="config.card_name" maxlength="12" value="" placeholder="请输入身份证姓名" placeholder-class="placeholder-class" />
 					</view>
 				</view>
 				<view class="li">

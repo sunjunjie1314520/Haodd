@@ -12,7 +12,7 @@
 						<image class="user-layout-pict-image" v-else src="@/static/image/cbe47_1657x1657.png" mode=""></image>
 					</div>
 					<div class="leval">
-						<text class="leval-text">{{$user.group_name}}</text>
+						<text class="leval-text font">{{$user.group_name}}</text>
 					</div>
 					<div class="vip h5-flex" v-if="$user.parther">
 						<text class="iconfont vip-ico">&#xe604;</text>
@@ -43,12 +43,16 @@
 					</div>
 				</div>
 				<div class="user-layout-right h5-flex">
-					<text class="user-layout-text">手续费：{{$user.group_fee * 100}}%</text>
+					<text class="user-layout-text font">手续费：{{$user.group_fee * 100}}%</text>
 				</div>
 			</div>
 			<div class="user-layout-set h5-flex">
-				<text @click="g1" class="iconfont user-layout-set-ico1">&#xe602;</text>
-				<text @click="g2" class="iconfont user-layout-set-ico1">&#xe69a;</text>
+				<div class="iconfont-wrap h5-flex" @click="g1">
+					<text class="iconfont user-layout-set-ico1">&#xe602;</text>
+				</div>
+				<div class="iconfont-wrap h5-flex iconfont-wrap-active" @click="g2">
+					<text class="iconfont user-layout-set-ico1">&#xe69a;</text>
+				</div>
 			</div>
 		</div>
 		
@@ -123,7 +127,8 @@
 			<div class="my-task-ul">
 				<div class="my-task-li" v-for="item in $task.list" :key="item.id">
 					<div class="my-task-li-ico">
-						<image class="my-task-li-image" :src="item.task_name=='点赞'?'../../src/static/img/c4f59a_128x128.png':'../../src/static/img/f3ffc8_128x128.png'" mode=""></image>
+						<image class="my-task-li-image" v-if="item.task_name=='点赞'" src="../../src/static/img/c4f59a_128x128.png" mode=""></image>
+						<image class="my-task-li-image" v-else src="../../src/static/img/f3ffc8_128x128.png" mode=""></image>
 					</div>
 					<div class="my-task-li-text">
 						<text class="my-task-li-h2">{{item.task_name}}({{item.step}}/{{item.quota}})</text>

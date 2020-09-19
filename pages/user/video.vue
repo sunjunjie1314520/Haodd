@@ -12,8 +12,8 @@
 					<text class="span">{{$user.des}}</text>
 					<view class="jubao" v-if="id">
 						<text>举报</text>
-						<text v-if="pageData.is_follow" class="cancel">取消关注</text>
-						<text v-else>关注</text>
+						<text v-if="pageData.is_follow" @click="unfollow" class="cancel">取消关注</text>
+						<text v-else @click="unfollow">关注</text>
 					</view>
 					<navigator v-else url="../user/personal" class="modify">修改资料</navigator>
 				</view>
@@ -92,13 +92,20 @@
 			}
 		},
 		onLoad(e) {
-			console.log(e);
+			// console.log(e);
 			if(e.id){
 				this.id = e.id
 			}
 			this.getNetData();
 		},
 		methods: {
+			unfollow(){
+				this.$api.video.follow_add({to_from_id: this.id})
+				.then(res=>{
+					this.toast(res.msg, 'success');
+					this.getNetData();
+				})
+			},
 			tabsToggle(index){
 				this.tabs = index
 			},

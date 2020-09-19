@@ -18,14 +18,14 @@ import md5 from './tool/utils/md5.js'
 
 
 // 自定义组件
-import Keyboard from "@/components/uni-keyboard.vue";
-// import Loadding from '@/components/type-compon/Loadding.vue'
-// Vue.component('uni-loadding', Loadding)
+import ourLoading from '@/components/our-loading/our-loading.vue'
+Vue.component('ourLoading', ourLoading)
 
 import uniLoadding from "@/components/uni-loadding.vue"
 Vue.component('uni-loadding', uniLoadding)
 
 // 全局注册组件
+import Keyboard from "@/components/uni-keyboard.vue";
 Vue.component('uni-keyboard', Keyboard)
 
 import mixins from "@/tool/plug/mixins/index.js";

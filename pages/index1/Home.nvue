@@ -249,7 +249,6 @@
 					mask: true,
 				})
 				const token = uni.getStorageSync('token');
-				console.log(token);
 				uni.request({
 					url: `http://101.200.171.163/public/index.php/video/page_index?page=` + this.page,
 					method: 'GET',
@@ -264,9 +263,9 @@
 						})
 						// 加载之后播放
 						setTimeout(()=>{
-							_this.index = 0
-							_this.prev = 0
-							_this.play_status = true
+							_this.index = 0;
+							_this.prev = 0;
+							_this.play_status = true;
 							uni.createVideoContext(`video_${_this.index}`,_this).play();
 						}, 500)
 					}
@@ -301,7 +300,7 @@
 					},
 					success(res) {
 						uni.showToast({
-							title: res.data.data.msg,
+							title: res.data.msg,
 						})
 							
 						if(mine_follow === 0){ 
@@ -378,7 +377,6 @@
 							_this.comment_load_data();
 							let index = this.comment_config.index;
 							_this.$set(_this.video_list[index], 'number_of_comments', _this.video_list[index].number_of_comments + 1)
-							// 
 						}
 					}
 				})				
@@ -446,7 +444,7 @@
 							this.prev = this.index
 						}
 						console.log(this.prev);
-					}, 300)
+					}, 600)
 				}
 			},
 			// 移出
