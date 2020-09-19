@@ -27,7 +27,7 @@
 							<text class="span">总产量：{{item.yield}}音豆</text>
 						</view>
 						<view class="fr">
-							<text class="span" @click="duihuan(item.price)">兑换</text>
+							<text class="span" @click="duihuan(item)">兑换</text>
 						</view>
 					</view>
 					<view class="activity">
@@ -67,12 +67,12 @@
 			this.getNetData();
 		},
 		methods: {
-			duihuan(price){
-				if(this.$user.amount >= price){
-					this.show=true;
+			duihuan(item){
+				if(this.$user.amount >= item.price){
+					this.show = true;
 					this.mineral_id = item.id;
 				}else{
-					this.toast('您的音豆不足，无法兑换!')
+					this.toast('您的音豆不足，无法兑换!');
 				}
 			},
 			confirm(safe_code){
