@@ -63,6 +63,7 @@
 				:id="`video_${index}`"
 				:ref="`video_${index}`"
 				@click="play(index)"
+				@timeupdate="Timeupdate"
 				>
 				</video>
 			</div>
@@ -444,7 +445,7 @@
 							this.prev = this.index
 						}
 						console.log(this.prev);
-					}, 600)
+					}, 300)
 				}
 			},
 			// 移出
@@ -457,6 +458,9 @@
 					title: '直播功能未开放',
 					icon: 'none',
 				})
+			},
+			Timeupdate(e){
+				// console.log(e.detail.currentTime);
 			},
 			comment_out(){
 				const _this = this;
