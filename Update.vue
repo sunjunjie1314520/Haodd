@@ -40,6 +40,7 @@
 				var data = {
 					
 				}
+								
 				// #ifdef APP-PLUS
 					data.imei = plus.device.imei
 				// #endif
