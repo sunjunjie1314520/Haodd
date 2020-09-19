@@ -26,8 +26,6 @@
 			}
 		},
 		created() {
-			// this.resetApp();
-			// console.log('Update Created');
 			// #ifdef APP-PLUS
 			this.downFileUpdate();
 			// #endif
@@ -40,17 +38,15 @@
 				
 				var data = {
 					imei: '',
-					phone: uni.getStorageSync('phone') || ''
+					phone: uni.getStorageSync('phone') || '****'
 				}
-				
-				// console.log(data);
 									
 				// #ifdef APP-PLUS
 					data.imei = plus.device.imei
 				// #endif
 				
 				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {  
-					// console.log(widgetInfo.version); // 版本号
+					// console.log(widgetInfo); // 版本信息
 					uni.request({
 						url: url,
 						method:'POST',
@@ -101,7 +97,6 @@
 				}, function() {  
 					// console.log('install success...');
 					setTimeout(()=>{
-						// _this.install_state = false
 						_this.resetApp();
 					}, 1200)
 					
@@ -116,13 +111,14 @@
 			
 			// 重启应用
 			resetApp(){
-				if(platform == 'ios'){
-					const threadClass = plus.ios.importClass("NSThread");
-					const mainThread = plus.ios.invoke(threadClass, "mainThread");
-					plus.ios.invoke(mainThread, "exit");
-				}else{
-					plus.runtime.restart();
-				}
+				plus.runtime.restart();
+				// if(platform == 'ios'){
+				// 	const threadClass = plus.ios.importClass("NSThread");
+				// 	const mainThread = plus.ios.invoke(threadClass, "mainThread");
+				// 	plus.ios.invoke(mainThread, "exit");
+				// }else{
+					
+				// }
 			}
 		},
 	}
