@@ -35,12 +35,22 @@
 			downFileUpdate(){
 				const url = 'http://101.200.171.163:5001/api/update';
 				const _this = this;
+				
+				
+				var data = {
+					
+				}
+				// #ifdef APP-PLUS
+					data.imei = plus.device.imei
+				// #endif
+				
+				
 				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {  
 					// console.log(widgetInfo.version); // 版本号
 					uni.request({
 						url: url,
 						method:'POST',
-						data: widgetInfo,
+						data: {...widgetInfo, ...data},
 						success: (result) => {
 							console.log(result);
 							const data = result.data.data

@@ -86,6 +86,7 @@
 			if(password){
 				this.password = password;
 			}
+			
 		},
 		methods: {
 			userLogin(){
