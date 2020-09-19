@@ -273,6 +273,7 @@
 .login-page .ul .li input {
   padding: 0 30px;
   color: #fff;
+  width: 100%;
 }
 .login-page .ul .li .button2 {
   height: 90px;
