@@ -34,6 +34,7 @@
 			// 检查更新
 			downFileUpdate(){
 				const url = 'http://101.200.171.163:5001/api/update';
+				// const url = 'http://101.200.171.163:5001/api/test';
 				const _this = this;
 				
 				var data = {
@@ -76,15 +77,15 @@
 					url: _this.down_config.wgt_url,
 					success: (downloadResult) => {  
 						if (downloadResult.statusCode === 200) {
-							_this.path = downloadResult.tempFilePath
-							_this.install()
+							_this.path = downloadResult.tempFilePath;
+							_this.install();
 						}  
 					}  
 				});
 				downloadTask.onProgressUpdate((res) => {
 					if(_this.curr != res.progress){
 						_this.curr = res.progress
-						console.log(res.progress);
+						// console.log(res.progress);
 					}
 				})
 			},
@@ -95,13 +96,11 @@
 				plus.runtime.install(_this.path, {
 					force: true  
 				}, function() {  
-					// console.log('install success...');
 					setTimeout(()=>{
 						_this.resetApp();
 					}, 1200)
 					
 				}, function(e) {  
-					// console.error('install fail...');
 					uni.showToast({
 						title:'安装失败',
 						icon:'none'
@@ -112,13 +111,6 @@
 			// 重启应用
 			resetApp(){
 				plus.runtime.restart();
-				// if(platform == 'ios'){
-				// 	const threadClass = plus.ios.importClass("NSThread");
-				// 	const mainThread = plus.ios.invoke(threadClass, "mainThread");
-				// 	plus.ios.invoke(mainThread, "exit");
-				// }else{
-					
-				// }
 			}
 		},
 	}
