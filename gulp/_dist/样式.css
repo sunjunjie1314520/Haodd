@@ -2673,3 +2673,30 @@
 .alert1 .alert-error .alert-error-button text.retry {
   color: #1354ff;
 }
+.for-pass {
+  display: flex;
+  justify-content: flex-end;
+  float: left;
+  width: 100%;
+  margin-top: 55upx;
+}
+.for-pass navigator {
+  color: rgba(255,255,255,0.6);
+}
+.forget-tips {
+  float: left;
+  width: 100%;
+  margin-top: 60upx;
+}
+.forget-tips .h2 {
+  font-size: 34upx;
+  color: #fff;
+  display: block;
+}
+.forget-tips .p {
+  color: rgba(255,255,255,0.6);
+  font-size: 26upx;
+  line-height: 1.4;
+  display: block;
+  margin-top: 20upx;
+}

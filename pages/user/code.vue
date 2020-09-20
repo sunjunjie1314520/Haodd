@@ -30,14 +30,12 @@
 		created(){
 			this.getConfig();
 		},
-		onLoad() {
-			setTimeout(()=>{
-				this.copyFn()
-			}, 500)
-		},
 		methods: {
 			getqr(){
 				this.qr = Qr.createQrCodeImg(this.url + '?uuid=' + this.$aes.id)
+				setTimeout(()=>{
+					this.copyFn();
+				}, 500)
 			},
 			bcFn(){
 				const _this = this;
@@ -62,9 +60,10 @@
 			getConfig(){
 				this.$api.personal.download()
 				.then(res=>{
-					// console.log(res);
 					this.url = res.data;
-					this.getqr();
+					setTimeout(()=>{
+						this.getqr();
+					}, 200)
 				})
 			},
 			copyFn() {

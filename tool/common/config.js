@@ -1,10 +1,10 @@
 let url_config = null
+let update_url = null
 
 // 显示环境信息
 // console.log(process.env);
 
 // 接口地址
-// const serverURL = 'http://192.168.1.50/index.php'
 const serverURL = 'http://101.200.171.163/public/index.php'
 
 // 上传文件地址
@@ -20,12 +20,13 @@ const play_config = {
 }
 
 if(process.env.NODE_ENV === 'development'){
-    // 开发环境
+	// 开发环境
 	url_config = serverURL
-    	
+	update_url = 'http://101.200.171.163:5001/api/test'
 }else{
     // 生产环境
     url_config = serverURL
+	update_url = 'http://101.200.171.163:5001/api/update'
 }
 
 export default url_config
@@ -34,5 +35,6 @@ export {
     url_config,
     qiniu,
 	qiniuURL,
-	play_config
+	play_config,
+	update_url,
 }

@@ -280,6 +280,12 @@
 			"style": {
 				"navigationBarTitleText": "用户搜索"
 			}
+		},
+		{
+			"path": "pages/user/forget_trans",
+			"style": {
+				"navigationBarTitleText": "找回交易密码"
+			}
 		}
 	],
 	"globalStyle": {
@@ -288,7 +294,6 @@
 		"navigationBarBackgroundColor":"#111118",
 		"backgroundColor": "#111118"
 	},
-	// 测试入口
 	"condition": {
 		"current": 1,
 		"list": [

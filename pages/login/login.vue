@@ -47,7 +47,7 @@
 			</view>
 			<view class="other-user">
 				<navigator url="../register/register" hover-class="hover-class">还没有账号？立即注册</navigator>
-				<text class="font version">V.{{version_number}}</text>
+				<text v-if="version_number" class="font version">V.{{version_number}}</text>
 			</view>
 			<view class="back">
 				<image src="../../src/static/img/9d0552_697x977.jpg" mode=""></image>

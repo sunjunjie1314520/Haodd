@@ -58,7 +58,7 @@
 	export default {
 		data(){
 			return {
-				array: ['建设银行', '农业银行', '招商银行', '中国银行', '工商银行'],
+				array: ['建设银行', '农业银行', '招商银行', '中国银行', '工商银行', '邮政银行'],
 				index: 0,
 				config: {
 					bank_name: '',

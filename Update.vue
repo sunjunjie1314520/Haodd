@@ -14,6 +14,7 @@
 
 <script>
 	const { platform } = uni.getSystemInfoSync();
+	import { update_url } from '@/tool/common/config.js' 
 	export default {
 		data(){
 			return {
@@ -33,8 +34,9 @@
 		methods: {
 			// 检查更新
 			downFileUpdate(){
-				const url = 'http://101.200.171.163:5001/api/update';
-				// const url = 'http://101.200.171.163:5001/api/test';
+				
+				console.log(update_url);
+				
 				const _this = this;
 				
 				var data = {
@@ -49,7 +51,7 @@
 				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {  
 					// console.log(widgetInfo); // 版本信息
 					uni.request({
-						url: url,
+						url: update_url,
 						method:'POST',
 						data: {...data, ...widgetInfo},
 						success: (result) => {

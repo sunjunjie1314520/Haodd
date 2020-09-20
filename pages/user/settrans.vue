@@ -17,6 +17,9 @@
 			<view class="pub-button">
 				<text class="btn" @click="submit">确定</text>
 			</view>
+			<view class="for-pass">
+				<navigator url="../user/forget_trans" hover-class="hover-class">找回交易密码</navigator>
+			</view>
 		</view>
 	</view>
 </template>
