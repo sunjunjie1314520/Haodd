@@ -1,0 +1,279 @@
+<template>
+	<!-- 评论弹窗 -->
+	<div class="comment-slide" @click="abc">
+		<div class="comment-slide-layout">
+			<template v-if="pageData">
+				<div class="comment-title">
+					<text class="comment-h2">{{pageData.count}}条评论</text>
+					<div class="comment-close-wrap h5-flex" @click="comment_out">
+						<image class="comment-close" src="@/static/image/1c4302_128x128.png" mode=""></image>
+					</div>
+				</div>
+				<div class="comment-wrap">
+					<div class="comment-ul">
+						<list class="comment-ul-list" @loadmore="loadmore">
+							<cell v-for="item in comment_list" :key="item.id">
+								<div class="comment-li h5-flex">
+									<div class="comment-pict">
+										<image class="comment-pict-image" :src="qiniuURL + item.form_avatar" mode=""></image>
+									</div>
+									<div class="comment-text">
+										<div class="comment-name">
+											<text class="comment-content-h2">{{item.from_nickname}}</text>
+										</div>
+										<div class="comment-content h5-flex">
+											<text class="comment-content-h3" v-if="item.comments">{{item.comments}}</text>
+											<div class="comment-wrap-layout h5-flex">
+												<text class="comment-content-p">{{getDateDiff(item.create_time)}}</text>
+												<text class="comment-content-span">回复</text>
+											</div>
+										</div>
+									</div>
+									<div class="comment-fr h5-flex" @click="DianZan">
+										<image class="comment-fr-s1" src="@/static/image/19c380_128x128.png" mode=""></image>
+										<text class="comment-fr-s2">0</text>
+									</div>
+								</div>
+							</cell>
+							<cell>
+								<div v-if="next" class="load-text"> <text class="text1">加载中</text> </div>
+							</cell>
+						</list>
+					</div>
+				</div>
+				
+				<div class="input-text h5-flex" :style="{'bottom': inputOffsetBottom + 'px'}">
+					<input class="input-text-input" :adjust-position="false" v-model="comment_content" type="text" placeholder="留下您的精彩评论吧" placeholder-class="placeholder-class1">
+					<text class="comment-btn" @click="pinglun">确定</text>
+				</div>
+			</template>
+		</div>
+	</div>
+</template>
+
+<script>
+	import { qiniuURL } from '@/tool/common/config.js'
+	
+	// #ifdef APP-NVUE
+		const animation = weex.requireModule('animation')
+		const modal = weex.requireModule('modal')
+		const dom = weex.requireModule('dom');
+	// #endif
+	export default {
+		props:['comment_config'],
+		data(){
+			return {
+				qiniuURL: qiniuURL,
+				inputOffsetBottom: 0,
+				
+				// 评论内容 
+				comment_content:'',
+				
+				size: 20,
+				next: true,
+				pageData: false,
+				page: 55,
+				comment_list: [],
+				
+				
+				loadmoreoffset: 100,
+				
+			}
+		},
+		watch:{
+			comment_config(data){
+				console.log(data);
+				this.reset();
+				this.comment_load_data();
+			}
+		},
+		mounted() {
+			// 监听键盘高度变化，以便设置输入框的高度
+			uni.onKeyboardHeightChange(res => {
+				console.log(res);
+				this.inputOffsetBottom = res.height
+				if (res.height === 0) {
+					// this.focus = false
+				}
+			})
+		},
+		methods: {
+			loadmore(){
+				if(this.next){
+					this.comment_load_data();
+				}
+			},
+			abc(){
+				
+			},
+			comment_out(){
+				this.$emit('hide');
+			},
+			DianZan(){
+				uni.showToast({
+					title: '点赞了'
+				})
+			},
+			// 获取评论列表数据
+			comment_load_data(){
+				const _this = this;
+				let data = {
+					video_id: this.comment_config.video_id, // 视频id
+					page: this.page, // 分页
+				}
+				const token = uni.getStorageSync('token');
+				uni.request({
+					url: `http://101.200.171.163/public/index.php/video_comment/page_index`,
+					method: 'POST',
+					data: JSON.stringify(data),
+					header:{
+						'x2-token': token
+					},
+					success(res) {
+						console.log(_this.page);
+						console.log(res.data.data);
+						if(res.data.code == 1){
+							_this.pageData = res.data;
+							_this.store(res.data.data, res.data.count)
+						}
+					}
+				})
+			},
+			// 分页功能
+			store(data, count) {
+			    if (data.length > 0){
+			        this.comment_list = this.comment_list.concat(data)
+			    }
+			    if (count === 0 || data.length < this.size) {
+			        this.next = false;
+			    } else {
+			        this.page = this.page + 1;
+			    }
+			},
+			// 评论
+			pinglun(){
+				if(!this.comment_content){
+					uni.showToast({
+						title: '请输入评论内容',
+						icon:'none'
+					})
+					return false;
+				}
+				const _this = this;
+				
+				let data = {
+					comments: this.comment_content,
+					to_from_id: this.comment_config.to_from_id, // 作者id,
+					video_id: this.comment_config.video_id, // 视频id					
+				}
+			
+				const token = uni.getStorageSync('token');
+				uni.request({
+					url: `http://101.200.171.163/public/index.php/video_comment/save`,
+					method: 'POST',
+					data: JSON.stringify(data),
+					header:{
+						'x2-token': token
+					},
+					success(res) {
+						console.log(res);
+						if(res.data.code==1){
+							uni.showToast({
+								title: '评论成功',
+							})
+							// #ifdef APP-PLUS
+								plus.key.hideSoftKeybord();
+							// #endif
+							_this.reset();
+							_this.comment_load_data();
+							let index = this.comment_config.index;
+							_this.$set(_this.video_list[index], 'number_of_comments', _this.video_list[index].number_of_comments + 1)
+						}
+					}
+				})				
+			},
+			reset(){
+				this.comment_content = ''
+				this.page = 1
+				this.next = true
+				this.comment_list = []
+			},
+			getDateTimeStamp (dateStr) {
+			    return Date.parse(dateStr.replace(/-/gi,"/"));
+			},
+			getDateDiff(dateStr) {
+				var publishTime = this.getDateTimeStamp(dateStr)/1000,
+				d_seconds,
+				d_minutes,
+				d_hours,
+				d_days,
+				timeNow = parseInt(new Date().getTime()/1000),
+				d,
+					
+				date = new Date(publishTime*1000),
+				Y = date.getFullYear(),
+				M = date.getMonth() + 1,
+				D = date.getDate(),
+				H = date.getHours(),
+				m = date.getMinutes(),
+				s = date.getSeconds();
+				//小于10的在前面补0
+				if (M < 10) {
+					M = '0' + M;
+				}
+				if (D < 10) {
+					D = '0' + D;
+				}
+				if (H < 10) {
+					H = '0' + H;
+				}
+				if (m < 10) {
+					m = '0' + m;
+				}
+				if (s < 10) {
+					s = '0' + s;
+				}
+					
+				d = timeNow - publishTime;
+				d_days = parseInt(d/86400);
+				d_hours = parseInt(d/3600);
+				d_minutes = parseInt(d/60);
+				d_seconds = parseInt(d);
+			
+				if(d_days > 0 && d_days < 3){
+					return d_days + '天前';
+				}else if(d_days <= 0 && d_hours > 0){
+					return d_hours + '小时前';
+				}else if(d_hours <= 0 && d_minutes > 0){
+					return d_minutes + '分钟前';
+				}else if (d_seconds < 60) {
+					if (d_seconds <= 0) {
+						return '刚刚发表';
+					}else {
+						return d_seconds + '秒前';
+					}
+				}else if (d_days >= 3 && d_days < 30){
+					return M + '-' + D + '&nbsp;' + H + ':' + m;
+				}else if (d_days >= 30) {
+					return Y + '-' + M + '-' + D + '&nbsp;' + H + ':' + m;
+				}
+			},
+		}
+	}
+</script>
+
+<style>
+	.comment-slide{
+		transform: translateY(1000px);
+	}
+	.load-text{
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		height: 80upx;
+	}
+	.text1{
+		color: #f1f1f1;
+		font-size: 26upx;
+	}
+</style>

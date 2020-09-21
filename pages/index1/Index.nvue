@@ -1,13 +1,15 @@
 <template>
 	
 	<div class="app-plus">
-		<Home v-if="tabs==0"></Home>
+		<Home v-if="tabs==0" @show="comment_in"></Home>
+		
 		<Shop v-if="tabs==1"></Shop>
 		<Game v-if="tabs==2"></Game>
 		<Center v-if="tabs==3"></Center>
 		
 		<Footer @change="change" @fabu="show=true" :tabs="tabs"></Footer>
 		
+		<!-- 视频选择 -->
 		<div class="pub-video-select" @click="test" v-if="show">
 			<div class="pub-video-ul">
 				<div class="pub-video-li">
@@ -29,6 +31,10 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- 评论 -->
+		<pinglun ref="comment" @hide="comment_out" :comment_config="comment_config"></pinglun>
+		
 	</div>
 </template>
 
@@ -39,8 +45,11 @@
 	import Shop from './Shop.nvue'
 	import Center from './Center.nvue'
 	import Game from './Game.nvue'
+	import pinglun from './pinglun.nvue'
 	
 	// #ifdef APP-NVUE
+	const animation = weex.requireModule('animation')
+	const modal = weex.requireModule('modal')
 	const dom = weex.requireModule('dom');
 	dom.addRule('fontFace', {
 		fontFamily: 'din',
@@ -54,11 +63,14 @@
 			Shop,
 			Game,
 			Center,
+			pinglun,
 		},
 		data(){
 			return {
 				tabs: 0,
 				show: false,
+				
+				comment_config: false,
 			}
 		},
 		onShow() {
@@ -82,6 +94,35 @@
 					title: `${title}功能未开放`,
 					icon: 'none'
 				})
+			},
+			// 显示
+			comment_in(config){
+				const _this = this;	
+				_this.comment_config = config;
+				var testEl = _this.$refs['comment'];
+				dom.getComponentRect(testEl, (res) => {
+					animation.transition(testEl, {
+						styles: {
+							transform: 'translateY(0px)',
+						},
+						duration: 500
+					})
+				})
+			},
+			// 隐藏
+			comment_out(){
+				const _this = this;
+				var testEl = _this.$refs['comment'];
+				animation.transition(testEl, {
+					styles: {
+						transform: 'translateY(1000px)',
+					},
+					duration: 500
+				}, function(){
+					// #ifdef APP-PLUS
+						plus.key.hideSoftKeybord();
+					// #endif
+				})
 			}
 		},
 		onBackPress(){
@@ -104,6 +145,8 @@
 </script>
 
 <style lang="stylus">
+	.app-plus
+		position relative
 	.pict1-color1
 		width 60px
 		height 60px
