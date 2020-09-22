@@ -35,15 +35,19 @@
 					</view>
 				</view>
 				<view class="li">
-					<text class="span">支付宝账号:</text>
+					<text class="span">支付宝收款码:</text>
 					<view class="fr">
-						<input maxlength="20" v-model="config.zfb_number" type="text" value="" placeholder="请输入支付宝账号" placeholder-class="placeholder-class" />
+						<view class="pub-upload" @click="uploadFile('zfb_upload')">
+							<image :src="qiniuURL + config.zfb_number" mode=""></image>
+						</view>
 					</view>
 				</view>
 				<view class="li">
-					<text class="span">微信账号:</text>
+					<text class="span">微信收款码:</text>
 					<view class="fr">
-						<input maxlength="20" v-model="config.wx_number" type="text" value="" placeholder="请输入微信账号" placeholder-class="placeholder-class" />
+						<view class="pub-upload" @click="uploadFile('wx_upload')">
+							<image :src="qiniuURL + config.wx_number" mode=""></image>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -135,7 +139,13 @@
 					console.log(res);
 					this.$assist.msg(res, true, true);
 				})
-			}
+			},
+			zfb_upload(res){
+				this.config.zfb_number = res[0]
+			},
+			wx_upload(res){
+				this.config.wx_number = res[0]
+			},
 		}
 	}
 </script>

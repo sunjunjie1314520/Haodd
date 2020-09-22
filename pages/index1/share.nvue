@@ -1,0 +1,42 @@
+<template>
+	<div class="share-slide" @click="abc">
+		<div class="share-slide-layout">
+			<div class="comment-title">
+				<text class="comment-h2">分享操作</text>
+				<div class="comment-close-wrap h5-flex" @click="share_out">
+					<image class="comment-close" src="@/static/image/1c4302_128x128.png" mode=""></image>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	
+	export default {
+		data(){
+			return {
+				
+			}
+		},
+		methods: {
+			abc(){
+				
+			},
+			share_out(){
+				
+			}
+		}
+	}
+</script>
+
+<style lang="stylus" scoped>
+	.share-slide
+		position fixed
+		left 0
+		right 0
+		bottom 0
+		top 0
+		background-color rgba(#000000, .4)
+		
+</style>

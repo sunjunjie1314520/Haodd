@@ -117,6 +117,17 @@ plug.install = function(Vue, options) {
                     this.page = this.page + 1;
                 }
             },
+            // 上传图片
+            uploadFile(methods = 'upload') {
+                this.$api.upload.qiniu()
+                .then(res => {
+                    console.log(res);
+                    this.$api.upload.image(['album ', 'camera'], res.token)
+                    .then(res => {
+                        this[methods](res);
+                    })
+                })
+            }
         }
     })
 

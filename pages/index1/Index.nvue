@@ -34,7 +34,8 @@
 		
 		<!-- 评论 -->
 		<pinglun ref="comment" @hide="comment_out" :comment_config="comment_config"></pinglun>
-		
+		<!-- 分享 -->
+		<share ref="share" @show_share="share_in"></share>
 	</div>
 </template>
 
@@ -46,6 +47,7 @@
 	import Center from './Center.nvue'
 	import Game from './Game.nvue'
 	import pinglun from './pinglun.nvue'
+	import share from './share.nvue'
 	
 	// #ifdef APP-NVUE
 	const animation = weex.requireModule('animation')
@@ -64,6 +66,7 @@
 			Game,
 			Center,
 			pinglun,
+			share,
 		},
 		data(){
 			return {
@@ -123,6 +126,9 @@
 						plus.key.hideSoftKeybord();
 					// #endif
 				})
+			},
+			share_in(config){
+				console.log(config);
 			}
 		},
 		onBackPress(){

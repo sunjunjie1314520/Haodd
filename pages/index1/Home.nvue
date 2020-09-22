@@ -209,11 +209,7 @@
 				index: -1,
 				prev: -1,
 				play_status: false,
-				
-				
-				// 评论分页
-				cpage: 1,
-				
+					
 				
 				// 视频
 				video_list: [],
@@ -337,10 +333,10 @@
 			
 			// 分享
 			share(){
-				uni.showToast({
-					title: '分享成功',
-					icon:'none'
-				})
+				let data = {
+					abc: '152',
+				}
+				this.$emit('show_share', data);
 			},
 			// 礼物
 			liwu(){

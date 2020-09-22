@@ -72,7 +72,7 @@
 				size: 20,
 				next: true,
 				pageData: false,
-				page: 55,
+				page: 1,
 				comment_list: [],
 				
 				
