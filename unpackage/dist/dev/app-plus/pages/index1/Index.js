@@ -333,8 +333,8 @@ module.exports = {
     "opacity": 0.6
   },
   "pub-video-select": {
-    "position": "absolute",
-    "zIndex": 1,
+    "position": "fixed",
+    "zIndex": 3,
     "bottom": 0,
     "left": 0,
     "right": 0,

@@ -11,8 +11,8 @@
 		
 		<!-- 视频选择 -->
 		<div class="pub-video-select" @click="test" v-if="show">
-			<div class="pub-video-ul">
-				<div class="pub-video-li">
+			<div class="pub-video-ul h5-flex">
+				<div class="pub-video-li h5-flex">
 					<div class="pict1-color1" @click="toast('拍摄')">
 						<image class="pub-video-img" src="@/static/image/a9fa32_200x200.png" mode=""></image>
 					</div>

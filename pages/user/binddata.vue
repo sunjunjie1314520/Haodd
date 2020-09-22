@@ -31,7 +31,7 @@
 				<view class="li">
 					<text class="span">银行账户:</text>
 					<view class="fr">
-						<input maxlength="18" v-model="config.bank_number" type="number" value="" placeholder="请输入银行账户" placeholder-class="placeholder-class" />
+						<input maxlength="19" v-model="config.bank_number" type="number" value="" placeholder="请输入银行账户" placeholder-class="placeholder-class" />
 					</view>
 				</view>
 				<view class="li">
