@@ -1,21 +1,28 @@
 <template>
 	<view class="app" :style="{'min-height': windowHeight + 'px'}">
 		<view class="video-page" v-if="pageData">
-			<view class="video-layout">
+			<view class="video-layout" v-if="id">
 				<view class="pict">
-					<image :src="qiniuURL + $user.avatar" mode=""></image>
+					<image :src="qiniuURL + pageData.about_man.avatar" mode=""></image>
 				</view>
 				<view class="text">
-					<text class="p font" v-if="id">ID:{{id}}</text>
-					<text class="p font" v-else>ID:{{$aes.id}}</text>
-					
-					<text class="span">{{$user.des}}</text>
-					<view class="jubao" v-if="id">
+					<text class="p font">ID:{{pageData.about_man.id}}</text>
+					<text class="span">{{pageData.about_man.des}}</text>
+					<view class="jubao">
 						<text>举报</text>
 						<text v-if="pageData.is_follow" @click="unfollow" class="cancel">取消关注</text>
 						<text v-else @click="unfollow">关注</text>
 					</view>
-					<navigator v-else url="../user/personal" class="modify">修改资料</navigator>
+				</view>
+			</view>
+			<view class="video-layout" v-else>
+				<view class="pict">
+					<image :src="qiniuURL + $user.avatar" mode=""></image>
+				</view>
+				<view class="text">
+					<text class="p font">ID:{{$aes.id}}</text>
+					<text class="span">{{$user.des}}</text>
+					<navigator url="../user/personal" class="modify">修改资料</navigator>
 				</view>
 			</view>
 			<view class="number">

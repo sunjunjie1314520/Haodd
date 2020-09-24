@@ -12,8 +12,8 @@
 				<text :class="['app-footer-li-white', tabs==1 ? 'app-footer-li-active':'']">商城</text>
 			</div>
 			<div class="app-footer-li h5-flex" @click="fabu">
-				<div class="app-footer-li-center">
-					<image class="app-footer-li-ico1" src="@/static/image/navbar/fcc15c_128x128.png" mode=""></image>
+				<div class="app-footer-li-center h5-flex">
+					<image class="app-footer-li-ico1" src="@/static/image/navbar/455998_159x128.png" mode=""></image>
 				</div>
 			</div>
 			<div class="app-footer-li h5-flex" @click="toggleTabs(2)">
