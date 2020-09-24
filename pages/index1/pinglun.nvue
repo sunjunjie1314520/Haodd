@@ -14,7 +14,7 @@
 						<list class="comment-ul-list" @loadmore="loadmore">
 							<cell v-for="item in comment_list" :key="item.id">
 								<div class="comment-li h5-flex">
-									<div class="comment-pict">
+									<div class="comment-pict" @click="gotoLink(item.from_id)">
 										<image class="comment-pict-image" :src="qiniuURL + item.form_avatar" mode=""></image>
 									</div>
 									<div class="comment-text">
@@ -112,6 +112,12 @@
 			DianZan(){
 				uni.showToast({
 					title: '点赞了'
+				})
+			},
+			// 头像跳转
+			gotoLink(user_id){
+				uni.navigateTo({
+					url: '../user/video?id=' + user_id
 				})
 			},
 			// 获取评论列表数据

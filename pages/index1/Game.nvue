@@ -1,6 +1,7 @@
 <template>
 	<div class="game-tabs bg-six" :style="{'height': windowHeight + 'px'}">
-		<div class="pub-etc flex flex-center-column">
+		<web-view :style="{'height': (windowHeight - 45) + 'px'}" class="web-view" :webview-styles="webviewStyles" :src="url"></web-view>
+		<div class="pub-etc flex flex-center-column" v-if="false">
 			<image class="image" src="../../src/static/img/103ab0_128x128.png" mode=""></image>
 			<text class="text">游戏类目待开发</text>
 			<text class="text op">时间待定</text>
@@ -13,7 +14,13 @@
 	export default {
 		data(){
 			return {
-				windowHeight: windowHeight
+				webviewStyles: {
+					progress: {
+						color: '#0084FF'
+					}
+				},
+				windowHeight: windowHeight,
+				url: 'https://games.aucheng.com/bdsem3/bdtop5/?fromsem=1&unit=13008&cy=1&sdclkid=A5-_aLIsb5jYFLg6a5IRFsg_x5jNAsfYAu2lxLIzxOo_x5kJFlA&renqun_youhua=1842851&bd_vid=6671371554007274002'
 			}
 		},
 		created() {

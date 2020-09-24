@@ -20,5 +20,8 @@ config.comment_index = params => request.globalRequest('/video_comment/page_inde
 // 发表评论
 config.comment_save = params => request.globalRequest('/video_comment/save', 'POST', params, 1)
 
+// 用户视频上传
+config.video_upload = params => request.globalRequest('/video/upload', 'POST', params, 1, '正在上传')
+
 
 export default config

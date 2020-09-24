@@ -43,6 +43,14 @@
 						</view>
 					</navigator>
 				</view>
+				<view class="li more">
+					<navigator hover-class="hover-class" class="sp1" url="../set/xieyi">
+						<text class="span">用户隐私</text>
+						<view class="fr">
+							
+						</view>
+					</navigator>
+				</view>
 			</view>
 			<view class="ul">
 				<view class="li" @click="quit">

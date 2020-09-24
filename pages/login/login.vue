@@ -54,17 +54,23 @@
 			</view>
         </view>
 		<Update @close="up=false" v-if="up"></Update>
+		<xie v-if="xie" @quit="xie=false"></xie>
+		
     </view>
 </template>
 
 <script>
 	import Update from '../../Update.vue'
+	import xie from './xieyi.vue'
+	
 	export default {
 		components:{
-			Update
+			Update,
+			xie,
 		},
 		data(){
 			return {
+				xie: true,
 				tabs: 0,
 				up: true,
 				config: {

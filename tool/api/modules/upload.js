@@ -6,7 +6,7 @@ const config = {}
 config.image = (params = ['album ', 'camera'], token) => request.globalChooseImage(`/upload/qiniu`, 1, params, token)
 
 // 上传视频
-config.video = (params = {}) => request.globalChooseVideo(`/Upload/uploadVideo`, params, 1)
+config.video = (params = [], token) => request.globalChooseVideo(`/upload/qiniu`, params, 1, token)
 
 // 附件删除
 config.delete = (params = {}) => request.globalRequest(`/Upload/delete`, 'POST', params, 1)

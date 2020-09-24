@@ -140,19 +140,16 @@ request.globalChooseImage = (url, power, sourceType, token) => {
     });
 }
 
-request.globalChooseVideo = (url, data, power) => {
+request.globalChooseVideo = (url, data, power, token) => {
     const headers = {}
 	switch (power){
 	    case 1:
 	        const token = uni.getStorageSync('token');
-	        if (token) {
-	            headers['token'] = token
-	        } else {
-	            headers['token'] = '...'
-	        }
+			if (token) {
+				headers['x2-token'] = token;
+			}
 	        break;
 	    default:
-	        headers['token'] = 'Need to log in'
 	        break;
 	}
 	return new Promise((resolve, reject) => {
@@ -161,12 +158,27 @@ request.globalChooseVideo = (url, data, power) => {
 			sourceType: data,
 			maxDuration: 30,
 			success:function(res){
-                var config = {
-                    path: res.tempFilePath,
-                    url: url_config + url,
-                    headers
-                }
-                resolve(config)
+				uni.showLoading({
+					title: '上传中'
+				})
+				uni.uploadFile({
+				    url: qiniu + url,
+				    filePath: res.tempFilePath,
+				    name: 'file',
+					formData: { 
+						'token': token,
+					},
+				    header: headers,
+				    success: (uploadFileRes) => {
+				        let data = JSON.parse(uploadFileRes.data);
+						uni.hideLoading();
+				        resolve(data);
+				    },
+				    fail: function(error) {
+				        console.log(error);
+				        reject(error);
+				    }
+				});
 			}
 		})
 	})

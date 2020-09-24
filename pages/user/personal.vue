@@ -100,6 +100,9 @@
 			// this.index = this.$user.sex
 		},
 		methods: {
+			upload(res){
+				this.userSave({avatar: res[0]});
+			},
 			gotoYan(){
 				uni.navigateTo({
 					url: '../user/real'
@@ -132,9 +135,7 @@
 				console.log(date1);
 				this.userSave({birth: date1});
 			},
-			upload(res){
-				this.userSave({avatar: res[0]});
-			},
+			
 			
 		},
 		components: {
