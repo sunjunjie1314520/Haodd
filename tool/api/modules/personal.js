@@ -57,7 +57,7 @@ config.today_count = params => request.globalRequest('/user_task/today_count', '
 config.news = params => request.globalRequest('/sys/news', 'POST', params, 1)
 
 // 下载软件配置
-config.download = params => request.globalRequest('/sys/download', 'POST', params, 1)
+config.download = params => request.globalRequest('/sys/download', 'GET', params, 1)
 
 // 查询身份证号码
 config.user_card = params => request.globalRequest('/user_card/index', 'POST', params, 1)

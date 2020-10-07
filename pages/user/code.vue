@@ -31,6 +31,16 @@
 			this.getConfig();
 		},
 		methods: {
+			// 请求下载地址
+			getConfig(){
+				this.$api.personal.download()
+				.then(res=>{
+					this.url = res.data;
+					console.log(res);
+					this.getqr();
+				})
+			},
+			// 生成二维码
 			getqr(){
 				const _this = this
 				this.qr = Qr.createQrCodeImg(_this.url + '?uuid=' + _this.$aes.id)
@@ -38,6 +48,7 @@
 					this.copyFn();
 				}, 500)
 			},
+			// 保存到相册中
 			bcFn(){
 				const _this = this;
 				uni.showLoading({
@@ -56,15 +67,6 @@
 							_this.bcFn();
 						}, 5000)
 					}
-				})
-			},
-			getConfig(){
-				this.$api.personal.download()
-				.then(res=>{
-					this.url = res.data;
-					setTimeout(()=>{
-						this.getqr();
-					}, 500)
 				})
 			},
 			copyFn() {

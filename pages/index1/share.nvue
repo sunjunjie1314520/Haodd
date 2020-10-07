@@ -41,8 +41,9 @@
 					title: '正在保存中'
 				})
 				const downloadTask = uni.downloadFile({
-					url: this.share_config.video,
+					url: _this.share_config.video,
 					success(res){
+						console.log(res);
 						if (res.statusCode === 200) {
 							uni.saveImageToPhotosAlbum({
 								filePath: res.tempFilePath,
