@@ -105,8 +105,8 @@
 					_this.version_number = widgetInfo.version;
 				})
 			},
+			// 账号密码登录
 			userLogin(){
-				
 				let yz = [
 					{
 						type: 'phone',
@@ -124,7 +124,8 @@
 					return false;
 				}
 				
-				this.config.password = this.$md5(this.password)
+				this.config.password = this.$md5(this.password);
+				// this.config.password = this.password;
 				this.$api.login.sign(this.config)
 				.then(res=>{
 					// console.log(res);

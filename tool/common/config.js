@@ -16,7 +16,7 @@ const qiniuURL = 'http://api.ohtbmgn.cn/'
 // 支付金额配置
 const play_config = {
 	auth: 1.5, // 认证金额
-	broker: 699,  // 经纪商
+	broker: 999,  // 经纪商
 }
 
 if(process.env.NODE_ENV === 'development'){

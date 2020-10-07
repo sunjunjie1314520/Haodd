@@ -49,6 +49,8 @@
 	import pinglun from './pinglun.nvue'
 	import share from './share.nvue'
 	
+	import { mapState } from 'vuex'
+	
 	// #ifdef APP-NVUE
 	const animation = weex.requireModule('animation')
 	const modal = weex.requireModule('modal')
@@ -80,12 +82,24 @@
 		onShow() {
 			this.loadData();
 		},
+		computed:{
+			...mapState('Personal', {
+				$user: state => state.me,
+			})
+		},
 		methods: {
 			UploadVideo(){
-				this.show = false;
-				uni.navigateTo({
-					url: '../fabu/fabu',
-				})
+				if(this.$user.parther){
+					this.show = false;
+					uni.navigateTo({
+						url: '../fabu/fabu',
+					})
+				}else{
+					uni.showToast({
+						title: '您当前不是经纪商，无此权限！',
+						icon: 'none'
+					})
+				}
 			},
 			loadData(){
 				this.$store.dispatch('Personal/me');

@@ -52,8 +52,9 @@ const store = new Vuex.Store({
     mutations: {
 		
         payReq(state, payload) {
+			
 			const _this = this;
-			console.log('pay');
+			console.log(payload);
 			// #ifdef APP-PLUS
 			plus.payment.getChannels(function(s) {
 				channels = s
@@ -70,7 +71,7 @@ const store = new Vuex.Store({
 						var payChannel = getPayChannel(payload.data.channel);
 						var paySrc = result.order_string
 						plus.payment.request(payChannel, paySrc, function(res){
-							console.log(res);
+							// console.log(res);
 							uni.showToast({
 								title: `${payload.data.title}-支付成功`,
 								icon:'none'

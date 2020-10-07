@@ -32,7 +32,8 @@
 		},
 		methods: {
 			getqr(){
-				this.qr = Qr.createQrCodeImg(this.url + '?uuid=' + this.$aes.id)
+				const _this = this
+				this.qr = Qr.createQrCodeImg(_this.url + '?uuid=' + _this.$aes.id)
 				setTimeout(()=>{
 					this.copyFn();
 				}, 500)
@@ -63,7 +64,7 @@
 					this.url = res.data;
 					setTimeout(()=>{
 						this.getqr();
-					}, 200)
+					}, 500)
 				})
 			},
 			copyFn() {
