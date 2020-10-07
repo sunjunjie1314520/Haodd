@@ -1,7 +1,6 @@
 <template>
 	<div class="flex" :style="{'height': windowHeight + 'px'}">
 		
-		
 		<!-- 导航区 -->
 		<div class="status-app" :style="{'height': statusBarHeight}"></div>
 		
@@ -41,16 +40,16 @@
 		>
 			<cell
 			class="list-cell"
-			v-for="(item, index) in comment_list"
+			v-for="(item, dex) in comment_list"
 			:key="item.id"
 			:style="videoStyle"
-			@disappear="Disappear($event, index)"
+			@disappear="Disappear($event, dex)"
 			@appear="onappear"
 			>
 			<!-- 视频 -->
 			<!-- :poster="qiniuURL + item.upload_avatar" -->
 			<!-- :poster="qiniuURL + item.video_src + '?vframe/jpg/offset/0.0001'" -->
-			<div class="home-video-wrap" :style="videoStyle">
+			<div class="home-video-wrap" :style="videoStyle" v-if="index === dex">
 				<video class="home-myvideo"
 				:style="videoStyle"
 				:autoplay="false"
@@ -62,17 +61,16 @@
 				:enable-progress-gesture="false"
 				:src="qiniuURL + item.video_src"
 				
-				:id="`video_${index}`"
-				:ref="`video_${index}`"
-				@click="play(index)"
+				:id="`video_${dex}`"
+				:ref="`video_${dex}`"
+				@click="play(dex)"
 				@timeupdate="Timeupdate"
 				>
 				</video>
 			</div>
 					
-			<!-- :style="{'top': playTop}" -->
 			<!-- 播放按钮 -->
-			<div class="play-status h5-flex" v-if="!play_status" @click="play(index)">
+			<div class="play-status h5-flex" v-if="!play_status" @click="play(dex)">
 				<image class="play-status-img" src="@/static/image/449745_200x200.png" mode=""></image>
 			</div>
 			
@@ -91,17 +89,17 @@
 							<image class="h-pict-image" :src="qiniuURL + item.upload_avatar" mode="widthFix"></image>
 						</div>
 						<div class="h-add-ico-wrap h5-flex" v-if="item.mine_follow==0">
-							<image @click="guanzhu(item.upload_user_id, index, item.mine_follow)" class="h-add-ico" src="@/static/image/103c3f_200x200.png" mode=""></image>
+							<image @click="guanzhu(item.upload_user_id, dex, item.mine_follow)" class="h-add-ico" src="@/static/image/103c3f_200x200.png" mode=""></image>
 						</div>
 					</div>
 					<!-- 点赞 -->
-					<div class="home-personal-li h5-flex" @click="dianzan(item.id, item.upload_user_id, index, item.mine_like_count)">
+					<div class="home-personal-li h5-flex" @click="dianzan(item.id, item.upload_user_id, dex, item.mine_like_count)">
 						<image v-if="item.mine_like_count==0" class="home-personal-img" src="@/static/image/336b3c_200x200.png" mode=""></image>
 						<image v-else class="home-personal-img" src="@/static/image/336b4c_200x200.png" mode=""></image>
 						<text class="home-personal-span">{{item.like}}</text>
 					</div>
 					<!-- 评论 -->
-					<div class="home-personal-li h5-flex" @click="comment_in(item.id, item.upload_user_id, index)">
+					<div class="home-personal-li h5-flex" @click="comment_in(item.id, item.upload_user_id, dex)">
 						<image class="home-personal-img" src="@/static/image/b91cd4_200x200.png" mode=""></image>
 						<text class="home-personal-span">{{item.number_of_comments}}</text>
 					</div>
@@ -116,7 +114,7 @@
 						<text class="home-personal-span">0</text>
 					</div>
 					<!-- 光盘 -->
-					<div class="home-personal-li home-personal-li-last h5-flex" :ref="`test_${index}`">
+					<div class="home-personal-li home-personal-li-last h5-flex" :ref="`test_${dex}`">
 						<pan></pan>
 					</div>
 				</div>
@@ -206,8 +204,8 @@
 		
 				tabs: 1,
 								
-				index: -1,
-				prev: -1,
+				index: 0,
+				prev: 0,
 				play_status: false,
 					
 
@@ -384,12 +382,13 @@
 						console.log(this.index);
 						uni.createVideoContext(`video_${this.index}`,this).play();
 						this.play_status = true;
-						if(this.index != this.prev){
-							let curr = uni.createVideoContext(`video_${this.prev}`,this);
-							curr.pause();
-							curr.seek(0);
-							this.prev = this.index
-						}
+						// if(this.index != this.prev){
+							// let curr = uni.createVideoContext(`video_${this.prev}`,this);
+							// curr.pause();
+							// console.log('Can not find');
+							// curr.seek(0);
+							// this.prev = this.index
+						// }
 						console.log(this.prev);
 					},300)
 				}
@@ -402,12 +401,12 @@
 						console.log(this.index);
 						uni.createVideoContext(`video_${this.index}`,this).play();
 						this.play_status = true;
-						if(this.index != this.prev){
-							let curr = uni.createVideoContext(`video_${this.prev}`,this);
-							curr.pause();
-							curr.seek(0);
-							this.prev = this.index
-						}
+						// if(this.index != this.prev){
+						// 	let curr = uni.createVideoContext(`video_${this.prev}`,this);
+						// 	curr.pause();
+						// 	curr.seek(0);
+						// 	this.prev = this.index
+						// }
 						console.log(this.prev);
 					}, 300)
 				}

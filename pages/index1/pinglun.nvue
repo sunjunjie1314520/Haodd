@@ -1,7 +1,7 @@
 <template>
 	<!-- 评论弹窗 -->
 	<div class="comment-slide" @click="abc">
-		<div class="comment-slide-layout">
+		<div class="comment-slide-layout" v-if="show">
 			<template v-if="pageData">
 				<div class="comment-title">
 					<text class="comment-h2">{{pageData.count}}条评论</text>
@@ -78,13 +78,17 @@
 				
 				loadmoreoffset: 100,
 				
+				show: false,
 			}
 		},
 		watch:{
 			comment_config(data){
-				console.log(data);
 				this.reset();
 				this.comment_load_data();
+				this.show = false;
+				setTimeout(()=>{
+					this.show = true;
+				}, 100)
 			}
 		},
 		mounted() {
@@ -137,7 +141,7 @@
 					},
 					success(res) {
 						console.log(_this.page);
-						console.log(res.data.data);
+						// console.log(res.data.data);
 						if(res.data.code == 1){
 							_this.pageData = res.data;
 							_this.store(res.data.data, res.data.count)

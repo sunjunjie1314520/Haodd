@@ -78,7 +78,7 @@
 				// this.$api.shop.consignee_index(data)
 				this.$store.dispatch('Shop/consignee_index', data)
 				.then(res=>{
-					console.log(res);
+					// console.log(res);
 					this.paegData = res
 					this.store(res.data, res.count)
 				})

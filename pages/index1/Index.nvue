@@ -135,6 +135,9 @@
 			},
 			// 隐藏
 			comment_out(){
+				// #ifdef APP-PLUS
+					plus.key.hideSoftKeybord();
+				// #endif
 				const _this = this;
 				var testEl = _this.$refs['comment'];
 				animation.transition(testEl, {
@@ -143,9 +146,7 @@
 					},
 					duration: 500
 				}, function(){
-					// #ifdef APP-PLUS
-						plus.key.hideSoftKeybord();
-					// #endif
+					
 				})
 			},
 			share_in(config){
