@@ -21,9 +21,7 @@
 				show: false,
 				curr: 0,
 				path:'',
-				
 				down_config: {},
-
 			}
 		},
 		created() {
