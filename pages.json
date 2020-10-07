@@ -286,6 +286,18 @@
 			"style": {
 				"navigationBarTitleText": "找回交易密码"
 			}
+		},
+		{
+			"path": "pages/fabu/fabu",
+			"style": {
+				"navigationBarTitleText": "发布视频"
+			}
+		},
+		{
+			"path": "pages/set/xieyi",
+			"style": {
+				"navigationBarTitleText": "用户协议"
+			}
 		}
 	],
 	"globalStyle": {

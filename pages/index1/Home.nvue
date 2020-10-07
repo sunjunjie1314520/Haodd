@@ -1,6 +1,7 @@
 <template>
 	<div class="flex" :style="{'height': windowHeight + 'px'}">
 		
+		
 		<!-- 导航区 -->
 		<div class="status-app" :style="{'height': statusBarHeight}"></div>
 		
@@ -29,7 +30,7 @@
 		
 		<list
 		class="list-wrap"
-		v-if="video_list.length > 0"
+		v-if="comment_list.length > 0"
 		:pagingEnabled="true"
 		:offset-accuracy="videoStyle.height"
 		:show-scrollbar="false"
@@ -40,7 +41,7 @@
 		>
 			<cell
 			class="list-cell"
-			v-for="(item, index) in video_list"
+			v-for="(item, index) in comment_list"
 			:key="item.id"
 			:style="videoStyle"
 			@disappear="Disappear($event, index)"
@@ -48,6 +49,7 @@
 			>
 			<!-- 视频 -->
 			<!-- :poster="qiniuURL + item.upload_avatar" -->
+			<!-- :poster="qiniuURL + item.video_src + '?vframe/jpg/offset/0.0001'" -->
 			<div class="home-video-wrap" :style="videoStyle">
 				<video class="home-myvideo"
 				:style="videoStyle"
@@ -55,11 +57,11 @@
 				:loop="true"
 				:controls="false"
 				:muted="false"
-				objectFit="cover"
+				objectFit="contain"
 				:show-center-play-btn="false"
 				:enable-progress-gesture="false"
 				:src="qiniuURL + item.video_src"
-				:poster="qiniuURL + item.video_src + '?vframe/jpg/offset/1'"
+				
 				:id="`video_${index}`"
 				:ref="`video_${index}`"
 				@click="play(index)"
@@ -104,7 +106,7 @@
 						<text class="home-personal-span">{{item.number_of_comments}}</text>
 					</div>
 					<!-- 分享 -->
-					<div class="home-personal-li h5-flex" @click="share">
+					<div class="home-personal-li h5-flex" @click="share(qiniuURL + item.video_src)">
 						<image class="home-personal-img" src="@/static/image/349745_200x200.png" mode=""></image>
 						<text class="home-personal-span">{{item.follow}}</text>
 					</div>
@@ -197,35 +199,32 @@
 				
 				// statusBarHeight:deviceInfo.statusBarHeight+'px',
 				loadMoreHeight: windowHeight * 2,
-				videoStyle:{
+				videoStyle: {
 					width:"750upx",
 					height: windowHeight + 'px',
 				},
 		
 				tabs: 1,
-				
-				page: 1,
-				
+								
 				index: -1,
 				prev: -1,
 				play_status: false,
-				
-				
-				// 评论分页
-				cpage: 1,
-				
-				
-				// 视频
-				video_list: [],
+					
 
+				// 分页
+				size: 5,
+				next: true,
+				pageData: false,
+				page: 1,
+				comment_list: [],
 			}
 		},
 		created() {
-			this.getVideo_list();
+			this.getVideo_list(true);
 		},
 		computed: {
 			...mapState('Video', {
-				$comment_list: state => state.comment_index,
+				
 			})
 		},
 		
@@ -237,7 +236,7 @@
 			console.log('onUnload');
 		},
 		methods: {
-			getVideo_list(){
+			getVideo_list(first){
 				const _this = this;
 				const token = uni.getStorageSync('token');
 				uni.request({
@@ -247,24 +246,21 @@
 						'x2-token': token
 					},
 					success(res) {
-						_this.video_list = res.data.data;
-						uni.showToast({
-							title: `已为您推荐了${res.data.data.length}条视频`,
-							icon: 'none'
-						})
+						_this.store(res.data.data, res.data.count);
 						// 加载之后播放
-						setTimeout(()=>{
-							_this.index = 0;
-							_this.prev = 0;
-							_this.play_status = true;
-							uni.createVideoContext(`video_${_this.index}`,_this).play();
-						}, 500)
+						if(first){
+							setTimeout(()=>{
+								_this.index = 0;
+								_this.prev = 0;
+								_this.play_status = true;
+								uni.createVideoContext(`video_${_this.index}`,_this).play();
+							}, 500)
+						}
 					}
 				})
 			},
 			abc(e){
 				console.log(e);
-				// this.comment_out();
 			},
 			// 暂停和播放
 			play(index){
@@ -296,9 +292,9 @@
 						})
 							
 						if(mine_follow === 0){ 
-							_this.$set(_this.video_list[index], 'mine_follow', 1)
+							_this.$set(_this.comment_list[index], 'mine_follow', 1)
 						} else if(mine_follow === 1){
-							_this.$set(_this.video_list[index], 'mine_follow', 0)
+							_this.$set(_this.comment_list[index], 'mine_follow', 0)
 						}
 					}
 				})
@@ -324,11 +320,11 @@
 						})
 							
 						if(mine_like_count === 0){ 
-							_this.$set(_this.video_list[index], 'mine_like_count', 1)
-							_this.$set(_this.video_list[index], 'like', _this.video_list[index].like + 1)
+							_this.$set(_this.comment_list[index], 'mine_like_count', 1)
+							_this.$set(_this.comment_list[index], 'like', _this.comment_list[index].like + 1)
 						} else if(mine_like_count === 1){
-							_this.$set(_this.video_list[index], 'mine_like_count', 0)
-							_this.$set(_this.video_list[index], 'like', _this.video_list[index].like - 1)
+							_this.$set(_this.comment_list[index], 'mine_like_count', 0)
+							_this.$set(_this.comment_list[index], 'like', _this.comment_list[index].like - 1)
 						}
 					}
 				})
@@ -336,11 +332,11 @@
 			},
 			
 			// 分享
-			share(){
-				uni.showToast({
-					title: '分享成功',
-					icon:'none'
-				})
+			share(url){
+				let data = {
+					video: url,
+				}
+				this.$emit('show_share', data);
 			},
 			// 礼物
 			liwu(){
@@ -364,6 +360,21 @@
 			// 加载函数
 			Jiazai(){
 				console.log('加载一次');
+				if(this.next){
+					this.getVideo_list();
+				}
+			},
+			// 分页功能
+			store(data, count) {
+			    if (data.length > 0){
+			        this.comment_list = this.comment_list.concat(data)
+			    }
+			    if (count === 0 || data.length < this.size) {
+			        this.next = false;
+			    } else {
+			        this.page = this.page + 1;
+			    }
+				console.log(this.comment_list.length);
 			},
 			// 安卓滑动
 			Disappear(e, index){
@@ -425,7 +436,7 @@
 						console.log(index);
 					}
 				}
-				this.$emit('show', data);
+				this.$emit('show_comment', data);
 			},
 		},
 	}

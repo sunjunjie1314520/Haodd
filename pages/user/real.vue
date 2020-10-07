@@ -100,7 +100,7 @@
 				var payData = {
 					app_id: "41770ae0-c3d2-4410-8d7e-b3086557ba80",
 					channel: 'ALI_APP',
-					title: "好逗短视频-实名认证",
+					title: `好逗短视频-实名认证-${this.$aes.id}`,
 					total_fee: _this.$pay.auth * 100,
 					bill_no: this.$assist.genBillNo(),
 					optional: {

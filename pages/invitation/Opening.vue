@@ -5,7 +5,7 @@
 			<view class="title">
 				<view class="title-box">
 					<text class="h2">经纪商</text>
-					<text class="p">￥699/永久</text>
+					<text class="p">￥999/永久</text>
 				</view>
 				<view class="back">
 					<image src="../../src/static/img/80d389_572x329.png" mode=""></image>
@@ -46,6 +46,9 @@
 				
 			}
 		},
+		created() {
+			// console.log(this.$aes.id);
+		},
 		methods:{
 			myLink(){
 				uni.navigateTo({
@@ -57,7 +60,7 @@
 				var payData = {
 					app_id: "41770ae0-c3d2-4410-8d7e-b3086557ba80",
 					channel: 'ALI_APP',
-					title: "好逗短视频-开通经纪商",
+					title: `好逗短视频-开通经纪商-${this.$aes.id}`,
 					total_fee: this.$pay.broker * 100,
 					bill_no: this.$assist.genBillNo(),
 					optional: {

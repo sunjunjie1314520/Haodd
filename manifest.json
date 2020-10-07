@@ -2,8 +2,8 @@
     "name" : "好逗短视频",
     "appid" : "__UNI__B779857",
     "description" : "好在有我,逗你开心",
-    "versionName" : "2.1.4",
-    "versionCode" : 214,
+    "versionName" : "2.2.0",
+    "versionCode" : 220,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {

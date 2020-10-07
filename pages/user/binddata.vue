@@ -31,19 +31,23 @@
 				<view class="li">
 					<text class="span">银行账户:</text>
 					<view class="fr">
-						<input maxlength="18" v-model="config.bank_number" type="number" value="" placeholder="请输入银行账户" placeholder-class="placeholder-class" />
+						<input maxlength="19" v-model="config.bank_number" type="number" value="" placeholder="请输入银行账户" placeholder-class="placeholder-class" />
 					</view>
 				</view>
 				<view class="li">
-					<text class="span">支付宝账号:</text>
+					<text class="span">支付宝收款码:</text>
 					<view class="fr">
-						<input maxlength="20" v-model="config.zfb_number" type="text" value="" placeholder="请输入支付宝账号" placeholder-class="placeholder-class" />
+						<view class="pub-upload" @click="uploadFile(1)">
+							<image :src="qiniuURL + config.zfb_number" mode=""></image>
+						</view>
 					</view>
 				</view>
 				<view class="li">
-					<text class="span">微信账号:</text>
+					<text class="span">微信收款码:</text>
 					<view class="fr">
-						<input maxlength="20" v-model="config.wx_number" type="text" value="" placeholder="请输入微信账号" placeholder-class="placeholder-class" />
+						<view class="pub-upload" @click="uploadFile(2)">
+							<image :src="qiniuURL + config.wx_number" mode=""></image>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -135,7 +139,14 @@
 					console.log(res);
 					this.$assist.msg(res, true, true);
 				})
-			}
+			},
+			upload(res, index){
+				if(index == 1){
+					this.config.zfb_number = res[0]	
+				} else {
+					this.config.wx_number = res[0]
+				}
+			},
 		}
 	}
 </script>

@@ -66,10 +66,12 @@
 .app-footer-li-center
 	widthZ 76px
 	border-radius 50%
-	overflow hidden
-	
+	flex-direction row
+	align-items center
+	justify-content center
 .app-footer-li-ico1
-	widthZ 76px
+	width 76px
+	height 61px
 	
 .home-video-wrap
 	flex 1
@@ -181,8 +183,8 @@
 // 视频选择	
 
 .pub-video-select
-	position absolute
-	z-index 1
+	position fixed
+	z-index 3
 	bottom 0
 	left 0
 	right 0
@@ -207,6 +209,8 @@
 	align-items center
 	justify-content center
 	height 280px
+	flex-direction column
+	flex 1
 	
 .pub-video-img
 	widthZ 60px

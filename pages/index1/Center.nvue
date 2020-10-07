@@ -107,7 +107,7 @@
 							<text class="list-menu-1-text">经纪商</text>
 						</navigator>
 					</div>
-					<div class="list-menu-1-li h5-flex">
+					<div class="list-menu-1-li h5-flex" v-if="false">
 						<navigator url="../commonly/agent" hover-class="hover-class">
 							<image class="list-menu-1-image" src="../../src/static/img/f4810a_90x90.png" mode=""></image>
 							<text class="list-menu-1-text">区域代理</text>

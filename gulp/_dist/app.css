@@ -68,11 +68,13 @@
   width: 76upx;
   height: 76upx;
   border-radius: 50%;
-  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .app-footer-li-ico1 {
   width: 76upx;
-  height: 76upx;
+  height: 61upx;
 }
 .home-video-wrap {
   flex: 1;
@@ -186,8 +188,8 @@
   opacity: 0.6;
 }
 .pub-video-select {
-  position: absolute;
-  z-index: 1;
+  position: fixed;
+  z-index: 3;
   bottom: 0;
   left: 0;
   right: 0;
@@ -212,6 +214,8 @@
   align-items: center;
   justify-content: center;
   height: 280upx;
+  flex-direction: column;
+  flex: 1;
 }
 .pub-video-img {
   width: 60upx;

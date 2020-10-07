@@ -28,10 +28,10 @@
 						</view>
 						<view class="two">
 							<view class="btn">
-								<text v-if="item.status==0 || item.status==1 || item.status==2" @click="confirm(item)">{{item.status | status}}</text>
-								<text @click="delete_order(item.id)" v-if="item.status==4">删除订单</text>
-								<text @click="confirm_order(item.order_number)" v-if="item.status==3">确认收货</text>
-								<text @click="look_order(item.order_number)" v-if="item.status==3">查看物流</text>
+								<text v-if="item.status==0 || item.status==1 || item.status==3" @click="confirm(item)">{{item.status | status}}</text>
+								<text @click="look_order(item.order_number)" v-if="item.status==2">查看物流</text>
+								<text @click="confirm_order(item.order_number)" v-if="item.status==2">确认收货</text>
+								<text @click="delete_order(item.id)" v-if="item.status==3">删除订单</text>
 							</view>
 						</view>
 					</view>
@@ -61,7 +61,7 @@
 		data(){
 			return {
 				show: false,
-				tabs: 0,
+				tabs: '',
 				
 				first: false,
 				
@@ -108,14 +108,20 @@
 			delete_order(id){
 				this.$api.shop.order_delete({id: id})
 				.then(res=>{
-					console.log(res);
+					// console.log(res);
+					this.page = 1
+					this.$assist.msg(res, true);
+					this.getNetData()
 				})
 			},
 			// 确定收货
 			confirm_order(order_number){
 				this.$api.shop.confim_status({order_number: order_number})
 				.then(res=>{
-					console.log(res);
+					// console.log(res);
+					this.page = 1
+					this.$assist.msg(res, true);
+					this.getNetData()
 				})
 			},
 			// 查询物流
@@ -165,8 +171,8 @@
 						return '去付款'
 					case 1:
 						return '已付款'
-					case 2:
-						return '待发货'
+					case 3:
+						return '已完成'
 				}
 			}
 		}

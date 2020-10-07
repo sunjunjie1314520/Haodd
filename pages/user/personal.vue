@@ -100,6 +100,9 @@
 			// this.index = this.$user.sex
 		},
 		methods: {
+			upload(res){
+				this.userSave({avatar: res[0]});
+			},
 			gotoYan(){
 				uni.navigateTo({
 					url: '../user/real'
@@ -132,17 +135,8 @@
 				console.log(date1);
 				this.userSave({birth: date1});
 			},
-			uploadFile(){
-				this.$api.upload.qiniu()
-				.then(res=>{
-					console.log(res);
-					this.$api.upload.image(['album ', 'camera'], res.token)
-					.then(res=>{
-						console.log(res);
-						this.userSave({avatar: res[0]});
-					})
-				})
-			}
+			
+			
 		},
 		components: {
 			birthTime,

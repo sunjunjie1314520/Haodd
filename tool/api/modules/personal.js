@@ -66,6 +66,6 @@ config.user_card = params => request.globalRequest('/user_card/index', 'POST', p
 config.aliyun_check_log = params => request.globalRequest('/user/aliyun_check_log', 'POST', params, 1)
 
 // 找回交易密码
-config.reset_safe_code = params => request.globalRequest('/user/reset_safe_code', 'POST', params, 1)
+config.reset_safe_code = params => request.globalRequest('/user/reset_safe_code', 'POST', params, 1, '正在重置')
 
 export default config

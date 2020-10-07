@@ -54,17 +54,23 @@
 			</view>
         </view>
 		<Update @close="up=false" v-if="up"></Update>
+		<xie v-if="xie" @quit="xie=false"></xie>
+		
     </view>
 </template>
 
 <script>
 	import Update from '../../Update.vue'
+	import xie from './xieyi.vue'
+	
 	export default {
 		components:{
-			Update
+			Update,
+			xie,
 		},
 		data(){
 			return {
+				xie: true,
 				tabs: 0,
 				up: true,
 				config: {
@@ -99,8 +105,8 @@
 					_this.version_number = widgetInfo.version;
 				})
 			},
+			// 账号密码登录
 			userLogin(){
-				
 				let yz = [
 					{
 						type: 'phone',
@@ -118,7 +124,8 @@
 					return false;
 				}
 				
-				this.config.password = this.$md5(this.password)
+				this.config.password = this.$md5(this.password);
+				// this.config.password = this.password;
 				this.$api.login.sign(this.config)
 				.then(res=>{
 					// console.log(res);

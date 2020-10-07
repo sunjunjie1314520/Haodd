@@ -1,7 +1,7 @@
 <template>
 	
 	<div class="app-plus">
-		<Home v-if="tabs==0" @show="comment_in"></Home>
+		<Home v-if="tabs==0" @show_comment="comment_in" @show_share="share_in"></Home>
 		
 		<Shop v-if="tabs==1"></Shop>
 		<Game v-if="tabs==2"></Game>
@@ -11,21 +11,21 @@
 		
 		<!-- 视频选择 -->
 		<div class="pub-video-select" @click="test" v-if="show">
-			<div class="pub-video-ul">
-				<div class="pub-video-li">
-					<div class="pict1-color1" @click="toast('拍摄')">
+			<div class="pub-video-ul h5-flex">
+				<div class="pub-video-li h5-flex">
+					<div class="pict1-color1 h5-flex" @click="UploadVideo">
 						<image class="pub-video-img" src="@/static/image/a9fa32_200x200.png" mode=""></image>
 					</div>
-					<text class="pub-video-text">拍摄视频</text>
+					<text class="pub-video-text">上传视频</text>
 				</div>
-				<div class="pub-video-li" @click="toast('直播')">
-					<div class="pict1-color2">
+<!-- 				<div class="pub-video-li h5-flex" @click="toast('直播')">
+					<div class="pict1-color2 h5-flex">
 						<image class="pub-video-img" src="@/static/image/a9fa33_200x200.png" mode=""></image>
 					</div>
 					<text class="pub-video-text">开始直播</text>
-				</div>
-				<div class="pub-video-close">
-					<div class="pub-video-close-wrap" @click="closeHandle">
+				</div> -->
+				<div class="pub-video-close h5-flex">
+					<div class="pub-video-close-wrap h5-flex" @click="closeHandle">
 						<image class="pub-video-close-img" src="@/static/image/close.png" mode=""></image>
 					</div>
 				</div>
@@ -34,7 +34,8 @@
 		
 		<!-- 评论 -->
 		<pinglun ref="comment" @hide="comment_out" :comment_config="comment_config"></pinglun>
-		
+		<!-- 分享 -->
+		<share ref="share" @hide_share="share_out" :share_config="share_config"></share>
 	</div>
 </template>
 
@@ -46,6 +47,9 @@
 	import Center from './Center.nvue'
 	import Game from './Game.nvue'
 	import pinglun from './pinglun.nvue'
+	import share from './share.nvue'
+	
+	import { mapState } from 'vuex'
 	
 	// #ifdef APP-NVUE
 	const animation = weex.requireModule('animation')
@@ -64,6 +68,7 @@
 			Game,
 			Center,
 			pinglun,
+			share,
 		},
 		data(){
 			return {
@@ -71,12 +76,31 @@
 				show: false,
 				
 				comment_config: false,
+				share_config: false,
 			}
 		},
 		onShow() {
 			this.loadData();
 		},
+		computed:{
+			...mapState('Personal', {
+				$user: state => state.me,
+			})
+		},
 		methods: {
+			UploadVideo(){
+				if(this.$user.parther){
+					this.show = false;
+					uni.navigateTo({
+						url: '../fabu/fabu',
+					})
+				}else{
+					uni.showToast({
+						title: '您当前不是经纪商，无此权限！',
+						icon: 'none'
+					})
+				}
+			},
 			loadData(){
 				this.$store.dispatch('Personal/me');
 			},
@@ -123,7 +147,28 @@
 						plus.key.hideSoftKeybord();
 					// #endif
 				})
-			}
+			},
+			share_in(config){
+				const _this = this;
+				_this.share_config = config;
+				var testEl = _this.$refs['share'];
+				animation.transition(testEl, {
+					styles: {
+						transform: 'translateY(0px)',
+					},
+					duration: 500
+				})
+			},
+			share_out(){
+				const _this = this;
+				var testEl = _this.$refs['share'];
+				animation.transition(testEl, {
+					styles: {
+						transform: 'translateY(1000px)',
+					},
+					duration: 500
+				})
+			},
 		},
 		onBackPress(){
 			uni.showModal({

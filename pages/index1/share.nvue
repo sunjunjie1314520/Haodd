@@ -1,0 +1,99 @@
+<template>
+	<div class="comment-slide" @click="abc">
+		<div class="comment-slide-layout">
+			<div class="comment-title">
+				<text class="comment-h2">分享操作</text>
+				<div class="comment-close-wrap h5-flex" @click="share_out">
+					<image class="comment-close" src="@/static/image/1c4302_128x128.png" mode=""></image>
+				</div>
+			</div>
+			<div class="zero">
+				<div class="zero-ul h5-flex">
+					<div class="zero-li h5-flex" @click="saveFile">
+						<image class="zero-li-image" src="@/static/image/0a79f7_92x92.png" mode=""></image>
+						<text class="zero-li-p">保存本地</text>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	
+	export default {
+		props: ['share_config'],
+		data(){
+			return {
+				
+			}
+		},
+		methods: {
+			abc(){
+				
+			},
+			share_out(){
+				this.$emit('hide_share');
+			},
+			saveFile(){
+				const _this = this;
+				uni.showLoading({
+					title: '正在保存中'
+				})
+				const downloadTask = uni.downloadFile({
+					url: this.share_config.video,
+					success(res){
+						if (res.statusCode === 200) {
+							uni.saveImageToPhotosAlbum({
+								filePath: res.tempFilePath,
+								success: function() {
+									uni.showToast({
+										title: "保存成功",
+										icon: "none"
+									});
+								},
+								fail: function() {
+									uni.showToast({
+										title: "保存失败，请稍后重试",
+										icon: "none"
+									});
+								},
+							})
+							setTimeout(()=>{
+								_this.share_out();
+							}, 1200)
+						}
+					}
+				})
+				downloadTask.onProgressUpdate((res) => {
+					console.log('下载进度' + res.progress);
+				});
+			}
+		}
+	}
+</script>
+
+<style lang="stylus" scoped>
+	.comment-slide
+		transform translateY(1000px)
+	.comment-slide-layout
+		height 300upx
+	.zero
+		padding 25upx 0
+	.zero-ul
+		flex-direction row
+		justify-content center
+	
+	.zero-li
+		flex-direction column
+		align-items center
+	.zero-li-image
+		width 92upx
+		height 92upx
+	
+	.zero-li-p
+		color #999
+		margin-top 10upx
+		font-size 28upx
+		
+</style>

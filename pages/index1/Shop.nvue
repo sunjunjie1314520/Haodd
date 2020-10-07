@@ -4,20 +4,28 @@
 		<div class="status-app" :style="{'height': statusBarHeight + 'px'}"></div>
 		<div class="status-app-null" :style="{'height': statusBarHeight + 'px'}"></div>
 		
+		<scroller
+		class="scroller"
+		:style="{'height': (windowHeight - statusBarHeight) + 'px'}"
+		:loadmoreoffset="150"
+		@loadmore="loadmore">
 		<div class="shop-keys-search h5-flex">
 			<input class="shop-keys-search-input" v-model="name" type="text" value="" placeholder="请输入关键字" />
 			<text class="shop-keys-search-search" @click="product_index()">搜索</text>
 		</div>
 		
 		<div class="shop-keys-tabs">
-			<div class="scroll-view_H" scroll-x="true">
-				<scroller scroll-direction="horizontal" style="flex-direction: row">
+			<div class="scroll-view_H">
+				<!-- <scroller scroll-direction="horizontal" style="flex-direction: row"> -->
 					<div class="shop-keys-tabs-ul h5-flex">
-						<div @click="tabs=index" class="shop-keys-tabs-li" v-for="(item, index) in $category" :key="item.id">
+						<div @click="toggle(-1, 0)" :class="['shop-keys-tabs-li', 'h5-flex', tabs==-1 ? 'shop-keys-tabs-li-active' : '']">
+							<text :class="['tabs-li-txt', tabs==-1 ? 'tabs-li-txt-active' : '']">全部</text>
+						</div>
+						<div @click="toggle(index, item.id)" :class="['shop-keys-tabs-li', 'h5-flex', tabs==index ? 'shop-keys-tabs-li-active' : '']" v-for="(item, index) in $category" :key="item.id">
 							<text :class="['tabs-li-txt', tabs==index ? 'tabs-li-txt-active' : '']">{{item.name}}</text>
 						</div>
 					</div>
-				</scroller>
+				<!-- </scroller> -->
 			</div>
 		</div>
 		
@@ -50,24 +58,24 @@
 		
 		<div class="shop-sort">
 			<div class="shop-sort-ul h5-flex">
-				<div :class="['shop-sort-li', 'h5-flex', sort==0 ? 'shop-sort-li-active':'']" @click="sort=0; product_index();">
+				<div :class="['shop-sort-li', 'h5-flex', sort==0 ? 'shop-sort-li-active':'']" @click="sortHandle(0, 'id', 0)">
 					<text class="shop-sort-li-txt">综合</text>
 				</div>
-				<div :class="['shop-sort-li', 'h5-flex', sort==1 ? 'shop-sort-li-active':'']" @click="sort=1; product_index('sales_count');">
+				<div :class="['shop-sort-li', 'h5-flex', sort==1 ? 'shop-sort-li-active':'']" @click="sortHandle(1, 'sales_count', 1)">
 					<text class="shop-sort-li-txt">销量</text>
 				</div>
-				<div :class="['shop-sort-li', 'h5-flex', sort==2 ? 'shop-sort-li-active':'']" @click="sort=2; product_index('create_time');">
+				<div :class="['shop-sort-li', 'h5-flex', sort==2 ? 'shop-sort-li-active':'']" @click="sortHandle(2, 'create_time', 1)">
 					<text class="shop-sort-li-txt">最新</text>
 				</div>
-				<div :class="['shop-sort-li', 'h5-flex', sort==3 ? 'shop-sort-li-active':'']" @click="sort=3; product_index('amount');">
+				<div :class="['shop-sort-li', 'h5-flex', sort==3 ? 'shop-sort-li-active':'']" @click="sortHandle(3, 'amount', 1)">
 					<text class="shop-sort-li-txt">价格</text>
 				</div>
 			</div>
 		</div>
 		
-		<div class="product">
-			<div class="product-ul h5-flex">
-				<div class="product-li" @click="gotoDetail(item)" v-for="item in $product" :key="item.id">
+		<div class="product" v-if="pageData">
+			<div class="product-ul h5-flex" v-if="comment_list.length > 0">
+				<div class="product-li" @click="gotoDetail(item)" v-for="item in comment_list" :key="item.id">
 					<div class="product-pict">
 						<image class="product-pict-image" :src="qiniuURL + item.thumb" mode=""></image>
 					</div>
@@ -85,9 +93,15 @@
 					</div>
 				</div>
 			</div>
+			<div class="null-data" v-else>
+				<text class="type-text">该类目下没有商品</text>
+			</div>
+			
 		</div>
 		
 		<div class="pub-button-null1"></div>
+		
+		</scroller>
 
 	</div>
 </template>
@@ -108,11 +122,20 @@
 				interval: 2000,
 				duration: 500,
 				
-				tabs: 0,
-				page: 1,
-				name:'',
-				
+				tabs: -1,
 				sort: 0,
+				
+				name:'',
+				sortkey: 0,
+				order: 'id',
+				pid: 0,
+				
+				
+				pageData:false,
+				next: true,
+				page: 1,
+				size: 20,
+				comment_list: [],
 			}
 		},
 		created() {
@@ -121,19 +144,35 @@
 			this.product_index();
 		},
 		watch:{
-			tabs(){
-				this.sort = 0
-				this.product_index();
-			}
 		},
 		computed:{
 			...mapState('Shop', {
 				$category: state => state.category_index,
-				$product: state => state.product_index,
 				$sys_shop: state => state.sys_shop,
+				// $product: state => state.product_index,
 			})
 		},
 		methods:{
+			sortHandle(val, order, sort1){
+				this.clear();
+				this.sort = val;
+				this.sortkey = sort1
+				this.order = order;
+				this.product_index();
+			},
+			clear(){
+				this.pageData = false
+				this.next = true
+				this.page = 1
+				this.comment_list = [];
+			},
+			toggle(index, id){
+				this.clear();
+				this.pid = id;
+				this.tabs = index;
+				this.sortkey = ''
+				this.product_index();
+			},
 			gotoLink(url){
 				if(url){
 					uni.navigateTo({
@@ -152,26 +191,59 @@
 					url:'../product/detail?id=' + item.id
 				})
 			},
-			
-			product_index(order='', sort='desc'){
+			// 获取列表数据
+			product_index(){
+				const _this = this;
 				let data = {
 					page: this.page,
-					cat: this.tabs,
 					name: this.name,
-					sort: sort,
+					cat: this.pid,
+					order: this.order,
 				}
-				if(order){
-					data.order = order
+				if(this.sortkey == 0){
+					data.sort = ''
+				}else if (this.sortkey == 1){
+					data.sort = 'desc'
 				}
-				this.$store.dispatch('Shop/product_index', data);
+				console.log(data);
+				const token = uni.getStorageSync('token');
+				uni.request({
+					url: `http://101.200.171.163/public/index.php/product/page_index`,
+					method: 'POST',
+					data: JSON.stringify(data),
+					header:{
+						'x2-token': token
+					},
+					success(res) {
+						if(res.data.code == 1){
+							_this.pageData = res.data;
+							_this.store(res.data.data, res.data.count)
+						}
+					}
+				})
+			},
+			// 分页功能
+			store(data, count) {
+			    if (data.length > 0){
+			        this.comment_list = this.comment_list.concat(data)
+			    }
+			    if (count === 0 || data.length < this.size) {
+			        this.next = false;
+			    } else {
+			        this.page = this.page + 1;
+			    }
+			},
+			loadmore(){
+				if(this.next){
+					this.product_index();
+					console.log('加载一次');
+				}
 			}
-		}
-		
+		},	
 	}
 </script>
 
 <style lang="stylus" scoped>
-	
 	.shop-keys-search
 		padding 20upx 30upx
 		justify-content space-between
@@ -196,19 +268,26 @@
 		
 	.shop-keys-tabs
 		background-color #1e1e27
+		padding 20upx 0
 	.shop-keys-tabs-ul
 		flex-direction row
+		flex-wrap wrap
 	.shop-keys-tabs-li
-		padding 25upx 0
+		width 187.5upx
+		flex-direction row
+		justify-content center
+		
 		/* #ifdef H5 */
 		flex-shrink 0
 		/* #endif */
+	.shop-keys-tabs-li-active
+		background-color #f7224e
 	.tabs-li-txt
 		font-size 30upx
-		padding 0 20upx
 		color #fff
+		line-height 70upx
 	.tabs-li-txt-active
-		color #f7224e
+		color #fff
 		
 	.out-link-ul
 		flex-direction row
@@ -310,4 +389,13 @@
 		height 283upx
 	.swiper-image
 		width 750upx
+	.null-data
+		flex-direction row
+		justify-content center
+		color #fff
+		padding 50upx 0
+	.type-text
+		color #fff
+		font-size 30upx
+		opacity .6
 </style>
