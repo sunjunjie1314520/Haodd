@@ -244,6 +244,7 @@
 						'x2-token': token
 					},
 					success(res) {
+						console.log(res);
 						_this.store(res.data.data, res.data.count);
 						// 加载之后播放
 						if(first){
