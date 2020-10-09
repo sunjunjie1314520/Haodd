@@ -107,6 +107,10 @@
 							<text class="list-menu-1-text">经纪商</text>
 						</navigator>
 					</div>
+					<div class="list-menu-1-li h5-flex" @click="scanCode">
+						<image class="list-menu-1-image" src="../../static/image/721a8c_90x90.png" mode=""></image>
+						<text class="list-menu-1-text">扫码支付</text>
+					</div>
 					<div class="list-menu-1-li h5-flex" v-if="false">
 						<navigator url="../commonly/agent" hover-class="hover-class">
 							<image class="list-menu-1-image" src="../../src/static/img/f4810a_90x90.png" mode=""></image>
@@ -358,6 +362,19 @@
 			g2(){
 				uni.navigateTo({
 					url:'../set/set'
+				})
+			},
+			// 扫码支付
+			scanCode(){
+				uni.scanCode({
+					scanType: 'qrCode',
+					success(res) {
+						console.log(res);
+						uni.showToast({
+							title: '功能即将开放',
+							icon: 'none'
+						})
+					}
 				})
 			}
 		},

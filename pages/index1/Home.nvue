@@ -65,6 +65,7 @@
 				:ref="`video_${dex}`"
 				@click="play(dex)"
 				@timeupdate="Timeupdate"
+				@error="error"
 				>
 				</video>
 			</div>
@@ -410,6 +411,11 @@
 						console.log(this.prev);
 					}, 300)
 				}
+			},
+			error(){
+				setTimeout(()=>{
+					uni.createVideoContext(`video_${this.index}`,this).play();
+				}, 1000)
 			},
 			// 移出
 			onappear (e) {
