@@ -7,7 +7,7 @@
 				<!-- <text @tap="tabs=2" :class="['span', {active: tabs==2}]">HDC收入</text> -->
 				<!-- <text @tap="tabs=3" :class="['span', {active: tabs==3}]">支出</text> -->
 			</view>
-			<view class="ul" v-if="list">
+			<view class="ul" v-if="pageData">
 				<view class="li" v-for="item in list" :key="item.id">
 					<view class="h2">{{item.mark || '音豆收入'}}</view>
 					<view class="dou">
@@ -17,6 +17,13 @@
 				</view>
 				<view class="null-data" v-if="list.length == 0">
 					没有任何记录
+				</view>
+				
+				<view class="null-data border-top" v-if="next">
+					加载中...
+				</view>
+				<view class="null-data border-top" v-else>
+					没有更多的记录了
 				</view>
 			</view>
 			<view class="ul" v-else>
@@ -31,14 +38,20 @@
 		data(){
 			return {
 				tabs: 0,
+				pageData: false,
+				
 				page: 1,
-				list: false,
+				list: [],
+				next: true,
 			}
 		},
 		watch:{
 			tabs(){
 				this.page = 1;
-				this.list = false;
+				this.pageData = false;
+				this.list = [];
+				this.next = true;
+				
 				setTimeout(()=>{
 					this.getNetWord();
 				}, 300)
@@ -56,12 +69,26 @@
 				this.$api.personal.amount_detail(data)
 				.then(res=>{
 					console.log(res);
-					this.list = res.data
+					this.pageData = res;
+					this.store(res.data, res.count);
 				})
+			}
+		},
+		onReachBottom(e) {
+			if(this.next){
+				console.log(this.page);
+				this.getNetWord();
 			}
 		}
 	}
 </script>
 
 <style>
+	.border-top{
+		border-top: solid .5px rgba(255, 255, 255, .2);
+	}
+	.null-data{
+		float: left;
+		width: 100%;
+	}
 </style>

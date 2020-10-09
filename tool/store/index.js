@@ -57,7 +57,7 @@ const store = new Vuex.Store({
 			console.log(payload);
 			// #ifdef APP-PLUS
 			plus.payment.getChannels(function(s) {
-				channels = s
+				channels = s;
 			})
 			var url = getRandomHost();
 			uni.request({
